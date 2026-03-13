@@ -148,7 +148,7 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   position: relative;
 }
 
-/* Dropdown con más tiempo de espera */
+/* Dropdown con mucho más tiempo de espera */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -168,7 +168,7 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   transform: translateX(0);
   max-height: 60vh;
   overflow-y: auto;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 .dropdown:hover .dropdown-content,
@@ -179,13 +179,22 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
 }
 
 .dropdown:hover .dropdown-content {
-  transition-delay: 0.3s; /* Aumentado de 0.1s a 0.3s */
+  transition-delay: 0.5s; /* Aumentado de 0.3s a 0.5s */
 }
 
 /* Mantener dropdown abierto al hover del contenido */
 .dropdown-content:hover {
   opacity: 1;
   visibility: visible;
+}
+
+/* Evitar que se cierre al mover mouse dentro del dropdown */
+.dropdown-content {
+  pointer-events: auto;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block !important;
 }
 
 /* Ajuste para pantallas pequeñas */
@@ -364,14 +373,14 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
 }
 
 .benefit-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: white;
   margin: 0 auto 8px;

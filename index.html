@@ -410,7 +410,7 @@
       }, 80);
     }
 
-    // Toggle dropdown con mejor manejo
+    // Toggle dropdown con manejo mejorado
     document.querySelectorAll(".dropbtn").forEach(btn => {
       btn.addEventListener("click", function(e){
         e.preventDefault();
@@ -428,6 +428,37 @@
       if (!e.target.matches('.dropbtn') && !e.target.closest('.dropdown-content')) {
         document.querySelectorAll(".dropdown-content").forEach(menu => menu.classList.remove('show'));
       }
+    });
+    
+    // Mantener dropdown abierto al hover del contenido
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+      const content = dropdown.querySelector('.dropdown-content');
+      
+      dropdown.addEventListener('mouseenter', function() {
+        content.classList.add('show');
+      });
+      
+      dropdown.addEventListener('mouseleave', function(e) {
+        // Solo cerrar si el mouse no está yendo hacia el contenido
+        setTimeout(() => {
+          if (!e.relatedTarget || (!e.relatedTarget.closest('.dropdown-content') && e.relatedTarget !== dropdown.querySelector('.dropbtn'))) {
+            content.classList.remove('show');
+          }
+        }, 300); // Tiempo extra para mover al contenido
+      });
+      
+      content.addEventListener('mouseenter', function() {
+        content.classList.add('show');
+      });
+      
+      content.addEventListener('mouseleave', function(e) {
+        // Solo cerrar si el mouse no está volviendo al botón
+        setTimeout(() => {
+          if (!e.relatedTarget || (!e.relatedTarget.closest('.dropdown') && e.relatedTarget !== dropdown.querySelector('.dropbtn'))) {
+            content.classList.remove('show');
+          }
+        }, 300);
+      });
     });
 
     // Inicial: asegurar que solo inicio esté visible
