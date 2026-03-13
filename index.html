@@ -102,8 +102,8 @@
           <!-- BENEFICIOS VISUALES -->
           <div class="hero-benefits">
             <div class="benefit-item">
-              <div class="benefit-icon">30</div>
-              <span>años de experiencia</span>
+              <div class="benefit-icon">✓</div>
+              <span>30 años de experiencia</span>
             </div>
             <div class="benefit-item">
               <div class="benefit-icon">✓</div>
@@ -410,7 +410,7 @@
       }, 80);
     }
 
-    // Toggle dropdown con 8 segundos y manejo mejorado
+    // Toggle dropdown con 8 segundos y máxima sensibilidad
     document.querySelectorAll(".dropbtn").forEach(btn => {
       btn.addEventListener("mouseenter", function(e){
         e.preventDefault();
@@ -440,43 +440,57 @@
       }
     });
     
-    // Mantener dropdown abierto con 8 segundos SIN CERRARSE INMEDIATAMENTE
+    // Mantener dropdown abierto 8 segundos - MÁXIMA SENSIBILIDAD
     document.querySelectorAll(".dropdown").forEach(dropdown => {
       const content = dropdown.querySelector('.dropdown-content');
       let closeTimeout;
-      let isHoveringDropdown = false;
-      let isHoveringContent = false;
+      
+      // Variable global para controlar si el mouse está en el área del dropdown
+      let isDropdownActive = false;
       
       dropdown.addEventListener('mouseenter', function() {
-        isHoveringDropdown = true;
+        isDropdownActive = true;
         clearTimeout(closeTimeout);
         content.classList.add('show');
       });
       
       dropdown.addEventListener('mouseleave', function(e) {
-        isHoveringDropdown = false;
-        // NO cerrar inmediatamente, esperar 8 segundos
+        isDropdownActive = false;
+        // NO cerrar inmediatamente - esperar 8 segundos
         closeTimeout = setTimeout(() => {
-          if (!isHoveringDropdown && !isHoveringContent) {
+          // Solo cerrar si el mouse NO está en ninguna parte del dropdown
+          if (!isDropdownActive && !content.matches(':hover')) {
             content.classList.remove('show');
           }
         }, 8000);
       });
       
       content.addEventListener('mouseenter', function() {
-        isHoveringContent = true;
+        isDropdownActive = true;
         clearTimeout(closeTimeout);
         content.classList.add('show');
       });
       
       content.addEventListener('mouseleave', function(e) {
-        isHoveringContent = false;
-        // NO cerrar inmediatamente, esperar 8 segundos
+        isDropdownActive = false;
+        // NO cerrar inmediatamente - esperar 8 segundos
         closeTimeout = setTimeout(() => {
-          if (!isHoveringDropdown && !isHoveringContent) {
+          // Solo cerrar si el mouse NO está en ninguna parte del dropdown
+          if (!isDropdownActive && !dropdown.matches(':hover')) {
             content.classList.remove('show');
           }
         }, 8000);
+      });
+      
+      // Extra: mantener abierto si el mouse está cerca del dropdown
+      dropdown.addEventListener('mousemove', function() {
+        isDropdownActive = true;
+        clearTimeout(closeTimeout);
+      });
+      
+      content.addEventListener('mousemove', function() {
+        isDropdownActive = true;
+        clearTimeout(closeTimeout);
       });
     });
 
