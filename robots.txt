@@ -1,0 +1,25 @@
+# Robots.txt para Domédicos del Norte
+# https://domedicosdelnorte.github.io
+
+User-agent: *
+Allow: /
+
+# Priorizar indexación de contenido importante
+Allow: /diagnostico.html
+Allow: /movilidad.html
+Allow: /hospitalario.html
+Allow: /insumos.html
+Allow: /especializados.html
+Allow: /repuestos-biomedicos.html
+
+# Bloquear archivos temporales y de sistema
+Disallow: /*.tmp$
+Disallow: /*.bak$
+Disallow: /diagnostico-old.html
+Disallow: /_*
+
+# Ubicación del sitemap
+Sitemap: https://domedicosdelnorte.github.io/sitemap.xml
+
+# Tiempo de crawl (opcional)
+Crawl-delay: 1
