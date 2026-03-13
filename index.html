@@ -410,7 +410,7 @@
       }, 80);
     }
 
-    // Toggle dropdown ultra-sensible con 8 segundos
+    // Toggle dropdown con 8 segundos y manejo mejorado
     document.querySelectorAll(".dropbtn").forEach(btn => {
       btn.addEventListener("mouseenter", function(e){
         e.preventDefault();
@@ -440,39 +440,43 @@
       }
     });
     
-    // Mantener dropdown abierto 8 segundos con manejo inteligente
+    // Mantener dropdown abierto con 8 segundos SIN CERRARSE INMEDIATAMENTE
     document.querySelectorAll(".dropdown").forEach(dropdown => {
       const content = dropdown.querySelector('.dropdown-content');
       let closeTimeout;
+      let isHoveringDropdown = false;
+      let isHoveringContent = false;
       
       dropdown.addEventListener('mouseenter', function() {
+        isHoveringDropdown = true;
         clearTimeout(closeTimeout);
         content.classList.add('show');
       });
       
       dropdown.addEventListener('mouseleave', function(e) {
-        clearTimeout(closeTimeout);
-        // Esperar 8 segundos antes de cerrar
+        isHoveringDropdown = false;
+        // NO cerrar inmediatamente, esperar 8 segundos
         closeTimeout = setTimeout(() => {
-          if (!e.relatedTarget || (!e.relatedTarget.closest('.dropdown-content') && e.relatedTarget !== dropdown.querySelector('.dropbtn'))) {
+          if (!isHoveringDropdown && !isHoveringContent) {
             content.classList.remove('show');
           }
-        }, 8000); // 8 segundos
+        }, 8000);
       });
       
       content.addEventListener('mouseenter', function() {
+        isHoveringContent = true;
         clearTimeout(closeTimeout);
         content.classList.add('show');
       });
       
       content.addEventListener('mouseleave', function(e) {
-        clearTimeout(closeTimeout);
-        // Esperar 8 segundos antes de cerrar
+        isHoveringContent = false;
+        // NO cerrar inmediatamente, esperar 8 segundos
         closeTimeout = setTimeout(() => {
-          if (!e.relatedTarget || (!e.relatedTarget.closest('.dropdown') && e.relatedTarget !== dropdown.querySelector('.dropbtn'))) {
+          if (!isHoveringDropdown && !isHoveringContent) {
             content.classList.remove('show');
           }
-        }, 8000); // 8 segundos
+        }, 8000);
       });
     });
 
