@@ -102,15 +102,15 @@
           <!-- BENEFICIOS VISUALES -->
           <div class="hero-benefits">
             <div class="benefit-item">
-              <div class="benefit-icon">✓</div>
-              <span>30 años de experiencia</span>
+              <div class="benefit-icon">30</div>
+              <span>años de experiencia</span>
             </div>
             <div class="benefit-item">
               <div class="benefit-icon">✓</div>
               <span>Equipos certificados</span>
             </div>
             <div class="benefit-item">
-              <div class="benefit-icon">✓</div>
+              <div class="benefit-icon">📦</div>
               <span>Envíos a nivel nacional</span>
             </div>
           </div>
@@ -169,10 +169,10 @@
           <div class="slider-container">
             <div class="slider-wrapper">
               <div class="slide">
-                <img src="tensiometro digital valcri AOJ30A.webp" alt="Tensiómetro Digital Valcri AOJ30A" loading="lazy">
+                <img src="Fonendoscopio.webp" alt="Fonendoscopio Profesional" loading="lazy">
                 <div class="slide-content">
-                  <h3>Tensiómetro Digital Valcri AOJ30A</h3>
-                  <p>Monitor de presión arterial automático con tecnología de última generación</p>
+                  <h3>Fonendoscopio Profesional</h3>
+                  <p>Instrumento de diagnóstico cardiovascular y pulmonar de alta precisión</p>
                 </div>
               </div>
               
@@ -410,16 +410,22 @@
       }, 80);
     }
 
-    // Toggle dropdown en móvil (clic) + close on outside click
+    // Toggle dropdown con mejor manejo
     document.querySelectorAll(".dropbtn").forEach(btn => {
       btn.addEventListener("click", function(e){
         e.preventDefault();
         const menu = this.nextElementSibling;
+        // Cerrar otros dropdowns
+        document.querySelectorAll(".dropdown-content").forEach(m => {
+          if (m !== menu) m.classList.remove('show');
+        });
         menu.classList.toggle("show");
       });
     });
+    
+    // Cerrar dropdowns solo al hacer clic fuera
     window.addEventListener("click", function(e){
-      if (!e.target.matches('.dropbtn')) {
+      if (!e.target.matches('.dropbtn') && !e.target.closest('.dropdown-content')) {
         document.querySelectorAll(".dropdown-content").forEach(menu => menu.classList.remove('show'));
       }
     });
