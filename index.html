@@ -160,412 +160,105 @@
         </div>
       </section>
 
-      <h2 id="tab-inicio" class="section-title">Catálogo de Productos Médicos</h2>
-
-      <!-- BUSCADOR DE PRODUCTOS -->
-      <div class="search-container">
-        <div class="search-box">
-          <input 
-            type="text" 
-            id="product-search" 
-            placeholder="🔍 Buscar equipos médicos..."
-            autocomplete="off"
-            aria-label="Buscar productos"
-          >
-          <div class="search-suggestions" id="search-suggestions"></div>
-        </div>
-        <div class="search-filters">
-          <button class="filter-btn active" data-category="all">Todos</button>
-          <button class="filter-btn" data-category="diagnostico">Diagnóstico</button>
-          <button class="filter-btn" data-category="movilidad">Movilidad</button>
-          <button class="filter-btn" data-category="hospitalario">Hospitalario</button>
-          <button class="filter-btn" data-category="insumos">Insumos</button>
-        </div>
-      </div>
-
-      <div id="no-results" style="display: none; text-align: center; padding: 40px; color: var(--text-light);">
-        <h3>No se encontraron productos</h3>
-        <p>Intenta con otros términos de búsqueda o categorías.</p>
-      </div>
-
-      <!-- DIAGNOSTICO SECTION -->
-      <div class="category-section">
-        <h3 id="diagnostico-heading" class="category-title">
-          <span class="category-icon">🩺</span>
-          Equipos de Diagnóstico
-        </h3>
-        <div class="articles">
-          <div class="article">
-            <div class="article-image">
-              <img src="Kit tensiometro + fonendoscopio.webp" alt="Kit tensiómetro con fonendoscopio para diagnóstico clínico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Kit Tensiómetro + Fonendoscopio</h4>
-              <p class="article-description">Set completo de diagnóstico médico con precisión certificada para uso clínico profesional.</p>
-              <a class="btn-cotizar" href="diagnostico.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="Kit de organo de los sentidos.jpg" alt="Kit de órganos de los sentidos para educación médica" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Kit de Órganos de los Sentidos</h4>
-              <p class="article-description">Modelos anatómicos detallados para educación médica y demostración clínica.</p>
-              <a class="btn-cotizar" href="diagnostico.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="glucometro match II.png" alt="Glucómetro Match II para monitoreo de glucosa" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Glucómetro Match II</h4>
-              <p class="article-description">Monitor de glucosa de alta precisión con resultados rápidos y confiables.</p>
-              <a class="btn-cotizar" href="diagnostico.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="Fonendoscopio.webp" alt="Fonendoscopio médico profesional para auscultación" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Fonendoscopio Profesional</h4>
-              <p class="article-description">Fonendoscopio de alta sensibilidad para diagnóstico cardiovascular y pulmonar.</p>
-              <a class="btn-cotizar" href="diagnostico.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="tensiometro digital valcri AOJ30A.webp" alt="Tensiómetro digital Valcri AOJ30A automático" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Tensiómetro Digital Valcri AOJ30A</h4>
-              <p class="article-description">Monitor de presión arterial automático con tecnología de última generación.</p>
-              <a class="btn-cotizar" href="diagnostico.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="tensiometro digital valcri b07.webp" alt="Tensiómetro digital Valcri B07 de brazo" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Tensiómetro Digital Valcri B07</h4>
-              <p class="article-description">Tensiómetro de brazo digital con pantalla LCD y memoria de mediciones.</p>
-              <a class="btn-cotizar" href="diagnostico.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MOVILIDAD SECTION -->
-      <div class="category-section">
-        <h3 id="movilidad-heading" class="category-title">
-          <span class="category-icon">🦽</span>
-          Equipos de Movilidad y Apoyo
-        </h3>
-        <div class="articles">
-          <div class="article">
-            <div class="article-image">
-              <img src="Silla de Rueda.webp" alt="Silla de ruedas plegable para movilidad" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Silla de Ruedas</h4>
-              <p class="article-description">Silla de ruedas ligera y plegable con diseño ergonómico para máximo confort.</p>
-              <a class="btn-cotizar" href="movilidad.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="Muletas.png" alt="Muletas ajustables para apoyo ortopédico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Muletas Profesionales</h4>
-              <p class="article-description">Muletas ajustables con mangos ergonómicos y base antideslizante.</p>
-              <a class="btn-cotizar" href="movilidad.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="baston4patasortopedico.webp" alt="Bastón de 4 patas ortopédico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Bastón 4 Patas Ortopédico</h4>
-              <p class="article-description">Bastón con cuatro puntos de apoyo para máxima estabilidad y seguridad.</p>
-              <a class="btn-cotizar" href="movilidad.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="baston con mango t.jpg" alt="Bastón con mango T ergonómico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Bastón con Mango T</h4>
-              <p class="article-description">Bastón ligero con mango en forma de T para mejor agarre y comodidad.</p>
-              <a class="btn-cotizar" href="movilidad.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- HOSPITALARIO SECTION -->
-      <div class="category-section">
-        <h3 id="hospitalario-heading" class="category-title">
-          <span class="category-icon">🏥</span>
-          Equipos Hospitalarios
-        </h3>
-        <div class="articles">
-          <div class="article">
-            <div class="article-image">
-              <img src="Colchon Antiescaras.webp" alt="Colchón antiescaras para prevención de úlceras" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Colchón Antiescaras</h4>
-              <p class="article-description">Colchón terapéutico con sistema de alternancia de presión para prevención de úlceras.</p>
-              <a class="btn-cotizar" href="hospitalario.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="divandexamen.webp" alt="Diván de examen médico clínico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Diván de Examen</h4>
-              <p class="article-description">Mesa de examen médica ajustable con tapiz hipoalergénico y almacenamiento integrado.</p>
-              <a class="btn-cotizar" href="hospitalario.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="electrocardiografo.jpg" alt="Electrocardiógrafo portátil para ECG" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Electrocardiógrafo</h4>
-              <p class="article-description">ECG portátil con pantalla táctil y conectividad para impresión de resultados.</p>
-              <a class="btn-cotizar" href="hospitalario.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="aspirador de secreciones.webp" alt="Aspirador de secreciones médico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Aspirador de Secreciones</h4>
-              <p class="article-description">Sistema de succión médico portátil con regulación de presión y esterilización fácil.</p>
-              <a class="btn-cotizar" href="hospitalario.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- INSUMOS SECTION -->
-      <div class="category-section">
-        <h3 id="insumos-heading" class="category-title">
-          <span class="category-icon">📦</span>
-          Insumos Médicos
-        </h3>
-        <div class="articles">
-          <div class="article">
-            <div class="article-image">
-              <img src="botiquin morral de primeros auxilios.png" alt="Botiquín morral de primeros auxilios completo" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Botiquín de Primeros Auxilios</h4>
-              <p class="article-description">Kit completo de emergencias con todos los insumos esenciales para atención primaria.</p>
-              <a class="btn-cotizar" href="insumos.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="Nebulizador.jpg" alt="Nebulizador para terapia respiratoria" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Nebulizador</h4>
-              <p class="article-description">Sistema de nebulización compacto para tratamiento de enfermedades respiratorias.</p>
-              <a class="btn-cotizar" href="insumos.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="pulsioximetro.jpg" alt="Pulsioxímetro digital para medición de oxígeno" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Pulsioxímetro Digital</h4>
-              <p class="article-description">Monitor de saturación de oxígeno y frecuencia cardíaca con pantalla LED.</p>
-              <a class="btn-cotizar" href="insumos.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-          <div class="article">
-            <div class="article-image">
-              <img src="pulsioximetro pediatrico.jpg" alt="Pulsioxímetro pediátrico para niños" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Pulsioxímetro Pediátrico</h4>
-              <p class="article-description">Monitor de oxígeno diseñado específicamente para pacientes pediátricos.</p>
-              <a class="btn-cotizar" href="insumos.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ESPECIALIZADOS SECTION -->
-      <div class="category-section">
-        <h3 id="especializados-heading" class="category-title">
-          <span class="category-icon">⚡</span>
-          Equipos Especializados
-        </h3>
-        <div class="articles">
-          <div class="article">
-            <div class="article-image">
-              <img src="Monitor de signos vitales.png" alt="Monitor de signos vitales multiparamétrico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h4 class="article-title">Monitor de Signos Vitales</h4>
-              <p class="article-description">Sistema multiparamétrico para monitoreo continuo de pacientes en UCI.</p>
-              <a class="btn-cotizar" href="especializados.html">
-                <span>Ver producto</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SECCIÓN DE MARCAS MÉDICAS -->
-      <section class="brands-section" aria-labelledby="brands-heading">
-        <div class="brands-container">
-          <h2 id="brands-heading" class="brands-title">Trabajamos con Marcas Reconocidas</h2>
-          <p class="brands-subtitle">Representamos a los principales fabricantes de equipos médicos a nivel internacional</p>
+      <!-- SECCIÓN DE CONFIANZA -->
+      <section class="trust-section" aria-labelledby="trust-heading">
+        <div class="trust-container">
+          <h2 id="trust-heading" class="trust-title">POR QUÉ ELEGIR DOMÉDICOS DEL NORTE</h2>
+          <p class="trust-subtitle">Líderes en distribución de equipos médicos con el más alto estándar de calidad y servicio</p>
           
-          <div class="brands-grid">
-            <div class="brand-item">Welch Allyn</div>
-            <div class="brand-item">Omron</div>
-            <div class="brand-item">Philips</div>
-            <div class="brand-item">Medtronic</div>
-            <div class="brand-item">GE Healthcare</div>
-            <div class="brand-item">Dräger</div>
+          <div class="trust-grid">
+            <div class="trust-item">
+              <div class="trust-icon">🏆</div>
+              <h3>30 años de experiencia</h3>
+              <p>Tres décadas de trayectoria respaldando la salud de colombianos con equipos de la más alta calidad.</p>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🚚</div>
+              <h3>Distribución nacional</h3>
+              <p>Cobertura completa en todo el territorio colombiano con logística rápida y segura.</p>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🏅</div>
+              <h3>Equipos certificados</h3>
+              <p>Productos con certificaciones internacionales que garantizan seguridad y precisión.</p>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🏥</div>
+              <h3>Atención a clínicas y hospitales</h3>
+              <p>Servicio especializado para instituciones de salud con asesoría técnica personalizada.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATÁLOGO PRINCIPAL -->
+      <section class="catalog-preview">
+        <h2 class="section-title">Nuestras Categorías de Productos</h2>
+        <div class="catalog-grid">
+          <a href="diagnostico.html" class="catalog-card">
+            <div class="catalog-icon">🩺</div>
+            <h3>Equipos de Diagnóstico</h3>
+            <p>Tensiómetros, fonendoscopios, glucómetros y más</p>
+            <span class="catalog-link">Ver productos →</span>
+          </a>
+          
+          <a href="movilidad.html" class="catalog-card">
+            <div class="catalog-icon">🦽</div>
+            <h3>Movilidad y Apoyo</h3>
+            <p>Sillas de ruedas, muletas, bastones ortopédicos</p>
+            <span class="catalog-link">Ver productos →</span>
+          </a>
+          
+          <a href="hospitalario.html" class="catalog-card">
+            <div class="catalog-icon">🏥</div>
+            <h3>Equipos Hospitalarios</h3>
+            <p>Colchones antiescaras, divanes, electrocardiógrafos</p>
+            <span class="catalog-link">Ver productos →</span>
+          </a>
+          
+          <a href="insumos.html" class="catalog-card">
+            <div class="catalog-icon">📦</div>
+            <h3>Insumos Médicos</h3>
+            <p>Botiquines, nebulizadores, pulsioxímetros</p>
+            <span class="catalog-link">Ver productos →</span>
+          </a>
+          
+          <a href="especializados.html" class="catalog-card">
+            <div class="catalog-icon">⚡</div>
+            <h3>Equipos Especializados</h3>
+            <p>Monitores de signos vitales, equipos UCI</p>
+            <span class="catalog-link">Ver productos →</span>
+          </a>
+          
+          <a href="repuestos-biomedicos.html" class="catalog-card">
+            <div class="catalog-icon">🔧</div>
+            <h3>Repuestos Biomédicos</h3>
+            <p>Baterías, sensores, cables y accesorios</p>
+            <span class="catalog-link">Ver productos →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- CTA PRINCIPAL -->
+      <section class="main-cta">
+        <div class="cta-content">
+          <h2>¿Necesitas equipos médicos para tu institución?</h2>
+          <p>Te ofrecemos asesoría personalizada y los mejores equipos del mercado</p>
+          <div class="cta-buttons">
+            <a href="https://wa.me/573106107017?text=Hola%20me%20interesan%20los%20equipos%20médicos" class="btn-primary" target="_blank">
+              <span>Consultar por WhatsApp</span>
+              <span>💬</span>
+            </a>
+            <a href="contacto.html" class="btn-secondary">
+              <span>Formulario de contacto</span>
+              <span>📝</span>
+            </a>
           </div>
         </div>
       </section>
     </section>
 
-    <!-- NOSOTROS -->
-    <section id="nosotros" class="tab" aria-labelledby="tab-nosotros">
-      <h2 id="tab-nosotros">Nosotros</h2>
-      <div class="nosotros-container">
-        <img src="logo.png" alt="Logo de Domedicos del Norte" />
-        <div class="nosotros-text">
-          <p>En <strong>Domedicos del Norte</strong> llevamos más de <strong>30 años</strong> asesorando y suministrando equipos médicos a clínicas, hospitales y profesionales de la salud en Colombia. Brindamos atención cercana, tiempos de respuesta ágiles y respaldo postventa.</p>
-          <p><strong>Horario de atención:</strong> Lunes a Viernes <strong>6:30 am – 5:00 pm</strong> · Sábados <strong>6:30 am – 12:00 pm</strong>.</p>
-          <div class="nosotros-map">
-            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Domedicos+del+Norte,+Barranquilla&output=embed"></iframe>
-            <p><a target="_blank" href="https://www.google.com/maps?q=Domedicos+del+Norte,+Barranquilla">Ver en Google Maps</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICIOS -->
-    <section id="servicios" class="tab" aria-labelledby="tab-servicios">
-      <h2 id="tab-servicios">Servicios</h2>
-      <div class="services-grid">
-        <div class="service-card"><div style="font-size:28px;">🩺</div><h3>Asesoría personalizada</h3><p>Brindamos orientación técnica para elegir los productos adecuados según las necesidades del cliente.</p></div>
-        <div class="service-card"><div style="font-size:28px;">🚚</div><h3>Envíos a todo el país</h3><p>Realizamos entregas seguras y oportunas en Barranquilla y todas las ciudades de Colombia.</p></div>
-        <div class="service-card"><div style="font-size:28px;">⚙️</div><h3>Distribución de equipos médicos</h3><p>Ofrecemos equipos de diagnóstico, monitoreo y soporte vital para clínicas, hospitales y consultorios.</p></div>
-        <div class="service-card"><div style="font-size:28px;">📦</div><h3>Suministro de insumos hospitalarios</h3><p>Proveemos material descartable, instrumental médico y productos para uso quirúrgico y hospitalario.</p></div>
-        <div class="service-card"><div style="font-size:28px;">🏥</div><h3>Atención a instituciones públicas</h3><p>Experiencia en procesos de contratación estatal para hospitales y entidades del sector salud.</p></div>
-        <div class="service-card"><div style="font-size:28px;">🔒</div><h3>Garantía y respaldo</h3><p>Productos con garantía y proveedores confiables.</p></div>
-      </div>
-    </section>
-
-    <!-- MANTENIMIENTO -->
-    <section id="mantenimiento" class="tab" aria-labelledby="tab-mantenimiento">
-      <h2 id="tab-mantenimiento">Mantenimiento y soporte técnico</h2>
-      <div class="maintenance-grid">
-        <div class="maintenance-card"><div style="font-size:28px;">🔧</div><h3>Mantenimiento preventivo</h3><p>Revisiones periódicas programadas para mantener los equipos en óptimas condiciones y reducir fallos.</p></div>
-        <div class="maintenance-card"><div style="font-size:28px;">⚙️</div><h3>Mantenimiento correctivo</h3><p>Reparación de equipos en caso de fallas, diagnóstico de fallas y restauración funcional.</p></div>
-        <div class="maintenance-card"><div style="font-size:28px;">🛠️</div><h3>Repuestos originales</h3><p>Disponibilidad de piezas y repuestos originales o certificados con garantía.</p></div>
-        <div class="maintenance-card"><div style="font-size:28px;">📞</div><h3>Soporte en sitio y remoto</h3><p>Atención técnica presencial en instalaciones o asistencia remota para resolución ágil.</p></div>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="tab" aria-labelledby="tab-contacto">
-      <h2 id="tab-contacto">Contacto</h2>
-      <div class="contact-container">
-        <div class="contact-form">
-          <h3>Escríbenos</h3>
-          <form action="https://formspree.io/f/xrblzwgk" method="POST">
-            <input type="text" name="name" placeholder="Nombre" required />
-            <input type="email" name="email" placeholder="Correo" required />
-            <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
-            <button type="submit">Enviar</button>
-          </form>
-        </div>
-        <div class="contact-info">
-          <h3>Información</h3>
-          <p><strong>Email:</strong> <a href="mailto:domedicosdelnorte@hotmail.com">domedicosdelnorte@hotmail.com</a></p>
-          <p><strong>WhatsApp:</strong> <a target="_blank" href="https://wa.me/573106107017">+57 310 610 7017</a></p>
-          <p><strong>Horario:</strong> L–V 6:30 am – 5:00 pm · Sáb 6:30 am – 12:00 pm</p>
-          <p><a target="_blank" href="https://www.google.com/maps?q=Domedicos+del+Norte,+Barranquilla">Ver en Google Maps</a></p>
-        </div>
-      </div>
-    </section>
-  </main>
+      </main>
 
   
   <footer class="footer">
@@ -603,7 +296,7 @@
 </footer>
 
   <script>
-    // Muestra/oculta secciones del sitio
+    // Navegación simple - solo redirigir a páginas externas
     function showSection(id){
       // Si es una página externa, navegar normalmente
       if(id.includes('.html')) {
@@ -611,24 +304,20 @@
         return;
       }
       
-      // Para secciones internas
+      // Para secciones internas (si quedan)
       document.querySelectorAll('.tab').forEach(s=>s.classList.remove('active'));
       const target=document.getElementById(id);
       if(target){ target.classList.add('active'); }
+      
       // actualizar estado del nav
       const links=document.querySelectorAll('nav a');
       links.forEach(l=>l.removeAttribute('aria-current'));
       const active=[...links].find(l=>l.getAttribute('onclick')?.includes(id) || (l.getAttribute('href') && l.getAttribute('href').includes('#'+id)));
       if(active){ active.setAttribute('aria-current','page'); }
-      // si vienen de un ancla (href="#movilidad") permitimos bajar hasta la ancla
-      setTimeout(()=> {
-        const hash = location.hash;
-        if(hash){
-          const el = document.querySelector(hash);
-          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-        } else {
-          window.scrollTo({top:0, behavior:'smooth'});
-        }
+      
+      // scroll al inicio
+      setTimeout(() => {
+        window.scrollTo({top:0, behavior:'smooth'});
       }, 80);
     }
 
@@ -879,3 +568,4 @@
   </style>
 </body>
 </html>
+
