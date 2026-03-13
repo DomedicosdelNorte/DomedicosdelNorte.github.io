@@ -148,7 +148,7 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   position: relative;
 }
 
-/* Dropdown con mucho más tiempo de espera */
+/* Dropdown con 8 segundos de permanencia */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -168,7 +168,7 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   transform: translateX(0);
   max-height: 60vh;
   overflow-y: auto;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  transition: opacity 1s ease, visibility 1s ease;
 }
 
 .dropdown:hover .dropdown-content,
@@ -179,7 +179,7 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
 }
 
 .dropdown:hover .dropdown-content {
-  transition-delay: 0.5s; /* Aumentado de 0.3s a 0.5s */
+  transition-delay: 0.5s;
 }
 
 /* Mantener dropdown abierto al hover del contenido */
@@ -375,15 +375,16 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
 .benefit-icon {
   width: 18px;
   height: 18px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.3); /* Aumentado opacidad */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.8rem;
-  font-weight: bold;
-  color: white;
+  font-weight: 900; /* Más bold */
+  color: white; /* Blanco puro */
   margin: 0 auto 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Sombra para más contraste */
 }
 
 /* HERO BUTTONS */

@@ -410,8 +410,18 @@
       }, 80);
     }
 
-    // Toggle dropdown con manejo mejorado
+    // Toggle dropdown ultra-sensible con 8 segundos
     document.querySelectorAll(".dropbtn").forEach(btn => {
+      btn.addEventListener("mouseenter", function(e){
+        e.preventDefault();
+        const menu = this.nextElementSibling;
+        // Cerrar otros dropdowns
+        document.querySelectorAll(".dropdown-content").forEach(m => {
+          if (m !== menu) m.classList.remove('show');
+        });
+        menu.classList.add('show');
+      });
+      
       btn.addEventListener("click", function(e){
         e.preventDefault();
         const menu = this.nextElementSibling;
@@ -419,7 +429,7 @@
         document.querySelectorAll(".dropdown-content").forEach(m => {
           if (m !== menu) m.classList.remove('show');
         });
-        menu.classList.toggle("show");
+        menu.classList.toggle('show');
       });
     });
     
@@ -430,34 +440,39 @@
       }
     });
     
-    // Mantener dropdown abierto al hover del contenido
+    // Mantener dropdown abierto 8 segundos con manejo inteligente
     document.querySelectorAll(".dropdown").forEach(dropdown => {
       const content = dropdown.querySelector('.dropdown-content');
+      let closeTimeout;
       
       dropdown.addEventListener('mouseenter', function() {
+        clearTimeout(closeTimeout);
         content.classList.add('show');
       });
       
       dropdown.addEventListener('mouseleave', function(e) {
-        // Solo cerrar si el mouse no está yendo hacia el contenido
-        setTimeout(() => {
+        clearTimeout(closeTimeout);
+        // Esperar 8 segundos antes de cerrar
+        closeTimeout = setTimeout(() => {
           if (!e.relatedTarget || (!e.relatedTarget.closest('.dropdown-content') && e.relatedTarget !== dropdown.querySelector('.dropbtn'))) {
             content.classList.remove('show');
           }
-        }, 300); // Tiempo extra para mover al contenido
+        }, 8000); // 8 segundos
       });
       
       content.addEventListener('mouseenter', function() {
+        clearTimeout(closeTimeout);
         content.classList.add('show');
       });
       
       content.addEventListener('mouseleave', function(e) {
-        // Solo cerrar si el mouse no está volviendo al botón
-        setTimeout(() => {
+        clearTimeout(closeTimeout);
+        // Esperar 8 segundos antes de cerrar
+        closeTimeout = setTimeout(() => {
           if (!e.relatedTarget || (!e.relatedTarget.closest('.dropdown') && e.relatedTarget !== dropdown.querySelector('.dropbtn'))) {
             content.classList.remove('show');
           }
-        }, 300);
+        }, 8000); // 8 segundos
       });
     });
 
