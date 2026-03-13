@@ -83,9 +83,9 @@
         </div>
       </div>
 
-      <a href="nosotros.html">Nosotros</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="mantenimiento.html">Mantenimiento</a>
+      <a href="index.html#nosotros">Nosotros</a>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#mantenimiento">Mantenimiento</a>
       <a href="contacto.html">Contacto</a>
     </nav>
   </header>
@@ -160,39 +160,73 @@
         </div>
       </section>
 
-      <!-- SECCIÓN DE TESTIMONIOS -->
-      <section class="testimonials-section" aria-labelledby="testimonials-heading">
-        <div class="testimonials-container">
-          <h2 id="testimonials-heading" class="testimonials-title">LO QUE DICEN NUESTROS CLIENTES</h2>
-          <p class="testimonials-subtitle">30 años de confianza respaldados por instituciones de primer nivel</p>
+      <!-- SECCIÓN DE SLIDER DE PRODUCTOS -->
+      <section class="products-slider-section" aria-labelledby="slider-heading">
+        <div class="products-slider-container">
+          <h2 id="slider-heading" class="slider-title">NUESTROS PRODUCTOS DESTACADOS</h2>
+          <p class="slider-subtitle">Conoce la calidad y variedad de equipos médicos que ofrecemos</p>
           
-          <div class="testimonials-grid">
-            <div class="testimonial-item">
-              <div class="testimonial-content">
-                <p>"Domédicos del Norte ha sido nuestro proveedor estratégico por más de 10 años. Su servicio técnico y calidad de equipos es inmejorable."</p>
-                <div class="testimonial-author">
-                  <strong>Dr. Carlos Mendoza</strong>
-                  <span>Jefe de Compras - Hospital Regional</span>
+          <div class="slider-container">
+            <div class="slider-wrapper">
+              <div class="slide">
+                <img src="tensiometro digital valcri AOJ30A.webp" alt="Tensiómetro Digital Valcri AOJ30A" loading="lazy">
+                <div class="slide-content">
+                  <h3>Tensiómetro Digital Valcri AOJ30A</h3>
+                  <p>Monitor de presión arterial automático con tecnología de última generación</p>
+                </div>
+              </div>
+              
+              <div class="slide">
+                <img src="Silla de Rueda.webp" alt="Silla de Ruedas Profesional" loading="lazy">
+                <div class="slide-content">
+                  <h3>Silla de Ruedas Profesional</h3>
+                  <p>Ligera, plegable y con diseño ergonómico para máximo confort</p>
+                </div>
+              </div>
+              
+              <div class="slide">
+                <img src="Colchon Antiescaras.webp" alt="Colchón Antiescaras Terapéutico" loading="lazy">
+                <div class="slide-content">
+                  <h3>Colchón Antiescaras</h3>
+                  <p>Sistema de alternancia de presión para prevención de úlceras</p>
+                </div>
+              </div>
+              
+              <div class="slide">
+                <img src="electrocardiografo.jpg" alt="Electrocardiógrafo Portátil" loading="lazy">
+                <div class="slide-content">
+                  <h3>Electrocardiógrafo Portátil</h3>
+                  <p>ECG con pantalla táctil y conectividad para impresión de resultados</p>
+                </div>
+              </div>
+              
+              <div class="slide">
+                <img src="Monitor de signos vitales.png" alt="Monitor de Signos Vitales" loading="lazy">
+                <div class="slide-content">
+                  <h3>Monitor de Signos Vitales</h3>
+                  <p>Sistema multiparamétrico para monitoreo continuo en UCI</p>
+                </div>
+              </div>
+              
+              <div class="slide">
+                <img src="Nebulizador.jpg" alt="Nebulizador Compacto" loading="lazy">
+                <div class="slide-content">
+                  <h3>Nebulizador Compacto</h3>
+                  <p>Sistema de nebulización para tratamiento de enfermedades respiratorias</p>
                 </div>
               </div>
             </div>
-            <div class="testimonial-item">
-              <div class="testimonial-content">
-                <p>"La atención personalizada y tiempos de entrega nos han permitido mantener nuestros equipos siempre operativos. ¡Socios confiables!"</p>
-                <div class="testimonial-author">
-                  <strong>Lic. Sandra Ortiz</strong>
-                  <span>Directora Médica - Clínica del Norte</span>
-                </div>
-              </div>
-            </div>
-            <div class="testimonial-item">
-              <div class="testimonial-content">
-                <p>"Excelente asesoría para la selección de equipos. Precios competitivos y garantía real en todos sus productos."</p>
-                <div class="testimonial-author">
-                  <strong>Ing. Roberto Pérez</strong>
-                  <span>Gerente - Laboratorios Médicos S.A.</span>
-                </div>
-              </div>
+            
+            <button class="slider-btn prev-btn" onclick="changeSlide(-1)">‹</button>
+            <button class="slider-btn next-btn" onclick="changeSlide(1)">›</button>
+            
+            <div class="slider-dots">
+              <span class="dot" onclick="currentSlide(1)"></span>
+              <span class="dot" onclick="currentSlide(2)"></span>
+              <span class="dot" onclick="currentSlide(3)"></span>
+              <span class="dot" onclick="currentSlide(4)"></span>
+              <span class="dot" onclick="currentSlide(5)"></span>
+              <span class="dot" onclick="currentSlide(6)"></span>
             </div>
           </div>
         </div>
@@ -303,6 +337,54 @@
 </footer>
 
   <script>
+    // Función para el slider de productos
+    let currentSlideIndex = 1;
+    
+    function changeSlide(direction) {
+      const wrapper = document.querySelector('.slider-wrapper');
+      const totalSlides = document.querySelectorAll('.slide').length;
+      
+      currentSlideIndex += direction;
+      
+      if (currentSlideIndex > totalSlides) {
+        currentSlideIndex = 1;
+      }
+      if (currentSlideIndex < 1) {
+        currentSlideIndex = totalSlides;
+      }
+      
+      const offset = -(currentSlideIndex - 1) * 100;
+      wrapper.style.transform = `translateX(${offset}%)`;
+      
+      // Actualizar dots
+      updateDots();
+    }
+    
+    function currentSlide(n) {
+      currentSlideIndex = n;
+      const wrapper = document.querySelector('.slider-wrapper');
+      const offset = -(currentSlideIndex - 1) * 100;
+      wrapper.style.transform = `translateX(${offset}%)`;
+      updateDots();
+    }
+    
+    function updateDots() {
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index + 1 === currentSlideIndex);
+      });
+    }
+    
+    // Auto-play del slider
+    setInterval(() => {
+      changeSlide(1);
+    }, 5000);
+    
+    // Inicializar primer dot
+    document.addEventListener('DOMContentLoaded', () => {
+      updateDots();
+    });
+
     // Navegación simple - solo redirigir a páginas externas
     function showSection(id){
       // Si es una página externa, navegar normalmente
