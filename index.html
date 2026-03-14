@@ -410,7 +410,7 @@
       }, 80);
     }
 
-    // Toggle dropdown con 8 segundos y máxima sensibilidad
+    // Toggle dropdown - SOLUCIÓN SIMPLE Y CONFIABLE
     document.querySelectorAll(".dropbtn").forEach(btn => {
       btn.addEventListener("mouseenter", function(e){
         e.preventDefault();
@@ -440,58 +440,35 @@
       }
     });
     
-    // Mantener dropdown abierto 8 segundos - MÁXIMA SENSIBILIDAD
+    // Solución SIMPLE: CSS hover con timeout de 8 segundos
     document.querySelectorAll(".dropdown").forEach(dropdown => {
       const content = dropdown.querySelector('.dropdown-content');
-      let closeTimeout;
+      let timeoutId;
       
-      // Variable global para controlar si el mouse está en el área del dropdown
-      let isDropdownActive = false;
-      
-      dropdown.addEventListener('mouseenter', function() {
-        isDropdownActive = true;
-        clearTimeout(closeTimeout);
+      // Función para mantener abierto 8 segundos
+      function keepOpen() {
+        clearTimeout(timeoutId);
         content.classList.add('show');
-      });
+      }
       
-      dropdown.addEventListener('mouseleave', function(e) {
-        isDropdownActive = false;
-        // NO cerrar inmediatamente - esperar 8 segundos
-        closeTimeout = setTimeout(() => {
-          // Solo cerrar si el mouse NO está en ninguna parte del dropdown
-          if (!isDropdownActive && !content.matches(':hover')) {
-            content.classList.remove('show');
-          }
+      // Función para cerrar después de 8 segundos
+      function scheduleClose() {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          content.classList.remove('show');
         }, 8000);
-      });
+      }
       
-      content.addEventListener('mouseenter', function() {
-        isDropdownActive = true;
-        clearTimeout(closeTimeout);
-        content.classList.add('show');
-      });
+      // Eventos simples y claros
+      dropdown.addEventListener('mouseenter', keepOpen);
+      dropdown.addEventListener('mouseleave', scheduleClose);
       
-      content.addEventListener('mouseleave', function(e) {
-        isDropdownActive = false;
-        // NO cerrar inmediatamente - esperar 8 segundos
-        closeTimeout = setTimeout(() => {
-          // Solo cerrar si el mouse NO está en ninguna parte del dropdown
-          if (!isDropdownActive && !dropdown.matches(':hover')) {
-            content.classList.remove('show');
-          }
-        }, 8000);
-      });
+      content.addEventListener('mouseenter', keepOpen);
+      content.addEventListener('mouseleave', scheduleClose);
       
-      // Extra: mantener abierto si el mouse está cerca del dropdown
-      dropdown.addEventListener('mousemove', function() {
-        isDropdownActive = true;
-        clearTimeout(closeTimeout);
-      });
-      
-      content.addEventListener('mousemove', function() {
-        isDropdownActive = true;
-        clearTimeout(closeTimeout);
-      });
+      // Prevenir cierre accidental
+      content.addEventListener('mouseenter', () => clearTimeout(timeoutId));
+      dropdown.addEventListener('mouseenter', () => clearTimeout(timeoutId));
     });
 
     // Inicial: asegurar que solo inicio esté visible
