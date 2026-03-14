@@ -410,26 +410,10 @@
       }, 80);
     }
 
-    // SOLUCIÓN FINAL - Dropdown con área expandida
+    // SOLUCIÓN MÁXIMA - Dropdown con área GIGANTE
     document.querySelectorAll(".dropdown").forEach(dropdown => {
       const content = dropdown.querySelector('.dropdown-content');
       let timeoutId = null;
-      
-      // Expandir el área del dropdown para conectar botón y contenido
-      function expandDropdownArea() {
-        const buttonRect = dropdown.getBoundingClientRect();
-        const contentRect = content.getBoundingClientRect();
-        
-        // Crear área invisible que conecta botón y contenido
-        const expandedArea = {
-          top: Math.min(buttonRect.top, contentRect.top) - 5,
-          bottom: Math.max(buttonRect.bottom, contentRect.bottom) + 5,
-          left: Math.min(buttonRect.left, contentRect.left) - 5,
-          right: Math.max(buttonRect.right, contentRect.right) + 5
-        };
-        
-        return expandedArea;
-      }
       
       // Función para mantener abierto
       function keepOpen() {
@@ -448,28 +432,39 @@
         }, 8000);
       }
       
-      // Eventos combinados para el área expandida
-      function handleMouseEnter() {
-        keepOpen();
+      // Área GIGANTE de detección
+      function isInGiantArea(e) {
+        const buttonRect = dropdown.getBoundingClientRect();
+        const contentRect = content.getBoundingClientRect();
+        
+        // Expandir área masivamente
+        const expandedArea = {
+          top: Math.min(buttonRect.top, contentRect.top) - 30, // 30px arriba
+          bottom: Math.max(buttonRect.bottom, contentRect.bottom) + 30, // 30px abajo
+          left: Math.min(buttonRect.left, contentRect.left) - 30, // 30px izquierda
+          right: Math.max(buttonRect.right, contentRect.right) + 30 // 30px derecha
+        };
+        
+        return e.clientX >= expandedArea.left && 
+               e.clientX <= expandedArea.right && 
+               e.clientY >= expandedArea.top && 
+               e.clientY <= expandedArea.bottom;
       }
       
-      function handleMouseLeave(e) {
-        const area = expandDropdownArea();
-        const isOutsideArea = e.clientX < area.left || 
-                           e.clientX > area.right || 
-                           e.clientY < area.top || 
-                           e.clientY > area.bottom;
-        
-        if (isOutsideArea) {
+      // Eventos con área gigante
+      dropdown.addEventListener('mouseenter', keepOpen);
+      dropdown.addEventListener('mouseleave', function(e) {
+        if (!isInGiantArea(e)) {
           scheduleClose();
         }
-      }
+      });
       
-      // Aplicar eventos al dropdown completo
-      dropdown.addEventListener('mouseenter', handleMouseEnter);
-      dropdown.addEventListener('mouseleave', handleMouseLeave);
-      content.addEventListener('mouseenter', handleMouseEnter);
-      content.addEventListener('mouseleave', handleMouseLeave);
+      content.addEventListener('mouseenter', keepOpen);
+      content.addEventListener('mouseleave', function(e) {
+        if (!isInGiantArea(e)) {
+          scheduleClose();
+        }
+      });
       
       // Evento de click para toggle
       dropdown.addEventListener('click', function(e) {
