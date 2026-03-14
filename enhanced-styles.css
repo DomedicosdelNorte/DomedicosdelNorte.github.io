@@ -159,7 +159,7 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   box-shadow: 0 10px 40px var(--shadow-hover);
   border-radius: 12px;
   z-index: 1001;
-  margin-top: 8px;
+  margin-top: 0px; /* Eliminado espacio entre botón y contenido */
   border: 1px solid var(--border);
   overflow: hidden;
   animation: dropdownSlide 0.3s ease;
@@ -183,11 +183,16 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   visibility: visible;
 }
 
-/* Mantener dropdown abierto al hover del contenido */
-.dropdown-content:hover {
-  display: block;
-  opacity: 1;
-  visibility: visible;
+/* SOLUCIÓN: Área invisible de conexión */
+.dropdown-content::before {
+  content: '';
+  position: absolute;
+  top: -10px; /* Conecta con el botón */
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
+  z-index: -1;
 }
 
 /* Ajuste para pantallas pequeñas */

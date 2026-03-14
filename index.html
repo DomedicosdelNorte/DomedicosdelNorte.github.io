@@ -410,17 +410,29 @@
       }, 80);
     }
 
-    // SOLUCIÓN DEFINITIVA - Dropdown ultra-estable
+    // SOLUCIÓN FINAL - Dropdown con área expandida
     document.querySelectorAll(".dropdown").forEach(dropdown => {
       const content = dropdown.querySelector('.dropdown-content');
       let timeoutId = null;
       
-      // Variable para controlar si el mouse está en el área del dropdown
-      let isMouseInDropdownArea = false;
+      // Expandir el área del dropdown para conectar botón y contenido
+      function expandDropdownArea() {
+        const buttonRect = dropdown.getBoundingClientRect();
+        const contentRect = content.getBoundingClientRect();
+        
+        // Crear área invisible que conecta botón y contenido
+        const expandedArea = {
+          top: Math.min(buttonRect.top, contentRect.top) - 5,
+          bottom: Math.max(buttonRect.bottom, contentRect.bottom) + 5,
+          left: Math.min(buttonRect.left, contentRect.left) - 5,
+          right: Math.max(buttonRect.right, contentRect.right) + 5
+        };
+        
+        return expandedArea;
+      }
       
       // Función para mantener abierto
       function keepOpen() {
-        isMouseInDropdownArea = true;
         if (timeoutId) {
           clearTimeout(timeoutId);
           timeoutId = null;
@@ -430,42 +442,36 @@
       
       // Función para programar cierre
       function scheduleClose() {
-        isMouseInDropdownArea = false;
         timeoutId = setTimeout(() => {
-          if (!isMouseInDropdownArea) {
-            content.classList.remove('show');
-            timeoutId = null;
-          }
+          content.classList.remove('show');
+          timeoutId = null;
         }, 8000);
       }
       
-      // Eventos para el botón del dropdown
-      dropdown.addEventListener('mouseenter', keepOpen);
-      dropdown.addEventListener('mouseleave', function(e) {
-        // Verificar si el mouse se está moviendo hacia el contenido
-        const rect = content.getBoundingClientRect();
-        const isMovingToContent = e.clientX >= rect.left && e.clientX <= rect.right &&
-                                   e.clientY >= rect.top && e.clientY <= rect.bottom;
+      // Eventos combinados para el área expandida
+      function handleMouseEnter() {
+        keepOpen();
+      }
+      
+      function handleMouseLeave(e) {
+        const area = expandDropdownArea();
+        const isOutsideArea = e.clientX < area.left || 
+                           e.clientX > area.right || 
+                           e.clientY < area.top || 
+                           e.clientY > area.bottom;
         
-        if (!isMovingToContent) {
+        if (isOutsideArea) {
           scheduleClose();
         }
-      });
+      }
       
-      // Eventos para el contenido del dropdown
-      content.addEventListener('mouseenter', keepOpen);
-      content.addEventListener('mouseleave', function(e) {
-        // Verificar si el mouse se está moviendo hacia el botón
-        const buttonRect = dropdown.getBoundingClientRect();
-        const isMovingToButton = e.clientX >= buttonRect.left && e.clientX <= buttonRect.right &&
-                                     e.clientY >= buttonRect.top && e.clientY <= buttonRect.bottom;
-        
-        if (!isMovingToButton) {
-          scheduleClose();
-        }
-      });
+      // Aplicar eventos al dropdown completo
+      dropdown.addEventListener('mouseenter', handleMouseEnter);
+      dropdown.addEventListener('mouseleave', handleMouseLeave);
+      content.addEventListener('mouseenter', handleMouseEnter);
+      content.addEventListener('mouseleave', handleMouseLeave);
       
-      // Eventos de click para toggle
+      // Evento de click para toggle
       dropdown.addEventListener('click', function(e) {
         e.preventDefault();
         if (content.classList.contains('show')) {
