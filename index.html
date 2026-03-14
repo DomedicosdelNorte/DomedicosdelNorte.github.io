@@ -410,65 +410,83 @@
       }, 80);
     }
 
-    // Toggle dropdown - SOLUCIÓN SIMPLE Y CONFIABLE
-    document.querySelectorAll(".dropbtn").forEach(btn => {
-      btn.addEventListener("mouseenter", function(e){
-        e.preventDefault();
-        const menu = this.nextElementSibling;
-        // Cerrar otros dropdowns
-        document.querySelectorAll(".dropdown-content").forEach(m => {
-          if (m !== menu) m.classList.remove('show');
-        });
-        menu.classList.add('show');
-      });
-      
-      btn.addEventListener("click", function(e){
-        e.preventDefault();
-        const menu = this.nextElementSibling;
-        // Cerrar otros dropdowns
-        document.querySelectorAll(".dropdown-content").forEach(m => {
-          if (m !== menu) m.classList.remove('show');
-        });
-        menu.classList.toggle('show');
-      });
-    });
-    
-    // Cerrar dropdowns solo al hacer clic fuera
-    window.addEventListener("click", function(e){
-      if (!e.target.matches('.dropbtn') && !e.target.closest('.dropdown-content')) {
-        document.querySelectorAll(".dropdown-content").forEach(menu => menu.classList.remove('show'));
-      }
-    });
-    
-    // Solución SIMPLE: CSS hover con timeout de 8 segundos
+    // SOLUCIÓN DEFINITIVA - Dropdown ultra-estable
     document.querySelectorAll(".dropdown").forEach(dropdown => {
       const content = dropdown.querySelector('.dropdown-content');
-      let timeoutId;
+      let timeoutId = null;
       
-      // Función para mantener abierto 8 segundos
+      // Variable para controlar si el mouse está en el área del dropdown
+      let isMouseInDropdownArea = false;
+      
+      // Función para mantener abierto
       function keepOpen() {
-        clearTimeout(timeoutId);
+        isMouseInDropdownArea = true;
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = null;
+        }
         content.classList.add('show');
       }
       
-      // Función para cerrar después de 8 segundos
+      // Función para programar cierre
       function scheduleClose() {
-        clearTimeout(timeoutId);
+        isMouseInDropdownArea = false;
         timeoutId = setTimeout(() => {
-          content.classList.remove('show');
+          if (!isMouseInDropdownArea) {
+            content.classList.remove('show');
+            timeoutId = null;
+          }
         }, 8000);
       }
       
-      // Eventos simples y claros
+      // Eventos para el botón del dropdown
       dropdown.addEventListener('mouseenter', keepOpen);
-      dropdown.addEventListener('mouseleave', scheduleClose);
+      dropdown.addEventListener('mouseleave', function(e) {
+        // Verificar si el mouse se está moviendo hacia el contenido
+        const rect = content.getBoundingClientRect();
+        const isMovingToContent = e.clientX >= rect.left && e.clientX <= rect.right &&
+                                   e.clientY >= rect.top && e.clientY <= rect.bottom;
+        
+        if (!isMovingToContent) {
+          scheduleClose();
+        }
+      });
       
+      // Eventos para el contenido del dropdown
       content.addEventListener('mouseenter', keepOpen);
-      content.addEventListener('mouseleave', scheduleClose);
+      content.addEventListener('mouseleave', function(e) {
+        // Verificar si el mouse se está moviendo hacia el botón
+        const buttonRect = dropdown.getBoundingClientRect();
+        const isMovingToButton = e.clientX >= buttonRect.left && e.clientX <= buttonRect.right &&
+                                     e.clientY >= buttonRect.top && e.clientY <= buttonRect.bottom;
+        
+        if (!isMovingToButton) {
+          scheduleClose();
+        }
+      });
       
-      // Prevenir cierre accidental
-      content.addEventListener('mouseenter', () => clearTimeout(timeoutId));
-      dropdown.addEventListener('mouseenter', () => clearTimeout(timeoutId));
+      // Eventos de click para toggle
+      dropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (content.classList.contains('show')) {
+          content.classList.remove('show');
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+          }
+        } else {
+          keepOpen();
+        }
+      });
+    });
+    
+    // Cerrar dropdowns al hacer clic fuera
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown-content').forEach(menu => {
+          menu.classList.remove('show');
+        });
+      }
     });
 
     // Inicial: asegurar que solo inicio esté visible
