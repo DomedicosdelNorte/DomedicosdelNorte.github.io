@@ -147,7 +147,7 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   position: relative;
 }
 
-/* Dropdown con 8 segundos de permanencia */
+/* Dropdown con 8 segundos - SIN CONFLICTOS CSS */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -167,33 +167,27 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   transform: translateX(0);
   max-height: 60vh;
   overflow-y: auto;
-  transition: opacity 1s ease, visibility 1s ease;
+  /* REMOVIDO: transition que causa conflicto con JavaScript */
 }
 
-.dropdown:hover .dropdown-content,
+.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mantener dropdown abierto al hover del contenido */
 .dropdown-content:hover {
   display: block;
   opacity: 1;
   visibility: visible;
 }
 
-.dropdown:hover .dropdown-content {
-  transition-delay: 0.5s;
-}
-
 /* Mantener dropdown abierto al hover del contenido */
 .dropdown-content:hover {
+  display: block;
   opacity: 1;
   visibility: visible;
-}
-
-/* Evitar que se cierre al mover mouse dentro del dropdown */
-.dropdown-content {
-  pointer-events: auto;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block !important;
 }
 
 /* Ajuste para pantallas pequeñas */
@@ -1865,6 +1859,108 @@ main {
 .whatsapp-float::before {
   content: '💬';
   font-size: 1.2rem;
+}
+
+/* =========================
+   MICRO-INTERACCIONES MEJORADAS
+========================= */
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--brand);
+  border-radius: 50%;
+  border-top: 2px solid transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animaciones de entrada suaves */
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto parallax en hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: linear-gradient(135deg, 
+    rgba(30, 136, 229, 0.1) 0%, 
+    rgba(30, 136, 229, 0.05) 100%
+  );
+  z-index: -1;
+  animation: parallaxMove 20s ease-in-out infinite;
+}
+
+@keyframes parallaxMove {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, -20px) scale(1.1); }
+}
+
+/* Transiciones entre páginas */
+.page-transition {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* =========================
