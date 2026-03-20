@@ -170,6 +170,13 @@ nav a:hover, nav a[aria-current="page"], .dropbtn:hover {
   /* REMOVIDO: transition que causa conflicto con JavaScript */
 }
 
+/* JavaScript control - CSS helper */
+.dropdown-content.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
 .dropdown:hover .dropdown-content {
   display: block;
   opacity: 1;
