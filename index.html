@@ -66,7 +66,7 @@
 </head>
 <body>
   <header>
-    <div class="logo"><img src="logo.png" alt="Logo de Domedicos del Norte - Distribuidor de equipos médicos" /></div>
+    <div class="logo"><img src="favicon.ico" alt="Logo de Domedicos del Norte - Distribuidor de equipos médicos" /></div>
     <nav aria-label="Principal">
       <a href="index.html" aria-current="page">Inicio</a>
 
@@ -96,7 +96,7 @@
       <!-- HERO CORPORATIVO ELITE -->
       <div class="hero" aria-label="Portada corporativa">
         <div class="hero-content">
-          <h1>Domédicos del Norte</h1>
+          <h1><img src="favicon.ico" alt="Domédicos del Norte" style="height: 60px; vertical-align: middle; margin-right: 15px;" />Domédicos del Norte</h1>
           <p class="hero-subtitle">Distribución de Equipos Médicos en Colombia</p>
           
           <!-- BENEFICIOS VISUALES -->
@@ -410,7 +410,7 @@
       }, 80);
     }
 
-    // SOLUCIÓN MÁXIMA - Dropdown con área GIGANTE
+    // SOLUCIÓN DEFINITIVA - Dropdown ultra-simple y funcional
     document.querySelectorAll(".dropdown").forEach(dropdown => {
       const content = dropdown.querySelector('.dropdown-content');
       let timeoutId = null;
@@ -432,41 +432,7 @@
         }, 8000);
       }
       
-      // Área GIGANTE de detección
-      function isInGiantArea(e) {
-        const buttonRect = dropdown.getBoundingClientRect();
-        const contentRect = content.getBoundingClientRect();
-        
-        // Expandir área masivamente
-        const expandedArea = {
-          top: Math.min(buttonRect.top, contentRect.top) - 30, // 30px arriba
-          bottom: Math.max(buttonRect.bottom, contentRect.bottom) + 30, // 30px abajo
-          left: Math.min(buttonRect.left, contentRect.left) - 30, // 30px izquierda
-          right: Math.max(buttonRect.right, contentRect.right) + 30 // 30px derecha
-        };
-        
-        return e.clientX >= expandedArea.left && 
-               e.clientX <= expandedArea.right && 
-               e.clientY >= expandedArea.top && 
-               e.clientY <= expandedArea.bottom;
-      }
-      
-      // Eventos con área gigante
-      dropdown.addEventListener('mouseenter', keepOpen);
-      dropdown.addEventListener('mouseleave', function(e) {
-        if (!isInGiantArea(e)) {
-          scheduleClose();
-        }
-      });
-      
-      content.addEventListener('mouseenter', keepOpen);
-      content.addEventListener('mouseleave', function(e) {
-        if (!isInGiantArea(e)) {
-          scheduleClose();
-        }
-      });
-      
-      // Evento de click para toggle
+      // Click para toggle
       dropdown.addEventListener('click', function(e) {
         e.preventDefault();
         if (content.classList.contains('show')) {
@@ -479,6 +445,14 @@
           keepOpen();
         }
       });
+      
+      // Hover para mantener abierto
+      dropdown.addEventListener('mouseenter', keepOpen);
+      content.addEventListener('mouseenter', keepOpen);
+      
+      // Mouse leave para programar cierre
+      dropdown.addEventListener('mouseleave', scheduleClose);
+      content.addEventListener('mouseleave', scheduleClose);
     });
     
     // Cerrar dropdowns al hacer clic fuera
