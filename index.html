@@ -280,6 +280,114 @@
         </div>
       </section>
 
+      <!-- QUICK QUOTE CALCULATOR -->
+      <section class="quick-quote-section">
+        <div class="container">
+          <h2>¿Qué equipo necesitas?</h2>
+          <p class="quick-quote-desc">Selecciona el tipo de equipo y recibe cotización inmediata por WhatsApp</p>
+          
+          <div class="quick-quote-form">
+            <select id="product-type" class="product-select">
+              <option value="">Selecciona un producto</option>
+              <option value="Tensiómetro Digital">Tensiómetro Digital</option>
+              <option value="Fonendoscopio">Fonendoscopio</option>
+              <option value="Glucometro">Glucometro</option>
+              <option value="Silla de Ruedas">Silla de Ruedas</option>
+              <option value="Muletas">Muletas</option>
+              <option value="Bastón">Bastón</option>
+              <option value="Colchón Antiescaras">Colchón Antiescaras</option>
+              <option value="Diván de Examen">Diván de Examen</option>
+              <option value="Electrocardiógrafo">Electrocardiógrafo</option>
+              <option value="Aspirador de Secreciones">Aspirador de Secreciones</option>
+              <option value="Botiquín de Primeros Auxilios">Botiquín de Primeros Auxilios</option>
+              <option value="Nebulizador">Nebulizador</option>
+              <option value="Pulsioxímetro">Pulsioxímetro</option>
+              <option value="Monitor de Signos Vitales">Monitor de Signos Vitales</option>
+              <option value="Equipo Especializado">Equipo Especializado</option>
+              <option value="Repuestos Biomédicos">Repuestos Biomédicos</option>
+            </select>
+            
+            <button onclick="generateWhatsAppQuote()" class="quote-button">
+              Cotizar por WhatsApp
+            </button>
+          </div>
+          
+          <div class="quick-benefits">
+            <div class="quick-benefit">
+              <span class="benefit-icon"> lightning</span>
+              <span>Respuesta inmediata</span>
+            </div>
+            <div class="quick-benefit">
+              <span class="benefit-icon"> check</span>
+              <span>Precios competitivos</span>
+            </div>
+            <div class="quick-benefit">
+              <span class="benefit-icon"> truck</span>
+              <span>Envío a todo Colombia</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCT CATEGORIES OVERVIEW -->
+      <section class="categories-overview-section">
+        <div class="container">
+          <h2>Nuestras Categorías</h2>
+          <p class="categories-desc">Explora nuestra amplia gama de equipos médicos</p>
+          
+          <div class="category-grid">
+            <div class="category-card">
+              <div class="category-icon"> medical</div>
+              <h3>Diagnóstico</h3>
+              <p>Tensiómetros, fonendoscopios, glucómetros y equipos de monitoreo para diagnóstico preciso.</p>
+              <a href="diagnostico.html" class="category-link">Ver productos</a>
+            </div>
+            
+            <div class="category-card">
+              <div class="category-icon"> wheelchair</div>
+              <h3>Movilidad y Apoyo</h3>
+              <p>Sillas de ruedas, muletas, bastones y equipos de movilidad para mejorar calidad de vida.</p>
+              <a href="movilidad.html" class="category-link">Ver productos</a>
+            </div>
+            
+            <div class="category-card">
+              <div class="category-icon"> hospital</div>
+              <h3>Hospitalario</h3>
+              <p>Colchones antiescaras, divanes de examen, electrocardiógrafos y equipos hospitalarios.</p>
+              <a href="hospitalario.html" class="category-link">Ver productos</a>
+            </div>
+            
+            <div class="category-card">
+              <div class="category-icon"> package</div>
+              <h3>Insumos Médicos</h3>
+              <p>Botiquines, nebulizadores, pulsioxímetros y consumibles médicos para atención primaria.</p>
+              <a href="insumos.html" class="category-link">Ver productos</a>
+            </div>
+            
+            <div class="category-card">
+              <div class="category-icon"> bolt</div>
+              <h3>Equipos Especializados</h3>
+              <p>Monitores de signos vitales, equipos de diagnóstico avanzado y tecnología médica especializada.</p>
+              <a href="especializados.html" class="category-link">Ver productos</a>
+            </div>
+            
+            <div class="category-card">
+              <div class="category-icon"> settings</div>
+              <h3>Repuestos Biomédicos</h3>
+              <p>Repuestos originales y certificados para mantenimiento de equipos médicos especializados.</p>
+              <a href="repuestos-biomedicos.html" class="category-link">Ver productos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHATSAPP CHAT BUBBLE -->
+      <div class="whatsapp-chat-bubble" id="smartChat">
+        <a href="https://wa.me/573106107017?text=Hola%20vi%20tu%20web%20y%20necesito%20información">
+          ¿Necesitas ayuda? Chatea ahora
+        </a>
+      </div>
+
       <!-- CTA PRINCIPAL -->
       <section class="main-cta">
         <div class="cta-content">
@@ -462,6 +570,28 @@
         document.querySelectorAll('.dropdown-content').forEach(menu => {
           menu.classList.remove('show');
         });
+      }
+    });
+
+    // WhatsApp Quote Generator
+    function generateWhatsAppQuote() {
+      const product = document.getElementById('product-type').value;
+      if (!product) {
+        alert('Por favor selecciona un producto');
+        return;
+      }
+      
+      const message = `Hola, necesito cotización para: ${product}`;
+      window.open(`https://wa.me/573106107017?text=${encodeURIComponent(message)}`);
+    }
+
+    // Smart Chat Bubble (show after scroll)
+    window.addEventListener('scroll', function() {
+      const chatBubble = document.getElementById('smartChat');
+      if (window.scrollY > 300) {
+        chatBubble.style.display = 'block';
+      } else {
+        chatBubble.style.display = 'none';
       }
     });
 
