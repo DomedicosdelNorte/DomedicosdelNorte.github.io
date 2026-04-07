@@ -2164,32 +2164,47 @@ main {
 }
 
 /* =========================
-   WHATSAPP CHAT BUBBLE
+   WHATSAPP FLOTANTE MEJORADO
 ========================= */
-.whatsapp-chat-bubble {
+.whatsapp-float {
   position: fixed;
-  bottom: 90px;
-  right: 20px;
-  background: #25d366;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
   color: white;
-  padding: 12px 20px;
-  border-radius: 25px;
+  padding: 18px 25px;
+  border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.9rem;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  font-size: 1rem;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
   z-index: 1000;
   transition: all 0.3s ease;
-  display: none;
-  animation: pulse 2s infinite;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.whatsapp-chat-bubble:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+.whatsapp-float::before {
+  content: '💬';
+  font-size: 1.3rem;
+  margin-right: 5px;
 }
 
-@keyframes pulse {
+.whatsapp-float:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+  background: linear-gradient(135deg, #128c7e 0%, #25d366 100%);
+}
+
+.whatsapp-float:active {
+  transform: scale(0.95);
+  animation: whatsapp-pulse 0.5s ease;
+}
+
+@keyframes whatsapp-pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
