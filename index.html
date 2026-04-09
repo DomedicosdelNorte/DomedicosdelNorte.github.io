@@ -381,6 +381,147 @@
         </div>
       </section>
 
+      <!-- CERTIFICACIONES Y SELLOS -->
+      <section class="certifications-section">
+        <div class="container">
+          <h2>Certificaciones y Sellos de Calidad</h2>
+          <p class="certifications-desc">Todos nuestros equipos cumplen con los más altos estándares de calidad y seguridad</p>
+          
+          <div class="certifications-grid">
+            <div class="certification-card">
+              <div class="cert-icon"> ISO</div>
+              <h3>ISO 9001</h3>
+              <p>Sistema de Gestión de Calidad certificado para procesos de distribución y servicio</p>
+            </div>
+            
+            <div class="certification-card">
+              <div class="cert-icon"> INVIMA</div>
+              <h3>Registro Sanitario INVIMA</h3>
+              <p>Todos nuestros equipos cuentan con registro sanitario vigente en Colombia</p>
+            </div>
+            
+            <div class="certification-card">
+              <div class="cert-icon"> 1A</div>
+              <h3>Garantía Extendida</h3>
+              <p>Garantía de hasta 1 año en todos los equipos con soporte técnico especializado</p>
+            </div>
+            
+            <div class="certification-card">
+              <div class="cert-icon"> CE</div>
+              <h3>Certificación CE</h3>
+              <p>Equipos con marcado CE para cumplimiento de estándares europeos de seguridad</p>
+            </div>
+            
+            <div class="certification-card">
+              <div class="cert-icon"> FDA</div>
+              <h3>Aprobación FDA</h3>
+              <p>Equipos aprobados por la FDA para uso médico en Estados Unidos</p>
+            </div>
+            
+            <div class="certification-card">
+              <div class="cert-icon"> 30+</div>
+              <h3>30 Años de Confianza</h3>
+              <p>Más de tres décadas de experiencia en el mercado médico colombiano</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE COUNTER -->
+      <section class="experience-counter-section">
+        <div class="container">
+          <h2>Nuestros Logros en Números</h2>
+          <div class="counter-grid">
+            <div class="counter-item">
+              <span class="counter-number" data-target="30">0</span>
+              <span class="counter-label">Años de Experiencia</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" data-target="500">0</span>
+              <span class="counter-label">Clientes Activos</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" data-target="1000">0</span>
+              <span class="counter-label">Equipos Vendidos</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" data-target="20">0</span>
+              <span class="counter-label">Ciudades Atendidas</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MAPA DE UBICACIÓN -->
+      <section class="location-section">
+        <div class="container">
+          <h2>Visítanos en Barranquilla</h2>
+          <p class="location-desc">Te esperamos en nuestra sede principal para asesoría personalizada</p>
+          
+          <div class="map-container">
+            <div class="map-wrapper">
+              <iframe 
+                src="https://maps.google.com/maps?q=Barranquilla,Atlántico,Colombia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"
+                class="map-iframe">
+              </iframe>
+            </div>
+            
+            <div class="location-info">
+              <div class="info-card">
+                <h3>Información de Contacto</h3>
+                <div class="contact-details">
+                  <div class="contact-item">
+                    <span class="contact-icon"> location_on</span>
+                    <div>
+                      <strong>Dirección:</strong>
+                      <p>Barranquilla, Atlántico, Colombia</p>
+                    </div>
+                  </div>
+                  <div class="contact-item">
+                    <span class="contact-icon"> phone</span>
+                    <div>
+                      <strong>Teléfono:</strong>
+                      <p>+57 310 6107 017</p>
+                    </div>
+                  </div>
+                  <div class="contact-item">
+                    <span class="contact-icon"> email</span>
+                    <div>
+                      <strong>Email:</strong>
+                      <p>domedicosdelnorte@hotmail.com</p>
+                    </div>
+                  </div>
+                  <div class="contact-item">
+                    <span class="contact-icon"> schedule</span>
+                    <div>
+                      <strong>Horario:</strong>
+                      <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                      <p>Sábados: 9:00 AM - 1:00 PM</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="location-actions">
+                  <a href="https://wa.me/573106107017" class="action-btn primary">
+                    <span> WhatsApp</span>
+                    WhatsApp
+                  </a>
+                  <a href="tel:+573106107017" class="action-btn secondary">
+                    <span> phone</span>
+                    Llamar Ahora
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- WHATSAPP CHAT BUBBLE -->
       <div class="whatsapp-chat-bubble" id="smartChat">
         <a href="https://wa.me/573106107017?text=Hola%20vi%20tu%20web%20y%20necesito%20información">
@@ -571,6 +712,58 @@
           menu.classList.remove('show');
         });
       }
+    });
+
+    // Counter Animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter-number');
+      const speed = 200;
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const increment = target / speed;
+        
+        const updateCount = () => {
+          const count = +counter.innerText;
+          
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 1);
+          } else {
+            counter.innerText = target + '+';
+          }
+        };
+        
+        updateCount();
+      });
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          
+          // Start counter animation when visible
+          if (entry.target.classList.contains('experience-counter-section')) {
+            animateCounters();
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe sections for animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        observer.observe(section);
+      });
     });
 
     // WhatsApp Quote Generator
