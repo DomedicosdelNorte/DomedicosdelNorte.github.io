@@ -31,6 +31,264 @@
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   
+  <style>
+    /* Estilos mínimos para asegurar visibilidad */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header styles */
+    header {
+      background: white;
+      padding: 15px 0;
+      border-bottom: 1px solid #e9ecef;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+    
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #005b99;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      background: #f8f9fa;
+      color: #0077cc;
+    }
+    
+    /* Hero section */
+    .category-hero {
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .category-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+    
+    /* Product grid */
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+    
+    .article {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border: 1px solid #e9ecef;
+    }
+    
+    .article:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+    
+    .article-image {
+      height: 250px;
+      overflow: hidden;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-content {
+      padding: 25px;
+    }
+    
+    .article-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #005b99;
+      margin-bottom: 15px;
+    }
+    
+    .article-description {
+      color: #6c757d;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    
+    .product-features {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    
+    .feature-tag {
+      background: #e8f4ff;
+      color: #005b99;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .btn-cotizar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-cotizar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 91, 153, 0.3);
+    }
+    
+    /* Carousel styles */
+    .image-carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .carousel-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    
+    .carousel-image.active {
+      opacity: 1;
+    }
+    
+    .carousel-dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+    
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .carousel-dot.active {
+      background: white;
+      border-color: white;
+      transform: scale(1.2);
+    }
+    
+    /* Product specs */
+    .product-specs {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 91, 153, 0.05);
+      border-radius: 8px;
+      border-left: 4px solid #005b99;
+    }
+    
+    .product-specs h4 {
+      color: #005b99;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    
+    .product-specs ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .product-specs li {
+      padding: 5px 0;
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    
+    .product-specs strong {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .category-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .articles {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+  
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="enhanced-styles.css">
@@ -609,37 +867,56 @@
   <!-- JavaScript para carrusel de imágenes -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded - initializing carousel');
+      
       // Inicializar carruseles de imágenes
       const carousels = document.querySelectorAll('.image-carousel');
+      console.log('Found carousels:', carousels.length);
       
-      carousels.forEach(carousel => {
+      carousels.forEach((carousel, index) => {
         const images = carousel.querySelectorAll('.carousel-image');
         const dots = carousel.querySelectorAll('.carousel-dot');
         let currentImage = 0;
         
+        console.log(`Carousel ${index}: ${images.length} images, ${dots.length} dots`);
+        
+        // Asegurar que la primera imagen esté activa
+        if (images.length > 0) {
+          images[0].classList.add('active');
+          dots[0].classList.add('active');
+        }
+        
         // Función para cambiar imagen
         function changeImage(index) {
+          console.log('Changing to image:', index);
+          
           // Remover clase active de todas las imágenes
           images.forEach(img => img.classList.remove('active'));
           dots.forEach(dot => dot.classList.remove('active'));
           
           // Agregar clase active a la imagen seleccionada
-          images[index].classList.add('active');
-          dots[index].classList.add('active');
-          
-          currentImage = index;
+          if (images[index]) {
+            images[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentImage = index;
+          }
         }
         
         // Event listeners para los dots
         dots.forEach((dot, index) => {
-          dot.addEventListener('click', () => changeImage(index));
+          dot.addEventListener('click', () => {
+            console.log('Dot clicked:', index);
+            changeImage(index);
+          });
         });
         
         // Auto-avanzar cada 3 segundos
-        setInterval(() => {
-          const nextImage = (currentImage + 1) % images.length;
-          changeImage(nextImage);
-        }, 3000);
+        if (images.length > 1) {
+          setInterval(() => {
+            const nextImage = (currentImage + 1) % images.length;
+            changeImage(nextImage);
+          }, 3000);
+        }
       });
     });
   </script>
