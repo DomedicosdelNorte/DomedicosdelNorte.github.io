@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEST DE VISUALIZACIÓN - DEBUG</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #ff0000;
+      color: #ffffff;
+    }
+    
+    .debug-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #000000;
+      padding: 30px;
+      border-radius: 10px;
+    }
+    
+    h1 {
+      color: #00ff00;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .test-section {
+      background: #333;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 2px solid #00ff00;
+    }
+    
+    .test-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: #555;
+      border-radius: 5px;
+    }
+    
+    .success {
+      color: #00ff00;
+      font-weight: bold;
+    }
+    
+    .error {
+      color: #ff0000;
+      font-weight: bold;
+    }
+    
+    button {
+      background: #00ff00;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin: 10px;
+    }
+    
+    button:hover {
+      background: #ffff00;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="debug-container">
+    <h1>🔍 PÁGINA DE DIAGNÓSTICO VISUAL</h1>
+    
+    <div class="test-section">
+      <h2>📋 Estado del Navegador</h2>
+      <div class="test-item">
+        <strong>User Agent:</strong> <span id="user-agent"></span>
+      </div>
+      <div class="test-item">
+        <strong>URL Actual:</strong> <span id="current-url"></span>
+      </div>
+      <div class="test-item">
+        <strong>Fecha/Hora:</strong> <span id="datetime"></span>
+      </div>
+    </div>
+    
+    <div class="test-section">
+      <h2>🎨 Prueba de CSS</h2>
+      <div class="test-item success">
+        ✅ Si ves este texto con fondo negro y letras verdes, CSS funciona
+      </div>
+      <div class="test-item error">
+        ❌ Si ves esto con fondo rojo, hay problema de CSS
+      </div>
+    </div>
+    
+    <div class="test-section">
+      <h2>🔗 Enlaces de Prueba</h2>
+      <div class="test-item">
+        <button onclick="window.open('https://domedicosdelnorte.github.io/diagnostico.html', '_blank')">
+          Abrir Diagnóstico
+        </button>
+        <button onclick="window.open('https://domedicosdelnorte.github.io/movilidad.html', '_blank')">
+          Abrir Movilidad
+        </button>
+        <button onclick="window.open('https://domedicosdelnorte.github.io/hospitalario.html', '_blank')">
+          Abrir Hospitalario
+        </button>
+      </div>
+    </div>
+    
+    <div class="test-section">
+      <h2>💡 Instrucciones</h2>
+      <div class="test-item">
+        <strong>1.</strong> Si esta página se ve correctamente, tu navegador funciona<br>
+        <strong>2.</strong> Si no se ve, hay problema de navegador/caché<br>
+        <strong>3.</strong> Prueba los botones para abrir otras páginas<br>
+        <strong>4.</strong> Usa Ctrl+Shift+R (Windows) o Cmd+Shift+R (Mac) para forzar recarga
+      </div>
+    </div>
+    
+    <div class="test-section">
+      <h2>🔧 Soluciones de Problemas Comunes</h2>
+      <div class="test-item">
+        <strong>Problema:</strong> Página en blanco<br>
+        <strong>Solución:</strong> Limpiar caché del navegador<br>
+        <strong>Chrome:</strong> Ctrl+Shift+Delete<br>
+        <strong>Firefox:</strong> Ctrl+Shift+Delete<br>
+        <strong>Safari:</strong> Cmd+Option+E
+      </div>
+      </div>
+  </div>
+  
+  <script>
+    document.getElementById('user-agent').textContent = navigator.userAgent;
+    document.getElementById('current-url').textContent = window.location.href;
+    document.getElementById('datetime').textContent = new Date().toLocaleString();
+    
+    console.log('✅ Página de diagnóstico cargada');
+    console.log('User Agent:', navigator.userAgent);
+    console.log('URL:', window.location.href);
+    console.log('Fecha:', new Date().toLocaleString());
+  </script>
+</body>
+</html>
