@@ -269,6 +269,45 @@
               </a>
             </div>
           </div>
+
+          <div class="article">
+            <div class="article-image">
+              <div class="image-carousel">
+                <img src="Balanza Digital de peso corporal.webp" alt="Balanza Digital de Peso Corporal - Vista frontal" loading="lazy" class="carousel-image active">
+                <img src="Balanza Digital de peso corporal2.webp" alt="Balanza Digital de Peso Corporal - Vista lateral" loading="lazy" class="carousel-image">
+              </div>
+              <div class="carousel-dots">
+                <span class="carousel-dot active" data-image="0"></span>
+                <span class="carousel-dot" data-image="1"></span>
+              </div>
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Balanza Digital de Peso Corporal</h3>
+              <p class="article-description">
+                Balanza digital profesional de alta precisión para medición de peso corporal. Tecnología de sensores de carga avanzada con precisión de 100g. Pantalla LCD retroiluminada de gran tamaño para fácil lectura. Función de auto-calibración y apagado automático. Ideal para clínicas, hospitales y consultorios médicos.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Alta Precisión</span>
+                <span class="feature-tag">Capacidad 180kg</span>
+                <span class="feature-tag">Pantalla LCD</span>
+              </div>
+              <div class="product-specs">
+                <h4>Especificaciones Técnicas:</h4>
+                <ul>
+                  <li><strong>Precisión:</strong> ±100g</li>
+                  <li><strong>Capacidad máxima:</strong> 180kg</li>
+                  <li><strong>Unidades:</strong> kg, lb, st</li>
+                  <li><strong>Pantalla:</strong> LCD retroiluminada</li>
+                  <li><strong>Alimentación:</strong> Batería recargable</li>
+                  <li><strong>Plataforma:</strong> Antideslizante de alta resistencia</li>
+                </ul>
+              </div>
+              <a class="btn-cotizar" href="https://wa.me/573106107017?text=Hola%20me%20interesa%20la%20Balanza%20Digital%20de%20Peso%20Corporal" target="_blank">
+                <span>Solicitar información</span>
+                <span>rightarrow</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -562,5 +601,43 @@
       }
     }
   </style>
+  
+  <!-- JavaScript para carrusel de imágenes -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Inicializar carruseles de imágenes
+      const carousels = document.querySelectorAll('.image-carousel');
+      
+      carousels.forEach(carousel => {
+        const images = carousel.querySelectorAll('.carousel-image');
+        const dots = carousel.querySelectorAll('.carousel-dot');
+        let currentImage = 0;
+        
+        // Función para cambiar imagen
+        function changeImage(index) {
+          // Remover clase active de todas las imágenes
+          images.forEach(img => img.classList.remove('active'));
+          dots.forEach(dot => dot.classList.remove('active'));
+          
+          // Agregar clase active a la imagen seleccionada
+          images[index].classList.add('active');
+          dots[index].classList.add('active');
+          
+          currentImage = index;
+        }
+        
+        // Event listeners para los dots
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => changeImage(index));
+        });
+        
+        // Auto-avanzar cada 3 segundos
+        setInterval(() => {
+          const nextImage = (currentImage + 1) % images.length;
+          changeImage(nextImage);
+        }, 3000);
+      });
+    });
+  </script>
 </body>
 </html>
