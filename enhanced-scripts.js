@@ -150,12 +150,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Medir tiempo de carga
     window.addEventListener('load', function() {
         const loadTime = performance.now();
-        console.log(`Página cargada en ${loadTime.toFixed(2)}ms`);
         
         // Enviar a analytics si está disponible
         if (typeof gtag !== 'undefined') {
             gtag('event', 'page_load_time', {
-                custom_parameter: loadTime
+                custom_parameter: loadTime.toFixed(2)
             });
         }
     });
@@ -279,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', debounce(updateOnScroll, 100));
 
-    console.log('Enhanced scripts cargados exitosamente - Domédicos del Norte');
+    // Scripts cargados exitosamente
 });
 
 // =========================

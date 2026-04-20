@@ -217,16 +217,16 @@
               </div>
             </div>
             
-            <button class="slider-btn prev-btn" onclick="changeSlide(-1)">‹</button>
-            <button class="slider-btn next-btn" onclick="changeSlide(1)">›</button>
+            <button class="slider-btn prev-btn" data-slide="prev">prev</button>
+            <button class="slider-btn next-btn" data-slide="next">next</button>
             
             <div class="slider-dots">
-              <span class="dot" onclick="currentSlide(1)"></span>
-              <span class="dot" onclick="currentSlide(2)"></span>
-              <span class="dot" onclick="currentSlide(3)"></span>
-              <span class="dot" onclick="currentSlide(4)"></span>
-              <span class="dot" onclick="currentSlide(5)"></span>
-              <span class="dot" onclick="currentSlide(6)"></span>
+              <span class="dot" data-slide="1"></span>
+              <span class="dot" data-slide="2"></span>
+              <span class="dot" data-slide="3"></span>
+              <span class="dot" data-slide="4"></span>
+              <span class="dot" data-slide="5"></span>
+              <span class="dot" data-slide="6"></span>
             </div>
           </div>
         </div>
@@ -766,16 +766,61 @@
       });
     });
 
+    // Slider event listeners
+    document.querySelectorAll('.slider-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const direction = this.getAttribute('data-slide');
+            if (direction === 'prev') {
+                changeSlide(-1);
+            } else if (direction === 'next') {
+                changeSlide(1);
+            }
+        });
+    });
+
+    document.querySelectorAll('.dot').forEach(dot => {
+        dot.addEventListener('click', function() {
+            const slideNum = parseInt(this.getAttribute('data-slide'));
+            currentSlide(slideNum);
+        });
+    });
+
     // WhatsApp Quote Generator
     function generateWhatsAppQuote() {
       const product = document.getElementById('product-type').value;
       if (!product) {
-        alert('Por favor selecciona un producto');
+        showNotification('Por favor selecciona un producto', 'warning');
         return;
       }
       
       const message = `Hola, necesito cotización para: ${product}`;
       window.open(`https://wa.me/573106107017?text=${encodeURIComponent(message)}`);
+    }
+
+    // Notification system
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'warning' ? '#ff9800' : '#4caf50'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        z-index: 10000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        animation: slideIn 0.3s ease;
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
     }
 
     // Smart Chat Bubble (show after scroll)

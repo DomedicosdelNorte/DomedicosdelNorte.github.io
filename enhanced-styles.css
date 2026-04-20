@@ -5,20 +5,42 @@
 
 /* CSS VARIABLES */
 :root {
+  /* Colors */
   --brand: #005b99;
-  --brand-dark: #003f6b;
-  --brand-light: #1e88e5;
+  --brand-light: #0077cc;
+  --brand-dark: #004080;
   --accent: #25d366;
-  --accent-dark: #128c7e;
-  --bg: #f0f7ff;
-  --card: #ffffff;
   --text: #2c3e50;
   --text-light: #6c757d;
+  --background: #f0f7ff;
+  --card: #ffffff;
   --border: #e1e8ed;
   --shadow: rgba(0, 91, 153, 0.1);
   --shadow-hover: rgba(0, 91, 153, 0.2);
-  --gradient: linear-gradient(135deg, #005b99 0%, #1e88e5 100%);
-  --gradient-hero: linear-gradient(135deg, #003f6b 0%, #005b99 50%, #1e88e5 100%);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #2ecc71 100%);
+  --gradient-hero: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 50%, var(--brand-light) 100%);
+  --gradient-light: linear-gradient(135deg, #f8fbff 0%, #e8f4ff 100%);
+  
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s ease;
+  --transition-slow: all 0.5s ease;
+  --transition-smooth: all 0.8s ease-out;
+  
+  /* Typography */
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Roboto', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 30px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 60px;
 }
 
 /* RESET & BASE */
@@ -2763,6 +2785,46 @@ section.animate-in {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* =========================
+   NOTIFICATION SYSTEM
+========================= */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.notification {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-width: 300px;
+}
+
+.notification.warning {
+  background: linear-gradient(135deg, #ff9800, #f57c00) !important;
+}
+
+.notification.info {
+  background: linear-gradient(135deg, #4caf50, #388e3c) !important;
 }
 
 /* =========================
