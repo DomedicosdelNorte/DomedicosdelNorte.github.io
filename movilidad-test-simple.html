@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEST SIMPLE - Movilidad</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #ff0000;
+      color: #ffffff;
+    }
+    
+    .test-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #000000;
+      padding: 30px;
+      border-radius: 10px;
+    }
+    
+    h1 {
+      color: #00ff00;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .test-section {
+      background: #333;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 2px solid #00ff00;
+    }
+    
+    .product-card {
+      background: white;
+      color: black;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 2px solid #005b99;
+    }
+    
+    .product-title {
+      font-size: 1.5rem;
+      color: #005b99;
+      margin-bottom: 10px;
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: #f0f0f0;
+      border: 2px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    
+    .success {
+      color: #00ff00;
+      font-weight: bold;
+    }
+    
+    .error {
+      color: #ff0000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>🔍 TEST SIMPLE - MOVILIDAD</h1>
+    
+    <div class="test-section">
+      <h2>📋 Estado del HTML</h2>
+      <p class="success">✅ HTML se carga correctamente</p>
+      <p class="success">✅ CSS inline funciona</p>
+      <p class="success">✅ Contenido visible</p>
+    </div>
+    
+    <div class="test-section">
+      <h2>🦽 Prueba de Productos</h2>
+      <div class="product-card">
+        <h3 class="product-title">Silla de Ruedas</h3>
+        <div class="product-image">
+          <img src="Silla de Rueda.webp" alt="Silla de ruedas" style="max-width: 100%; height: auto;">
+        </div>
+        <p><strong>Descripción:</strong> Silla de ruedas plegable para movilidad</p>
+        <p><strong>Precio:</strong> Consultar</p>
+      </div>
+      
+      <div class="product-card">
+        <h3 class="product-title">Muletas</h3>
+        <div class="product-image">
+          <img src="Muletas.webp" alt="Muletas" style="max-width: 100%; height: auto;">
+        </div>
+        <p><strong>Descripción:</strong> Muletas ajustables de aluminio</p>
+        <p><strong>Precio:</strong> Consultar</p>
+      </div>
+    </div>
+    
+    <div class="test-section">
+      <h2>🔗 Enlaces</h2>
+      <p><a href="https://domedicosdelnorte.github.io/movilidad.html" target="_blank" style="color: #00ff00;">→ Ir a página original</a></p>
+      <p><a href="https://domedicosdelnorte.github.io/debug-test.html" target="_blank" style="color: #00ff00;">→ Ir a página de diagnóstico</a></p>
+    </div>
+  </div>
+  
+  <script>
+    console.log('✅ Página de prueba simple cargada');
+    console.log('URL:', window.location.href);
+    console.log('Navegador:', navigator.userAgent);
+  </script>
+</body>
+</html>
