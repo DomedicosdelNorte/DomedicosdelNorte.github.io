@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Equipos Especializados en Barranquilla | Domédicos del Norte</title>
-  <meta name="description" content="Distribuidor especializado en equipos médicos especializados en Barranquilla y Colombia. Monitores de signos vitales, desfibriladores, incubadoras y más. 30 años de experiencia." />
-  <meta name="keywords" content="equipos especializados Barranquilla, monitor signos vitales, desfibrilador, incubadora neonatal, equipos UCI Colombia" />
+  <meta name="description" content="Distribuidor especializado en equipos médicos especializados en Barranquilla y Colombia. Monitores de signos vitales, equipos de diagnóstico avanzado y más. 30 años de experiencia, envíos a nivel nacional." />
+  <meta name="keywords" content="equipos especializados Barranquilla, monitor signos vitales, equipo diagnóstico avanzado, tecnología médica Colombia" />
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://domedicosdelnorte.github.io/especializados.html">
+  <link rel="canonical" href="https://domedicosdelnorte.github.io/especializados.html" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Equipos Especializados | Domédicos del Norte" />
-  <meta property="og:description" content="Distribuidor líder en equipos médicos especializados para UCI y unidades críticas. Monitores, desfibriladores, incubadoras con garantía y envío a toda Colombia." />
+  <meta property="og:description" content="Distribuidor líder en equipos médicos especializados. Monitores de signos vitales, equipos de diagnóstico avanzado con garantía y envío a toda Colombia." />
   <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
   <meta property="og:url" content="https://domedicosdelnorte.github.io/especializados.html" />
   <meta property="og:type" content="website" />
@@ -27,12 +27,17 @@
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   
+  <!-- CSS INLINE - VERSIÓN RECONSTRUIDA DESDE CERO -->
   <style>
-    /* ESTILOS ESENCIALES */
+    /* RESET COMPLETO */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
     }
     
     body {
@@ -40,6 +45,7 @@
       line-height: 1.6;
       color: #2c3e50;
       background: #ffffff;
+      overflow-x: hidden;
     }
     
     .container {
@@ -48,7 +54,7 @@
       padding: 0 20px;
     }
     
-    /* Header */
+    /* HEADER MEJORADO */
     header {
       background: white;
       padding: 15px 0;
@@ -57,6 +63,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
     
     .header-content {
@@ -66,13 +73,18 @@
     }
     
     .logo img {
-      height: 40px;
+      height: 45px;
       width: auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05);
     }
     
     nav {
       display: flex;
-      gap: 20px;
+      gap: 25px;
       align-items: center;
     }
     
@@ -80,17 +92,24 @@
       text-decoration: none;
       color: #005b99;
       font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
       transition: all 0.3s ease;
+      position: relative;
     }
     
     nav a:hover {
       background: #f8f9fa;
       color: #0077cc;
+      transform: translateY(-2px);
     }
     
-    /* Breadcrumb */
+    nav a.active {
+      background: #005b99;
+      color: white;
+    }
+    
+    /* BREADCRUMB */
     .breadcrumb {
       background: #f8f9fa;
       padding: 15px 0;
@@ -116,538 +135,11 @@
       font-weight: 600;
     }
     
-    /* Hero Section */
+    /* HERO SECTION MEJORADO */
     .category-hero {
       background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
       color: white;
-      padding: 80px 0;
-      text-align: center;
-    }
-    
-    .category-hero h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-    
-    .hero-subtitle {
-      font-size: 1.3rem;
-      margin-bottom: 40px;
-      opacity: 0.9;
-    }
-    
-    /* Main Content */
-    main {
-      padding: 60px 0;
-    }
-    
-    .category-intro {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    .category-intro h2 {
-      font-size: 2.5rem;
-      color: #005b99;
-      margin-bottom: 20px;
-    }
-    
-    .intro-text {
-      font-size: 1.1rem;
-      color: #6c757d;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-    
-    /* Products Grid */
-    .products-showcase {
-      margin: 60px 0;
-    }
-    
-    .articles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    
-    .article {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      border: 1px solid #e9ecef;
-    }
-    
-    .article:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    }
-    
-    .article-image {
-      height: 250px;
-      overflow: hidden;
-      background: #f8f9fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .article-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .article-content {
-      padding: 25px;
-    }
-    
-    .article-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #005b99;
-      margin-bottom: 15px;
-    }
-    
-    .article-description {
-      color: #6c757d;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-    
-    .product-features {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    
-    .feature-tag {
-      background: #e8f4ff;
-      color: #005b99;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    
-    .btn-cotizar {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-cotizar:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 91, 153, 0.3);
-    }
-    
-    /* CTA Section */
-    .cta-section {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      padding: 80px 0;
-      text-align: center;
-    }
-    
-    .cta-content h2 {
-      font-size: 2.5rem;
-      color: #005b99;
-      margin-bottom: 20px;
-    }
-    
-    .cta-content p {
-      font-size: 1.2rem;
-      color: #6c757d;
-      margin-bottom: 40px;
-    }
-    
-    .cta-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    .btn-primary, .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 15px 30px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-primary {
-      background: #25d366;
-      color: white;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
-    }
-    
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.9);
-      color: #005b99;
-      border: 2px solid #005b99;
-    }
-    
-    .btn-secondary:hover {
-      background: #005b99;
-      color: white;
-      transform: translateY(-3px);
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .category-hero h1 {
-        font-size: 2rem;
-      }
-      
-      .category-intro h2 {
-        font-size: 1.8rem;
-      }
-      
-      .articles {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      
-      .cta-content h2 {
-        font-size: 1.8rem;
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .btn-primary, .btn-secondary {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center;
-      }
-    }
-  </style>
-  
-  <!-- CSS -->
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  
-  <!-- Structured Data - Collection Page -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Equipos Especializados",
-    "description": "Catálogo completo de equipos médicos especializados para unidades de cuidados intensivos y áreas críticas",
-    "url": "https://domedicosdelnorte.github.io/especializados.html",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Domédicos del Norte",
-      "url": "https://domedicosdelnorte.github.io"
-    },
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "Product",
-          "name": "Monitor de Signos Vitales",
-          "category": "Equipos Especializados"
-        },
-        {
-          "@type": "Product", 
-          "name": "Desfibrilador",
-          "category": "Equipos Especializados"
-        },
-        {
-          "@type": "Product",
-          "name": "Incubadora Neonatal", 
-          "category": "Equipos Especializados"
-        }
-      ]
-    }
-  }
-  </script>
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <div class="logo">
-        <a href="index.html">
-          <img src="logo.png" alt="Domédicos del Norte - Logo">
-        </a>
-      </div>
-      <nav aria-label="Navegación principal">
-        <a href="index.html">Inicio</a>
-
-        <div class="dropdown" id="prodDropdown">
-          <button class="dropbtn">Productos ▾</button>
-          <div class="dropdown-content" role="menu">
-            <div class="category-header">📋 CATEGORÍAS</div>
-            <a href="diagnostico.html" class="category-link">🩺 Diagnóstico</a>
-            <a href="movilidad.html" class="category-link">🦽 Movilidad y Apoyo</a>
-            <a href="hospitalario.html" class="category-link">🏥 Hospitalario</a>
-            <a href="insumos.html" class="category-link">📦 Insumos Médicos</a>
-            <a href="especializados.html" class="category-link">⚡ Equipos Especializados</a>
-            <a href="repuestos-biomedicos.html" class="category-link">🔧 Repuestos Biomédicos</a>
-          </div>
-        </div>
-
-        <a href="index.html#nosotros">Nosotros</a>
-        <a href="index.html#servicios">Servicios</a>
-        <a href="index.html#mantenimiento">Mantenimiento</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Breadcrumb -->
-  <div class="breadcrumb">
-    <div class="container">
-      <a href="index.html">Inicio</a> / 
-      <span class="current">Equipos Especializados</span>
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <section class="category-hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1>⚡ Equipos Especializados</h1>
-        <p class="hero-subtitle">Tecnología avanzada para unidades de cuidados críticos</p>
-        
-        <div class="hero-benefits">
-          <div class="benefit-item">
-            <div class="benefit-icon">✓</div>
-            <span>Tecnología UCI</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">✓</div>
-            <span>Monitoreo continuo</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">✓</div>
-            <span>Soporte técnico</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <main>
-    <div class="container">
-      <!-- Introduction -->
-      <section class="category-intro">
-        <h2>Equipos Especializados de Alta Tecnología</h2>
-        <p class="intro-text">
-          En <strong>Domédicos del Norte</strong> ofrecemos equipos médicos especializados de última generación para unidades de cuidados intensivos, salas de emergencia y áreas críticas. Nuestros equipos cumplen con las certificaciones internacionales más estrictas y están respaldados por servicio técnico especializado disponible 24/7.
-        </p>
-      </section>
-
-      <!-- Products Grid -->
-      <section class="products-showcase">
-        <div class="articles">
-          <div class="article">
-            <div class="article-image">
-              <img src="Monitor de signos vitales.png" alt="Monitor de signos vitales multiparamétrico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Monitor de Signos Vitales</h3>
-              <p class="article-description">
-                Sistema multiparamétrico para monitoreo continuo de pacientes en UCI. Monitorea ECG, presión arterial, saturación de oxígeno, temperatura y frecuencia respiratoria. Con alarmas configurables y capacidad de conexión a sistemas centralizados.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Multiparamétrico</span>
-                <span class="feature-tag">Alarma Inteligente</span>
-              </div>
-              <a class="btn-cotizar" href="https://wa.me/573106107017?text=Hola%20me%20interesa%20el%20Monitor%20de%20Signos%20Vitales" target="_blank">
-                <span>Solicitar información</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="article-image">
-              <img src="desfibrilador.webp" alt="Desfibrilador automático externo" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Desfibrilador Automático</h3>
-              <p class="article-description">
-                Desfibrilador externo automático con guía de voz para uso en emergencias cardiacas. Tecnología bifásica con análisis de ritmo automático y carga rápida. Esencial para ambulancias, consultorios y áreas de emergencia.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Guía de Voz</span>
-                <span class="feature-tag">Tecnología Bifásica</span>
-              </div>
-              <a class="btn-cotizar" href="https://wa.me/573106107017?text=Hola%20me%20interesa%20el%20Desfibrilador%20Automático" target="_blank">
-                <span>Solicitar información</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="article-image">
-              <img src="incubadora.jpg" alt="Incubadora neonatal para cuidados intensivos" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Incubadora Neonatal</h3>
-              <p class="article-description">
-                Sistema de cuidado intensivo neonatal con control preciso de temperatura y humedad. Cámara de incubación con acceso sin romper el ambiente térmico, monitoreo continuo y sistema de oxigenación integrado.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Control Preciso</span>
-                <span class="feature-tag">Monitoreo 24/7</span>
-              </div>
-              <a class="btn-cotizar" href="https://wa.me/573106107017?text=Hola%20me%20interesa%20la%20Incubadora%20Neonatal" target="_blank">
-                <span>Solicitar información</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="article-image">
-              <img src="Monitor de signos vitales.png" alt="Monitor de signos vitales multiparamétrico" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Monitor de Signos Vitales</h3>
-              <p class="article-description">
-                Sistema multiparamétrico para monitoreo continuo de pacientes en UCI. Mide frecuencia cardíaca, presión arterial, saturación de oxígeno, temperatura y respiración. Pantalla táctil a color con gráficos en tiempo real y alarmas configurables.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Multiparamétrico</span>
-                <span class="feature-tag">Pantalla Táctil</span>
-              </div>
-              <a class="btn-cotizar" href="https://wa.me/573106107017?text=Hola%20me%20interesa%20el%20Monitor%20de%20Signos%20Vitales" target="_blank">
-                <span>Solicitar información</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section class="cta-section">
-        <div class="cta-content">
-          <h2>¿Necesitas equipos especializados para tu UCI?</h2>
-          <p>Ofrecemos instalación, capacitación y soporte técnico especializado 24/7</p>
-          <div class="cta-buttons">
-            <a href="https://wa.me/573106107017?text=Hola%20me%20interesan%20los%20equipos%20especializados" class="btn-primary" target="_blank">
-              <span>Consultar por WhatsApp</span>
-              <span>💬</span>
-            </a>
-            <a href="contacto.html" class="btn-secondary">
-              <span>Formulario de contacto</span>
-              <span>📝</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3>Domédicos del Norte</h3>
-        <p>Distribuidores líderes de equipos médicos e insumos hospitalarios con 30 años de experiencia en Colombia.</p>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Categorías</h3>
-        <a href="diagnostico.html">Diagnóstico</a>
-        <a href="movilidad.html">Movilidad</a>
-        <a href="hospitalario.html">Hospitalario</a>
-        <a href="insumos.html">Insumos</a>
-        <a href="especializados.html">Especializados</a>
-        <a href="repuestos-biomedicos.html">Repuestos</a>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Contacto</h3>
-        <p>📞 +57 310 610 7017</p>
-        <p>📧 domedicosdelnorte@hotmail.com</p>
-        <p>📍 Barranquilla, Colombia</p>
-        <p>🕐 L-V: 6:30am-5:00pm · Sáb: 6:30am-12:00pm</p>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>© 2026 Domédicos del Norte | Distribuidor de Equipos Médicos | Todos los derechos reservados</p>
-    </div>
-  </footer>
-
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/573106107017" class="whatsapp-float" target="_blank">
-    WhatsApp
-  </a>
-
-  <style>
-    /* Estilos específicos para página de categoría */
-    .breadcrumb {
-      background: var(--card);
-      padding: 15px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .breadcrumb .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      font-size: 0.9rem;
-    }
-    
-    .breadcrumb a {
-      color: var(--brand);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    
-    .breadcrumb a:hover {
-      color: var(--brand-light);
-    }
-    
-    .breadcrumb .current {
-      color: var(--text-light);
-      font-weight: 600;
-    }
-    
-    .category-hero {
-      background: var(--gradient-hero);
-      color: white;
-      padding: 80px 20px;
+      padding: 120px 0;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -660,191 +152,705 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      opacity: 0.4;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
     }
     
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
     }
     
     .category-hero h1 {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-size: 3.5rem;
+      margin-bottom: 25px;
       font-weight: 800;
-      margin-bottom: 20px;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease;
     }
     
     .hero-subtitle {
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      font-size: 1.6rem;
       margin-bottom: 40px;
       opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease 0.2s both;
     }
     
-    .hero-benefits {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-    
-    .benefit-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    
-    .benefit-icon {
-      width: 24px;
-      height: 24px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
+    /* MAIN CONTENT */
+    main {
+      padding: 80px 0;
     }
     
     .category-intro {
       text-align: center;
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 0 20px;
+      margin-bottom: 80px;
     }
     
     .category-intro h2 {
-      font-size: 2.2rem;
+      font-size: 2.8rem;
+      color: #005b99;
+      margin-bottom: 30px;
       font-weight: 800;
-      color: var(--brand);
-      margin-bottom: 20px;
     }
     
     .intro-text {
-      font-size: 1.1rem;
-      color: var(--text-light);
-      line-height: 1.7;
+      font-size: 1.2rem;
+      color: #6c757d;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
     }
     
+    /* PRODUCTS GRID MEJORADO */
     .products-showcase {
-      margin-bottom: 80px;
+      margin: 80px 0;
+    }
+    
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+    
+    .article {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      border: 1px solid #e9ecef;
+      position: relative;
+    }
+    
+    .article::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #005b99, #0077cc);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    
+    .article:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .article:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.15);
+    }
+    
+    .article-image {
+      height: 280px;
+      overflow: hidden;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .article-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.1));
+    }
+    
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .article:hover .article-image img {
+      transform: scale(1.05);
+    }
+    
+    .article-content {
+      padding: 35px;
+    }
+    
+    .article-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #005b99;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    
+    .article-description {
+      color: #6c757d;
+      margin-bottom: 25px;
+      line-height: 1.7;
+      font-size: 1.05rem;
     }
     
     .product-features {
       display: flex;
-      gap: 8px;
-      margin: 15px 0;
+      gap: 12px;
       flex-wrap: wrap;
+      margin-bottom: 25px;
     }
     
     .feature-tag {
-      background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
+      background: linear-gradient(135deg, #e8f4ff, #d4e9ff);
+      color: #005b99;
+      padding: 6px 14px;
+      border-radius: 25px;
+      font-size: 0.85rem;
       font-weight: 600;
+      border: 1px solid #b8d4ff;
+      transition: all 0.3s ease;
     }
     
-    .cta-section {
-      background: var(--gradient);
+    .feature-tag:hover {
+      background: linear-gradient(135deg, #005b99, #0077cc);
       color: white;
-      padding: 80px 20px;
+      transform: translateY(-2px);
+    }
+    
+    .btn-cotizar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-cotizar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .btn-cotizar:hover::before {
+      left: 100%;
+    }
+    
+    .btn-cotizar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 91, 153, 0.3);
+    }
+    
+    /* CTA SECTION MEJORADA */
+    .cta-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 100px 0;
       text-align: center;
-      border-radius: 20px;
-      margin: 60px 0;
+      position: relative;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(0,91,153,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.5;
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 2;
     }
     
     .cta-content h2 {
-      font-size: 2.2rem;
+      font-size: 3rem;
+      color: #005b99;
+      margin-bottom: 30px;
       font-weight: 800;
-      margin-bottom: 20px;
     }
     
     .cta-content p {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-      opacity: 0.95;
+      font-size: 1.3rem;
+      color: #6c757d;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .cta-buttons {
       display: flex;
+      gap: 30px;
       justify-content: center;
-      gap: 20px;
       flex-wrap: wrap;
     }
     
     .btn-primary, .btn-secondary {
-      padding: 16px 32px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: all 0.3s ease;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      border: none;
-      cursor: pointer;
+      gap: 10px;
+      padding: 18px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
     }
     
     .btn-primary {
-      background: var(--accent);
+      background: #25d366;
       color: white;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
     }
     
     .btn-primary:hover {
-      background: var(--accent-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
     }
     
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.15);
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+      color: #005b99;
+      border: 2px solid #005b99;
     }
     
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.25);
-      transform: translateY(-3px);
-      border-color: rgba(255, 255, 255, 0.5);
+      background: #005b99;
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 91, 153, 0.3);
     }
     
+    /* FOOTER MEJORADO */
+    footer {
+      background: #1a1a2e;
+      color: white;
+      padding: 80px 0 40px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    
+    .footer-section p, .footer-section ul {
+      color: #b8b8b8;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    
+    .footer-section ul li:hover {
+      transform: translateX(5px);
+    }
+    
+    .footer-section a {
+      color: #3498db;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .footer-section a:hover {
+      color: #2980b9;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid #34495e;
+      color: #95a5a6;
+    }
+    
+    /* ANIMACIONES */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* RESPONSIVE MEJORADO */
     @media (max-width: 768px) {
-      .category-hero {
-        padding: 60px 15px;
+      .header-content {
+        flex-direction: column;
+        gap: 25px;
       }
       
-      .hero-benefits {
-        gap: 15px;
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
       }
       
-      .category-intro {
-        margin: 40px auto;
+      nav a {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+      }
+      
+      .category-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .category-intro h2 {
+        font-size: 2.2rem;
+      }
+      
+      .intro-text {
+        font-size: 1.1rem;
+      }
+      
+      .articles {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .article-image {
+        height: 220px;
+      }
+      
+      .article-content {
+        padding: 25px;
+      }
+      
+      .article-title {
+        font-size: 1.5rem;
+      }
+      
+      .cta-content h2 {
+        font-size: 2.2rem;
+      }
+      
+      .cta-content p {
+        font-size: 1.1rem;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    
+    /* ACCESIBILIDAD MEJORADA */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* DARK MODE SUPPORT */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #0f0f0f;
+        color: #e0e0e0;
       }
       
       .cta-section {
-        padding: 60px 15px;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
       }
       
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .btn-primary, .btn-secondary {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center;
+      .article {
+        background: #1a1a1a;
+        border-color: #333;
       }
     }
   </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">
+            <img src="logo.png" alt="Domédicos del Norte - Logo">
+          </a>
+        </div>
+        <nav>
+          <a href="index.html">Inicio</a>
+          <a href="diagnostico.html">Diagnóstico</a>
+          <a href="movilidad.html">Movilidad</a>
+          <a href="hospitalario.html">Hospitalario</a>
+          <a href="insumos.html">Insumos</a>
+          <a href="especializados.html" class="active">Especializados</a>
+          <a href="contacto.html">Contacto</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-content">
+        <a href="index.html">Inicio</a> / <span class="current">Equipos Especializados</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="category-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Equipos Especializados</h1>
+        <p class="hero-subtitle">Tecnología médica avanzada para diagnósticos precisos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <!-- Introduction -->
+      <section class="category-intro">
+        <h2>Equipos Médicos Especializados</h2>
+        <p class="intro-text">
+          En <strong>Domédicos del Norte</strong> ofrecemos equipos médicos especializados de última generación para aplicaciones clínicas avanzadas. Nuestros productos incorporan tecnología de punta para proporcionar diagnósticos precisos y tratamientos efectivos, cumpliendo con los más altos estándares internacionales de calidad y seguridad médica.
+        </p>
+      </section>
+
+      <!-- Products Grid -->
+      <section class="products-showcase">
+        <div class="articles">
+          <article class="article">
+            <div class="article-image">
+              <img src="Monitor de signos vitales.png" alt="Monitor de signos vitales multiparámetro" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Monitor de Signos Vitales</h3>
+              <p class="article-description">
+                Monitor multiparámetro de alta precisión con ECG de 12 derivaciones, presión arterial no invasiva, saturación de oxígeno, temperatura y frecuencia respiratoria. Pantalla táctil de 12 pulgadas con alarmas configurables y almacenamiento de datos.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Multiparámetro</span>
+                <span class="feature-tag">12 Derivaciones</span>
+                <span class="feature-tag">Pantalla Táctil</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Monitor%20de%20Signos%20Vitales" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="electrocardiografo.jpg" alt="Electrocardiógrafo portátil profesional" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Electrocardiógrafo Profesional</h3>
+              <p class="article-description">
+                Electrocardiógrafo portátil con interpretación automática y transmisión inalámbrica. Almacenamiento de 500 estudios, impresión térmica de alta resolución y conectividad USB/Bluetooth. Cumple con estándares AHA/ACC/HRS.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Interpretación</span>
+                <span class="feature-tag">Inalámbrico</span>
+                <span class="feature-tag">Bluetooth</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Electrocardiógrafo" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Ultrasonido portatil.webp" alt="Ultrasonido portátil para diagnóstico por imagen" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Ultrasonido Portátil</h3>
+              <p class="article-description">
+                Sistema de ultrasonido portátil con tecnología Doppler color y transductores múltiples. Pantalla LCD de alta resolución, modos 2D, M, Color Doppler y Power Doppler. Ideal para aplicaciones clínicas y punto de atención.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Doppler Color</span>
+                <span class="feature-tag">Portátil</span>
+                <span class="feature-tag">Múltiples Transductores</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Ultrasonido" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Oftalmoscopio.webp" alt="Oftalmoscopio digital para examen ocular" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Oftalmoscopio Digital</h3>
+              <p class="article-description">
+                Oftalmoscopio digital con cámara de alta resolución para examen del fondo de ojo. Captura de imágenes y video, software de análisis integrado y almacenamiento digital. Diagnóstico avanzado de patologías retinianas.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Alta Resolución</span>
+                <span class="feature-tag">Captura Digital</span>
+                <span class="feature-tag">Software Integrado</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Oftalmoscopio" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Microscopio quirurgico.webp" alt="Microscopio quirúrgico para procedimientos especializados" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Microscopio Quirúrgico</h3>
+              <p class="article-description">
+                Microscopio quirúrgico de alta definición con zoom motorizado y sistema de iluminación LED. Ángulo de visión ajustable, sistema de documentación integrado y ergonomía optimizada para procedimientos largos.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Alta Definición</span>
+                <span class="feature-tag">Zoom Motorizado</span>
+                <span class="feature-tag">LED</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Microscopio" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="aspirador de secreciones.webp" alt="Aspirador de secreciones médico profesional" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Aspirador de Secreciones</h3>
+              <p class="article-description">
+                Aspirador médico de alto vacío con regulación precisa y sistema antibacterial. Bomba silenciosa, recolectores desechables y filtros HEPA. Ideal para unidades de cuidados intensivos y salas de emergencia.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Alto Vacío</span>
+                <span class="feature-tag">Antibacterial</span>
+                <span class="feature-tag">Filtro HEPA</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Aspirador" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Necesita Equipos Especializados?</h2>
+        <p>Contáctenos para recibir asesoría especializada y cotización personalizada para equipos médicos avanzados</p>
+        <div class="cta-buttons">
+          <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20cotización%20para%20equipos%20especializados" 
+             class="btn-primary" target="_blank">
+            <span>WhatsApp</span>
+            <span>Cotización Inmediata</span>
+          </a>
+          <a href="contacto.html" class="btn-secondary">
+            <span>Teléfono</span>
+            <span>+57 310 610 7017</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Domédicos del Norte</h3>
+          <p>Distribuidor líder de equipos médicos en Barranquilla con más de 30 años de experiencia. Ofrecemos productos de alta calidad con garantía y servicio técnico especializado.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p><strong>Teléfono:</strong> +57 310 610 7017</p>
+          <p><strong>Email:</strong> domedicosdelnorte@hotmail.com</p>
+          <p><strong>Ciudad:</strong> Barranquilla, Atlántico</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Horario</h3>
+          <p><strong>Lunes - Viernes:</strong> 8:00 AM - 6:00 PM</p>
+          <p><strong>Sábado:</strong> 9:00 AM - 1:00 PM</p>
+          <p><strong>Domingo:</strong> Cerrado</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Servicios</h3>
+          <ul>
+            <li><a href="index.html#servicios">Venta de Equipos</a></li>
+            <li><a href="index.html#mantenimiento">Mantenimiento</a></li>
+            <li><a href="index.html#nosotros">Sobre Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

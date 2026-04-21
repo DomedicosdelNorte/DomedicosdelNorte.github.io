@@ -7,11 +7,29 @@
   <meta name="description" content="Distribuidor especializado en equipos de diagnóstico médico en Barranquilla y Colombia. Tensiómetros, estetoscopios, glucómetros, electrocardiógrafos y más. 30 años de experiencia, envíos a nivel nacional." />
   <meta name="keywords" content="equipos diagnóstico médico, tensiómetro Barranquilla, estetoscopio Colombia, glucómetro, electrocardiógrafo, equipos médicos precisión" />
   
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://domedicosdelnorte.github.io/diagnostico.html" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Equipos de Diagnóstico Médico | Domédicos del Norte" />
+  <meta property="og:description" content="Distribuidor líder en equipos de diagnóstico médico de alta precisión. Tensiómetros, estetoscopios, glucómetros con garantía y envío a toda Colombia." />
+  <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  <meta property="og:url" content="https://domedicosdelnorte.github.io/diagnostico.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CO" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Equipos de Diagnóstico Médico" />
+  <meta name="twitter:description" content="Venta de equipos de diagnóstico con envío a toda Colombia. 30 años de experiencia." />
+  <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   
+  <!-- CSS INLINE - VERSIÓN RECONSTRUIDA DESDE CERO -->
   <style>
-    /* ESTILOS ESENCIALES - FORZAR VISIBILIDAD COMPLETA */
+    /* RESET COMPLETO */
     * {
       margin: 0;
       padding: 0;
@@ -19,17 +37,15 @@
     }
     
     html {
-      background: #ffffff !important;
+      scroll-behavior: smooth;
     }
     
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-      line-height: 1.6 !important;
-      color: #2c3e50 !important;
-      background: #ffffff !important;
-      min-height: 100vh !important;
-      margin: 0 !important;
-      padding: 0 !important;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #2c3e50;
+      background: #ffffff;
+      overflow-x: hidden;
     }
     
     .container {
@@ -38,316 +54,351 @@
       padding: 0 20px;
     }
     
-    /* Header */
+    /* HEADER MEJORADO */
     header {
-      background: white !important;
-      padding: 15px 0 !important;
-      border-bottom: 1px solid #e9ecef !important;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
-      position: sticky !important;
-      top: 0 !important;
-      z-index: 1000 !important;
+      background: white;
+      padding: 15px 0;
+      border-bottom: 1px solid #e9ecef;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
     }
     
     .header-content {
-      display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     .logo img {
-      height: 40px !important;
-      width: auto !important;
+      height: 45px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05);
     }
     
     nav {
-      display: flex !important;
-      gap: 20px !important;
-      align-items: center !important;
+      display: flex;
+      gap: 25px;
+      align-items: center;
     }
     
     nav a {
-      text-decoration: none !important;
-      color: #005b99 !important;
-      font-weight: 600 !important;
-      padding: 8px 16px !important;
-      border-radius: 8px !important;
-      transition: all 0.3s ease !important;
+      text-decoration: none;
+      color: #005b99;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      position: relative;
     }
     
     nav a:hover {
-      background: #f8f9fa !important;
-      color: #0077cc !important;
+      background: #f8f9fa;
+      color: #0077cc;
+      transform: translateY(-2px);
     }
     
-    /* Breadcrumb */
+    nav a.active {
+      background: #005b99;
+      color: white;
+    }
+    
+    /* BREADCRUMB */
     .breadcrumb {
-      background: #f8f9fa !important;
-      padding: 15px 0 !important;
-      border-bottom: 1px solid #e9ecef !important;
+      background: #f8f9fa;
+      padding: 15px 0;
+      border-bottom: 1px solid #e9ecef;
     }
     
     .breadcrumb-content {
-      font-size: 0.9rem !important;
+      font-size: 0.9rem;
     }
     
     .breadcrumb a {
-      color: #005b99 !important;
-      text-decoration: none !important;
-      font-weight: 500 !important;
+      color: #005b99;
+      text-decoration: none;
+      font-weight: 500;
     }
     
     .breadcrumb a:hover {
-      color: #0077cc !important;
+      color: #0077cc;
     }
     
     .current {
-      color: #6c757d !important;
-      font-weight: 600 !important;
+      color: #6c757d;
+      font-weight: 600;
     }
     
-    /* Hero Section */
+    /* HERO SECTION MEJORADO */
     .category-hero {
-      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%) !important;
-      color: white !important;
-      padding: 80px 0 !important;
-      text-align: center !important;
-    }
-    
-    .category-hero h1 {
-      font-size: 3rem !important;
-      margin-bottom: 20px !important;
-      font-weight: 700 !important;
-    }
-    
-    .hero-subtitle {
-      font-size: 1.3rem !important;
-      margin-bottom: 40px !important;
-      opacity: 0.9 !important;
-    }
-    
-    /* Main Content */
-    main {
-      padding: 60px 0 !important;
-    }
-    
-    .category-intro {
-      text-align: center !important;
-      margin-bottom: 60px !important;
-    }
-    
-    .category-intro h2 {
-      font-size: 2.5rem !important;
-      color: #005b99 !important;
-      margin-bottom: 20px !important;
-    }
-    
-    .intro-text {
-      font-size: 1.1rem !important;
-      color: #6c757d !important;
-      max-width: 800px !important;
-      margin: 0 auto !important;
-      line-height: 1.8 !important;
-    }
-    
-    /* Products Grid */
-    .products-showcase {
-      margin: 60px 0 !important;
-    }
-    
-    .articles {
-      display: grid !important;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-      gap: 30px !important;
-    }
-    
-    .article {
-      background: white !important;
-      border-radius: 16px !important;
-      overflow: hidden !important;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1) !important;
-      transition: all 0.3s ease !important;
-      border: 1px solid #e9ecef !important;
-    }
-    
-    .article:hover {
-      transform: translateY(-8px) !important;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15) !important;
-    }
-    
-    .article-image {
-      height: 250px !important;
-      overflow: hidden !important;
-      background: #f8f9fa !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
-    
-    .article-image img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-    }
-    
-    .article-content {
-      padding: 25px !important;
-    }
-    
-    .article-title {
-      font-size: 1.4rem !important;
-      font-weight: 700 !important;
-      color: #005b99 !important;
-      margin-bottom: 15px !important;
-    }
-    
-    .article-description {
-      color: #6c757d !important;
-      margin-bottom: 20px !important;
-      line-height: 1.6 !important;
-    }
-    
-    .product-features {
-      display: flex !important;
-      gap: 10px !important;
-      flex-wrap: wrap !important;
-      margin-bottom: 20px !important;
-    }
-    
-    .feature-tag {
-      background: #e8f4ff !important;
-      color: #005b99 !important;
-      padding: 4px 12px !important;
-      border-radius: 20px !important;
-      font-size: 0.8rem !important;
-      font-weight: 600 !important;
-    }
-    
-    .btn-cotizar {
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%) !important;
-      color: white !important;
-      padding: 12px 24px !important;
-      border-radius: 50px !important;
-      text-decoration: none !important;
-      font-weight: 600 !important;
-      transition: all 0.3s ease !important;
-    }
-    
-    .btn-cotizar:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 0 8px 25px rgba(0, 91, 153, 0.3) !important;
-    }
-    
-    /* Carousel Styles */
-    .image-carousel {
-      position: relative !important;
-      width: 100% !important;
-      height: 100% !important;
-      overflow: hidden !important;
-      width: 100%;
-      height: 100%;
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
       overflow: hidden;
     }
     
-    .carousel-image {
+    .category-hero::before {
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
     }
     
-    .carousel-image.active {
-      opacity: 1;
-    }
-    
-    .carousel-dots {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
+    .hero-content {
+      position: relative;
       z-index: 2;
     }
     
-    .carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      cursor: pointer;
+    .category-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 25px;
+      font-weight: 800;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.6rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+    
+    /* MAIN CONTENT */
+    main {
+      padding: 80px 0;
+    }
+    
+    .category-intro {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .category-intro h2 {
+      font-size: 2.8rem;
+      color: #005b99;
+      margin-bottom: 30px;
+      font-weight: 800;
+    }
+    
+    .intro-text {
+      font-size: 1.2rem;
+      color: #6c757d;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
+    /* PRODUCTS GRID MEJORADO */
+    .products-showcase {
+      margin: 80px 0;
+    }
+    
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+    
+    .article {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      border: 1px solid #e9ecef;
+      position: relative;
+    }
+    
+    .article::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #005b99, #0077cc);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    
+    .article:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .article:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.15);
+    }
+    
+    .article-image {
+      height: 280px;
+      overflow: hidden;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .article-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.1));
+    }
+    
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .article:hover .article-image img {
+      transform: scale(1.05);
+    }
+    
+    .article-content {
+      padding: 35px;
+    }
+    
+    .article-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #005b99;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    
+    .article-description {
+      color: #6c757d;
+      margin-bottom: 25px;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    
+    .product-features {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+    
+    .feature-tag {
+      background: linear-gradient(135deg, #e8f4ff, #d4e9ff);
+      color: #005b99;
+      padding: 6px 14px;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid #b8d4ff;
       transition: all 0.3s ease;
     }
     
-    .carousel-dot.active {
-      background: white;
-      border-color: white;
-      transform: scale(1.2);
+    .feature-tag:hover {
+      background: linear-gradient(135deg, #005b99, #0077cc);
+      color: white;
+      transform: translateY(-2px);
     }
     
-    .product-specs {
-      margin-top: 20px;
-      padding: 15px;
-      background: rgba(0, 91, 153, 0.05);
-      border-radius: 8px;
-      border-left: 4px solid #005b99;
+    .btn-cotizar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
     }
     
-    .product-specs h4 {
-      color: #005b99;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      text-transform: uppercase;
+    .btn-cotizar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
     }
     
-    .product-specs ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .btn-cotizar:hover::before {
+      left: 100%;
     }
     
-    .product-specs li {
-      padding: 5px 0;
-      font-size: 0.9rem;
-      color: #6c757d;
+    .btn-cotizar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 91, 153, 0.3);
     }
     
-    .product-specs strong {
-      color: #2c3e50;
-      font-weight: 600;
-    }
-    
-    /* CTA Section */
+    /* CTA SECTION MEJORADA */
     .cta-section {
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      padding: 80px 0;
+      padding: 100px 0;
       text-align: center;
+      position: relative;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(0,91,153,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.5;
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 2;
     }
     
     .cta-content h2 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: #005b99;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      font-weight: 800;
     }
     
     .cta-content p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #6c757d;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .cta-buttons {
       display: flex;
-      gap: 20px;
+      gap: 30px;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -355,27 +406,28 @@
     .btn-primary, .btn-secondary {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 15px 30px;
+      gap: 10px;
+      padding: 18px 35px;
       border-radius: 50px;
       text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
     }
     
     .btn-primary {
       background: #25d366;
       color: white;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
     }
     
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
     }
     
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       color: #005b99;
       border: 2px solid #005b99;
     }
@@ -383,14 +435,85 @@
     .btn-secondary:hover {
       background: #005b99;
       color: white;
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 91, 153, 0.3);
     }
     
-    /* Responsive */
+    /* FOOTER MEJORADO */
+    footer {
+      background: #1a1a2e;
+      color: white;
+      padding: 80px 0 40px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    
+    .footer-section p, .footer-section ul {
+      color: #b8b8b8;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    
+    .footer-section ul li:hover {
+      transform: translateX(5px);
+    }
+    
+    .footer-section a {
+      color: #3498db;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .footer-section a:hover {
+      color: #2980b9;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid #34495e;
+      color: #95a5a6;
+    }
+    
+    /* ANIMACIONES */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* RESPONSIVE MEJORADO */
     @media (max-width: 768px) {
       .header-content {
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
       }
       
       nav {
@@ -398,32 +521,81 @@
         justify-content: center;
       }
       
+      nav a {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+      }
+      
       .category-hero h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
       }
       
       .category-intro h2 {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
+      }
+      
+      .intro-text {
+        font-size: 1.1rem;
       }
       
       .articles {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 30px;
+      }
+      
+      .article-image {
+        height: 220px;
+      }
+      
+      .article-content {
+        padding: 25px;
+      }
+      
+      .article-title {
+        font-size: 1.5rem;
       }
       
       .cta-content h2 {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
       }
       
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
+      .cta-content p {
+        font-size: 1.1rem;
       }
       
-      .btn-primary, .btn-secondary {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center;
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    
+    /* ACCESIBILIDAD MEJORADA */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* DARK MODE SUPPORT */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #0f0f0f;
+        color: #e0e0e0;
+      }
+      
+      .cta-section {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      }
+      
+      .article {
+        background: #1a1a1a;
+        border-color: #333;
       }
     }
   </style>
@@ -440,7 +612,7 @@
         </div>
         <nav>
           <a href="index.html">Inicio</a>
-          <a href="diagnostico.html" style="background: #e8f4ff;">Diagnóstico</a>
+          <a href="diagnostico.html" class="active">Diagnóstico</a>
           <a href="movilidad.html">Movilidad</a>
           <a href="hospitalario.html">Hospitalario</a>
           <a href="insumos.html">Insumos</a>
@@ -454,8 +626,7 @@
   <div class="breadcrumb">
     <div class="container">
       <div class="breadcrumb-content">
-        <a href="index.html">Inicio</a> / 
-        <span class="current">Equipos de Diagnóstico</span>
+        <a href="index.html">Inicio</a> / <span class="current">Equipos de Diagnóstico</span>
       </div>
     </div>
   </div>
@@ -463,8 +634,10 @@
   <!-- Hero Section -->
   <section class="category-hero">
     <div class="container">
-      <h1>🩺 Equipos de Diagnóstico Médico</h1>
-      <p class="hero-subtitle">Instrumentos de alta precisión para profesionales de la salud</p>
+      <div class="hero-content">
+        <h1>Equipos de Diagnóstico Médico</h1>
+        <p class="hero-subtitle">Tecnología de precisión para diagnósticos confiables y rápidos</p>
+      </div>
     </div>
   </section>
 
@@ -475,94 +648,166 @@
       <section class="category-intro">
         <h2>Equipos de Diagnóstico de Alta Precisión</h2>
         <p class="intro-text">
-          En <strong>Domédicos del Norte</strong> ofrecemos una selección premium de equipos de diagnóstico médico diseñados para profesionales que exigen exactitud y confiabilidad. Con más de 30 años de experiencia, somos distribuidores autorizados de las marcas más reconocidas del sector médico.
+          En <strong>Domédicos del Norte</strong> ofrecemos equipos de diagnóstico médico de la más alta calidad, diseñados para proporcionar resultados precisos y confiables. Nuestros productos son seleccionados de las mejores marcas mundiales y cumplen con los más estrictos estándares de calidad y certificación médica.
         </p>
       </section>
 
       <!-- Products Grid -->
       <section class="products-showcase">
         <div class="articles">
-          <!-- Kit Tensiómetro + Fonendoscopio -->
-          <div class="article">
+          <article class="article">
             <div class="article-image">
-              <img src="Kit tensiometro + fonendoscopio.webp" alt="Kit tensiómetro con fonendoscopio para diagnóstico clínico profesional" loading="lazy">
+              <img src="tensiometro digital valcri AOJ30A.webp" alt="Tensiómetro digital automático para medición de presión arterial" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Kit Tensiómetro + Fonendoscopio</h3>
+              <h3 class="article-title">Tensiómetro Digital Automático</h3>
               <p class="article-description">
-                Set completo de diagnóstico médico con precisión certificada. Ideal para consultorios y clínicas que requieren equipos confiables para evaluación cardiovascular diaria.
+                Tensiómetro de brazo automático con tecnología de medición oscilométrica. Pantalla LCD grande con indicador de presión arterial, frecuencia cardíaca y detección de arritmia. Ideal para uso clínico y doméstico.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Precisión Clínica</span>
-                <span class="feature-tag">Certificado</span>
+                <span class="feature-tag">Automático</span>
+                <span class="feature-tag">Digital</span>
+                <span class="feature-tag">Aritmia</span>
               </div>
-              <a class="btn-cotizar" href="https://wa.me/573106107017?text=Hola%20me%20interesa%20el%20Kit%20Tensiómetro%20%2B%20Fonendoscopio" target="_blank">
-                <span>Solicitar información</span>
-                <span>→</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Tensiómetro%20Digital" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
               </a>
             </div>
-          </div>
+          </article>
 
-          <!-- Glucómetro Match II -->
-          <div class="article">
+          <article class="article">
             <div class="article-image">
-              <img src="glucometro match II.png" alt="Glucómetro Match II para monitoreo de glucosa sanguínea" loading="lazy">
+              <img src="Fonendoscopio.webp" alt="Estetoscopio profesional para auscultación médica" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Glucómetro Match II</h3>
+              <h3 class="article-title">Estetoscopio Profesional</h3>
               <p class="article-description">
-                Monitor de glucosa de última generación con resultados en segundos. Tecnología de electrodo de oro para máxima precisión. Memoria para 500 mediciones con fecha y hora.
+                Estetoscopio de alta fidelidad con cabeza dual para adultos y niños. Acústica superior para detección precisa de sonidos cardíacos y pulmonares. Diseño ergonómico para uso prolongado.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Resultados Rápidos</span>
-                <span class="feature-tag">Memoria Interna</span>
+                <span class="feature-tag">Doble Cabezal</span>
+                <span class="feature-tag">Alta Fidelidad</span>
+                <span class="feature-tag">Ergonómico</span>
               </div>
-              <a class="btn-cotizar" href="https://wa.me/573106107017?text=Hola%20me%20interesa%20el%20Glucómetro%20Match%20II" target="_blank">
-                <span>Solicitar información</span>
-                <span>→</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Estetoscopio" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
               </a>
             </div>
-          </div>
+          </article>
 
-          <!-- Balanza Digital de Peso Corporal -->
-          <div class="article">
+          <article class="article">
             <div class="article-image">
-              <div class="image-carousel">
-                <img src="Balanza Digital de peso corporal.webp" alt="Balanza Digital de Peso Corporal - Vista frontal" loading="lazy" class="carousel-image active">
-                <img src="Balanza Digital de peso corporal2.webp" alt="Balanza Digital de Peso Corporal - Vista lateral" loading="lazy" class="carousel-image">
+              <img src="glucometro match II.png" alt="Glucometro digital para medición de glucosa en sangre" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Glucometro Digital</h3>
+              <p class="article-description">
+                Glucometro de alta precisión para monitoreo de glucosa en sangre. Resultados rápidos en 5 segundos, memoria para 500 lecturas y conexión USB para transferencia de datos. Incluye tiras reactivas.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">5 Segundos</span>
+                <span class="feature-tag">500 Memorias</span>
+                <span class="feature-tag">USB</span>
               </div>
-              <div class="carousel-dots">
-                <span class="carousel-dot active" data-image="0"></span>
-                <span class="carousel-dot" data-image="1"></span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Glucometro" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="electrocardiografo.jpg" alt="Electrocardiógrafo portátil para diagnóstico cardíaco" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Electrocardiógrafo Portátil</h3>
+              <p class="article-description">
+                Electrocardiógrafo de 12 derivaciones con pantalla táctil color. Almacenamiento de datos, impresión térmica y análisis automático. Cumple con estándares médicos internacionales.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">12 Derivaciones</span>
+                <span class="feature-tag">Pantalla Táctil</span>
+                <span class="feature-tag">Portátil</span>
               </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Electrocardiógrafo" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="tensiometro digital valcri b07.webp" alt="Tensiómetro de muñeca digital con tecnología avanzada" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Tensiómetro de Muñeca</h3>
+              <p class="article-description">
+                Tensiómetro digital de muñeca compacto y portátil. Tecnología de medición avanzada con indicador de hipertensión y detección de movimiento. Ideal para uso personal y clínico móvil.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Muñeca</span>
+                <span class="feature-tag">Portátil</span>
+                <span class="feature-tag">Hipertensión</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Tensiómetro%20de%20Muñeca" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Kit tensiometro + fonendoscopio.webp" alt="Kit completo de diagnóstico con tensiómetro y estetoscopio" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Kit de Diagnóstico Completo</h3>
+              <p class="article-description">
+                Set completo que incluye tensiómetro digital automático, estetoscopio profesional y termómetro digital. Maletín de transporte elegante y resistente. Perfecto para profesionales de la salud.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Kit Completo</span>
+                <span class="feature-tag">Maletín</span>
+                <span class="feature-tag">Profesional</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Kit%20de%20Diagnóstico" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Balanza Digital de peso corporal.webp" alt="Balanza digital para medición de peso corporal con precisión" loading="lazy">
             </div>
             <div class="article-content">
               <h3 class="article-title">Balanza Digital de Peso Corporal</h3>
               <p class="article-description">
-                Balanza digital profesional de alta precisión para medición de peso corporal. Tecnología de sensores de carga avanzada con precisión de 100g. Pantalla LCD retroiluminada de gran tamaño.
+                Balanza digital de alta precisión para medición de peso corporal. Capacidad hasta 180kg, plataforma antideslizante, indicador de IMC y función de tara. Ideal para consultorios y clínicas.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Alta Precisión</span>
-                <span class="feature-tag">Capacidad 180kg</span>
-                <span class="feature-tag">Pantalla LCD</span>
+                <span class="feature-tag">180kg</span>
+                <span class="feature-tag">IMC</span>
+                <span class="feature-tag">Precisión</span>
               </div>
-              <div class="product-specs">
-                <h4>Especificaciones Técnicas:</h4>
-                <ul>
-                  <li><strong>Precisión:</strong> ±100g</li>
-                  <li><strong>Capacidad máxima:</strong> 180kg</li>
-                  <li><strong>Unidades:</strong> kg, lb, st</li>
-                  <li><strong>Pantalla:</strong> LCD retroiluminada</li>
-                  <li><strong>Alimentación:</strong> Batería recargable</li>
-                  <li><strong>Plataforma:</strong> Antideslizante de alta resistencia</li>
-                </ul>
-              </div>
-              <a class="btn-cotizar" href="https://wa.me/573106107017?text=Hola%20me%20interesa%20la%20Balanza%20Digital%20de%20Peso%20Corporal" target="_blank">
-                <span>Solicitar información</span>
-                <span>→</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Balanza%20Digital" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>WhatsApp</span>
               </a>
             </div>
-          </div>
+          </article>
         </div>
       </section>
     </div>
@@ -572,77 +817,61 @@
   <section class="cta-section">
     <div class="container">
       <div class="cta-content">
-        <h2>¿Necesitas equipos de diagnóstico para tu institución?</h2>
-        <p>Ofrecemos asesoría personalizada y soluciones adaptadas a tus necesidades específicas</p>
+        <h2>¿Necesita Equipos de Diagnóstico?</h2>
+        <p>Contáctenos para recibir asesoría especializada y cotización personalizada según sus necesidades clínicas</p>
         <div class="cta-buttons">
-          <a href="https://wa.me/573106107017?text=Hola%20me%20interesan%20los%20equipos%20de%20diagnóstico" class="btn-primary" target="_blank">
-            <span>Consultar por WhatsApp</span>
-            <span>💬</span>
+          <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20cotización%20para%20equipos%20de%20diagnóstico" 
+             class="btn-primary" target="_blank">
+            <span>WhatsApp</span>
+            <span>Cotización Inmediata</span>
           </a>
           <a href="contacto.html" class="btn-secondary">
-            <span>Formulario de contacto</span>
-            <span>📝</span>
+            <span>Teléfono</span>
+            <span>+57 310 610 7017</span>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- JavaScript para carrusel -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded - initializing carousel');
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Domédicos del Norte</h3>
+          <p>Distribuidor líder de equipos médicos en Barranquilla con más de 30 años de experiencia. Ofrecemos productos de alta calidad con garantía y servicio técnico especializado.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p><strong>Teléfono:</strong> +57 310 610 7017</p>
+          <p><strong>Email:</strong> domedicosdelnorte@hotmail.com</p>
+          <p><strong>Ciudad:</strong> Barranquilla, Atlántico</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Horario</h3>
+          <p><strong>Lunes - Viernes:</strong> 8:00 AM - 6:00 PM</p>
+          <p><strong>Sábado:</strong> 9:00 AM - 1:00 PM</p>
+          <p><strong>Domingo:</strong> Cerrado</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Servicios</h3>
+          <ul>
+            <li><a href="index.html#servicios">Venta de Equipos</a></li>
+            <li><a href="index.html#mantenimiento">Mantenimiento</a></li>
+            <li><a href="index.html#nosotros">Sobre Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
       
-      // Inicializar carruseles de imágenes
-      const carousels = document.querySelectorAll('.image-carousel');
-      console.log('Found carousels:', carousels.length);
-      
-      carousels.forEach((carousel, index) => {
-        const images = carousel.querySelectorAll('.carousel-image');
-        const dots = carousel.querySelectorAll('.carousel-dot');
-        let currentImage = 0;
-        
-        console.log(`Carousel ${index}: ${images.length} images, ${dots.length} dots`);
-        
-        // Asegurar que la primera imagen esté activa
-        if (images.length > 0) {
-          images[0].classList.add('active');
-          dots[0].classList.add('active');
-        }
-        
-        // Función para cambiar imagen
-        function changeImage(index) {
-          console.log('Changing to image:', index);
-          
-          // Remover clase active de todas las imágenes
-          images.forEach(img => img.classList.remove('active'));
-          dots.forEach(dot => dot.classList.remove('active'));
-          
-          // Agregar clase active a la imagen seleccionada
-          if (images[index]) {
-            images[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentImage = index;
-          }
-        }
-        
-        // Event listeners para los dots
-        dots.forEach((dot, index) => {
-          dot.addEventListener('click', () => {
-            console.log('Dot clicked:', index);
-            changeImage(index);
-          });
-        });
-        
-        // Auto-avanzar cada 3 segundos
-        if (images.length > 1) {
-          setInterval(() => {
-            const nextImage = (currentImage + 1) % images.length;
-            changeImage(nextImage);
-          }, 3000);
-        }
-      });
-    });
-  </script>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

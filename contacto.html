@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto - Domédicos del Norte | Barranquilla Colombia</title>
-  <meta name="description" content="Contacta a Domédicos del Norte en Barranquilla. Teléfono +57 310 610 7017, email domedicosdelnorte@hotmail.com. Atención personalizada para equipos médicos." />
-  <meta name="keywords" content="contacto Domédicos del Norte, teléfono Barranquilla, email distribuidor médico, dirección tienda equipos médicos" />
+  <title>Contacto - Domédicos del Norte | Equipos Médicos Barranquilla</title>
+  <meta name="description" content="Contacte a Domédicos del Norte en Barranquilla para equipos médicos. Teléfono +57 310 610 7017, email domedicosdelnorte@hotmail.com. 30 años de experiencia, envíos a toda Colombia." />
+  <meta name="keywords" content="contacto Domédicos del Norte, teléfono equipos médicos Barranquilla, email distribuidor médico Colombia" />
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://domedicosdelnorte.github.io/contacto.html">
+  <link rel="canonical" href="https://domedicosdelnorte.github.io/contacto.html" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Contacto | Domédicos del Norte" />
-  <meta property="og:description" content="Contacta directamente con Domédicos del Norte en Barranquilla. WhatsApp, teléfono, email y dirección para tu conveniencia." />
+  <meta property="og:description" content="Contacte al distribuidor líder de equipos médicos en Barranquilla. Asesoría especializada, cotización personalizada y envíos a toda Colombia." />
   <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
   <meta property="og:url" content="https://domedicosdelnorte.github.io/contacto.html" />
   <meta property="og:type" content="website" />
@@ -20,19 +20,24 @@
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contacto Domédicos del Norte" />
-  <meta name="twitter:description" content="Contáctanos para equipos médicos en Barranquilla. WhatsApp disponible 24/7." />
+  <meta name="twitter:title" content="Contacto - Domédicos del Norte" />
+  <meta name="twitter:description" content="Contacte al distribuidor líder de equipos médicos en Barranquilla. 30 años de experiencia." />
   <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
   
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   
+  <!-- CSS INLINE - VERSIÓN RECONSTRUIDA DESDE CERO -->
   <style>
-    /* ESTILOS ESENCIALES */
+    /* RESET COMPLETO */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
     }
     
     body {
@@ -40,6 +45,7 @@
       line-height: 1.6;
       color: #2c3e50;
       background: #ffffff;
+      overflow-x: hidden;
     }
     
     .container {
@@ -48,7 +54,7 @@
       padding: 0 20px;
     }
     
-    /* Header */
+    /* HEADER MEJORADO */
     header {
       background: white;
       padding: 15px 0;
@@ -57,6 +63,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
     
     .header-content {
@@ -66,13 +73,18 @@
     }
     
     .logo img {
-      height: 40px;
+      height: 45px;
       width: auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05);
     }
     
     nav {
       display: flex;
-      gap: 20px;
+      gap: 25px;
       align-items: center;
     }
     
@@ -80,17 +92,24 @@
       text-decoration: none;
       color: #005b99;
       font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
       transition: all 0.3s ease;
+      position: relative;
     }
     
     nav a:hover {
       background: #f8f9fa;
       color: #0077cc;
+      transform: translateY(-2px);
     }
     
-    /* Breadcrumb */
+    nav a.active {
+      background: #005b99;
+      color: white;
+    }
+    
+    /* BREADCRUMB */
     .breadcrumb {
       background: #f8f9fa;
       padding: 15px 0;
@@ -116,206 +135,379 @@
       font-weight: 600;
     }
     
-    /* Hero Section */
-    .category-hero {
+    /* HERO SECTION MEJORADO */
+    .contact-hero {
       background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
       color: white;
-      padding: 80px 0;
+      padding: 120px 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     
-    .category-hero h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      font-weight: 700;
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .contact-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 25px;
+      font-weight: 800;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease;
     }
     
     .hero-subtitle {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
       margin-bottom: 40px;
-      opacity: 0.9;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease 0.2s both;
     }
     
-    /* Main Content */
+    /* MAIN CONTENT */
     main {
-      padding: 60px 0;
+      padding: 80px 0;
     }
     
-    .category-intro {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    .category-intro h2 {
-      font-size: 2.5rem;
-      color: #005b99;
-      margin-bottom: 20px;
-    }
-    
-    .intro-text {
-      font-size: 1.1rem;
-      color: #6c757d;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-    
-    /* Products Grid */
-    .products-showcase {
-      margin: 60px 0;
-    }
-    
-    .articles {
+    .contact-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
     }
     
-    .article {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      border: 1px solid #e9ecef;
-    }
-    
-    .article:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    }
-    
-    .article-image {
-      height: 250px;
-      overflow: hidden;
+    .contact-info {
       background: #f8f9fa;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    
+    .contact-info h2 {
+      font-size: 2.2rem;
+      color: #005b99;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,91,153,0.15);
+    }
+    
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #005b99, #0077cc);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-right: 20px;
+      font-size: 1.5rem;
+      color: white;
+      flex-shrink: 0;
     }
     
-    .article-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .article-content {
-      padding: 25px;
-    }
-    
-    .article-title {
-      font-size: 1.4rem;
-      font-weight: 700;
+    .contact-details h3 {
+      font-size: 1.3rem;
       color: #005b99;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
+      font-weight: 600;
     }
     
-    .article-description {
+    .contact-details p {
       color: #6c757d;
-      margin-bottom: 20px;
+      font-size: 1.05rem;
       line-height: 1.6;
     }
     
-    .product-features {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    
-    .feature-tag {
-      background: #e8f4ff;
-      color: #005b99;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    
-    .btn-cotizar {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
+    .contact-details a {
+      color: #0077cc;
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-details a:hover {
+      color: #005b99;
+    }
+    
+    /* CONTACT FORM */
+    .contact-form {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      border: 1px solid #e9ecef;
+    }
+    
+    .contact-form h2 {
+      font-size: 2.2rem;
+      color: #005b99;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      color: #005b99;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
       transition: all 0.3s ease;
+      background: #f8f9fa;
     }
     
-    .btn-cotizar:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 91, 153, 0.3);
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #005b99;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(0,91,153,0.1);
     }
     
-    /* CTA Section */
-    .cta-section {
+    .form-group textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 18px 40px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 91, 153, 0.3);
+    }
+    
+    /* QUICK CONTACT SECTION */
+    .quick-contact {
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       padding: 80px 0;
       text-align: center;
+      position: relative;
     }
     
-    .cta-content h2 {
-      font-size: 2.5rem;
+    .quick-contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(0,91,153,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.5;
+    }
+    
+    .quick-contact-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .quick-contact h2 {
+      font-size: 2.8rem;
       color: #005b99;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      font-weight: 800;
     }
     
-    .cta-content p {
-      font-size: 1.2rem;
+    .quick-contact p {
+      font-size: 1.3rem;
       color: #6c757d;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
-    .cta-buttons {
+    .contact-buttons {
       display: flex;
-      gap: 20px;
+      gap: 30px;
       justify-content: center;
       flex-wrap: wrap;
     }
     
-    .btn-primary, .btn-secondary {
+    .btn-whatsapp, .btn-phone {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 15px 30px;
+      gap: 12px;
+      padding: 20px 40px;
       border-radius: 50px;
       text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
     }
     
-    .btn-primary {
+    .btn-whatsapp {
       background: #25d366;
       color: white;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
     }
     
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+    .btn-whatsapp:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
     }
     
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.9);
-      color: #005b99;
-      border: 2px solid #005b99;
-    }
-    
-    .btn-secondary:hover {
+    .btn-phone {
       background: #005b99;
       color: white;
-      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 91, 153, 0.3);
     }
     
-    /* Responsive */
+    .btn-phone:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 91, 153, 0.4);
+    }
+    
+    /* FOOTER MEJORADO */
+    footer {
+      background: #1a1a2e;
+      color: white;
+      padding: 80px 0 40px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    
+    .footer-section p, .footer-section ul {
+      color: #b8b8b8;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    
+    .footer-section ul li:hover {
+      transform: translateX(5px);
+    }
+    
+    .footer-section a {
+      color: #3498db;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .footer-section a:hover {
+      color: #2980b9;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid #34495e;
+      color: #95a5a6;
+    }
+    
+    /* ANIMACIONES */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* RESPONSIVE MEJORADO */
     @media (max-width: 768px) {
       .header-content {
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
       }
       
       nav {
@@ -323,133 +515,136 @@
         justify-content: center;
       }
       
-      .category-hero h1 {
-        font-size: 2rem;
+      nav a {
+        padding: 8px 14px;
+        font-size: 0.9rem;
       }
       
-      .category-intro h2 {
-        font-size: 1.8rem;
+      .contact-hero h1 {
+        font-size: 2.5rem;
       }
       
-      .articles {
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .contact-content {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 40px;
       }
       
-      .cta-content h2 {
-        font-size: 1.8rem;
+      .contact-info,
+      .contact-form {
+        padding: 30px;
       }
       
-      .cta-buttons {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .quick-contact h2 {
+        font-size: 2.2rem;
+      }
+      
+      .quick-contact p {
+        font-size: 1.1rem;
+      }
+      
+      .contact-buttons {
         flex-direction: column;
         align-items: center;
       }
       
-      .btn-primary, .btn-secondary {
+      .btn-whatsapp,
+      .btn-phone {
         width: 100%;
-        max-width: 280px;
+        max-width: 300px;
         justify-content: center;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    
+    /* ACCESIBILIDAD MEJORADA */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* DARK MODE SUPPORT */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #0f0f0f;
+        color: #e0e0e0;
+      }
+      
+      .quick-contact {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      }
+      
+      .contact-info,
+      .contact-form {
+        background: #1a1a1a;
+        border-color: #333;
+      }
+      
+      .contact-item {
+        background: #2a2a2a;
+      }
+      
+      .form-group input,
+      .form-group textarea {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #e0e0e0;
       }
     }
   </style>
-  
-  <!-- CSS -->
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  
-  <!-- Structured Data - Contact Page -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contacto - Domédicos del Norte",
-    "description": "Página de contacto para Domédicos del Norte, distribuidor de equipos médicos en Barranquilla",
-    "url": "https://domedicosdelnorte.github.io/contacto.html",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Domédicos del Norte",
-      "url": "https://domedicosdelnorte.github.io"
-    },
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "Domédicos del Norte",
-      "telephone": "+57 310 610 7017",
-      "email": "domedicosdelnorte@hotmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Barranquilla",
-        "addressCountry": "Colombia"
-      },
-      "openingHours": [
-        "Mo-Fr 06:30-17:00",
-        "Sa 06:30-12:00"
-      ]
-    }
-  }
-  </script>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container">
-      <div class="logo">
-        <a href="index.html">
-          <img src="logo.png" alt="Domédicos del Norte - Logo">
-        </a>
-      </div>
-      <nav aria-label="Navegación principal">
-        <a href="index.html">Inicio</a>
-
-        <div class="dropdown" id="prodDropdown">
-          <button class="dropbtn">Productos ▾</button>
-          <div class="dropdown-content" role="menu">
-            <div class="category-header">📋 CATEGORÍAS</div>
-            <a href="diagnostico.html" class="category-link">🩺 Diagnóstico</a>
-            <a href="movilidad.html" class="category-link">🦽 Movilidad y Apoyo</a>
-            <a href="hospitalario.html" class="category-link">🏥 Hospitalario</a>
-            <a href="insumos.html" class="category-link">📦 Insumos Médicos</a>
-            <a href="especializados.html" class="category-link">⚡ Equipos Especializados</a>
-            <a href="repuestos-biomedicos.html" class="category-link">🔧 Repuestos Biomédicos</a>
-          </div>
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">
+            <img src="logo.png" alt="Domédicos del Norte - Logo">
+          </a>
         </div>
-
-        <a href="index.html#nosotros">Nosotros</a>
-        <a href="index.html#servicios">Servicios</a>
-        <a href="index.html#mantenimiento">Mantenimiento</a>
-        <a href="contacto.html" aria-current="page">Contacto</a>
-      </nav>
+        <nav>
+          <a href="index.html">Inicio</a>
+          <a href="diagnostico.html">Diagnóstico</a>
+          <a href="movilidad.html">Movilidad</a>
+          <a href="hospitalario.html">Hospitalario</a>
+          <a href="insumos.html">Insumos</a>
+          <a href="especializados.html">Especializados</a>
+          <a href="contacto.html" class="active">Contacto</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <!-- Breadcrumb -->
   <div class="breadcrumb">
     <div class="container">
-      <a href="index.html">Inicio</a> / 
-      <span class="current">Contacto</span>
+      <div class="breadcrumb-content">
+        <a href="index.html">Inicio</a> / <span class="current">Contacto</span>
+      </div>
     </div>
   </div>
 
   <!-- Hero Section -->
-  <section class="category-hero">
+  <section class="contact-hero">
     <div class="container">
       <div class="hero-content">
-        <h1>📞 Contacto</h1>
-        <p class="hero-subtitle">Estamos aquí para ayudarte con tus necesidades médicas</p>
-        
-        <div class="hero-benefits">
-          <div class="benefit-item">
-            <div class="benefit-icon">✓</div>
-            <span>Respuesta rápida</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">✓</div>
-            <span>Atención personalizada</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">✓</div>
-            <span>WhatsApp 24/7</span>
-          </div>
-        </div>
+        <h1>Contacto</h1>
+        <p class="hero-subtitle">Estamos aquí para ayudarte con tus necesidades de equipos médicos</p>
       </div>
     </div>
   </section>
@@ -457,529 +652,139 @@
   <!-- Main Content -->
   <main>
     <div class="container">
-      <!-- Contact Section -->
-      <section class="contact-main">
-        <div class="contact-grid">
-          <!-- Contact Form -->
-          <div class="contact-form-section">
-            <h2>Envíanos un Mensaje</h2>
-            <p class="form-description">
-              Completa el formulario y te responderemos a la brevedad posible. 
-              Para consultas urgentes, usa nuestro WhatsApp disponible 24/7.
-            </p>
-            
-            <form class="enhanced-contact-form" action="https://formspree.io/f/xrblzwgk" method="POST">
-              <div class="form-group">
-                <label for="name">Nombre Completo *</label>
-                <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
-              </div>
-              
-              <div class="form-group">
-                <label for="email">Correo Electrónico *</label>
-                <input type="email" id="email" name="email" required placeholder="tu@email.com">
-              </div>
-              
-              <div class="form-group">
-                <label for="phone">Teléfono</label>
-                <input type="tel" id="phone" name="phone" placeholder="+57 300 000 0000">
-              </div>
-              
-              <div class="form-group">
-                <label for="subject">Asunto *</label>
-                <select id="subject" name="subject" required>
-                  <option value="">Selecciona un asunto</option>
-                  <option value="cotizacion">Solicitud de cotización</option>
-                  <option value="informacion">Información de productos</option>
-                  <option value="soporte">Soporte técnico</option>
-                  <option value="general">Consulta general</option>
-                </select>
-              </div>
-              
-              <div class="form-group">
-                <label for="message">Mensaje *</label>
-                <textarea id="message" name="message" rows="5" required placeholder="Describe tus necesidades o preguntas..."></textarea>
-              </div>
-              
-              <button type="submit" class="submit-btn">
-                <span>Enviar Mensaje</span>
-                <span>→</span>
-              </button>
-            </form>
+      <div class="contact-content">
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <h2>Información de Contacto</h2>
+          
+          <div class="contact-item">
+            <div class="contact-icon">?</div>
+            <div class="contact-details">
+              <h3>Teléfono</h3>
+              <p><a href="tel:+573106107017">+57 310 610 7017</a></p>
+              <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+              <p>Sábado: 9:00 AM - 1:00 PM</p>
+            </div>
           </div>
-
-          <!-- Contact Info -->
-          <div class="contact-info-section">
-            <h2>Información de Contacto</h2>
-            
-            <div class="contact-cards">
-              <div class="contact-card">
-                <div class="contact-icon">📞</div>
-                <div class="contact-details">
-                  <h3>Teléfono</h3>
-                  <p><a href="tel:+573106107017">+57 310 610 7017</a></p>
-                  <span class="contact-note">L-V: 6:30am-5:00pm · Sáb: 6:30am-12:00pm</span>
-                </div>
-              </div>
-
-              <div class="contact-card">
-                <div class="contact-icon">💬</div>
-                <div class="contact-details">
-                  <h3>WhatsApp</h3>
-                  <p><a href="https://wa.me/573106107017" target="_blank">+57 310 610 7017</a></p>
-                  <span class="contact-note">Disponible 24/7 para emergencias</span>
-                </div>
-              </div>
-
-              <div class="contact-card">
-                <div class="contact-icon">📧</div>
-                <div class="contact-details">
-                  <h3>Email</h3>
-                  <p><a href="mailto:domedicosdelnorte@hotmail.com">domedicosdelnorte@hotmail.com</a></p>
-                  <span class="contact-note">Respuesta en 24 horas</span>
-                </div>
-              </div>
-
-              <div class="contact-card">
-                <div class="contact-icon">📍</div>
-                <div class="contact-details">
-                  <h3>Ubicación</h3>
-                  <p>Barranquilla, Colombia</p>
-                  <a href="https://www.google.com/maps?q=Domedicos+del+Norte,+Barranquilla" target="_blank" class="map-link">
-                    Ver en Google Maps
-                  </a>
-                </div>
-              </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">?</div>
+            <div class="contact-details">
+              <h3>Email</h3>
+              <p><a href="mailto:domedicosdelnorte@hotmail.com">domedicosdelnorte@hotmail.com</a></p>
+              <p>Respuesta en menos de 24 horas</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">?</div>
+            <div class="contact-details">
+              <h3>Ubicación</h3>
+              <p>Barranquilla, Atlántico</p>
+              <p>Colombia</p>
+              <p>Atención presencial previa cita</p>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Map Section -->
-      <section class="map-section">
-        <h2>Encuéntranos en Barranquilla</h2>
-        <div class="map-container">
-          <iframe 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade" 
-            src="https://www.google.com/maps?q=Domedicos+del+Norte,+Barranquilla&output=embed"
-            style="border:0; width: 100%; height: 400px; border-radius: 12px;"
-            allowfullscreen>
-          </iframe>
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2>Envíanos un Mensaje</h2>
+          <form action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre Completo *</label>
+                <input type="text" id="nombre" name="nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono *</label>
+                <input type="tel" id="telefono" name="telefono" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="asunto">Asunto *</label>
+              <input type="text" id="asunto" name="asunto" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="mensaje">Mensaje *</label>
+              <textarea id="mensaje" name="mensaje" required placeholder="Describe tus necesidades de equipos médicos..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+              Enviar Mensaje
+            </button>
+          </form>
         </div>
-      </section>
-
-      <!-- Quick Actions -->
-      <section class="quick-actions">
-        <h2>Acciones Rápidas</h2>
-        <div class="actions-grid">
-          <a href="https://wa.me/573106107017?text=Hola,%20necesito%20una%20cotización%20de%20equipos%20médicos" class="action-card" target="_blank">
-            <div class="action-icon">💬</div>
-            <h3>Cotización Rápida</h3>
-            <p>Solicita cotización por WhatsApp</p>
-          </a>
-
-          <a href="tel:+573106107017" class="action-card">
-            <div class="action-icon">📞</div>
-            <h3>Llamar Ahora</h3>
-            <p>Habla con un especialista</p>
-          </a>
-
-          <a href="mailto:domedicosdelnorte@hotmail.com?subject=Información%20de%20productos" class="action-card">
-            <div class="action-icon">📧</div>
-            <h3>Email Corporativo</h3>
-            <p>Envía tu consulta detallada</p>
-          </a>
-
-          <a href="index.html#catalogo" class="action-card">
-            <div class="action-icon">📦</div>
-            <h3>Ver Catálogo</h3>
-            <p>Explora nuestros productos</p>
-          </a>
-        </div>
-      </section>
+      </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3>Domédicos del Norte</h3>
-        <p>Distribuidores líderes de equipos médicos e insumos hospitalarios con 30 años de experiencia en Colombia.</p>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Categorías</h3>
-        <a href="diagnostico.html">Diagnóstico</a>
-        <a href="movilidad.html">Movilidad</a>
-        <a href="hospitalario.html">Hospitalario</a>
-        <a href="insumos.html">Insumos</a>
-        <a href="especializados.html">Especializados</a>
-        <a href="repuestos-biomedicos.html">Repuestos</a>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Contacto</h3>
-        <p>📞 +57 310 610 7017</p>
-        <p>📧 domedicosdelnorte@hotmail.com</p>
-        <p>📍 Barranquilla, Colombia</p>
-        <p>🕐 L-V: 6:30am-5:00pm · Sáb: 6:30am-12:00pm</p>
+  <!-- Quick Contact Section -->
+  <section class="quick-contact">
+    <div class="container">
+      <div class="quick-contact-content">
+        <h2>¿Necesitas Asesoría Inmediata?</h2>
+        <p>Contacta directamente con nuestros especialistas para recibir cotización personalizada y asesoría técnica</p>
+        <div class="contact-buttons">
+          <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20equipos%20médicos" 
+             class="btn-whatsapp" target="_blank">
+            <span>WhatsApp</span>
+            <span>Cotización Inmediata</span>
+          </a>
+          <a href="tel:+573106107017" class="btn-phone">
+            <span>?</span>
+            <span>Llamar Ahora</span>
+          </a>
+        </div>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>© 2026 Domédicos del Norte | Distribuidor de Equipos Médicos | Todos los derechos reservados</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Domédicos del Norte</h3>
+          <p>Distribuidor líder de equipos médicos en Barranquilla con más de 30 años de experiencia. Ofrecemos productos de alta calidad con garantía y servicio técnico especializado.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p><strong>Teléfono:</strong> +57 310 610 7017</p>
+          <p><strong>Email:</strong> domedicosdelnorte@hotmail.com</p>
+          <p><strong>Ciudad:</strong> Barranquilla, Atlántico</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Horario</h3>
+          <p><strong>Lunes - Viernes:</strong> 8:00 AM - 6:00 PM</p>
+          <p><strong>Sábado:</strong> 9:00 AM - 1:00 PM</p>
+          <p><strong>Domingo:</strong> Cerrado</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Servicios</h3>
+          <ul>
+            <li><a href="index.html#servicios">Venta de Equipos</a></li>
+            <li><a href="index.html#mantenimiento">Mantenimiento</a></li>
+            <li><a href="index.html#nosotros">Sobre Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
+      </div>
     </div>
   </footer>
-
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/573106107017" class="whatsapp-float" target="_blank">
-    WhatsApp
-  </a>
-
-  <style>
-    /* Estilos específicos para página de contacto */
-    .breadcrumb {
-      background: var(--card);
-      padding: 15px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .breadcrumb .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      font-size: 0.9rem;
-    }
-    
-    .breadcrumb a {
-      color: var(--brand);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    
-    .breadcrumb a:hover {
-      color: var(--brand-light);
-    }
-    
-    .breadcrumb .current {
-      color: var(--text-light);
-      font-weight: 600;
-    }
-    
-    .category-hero {
-      background: var(--gradient-hero);
-      color: white;
-      padding: 80px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .category-hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      opacity: 0.4;
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .category-hero h1 {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-weight: 800;
-      margin-bottom: 20px;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-    
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
-      margin-bottom: 40px;
-      opacity: 0.95;
-    }
-    
-    .hero-benefits {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-    
-    .benefit-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    
-    .benefit-icon {
-      width: 24px;
-      height: 24px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-    }
-    
-    .contact-main {
-      margin: 60px 0;
-    }
-    
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-    
-    .contact-form-section h2,
-    .contact-info-section h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--brand);
-      margin-bottom: 20px;
-    }
-    
-    .form-description {
-      color: var(--text-light);
-      margin-bottom: 30px;
-      font-size: 1.1rem;
-    }
-    
-    .enhanced-contact-form {
-      display: grid;
-      gap: 20px;
-    }
-    
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .form-group label {
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-    }
-    
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      padding: 15px;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      background: var(--bg);
-    }
-    
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
-      transform: translateY(-2px);
-    }
-    
-    .submit-btn {
-      background: var(--gradient);
-      color: white;
-      border: 0;
-      padding: 16px 32px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 8px 25px rgba(30, 136, 229, 0.3);
-      justify-content: center;
-    }
-    
-    .submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(30, 136, 229, 0.4);
-    }
-    
-    .contact-cards {
-      display: grid;
-      gap: 20px;
-    }
-    
-    .contact-card {
-      background: var(--card);
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px var(--shadow);
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      transition: transform 0.3s ease;
-    }
-    
-    .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px var(--shadow-hover);
-    }
-    
-    .contact-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-    }
-    
-    .contact-details h3 {
-      color: var(--brand);
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-    }
-    
-    .contact-details p {
-      margin: 0 0 5px 0;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-    
-    .contact-details a {
-      color: var(--brand);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .contact-details a:hover {
-      color: var(--brand-light);
-    }
-    
-    .contact-note {
-      font-size: 0.9rem;
-      color: var(--text-light);
-    }
-    
-    .map-section {
-      margin: 80px 0;
-      text-align: center;
-    }
-    
-    .map-section h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--brand);
-      margin-bottom: 30px;
-    }
-    
-    .map-container {
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px var(--shadow);
-    }
-    
-    .quick-actions {
-      margin: 80px 0;
-    }
-    
-    .quick-actions h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--brand);
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    
-    .actions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-    
-    .action-card {
-      background: var(--card);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px var(--shadow);
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.3s ease;
-      text-align: center;
-      display: block;
-    }
-    
-    .action-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px var(--shadow-hover);
-      color: var(--brand);
-    }
-    
-    .action-icon {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin: 0 auto 20px;
-    }
-    
-    .action-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      color: var(--brand);
-    }
-    
-    .action-card p {
-      color: var(--text-light);
-      font-size: 0.95rem;
-    }
-    
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      
-      .category-hero {
-        padding: 60px 15px;
-      }
-      
-      .hero-benefits {
-        gap: 15px;
-      }
-      
-      .contact-card {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-      }
-      
-      .actions-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </body>
 </html>
