@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Equipos Hospitalarios en Barranquilla | Domédicos del Norte</title>
-  <meta name="description" content="Distribuidor especializado en equipos hospitalarios en Barranquilla y Colombia. Colchones antiescaras, divanes de examen, monitores de signos vitales y más. 30 años de experiencia, envíos a nivel nacional." />
-  <meta name="keywords" content="equipos hospitalarios Barranquilla, colchón antiescaras, diván examen, monitor signos vitales, equipos clínicos Colombia" />
+  <meta name="description" content="Distribuidor especializado en equipos hospitalarios en Barranquilla y Colombia. Colchones antiescaras, divanes de examen, monitores y más. 30 años de experiencia, envíos a nivel nacional." />
+  <meta name="keywords" content="equipos hospitalarios Barranquilla, colchón antiescaras Colombia, divanes examen, monitores hospitalarios" />
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://domedicosdelnorte.github.io/hospitalario.html" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Equipos Hospitalarios | Domédicos del Norte" />
-  <meta property="og:description" content="Distribuidor líder en equipos hospitalarios y clínicos. Colchones antiescaras, divanes de examen, monitores con garantía y envío a toda Colombia." />
+  <meta property="og:description" content="Distribuidor líder en equipos hospitalarios. Colchones antiescaras, divanes, monitores con garantía y envío a toda Colombia." />
   <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
   <meta property="og:url" content="https://domedicosdelnorte.github.io/hospitalario.html" />
   <meta property="og:type" content="website" />
@@ -56,10 +56,10 @@
     
     /* HEADER MEJORADO */
     header {
-      background: white;
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
       padding: 15px 0;
-      border-bottom: 1px solid #e9ecef;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -86,11 +86,12 @@
       display: flex;
       gap: 25px;
       align-items: center;
+      position: relative;
     }
     
     nav a {
       text-decoration: none;
-      color: #005b99;
+      color: white;
       font-weight: 600;
       padding: 10px 18px;
       border-radius: 10px;
@@ -99,14 +100,134 @@
     }
     
     nav a:hover {
-      background: #f8f9fa;
-      color: #0077cc;
+      background: rgba(255,255,255,0.2);
+      color: white;
       transform: translateY(-2px);
     }
     
     nav a.active {
-      background: #005b99;
+      background: rgba(255,255,255,0.3);
       color: white;
+    }
+    
+    /* Dropdown Menu */
+    .dropdown {
+      position: relative;
+    }
+    
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    
+    .dropdown-toggle::after {
+      content: '▼';
+      font-size: 0.7rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .dropdown:hover .dropdown-toggle::after {
+      transform: rotate(180deg);
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 20px;
+      color: #005b99;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-radius: 0;
+    }
+    
+    .dropdown-menu a:hover {
+      background: #f8f9fa;
+      color: #0077cc;
+      transform: none;
+    }
+    
+    .dropdown-menu a:first-child {
+      border-radius: 10px 10px 0 0;
+    }
+    
+    .dropdown-menu a:last-child {
+      border-radius: 0 0 10px 10px;
+    }
+    
+    /* WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      z-index: 999;
+      text-decoration: none;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+    }
+    
+    .whatsapp-float::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background: #25d366;
+      animation: pulse 2s infinite;
+      z-index: -1;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
     
     /* BREADCRUMB */
@@ -612,10 +733,19 @@
         </div>
         <nav>
           <a href="index.html">Inicio</a>
-          <a href="diagnostico.html">Diagnóstico</a>
-          <a href="movilidad.html">Movilidad</a>
-          <a href="hospitalario.html" class="active">Hospitalario</a>
-          <a href="insumos.html">Insumos</a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="diagnostico.html">Equipos de Diagnóstico</a>
+              <a href="movilidad.html">Equipos de Movilidad</a>
+              <a href="hospitalario.html" class="active">Equipos Hospitalarios</a>
+              <a href="insumos.html">Insumos Médicos</a>
+              <a href="especializados.html">Equipos Especializados</a>
+            </div>
+          </div>
+          <a href="#servicios">Servicios</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#mantenimiento">Mantenimiento</a>
           <a href="contacto.html">Contacto</a>
         </nav>
       </div>
@@ -635,8 +765,8 @@
   <section class="category-hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Equipos Hospitalarios y Clínicos</h1>
-        <p class="hero-subtitle">Equipamiento profesional para el cuidado hospitalario</p>
+        <h1>Equipos Hospitalarios</h1>
+        <p class="hero-subtitle">Equipamiento completo para instituciones médicas y clínicas</p>
       </div>
     </div>
   </section>
@@ -646,9 +776,9 @@
     <div class="container">
       <!-- Introduction -->
       <section class="category-intro">
-        <h2>Equipos Hospitalarios de Alta Calidad</h2>
+        <h2>Equipos Hospitalarios Profesionales</h2>
         <p class="intro-text">
-          En <strong>Domédicos del Norte</strong> proporcionamos equipos hospitalarios y clínicos de la más alta calidad para instituciones médicas, clínicas y hospitales. Nuestros productos cumplen con las normativas sanitarias y garantizan la seguridad y comodidad de los pacientes, así como la eficiencia del personal médico.
+          En <strong>Domédicos del Norte</strong> ofrecemos equipos hospitalarios de alta calidad diseñados para el entorno clínico. Nuestros productos cumplen con los más estrictos estándares sanitarios y de seguridad, garantizando durabilidad y funcionalidad en entornos de alto uso.
         </p>
       </section>
 
@@ -657,132 +787,132 @@
         <div class="articles">
           <article class="article">
             <div class="article-image">
-              <img src="Colchon Antiescaras.webp" alt="Colchón antiescaras para prevención de úlceras por presión" loading="lazy">
+              <img src="colchon antiescaras de gel.webp" alt="Colchón antiescaras de gel para prevención de úlceras" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Colchón Antiescaras</h3>
+              <h3 class="article-title">Colchón Antiescaras de Gel</h3>
               <p class="article-description">
-                Colchón terapéutico con sistema de alternancia de aire para prevención y tratamiento de úlceras por presión. Células intercambiables con control electrónico de presión. Ideal para pacientes encamados a largo plazo.
+                Colchón antiescaras de gel de alta densidad para prevención de úlceras por presión. Cubierta impermeable y resistente a desinfectantes. Ideal para pacientes encamados y cuidados intensivos.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Alternancia</span>
-                <span class="feature-tag">Terapéutico</span>
-                <span class="feature-tag">Control Digital</span>
+                <span class="feature-tag">Gel</span>
+                <span class="feature-tag">Impermeable</span>
+                <span class="feature-tag">Alta Densidad</span>
               </div>
               <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Colchón%20Antiescaras" 
                  class="btn-cotizar" target="_blank">
                 <span>Cotizar</span>
-                <span>WhatsApp</span>
+                <span>💬</span>
               </a>
             </div>
           </article>
 
           <article class="article">
             <div class="article-image">
-              <img src="divandexamen.webp" alt="Diván de examen médico para consultorios" loading="lazy">
+              <img src="divan de examen medico.webp" alt="Diván de examen médico ajustable" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Diván de Examen</h3>
+              <h3 class="article-title">Diván de Examen Médico</h3>
               <p class="article-description">
-                Diván de examen médico con tapiz hipoalergénico y estructura reforzada. Ajustable en múltiples posiciones para facilitar procedimientos médicos. Incluye reposacabezas y reposabrazos.
+                Diván de examen con ajuste eléctrico de altura y respaldo. Cojinería de alta densidad y cubierta fácil de limpiar. Incluye estribo y reposapiernas ajustables. Perfecto para consultorios.
               </p>
               <div class="product-features">
+                <span class="feature-tag">Eléctrico</span>
                 <span class="feature-tag">Ajustable</span>
-                <span class="feature-tag">Hipoalergénico</span>
-                <span class="feature-tag">Reforzado</span>
+                <span class="feature-tag">Alta Densidad</span>
               </div>
               <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Diván%20de%20Examen" 
                  class="btn-cotizar" target="_blank">
                 <span>Cotizar</span>
-                <span>WhatsApp</span>
+                <span>💬</span>
               </a>
             </div>
           </article>
 
           <article class="article">
             <div class="article-image">
-              <img src="electrocardiografo.jpg" alt="Electrocardiógrafo portátil para diagnóstico cardíaco" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Electrocardiógrafo Portátil</h3>
-              <p class="article-description">
-                Electrocardiógrafo de 12 derivaciones con pantalla táctil color. Almacenamiento de datos, impresión térmica y análisis automático. Cumple con estándares médicos internacionales.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">12 Derivaciones</span>
-                <span class="feature-tag">Pantalla Táctil</span>
-                <span class="feature-tag">Portátil</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Electrocardiógrafo" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Monitor de signos vitales.png" alt="Monitor de signos vitales para pacientes" loading="lazy">
+              <img src="Monitor de signos vitales.webp" alt="Monitor de signos vitales multiparámetro" loading="lazy">
             </div>
             <div class="article-content">
               <h3 class="article-title">Monitor de Signos Vitales</h3>
               <p class="article-description">
-                Monitor multiparámetro con medición de ECG, presión arterial, saturación de oxígeno, temperatura y frecuencia respiratoria. Pantalla LED brillante y alarmas configurables.
+                Monitor multiparámetro con ECG, presión arterial no invasiva, saturación de oxígeno, temperatura y frecuencia respiratoria. Pantalla táctil color con alarmas configurables y almacenamiento de datos.
               </p>
               <div class="product-features">
                 <span class="feature-tag">Multiparámetro</span>
-                <span class="feature-tag">LED</span>
+                <span class="feature-tag">Pantalla Táctil</span>
                 <span class="feature-tag">Alarmas</span>
               </div>
               <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Monitor%20de%20Signos%20Vitales" 
                  class="btn-cotizar" target="_blank">
                 <span>Cotizar</span>
-                <span>WhatsApp</span>
+                <span>💬</span>
               </a>
             </div>
           </article>
 
           <article class="article">
             <div class="article-image">
-              <img src="aspirador de secreciones.webp" alt="Aspirador de secreciones para pacientes" loading="lazy">
+              <img src="carro de curacion.webp" alt="Carro de curación con compartimentos organizados" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Aspirador de Secreciones</h3>
+              <h3 class="article-title">Carro de Curación</h3>
               <p class="article-description">
-                Aspirador eléctrico portátil para extracción de secreciones respiratorias. Sistema de vacío regulable con recolector desechable. Ideal para unidades de cuidados intensivos y urgencias.
+                Carro de curación con múltiples compartimentos organizados para suministros médicos. Ruedas con frenos, bandejas extraíbles y estructura de acero inoxidable. Ideal para hospitales y clínicas.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Portátil</span>
-                <span class="feature-tag">Regulable</span>
-                <span class="feature-tag">UCI</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Aspirador%20de%20Secreciones" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="silla sanitaria.jpg" alt="Silla sanitaria con ruedas para pacientes" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Silla Sanitaria</h3>
-              <p class="article-description">
-                Silla sanitaria con ruedas y sistema de frenos. Diseño ergonómico para pacientes con movilidad reducida. Material resistente y fácil de limpiar para uso hospitalario.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Ruedas</span>
+                <span class="feature-tag">Acero Inoxidable</span>
+                <span class="feature-tag">Múltiples Compartimentos</span>
                 <span class="feature-tag">Frenos</span>
-                <span class="feature-tag">Hospitalario</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Silla%20Sanitaria" 
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Carro%20de%20Curación" 
                  class="btn-cotizar" target="_blank">
                 <span>Cotizar</span>
-                <span>WhatsApp</span>
+                <span>💬</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="lampara de examen.webp" alt="Lámpara de examen médico con ajuste de intensidad" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Lámpara de Examen</h3>
+              <p class="article-description">
+                Lámpara de examen médico con tecnología LED de alta intensidad. Brazo móvil flexible con ajuste de altura e intensidad. Luz sin sombras y bajo consumo energético. Ideal para consultorios y quirófanos.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">LED</span>
+                <span class="feature-tag">Alta Intensidad</span>
+                <span class="feature-tag">Brazo Móvil</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Lámpara%20de%20Examen" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>💬</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="mesa de mayo.webp" alt="Mesa de Mayo instrumental quirúrgico" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Mesa de Mayo</h3>
+              <p class="article-description">
+                Mesa de Mayo instrumental con bandejas de acero inoxidable y base móvil. Altura ajustable con sistema de bloqueo seguro. Diseño ergonómico para fácil acceso a instrumental durante procedimientos.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Acero Inoxidable</span>
+                <span class="feature-tag">Altura Ajustable</span>
+                <span class="feature-tag">Base Móvil</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Mesa%20de%20Mayo" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>💬</span>
               </a>
             </div>
           </article>
@@ -796,15 +926,15 @@
     <div class="container">
       <div class="cta-content">
         <h2>¿Necesita Equipos Hospitalarios?</h2>
-        <p>Contáctenos para recibir asesoría especializada y cotización personalizada para su institución médica</p>
+        <p>Contáctenos para recibir asesoría especializada y cotización personalizada según sus necesidades institucionales</p>
         <div class="cta-buttons">
           <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20cotización%20para%20equipos%20hospitalarios" 
              class="btn-primary" target="_blank">
-            <span>WhatsApp</span>
+            <span>💬</span>
             <span>Cotización Inmediata</span>
           </a>
           <a href="contacto.html" class="btn-secondary">
-            <span>Teléfono</span>
+            <span>📞</span>
             <span>+57 310 610 7017</span>
           </a>
         </div>
@@ -851,5 +981,12 @@
       </div>
     </div>
   </footer>
+
+<!-- WhatsApp Float Button -->
+  <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20equipos%20médicos" 
+     class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
+    <span>💬</span>
+  </a>
+
 </body>
 </html>

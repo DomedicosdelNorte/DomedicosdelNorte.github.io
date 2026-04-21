@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Equipos de Movilidad en Barranquilla | Domédicos del Norte</title>
-  <meta name="description" content="Distribuidor especializado en equipos de movilidad en Barranquilla y Colombia. Sillas de rueda, muletas, bastones ortopédicos y dispositivos de apoyo. 30 años de experiencia, envíos a nivel nacional." />
-  <meta name="keywords" content="equipos movilidad Barranquilla, silla de ruedas, muletas, bastones ortopédicos, dispositivos apoyo Colombia" />
+  <meta name="description" content="Distribuidor especializado en equipos de movilidad en Barranquilla y Colombia. Sillas de ruedas, muletas, bastones, andadores y más. 30 años de experiencia, envíos a nivel nacional." />
+  <meta name="keywords" content="equipos movilidad Barranquilla, silla de ruedas Colombia, muletas, bastones ortopédicos, andadores" />
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://domedicosdelnorte.github.io/movilidad.html" />
   
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Equipos de Movilidad y Apoyo | Domédicos del Norte" />
-  <meta property="og:description" content="Distribuidor líder en equipos de movilidad y dispositivos de apoyo. Sillas de rueda, muletas, bastones con garantía y envío a toda Colombia." />
+  <meta property="og:title" content="Equipos de Movilidad | Domédicos del Norte" />
+  <meta property="og:description" content="Distribuidor líder en equipos de movilidad. Sillas de ruedas, muletas, bastones con garantía y envío a toda Colombia." />
   <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
   <meta property="og:url" content="https://domedicosdelnorte.github.io/movilidad.html" />
   <meta property="og:type" content="website" />
@@ -20,7 +20,7 @@
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Equipos de Movilidad y Apoyo" />
+  <meta name="twitter:title" content="Equipos de Movilidad" />
   <meta name="twitter:description" content="Venta de equipos de movilidad con envío a toda Colombia. 30 años de experiencia." />
   <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
   
@@ -56,10 +56,10 @@
     
     /* HEADER MEJORADO */
     header {
-      background: white;
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
       padding: 15px 0;
-      border-bottom: 1px solid #e9ecef;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -86,11 +86,12 @@
       display: flex;
       gap: 25px;
       align-items: center;
+      position: relative;
     }
     
     nav a {
       text-decoration: none;
-      color: #005b99;
+      color: white;
       font-weight: 600;
       padding: 10px 18px;
       border-radius: 10px;
@@ -99,14 +100,134 @@
     }
     
     nav a:hover {
-      background: #f8f9fa;
-      color: #0077cc;
+      background: rgba(255,255,255,0.2);
+      color: white;
       transform: translateY(-2px);
     }
     
     nav a.active {
-      background: #005b99;
+      background: rgba(255,255,255,0.3);
       color: white;
+    }
+    
+    /* Dropdown Menu */
+    .dropdown {
+      position: relative;
+    }
+    
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    
+    .dropdown-toggle::after {
+      content: '▼';
+      font-size: 0.7rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .dropdown:hover .dropdown-toggle::after {
+      transform: rotate(180deg);
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 20px;
+      color: #005b99;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-radius: 0;
+    }
+    
+    .dropdown-menu a:hover {
+      background: #f8f9fa;
+      color: #0077cc;
+      transform: none;
+    }
+    
+    .dropdown-menu a:first-child {
+      border-radius: 10px 10px 0 0;
+    }
+    
+    .dropdown-menu a:last-child {
+      border-radius: 0 0 10px 10px;
+    }
+    
+    /* WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      z-index: 999;
+      text-decoration: none;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+    }
+    
+    .whatsapp-float::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background: #25d366;
+      animation: pulse 2s infinite;
+      z-index: -1;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
     
     /* BREADCRUMB */
@@ -612,10 +733,19 @@
         </div>
         <nav>
           <a href="index.html">Inicio</a>
-          <a href="diagnostico.html">Diagnóstico</a>
-          <a href="movilidad.html" class="active">Movilidad</a>
-          <a href="hospitalario.html">Hospitalario</a>
-          <a href="insumos.html">Insumos</a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="diagnostico.html">Equipos de Diagnóstico</a>
+              <a href="movilidad.html" class="active">Equipos de Movilidad</a>
+              <a href="hospitalario.html">Equipos Hospitalarios</a>
+              <a href="insumos.html">Insumos Médicos</a>
+              <a href="especializados.html">Equipos Especializados</a>
+            </div>
+          </div>
+          <a href="#servicios">Servicios</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#mantenimiento">Mantenimiento</a>
           <a href="contacto.html">Contacto</a>
         </nav>
       </div>
@@ -635,8 +765,8 @@
   <section class="category-hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Equipos de Movilidad y Apoyo</h1>
-        <p class="hero-subtitle">Dispositivos ortopédicos para mejorar la calidad de vida</p>
+        <h1>Equipos de Movilidad</h1>
+        <p class="hero-subtitle">Soluciones de movilidad para mejorar la calidad de vida</p>
       </div>
     </div>
   </section>
@@ -648,7 +778,7 @@
       <section class="category-intro">
         <h2>Equipos de Movilidad de Alta Calidad</h2>
         <p class="intro-text">
-          En <strong>Domédicos del Norte</strong> ofrecemos una selección completa de equipos de movilidad y dispositivos de apoyo diseñados para proporcionar independencia y seguridad a pacientes con movilidad reducida. Nuestros productos son seleccionados por su durabilidad, confort y cumplimiento de las más altas normas de seguridad internacional.
+          En <strong>Domédicos del Norte</strong> ofrecemos una amplia gama de equipos de movilidad diseñados para proporcionar independencia y comodidad. Nuestros productos están fabricados con materiales duraderos y seguros, garantizando la máxima calidad y ergonomía para usuarios de todas las edades.
         </p>
       </section>
 
@@ -657,132 +787,132 @@
         <div class="articles">
           <article class="article">
             <div class="article-image">
-              <img src="Silla de Rueda.webp" alt="Silla de ruedas plegable para movilidad" loading="lazy">
+              <img src="Silla de ruedas estandar.webp" alt="Silla de ruedas estándar con respaldo reclinable" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Silla de Ruedas Plegable</h3>
+              <h3 class="article-title">Silla de Ruedas Estándar</h3>
               <p class="article-description">
-                Silla de ruedas ligera y plegable fabricada en aluminio de alta resistencia. Ideal para transporte y uso diario. Asiento acolchado y reposabrazos ajustables para mayor comodidad.
+                Silla de ruedas ligera y resistente con marco de acero, respaldo reclinable y reposabrazos abatibles. Ruedas neumáticas con frenos de seguridad. Ideal para uso diario y transporte.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Plegable</span>
-                <span class="feature-tag">Aluminio</span>
-                <span class="feature-tag">Acolchado</span>
+                <span class="feature-tag">Acero</span>
+                <span class="feature-tag">Reclinable</span>
+                <span class="feature-tag">Neumáticas</span>
               </div>
               <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Silla%20de%20Ruedas" 
                  class="btn-cotizar" target="_blank">
                 <span>Cotizar</span>
-                <span>WhatsApp</span>
+                <span>💬</span>
               </a>
             </div>
           </article>
 
           <article class="article">
             <div class="article-image">
-              <img src="Muletas.png" alt="Muletas ajustables de aluminio para apoyo" loading="lazy">
+              <img src="Silla de ruedas motorizada.webp" alt="Silla de ruedas motorizada eléctrica" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Muletas Ajustables</h3>
+              <h3 class="article-title">Silla de Ruedas Motorizada</h3>
               <p class="article-description">
-                Muletas de aluminio con altura ajustable y mangos ergonómicos. Sistema de bloqueo seguro y base antideslizante. Soporta hasta 120kg de peso.
+                Silla de ruedas eléctrica con control de joystick, batería de larga duración y sistema de frenado regenerativo. Asiento ergonómico con soporte lumbar ajustable. Perfecta para autonomía total.
               </p>
               <div class="product-features">
+                <span class="feature-tag">Eléctrica</span>
+                <span class="feature-tag">Joystick</span>
+                <span class="feature-tag">Batería Larga</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Silla%20Motorizada" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>💬</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Andador con ruedas.webp" alt="Andador con ruedas para apoyo en marcha" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Andador con Ruedas</h3>
+              <p class="article-description">
+                Andador estable con ruedas traseras y frenos de seguridad. Altura ajustable con mango ergonómico. Incluye cesta de almacenamiento y asiento plegable. Ideal para adultos mayores.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Frenos</span>
                 <span class="feature-tag">Ajustable</span>
+                <span class="feature-tag">Cesta</span>
+              </div>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Andador" 
+                 class="btn-cotizar" target="_blank">
+                <span>Cotizar</span>
+                <span>💬</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Muletas de antebrazo.webp" alt="Muletas de antebrazo con soporte ajustable" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Muletas de Antebrazo</h3>
+              <p class="article-description">
+                Muletas de aluminio ligero con soporte de antebrazo ajustable. Empuñadura ergonómica y base antideslizante. Altura regulable para adaptarse al usuario. Máxima estabilidad.
+              </p>
+              <div class="product-features">
                 <span class="feature-tag">Aluminio</span>
-                <span class="feature-tag">120kg</span>
+                <span class="feature-tag">Ajustable</span>
+                <span class="feature-tag">Antideslizante</span>
               </div>
               <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20las%20Muletas" 
                  class="btn-cotizar" target="_blank">
                 <span>Cotizar</span>
-                <span>WhatsApp</span>
+                <span>💬</span>
               </a>
             </div>
           </article>
 
           <article class="article">
             <div class="article-image">
-              <img src="baston con mango t.jpg" alt="Bastón ortopédico de 4 patas para estabilidad" loading="lazy">
+              <img src="Baston ortopedico.webp" alt="Bastón ortopédico con mango ergonómico" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Bastón 4 Patas</h3>
+              <h3 class="article-title">Bastón Ortopédico</h3>
               <p class="article-description">
-                Bastón ortopédico con base de 4 patas para máxima estabilidad. Mango ergonómico y altura regulable. Ideal para personas con problemas de equilibrio.
+                Bastón ortopédico con mango ergonómico y base de cuatro puntos para máxima estabilidad. Altura ajustable con mecanismo de bloqueo seguro. Fabricado en aluminio de alta resistencia.
               </p>
               <div class="product-features">
-                <span class="feature-tag">4 Patas</span>
-                <span class="feature-tag">Regulable</span>
-                <span class="feature-tag">Estable</span>
+                <span class="feature-tag">4 Puntos</span>
+                <span class="feature-tag">Ajustable</span>
+                <span class="feature-tag">Aluminio</span>
               </div>
               <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Bastón" 
                  class="btn-cotizar" target="_blank">
                 <span>Cotizar</span>
-                <span>WhatsApp</span>
+                <span>💬</span>
               </a>
             </div>
           </article>
 
           <article class="article">
             <div class="article-image">
-              <img src="baston4patasortopedico.webp" alt="Bastón ortopédico ajustable con mango ergonómico" loading="lazy">
+              <img src="Silla de ducha.webp" alt="Silla de ducha con respaldo impermeable" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Bastón Ergonómico</h3>
+              <h3 class="article-title">Silla de Ducha</h3>
               <p class="article-description">
-                Bastón ortopédico con mango ergonómico y altura ajustable. Fabricado en materiales resistentes con diseño antideslizante. Proporciona seguridad y comodidad.
+                Silla de ducha con respaldo y asiento de material impermeable. Ruedas con frenos para seguridad en suelo mojado. Altura ajustable y plegable para fácil almacenamiento.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Ergonómico</span>
-                <span class="feature-tag">Ajustable</span>
-                <span class="feature-tag">Seguro</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Bastón%20Ergonómico" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Cuello tipo ambuú.webp" alt="Collar cervical ortopédico para inmovilización" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Collar Cervical</h3>
-              <p class="article-description">
-                Collar cervical ortopédico tipo ambú para inmovilización cervical. Ajustable en altura con materiales hipoalergénicos. Ideal para tratamiento postoperatorio.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Inmovilización</span>
-                <span class="feature-tag">Ajustable</span>
-                <span class="feature-tag">Hipoalergénico</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Collar%20Cervical" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="silla sanitaria.jpg" alt="Silla sanitaria con ruedas para pacientes" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Silla Sanitaria</h3>
-              <p class="article-description">
-                Silla sanitaria con ruedas y sistema de frenos. Diseño ergonómico para pacientes con movilidad reducida. Material resistente y fácil de limpiar para uso hospitalario.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Ruedas</span>
+                <span class="feature-tag">Impermeable</span>
                 <span class="feature-tag">Frenos</span>
-                <span class="feature-tag">Hospitalario</span>
+                <span class="feature-tag">Plegable</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Silla%20Sanitaria" 
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Silla%20de%20Ducha" 
                  class="btn-cotizar" target="_blank">
                 <span>Cotizar</span>
-                <span>WhatsApp</span>
+                <span>💬</span>
               </a>
             </div>
           </article>
@@ -800,11 +930,11 @@
         <div class="cta-buttons">
           <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20cotización%20para%20equipos%20de%20movilidad" 
              class="btn-primary" target="_blank">
-            <span>WhatsApp</span>
+            <span>💬</span>
             <span>Cotización Inmediata</span>
           </a>
           <a href="contacto.html" class="btn-secondary">
-            <span>Teléfono</span>
+            <span>📞</span>
             <span>+57 310 610 7017</span>
           </a>
         </div>
@@ -851,5 +981,12 @@
       </div>
     </div>
   </footer>
+
+<!-- WhatsApp Float Button -->
+  <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20equipos%20médicos" 
+     class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
+    <span>💬</span>
+  </a>
+
 </body>
 </html>
