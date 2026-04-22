@@ -675,6 +675,101 @@
       }
     }
     
+    /* COMING SOON SECTION STYLES */
+    .coming-soon-message {
+      text-align: center;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      border: 2px solid var(--border-color);
+    }
+    
+    .message-content h3 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .message-content p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .coming-soon-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .coming-soon-list li {
+      background: var(--bg-white);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      font-size: 1rem;
+      color: var(--text-dark);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .coming-soon-list li:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-color);
+    }
+    
+    .contact-info {
+      background: var(--bg-white);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .contact-info p {
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+    
+    .contact-info p strong {
+      color: var(--primary-color);
+    }
+    
+    .contact-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .contact-buttons .btn-primary {
+      background: linear-gradient(135deg, var(--success-color), #27ae60);
+      border: none;
+      padding: 1rem 2rem;
+    }
+    
+    .contact-buttons .btn-secondary {
+      background: var(--bg-white);
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 1rem 2rem;
+    }
+    
     /* DARK MODE SUPPORT */
     @media (prefers-color-scheme: dark) {
       body {
@@ -683,6 +778,20 @@
       }
       
       .article {
+        background: #1a1a1a;
+        border-color: #333;
+      }
+      
+      .coming-soon-message {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      }
+      
+      .coming-soon-list li {
+        background: #1a1a1a;
+        border-color: #333;
+      }
+      
+      .contact-info {
         background: #1a1a1a;
         border-color: #333;
       }
@@ -764,143 +873,35 @@
       <!-- Products Grid -->
       <section class="products-showcase">
         <div class="articles">
-          <article class="article">
-            <div class="article-image">
-              <img src="bateria tensiometro.webp" alt="Batería para tensiómetro digital" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Batería para Tensiómetro</h3>
-              <p class="article-description">
-                Batería original de litio para tensiómetros digitales Valcri. Alta duración con capacidad de 500 mediciones por carga. 
-                Compatible con modelos AOJ30A y B07. Incluye cable de carga USB.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Original</span>
-                <span class="feature-tag">Litio</span>
-                <span class="feature-tag">500 Mediciones</span>
+          <div class="coming-soon-message">
+            <div class="message-content">
+              <h3>Próximamente Disponible</h3>
+              <p>Estamos trabajando para traerte la mejor selección de repuestos y accesorios para equipos médicos. Muy pronto podrás encontrar:</p>
+              <ul class="coming-soon-list">
+                <li>🔋 Baterías originales para equipos médicos</li>
+                <li>🔌 Sensores y accesorios de diagnóstico</li>
+                <li>🔌 Cables y conectores especializados</li>
+                <li>💊 Consumibles y suministros médicos</li>
+                <li>🛡️ Fundas y protectores de equipos</li>
+                <li>🔧 Herramientas de mantenimiento</li>
+              </ul>
+              <div class="contact-info">
+                <p><strong>¿Necesitas un repuesto específico?</strong></p>
+                <p>Contáctanos directamente y te ayudaremos a encontrar lo que necesitas.</p>
+                <div class="contact-buttons">
+                  <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20repuestos%20para%20equipos%20médicos" 
+                     class="btn-primary" target="_blank">
+                    <span>💬</span>
+                    <span>Consultar por WhatsApp</span>
+                  </a>
+                  <a href="contacto.html" class="btn-secondary">
+                    <span>📞</span>
+                    <span>Llamar ahora</span>
+                  </a>
+                </div>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Batería%20para%20Tensiómetro" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
             </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="sensor pulsioximetro.webp" alt="Sensor para pulsioxímetro" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Sensor para Pulsioxímetro</h3>
-              <p class="article-description">
-                Sensor de dedo profesional para pulsioxímetros de alta precisión. Tecnología óptica avanzada con lectura rápida. 
-                Compatible con múltiples modelos de pulsioxímetros profesionales y de uso clínico.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Óptico</span>
-                <span class="feature-tag">Lectura Rápida</span>
-                <span class="feature-tag">Universal</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Sensor%20para%20Pulsioxímetro" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="cable electrocardiografo.webp" alt="Cable para electrocardiógrafo" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Cable para Electrocardiógrafo</h3>
-              <p class="article-description">
-                Cable de 12 derivaciones para electrocardiógrafos profesionales. Material conductor de alta calidad con 
-                aislamiento médico. Conectores de oro para mejor transmisión de señal y durabilidad.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">12 Derivaciones</span>
-                <span class="feature-tag">Conectores de Oro</span>
-                <span class="feature-tag">Aislamiento Médico</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Cable%20para%20Electrocardiógrafo" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="manguera nebulizador.webp" alt="Manguera para nebulizador" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Manguera para Nebulizador</h3>
-              <p class="article-description">
-                Manguera de silicona médica para nebulizadores. Longitud estándar de 2 metros con conectores universales. 
-                Material resistente y flexible, fácil de limpiar y esterilizar. Compatible con la mayoría de modelos.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Silicona Médica</span>
-                <span class="feature-tag">2 Metros</span>
-                <span class="feature-tag">Universal</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Manguera%20para%20Nebulizador" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="tiras reactivas glucometro.webp" alt="Tiras reactivas para glucómetro" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Tiras Reactivas para Glucómetro</h3>
-              <p class="article-description">
-                Tiras reactivas originales para glucómetro Match II. Caja con 50 unidades de alta precisión. 
-                Tecnología de medición enzimática con resultados rápidos y confiables. Fecha de vencimiento garantizada.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Original</span>
-                <span class="feature-tag">50 Unidades</span>
-                <span class="feature-tag">Alta Precisión</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20las%20Tiras%20Reactivas" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="fundas estetoscopio.webp" alt="Fundas para estetoscopio" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Fundas para Estetoscopio</h3>
-              <p class="article-description">
-                Funda protectora de cuero sintético para estetoscopios. Diseño elegante con compartimento para accesorios. 
-                Protege contra polvo y golpes, fácil de limpiar. Disponible en múltiples colores.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Cuero Sintético</span>
-                <span class="feature-tag">Protección Total</span>
-                <span class="feature-tag">Múltiples Colores</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20las%20Fundas%20para%20Estetoscopio" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </article>
+          </div>
         </div>
       </section>
     </div>
