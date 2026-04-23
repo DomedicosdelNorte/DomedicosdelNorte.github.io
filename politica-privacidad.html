@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad - Domédicos del Norte</title>
+  <meta name="description" content="Política de privacidad de Domédicos del Norte. Protección de datos personales, uso de cookies y cumplimiento normativo. Barranquilla, Colombia." />
+  <meta name="keywords" content="política de privacidad, protección de datos, GDPR, LGPD, Colombia, Barranquilla" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://domedicosdelnorte.github.io/politica-privacidad.html" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Política de Privacidad | Domédicos del Norte" />
+  <meta property="og:description" content="Política de privacidad y protección de datos personales de Domédicos del Norte." />
+  <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  <meta property="og:url" content="https://domedicosdelnorte.github.io/politica-privacidad.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CO" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Política de Privacidad" />
+  <meta name="twitter:description" content="Política de privacidad y protección de datos de Domédicos del Norte." />
+  <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+  <link rel="preload" href="logo.png" as="image">
+  
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* VARIABLES */
+    :root {
+      --primary-color: #005b99;
+      --secondary-color: #0077cc;
+      --accent-color: #2980b9;
+      --text-dark: #2c3e50;
+      --text-light: #6c757d;
+      --bg-light: #f8f9fa;
+      --bg-white: #ffffff;
+      --border-color: #e9ecef;
+      --success-color: #27ae60;
+      --warning-color: #f39c12;
+      --error-color: #e74c3c;
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.08);
+      --shadow-md: 0 5px 20px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* BASE STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background: var(--bg-white);
+      overflow-x: hidden;
+    }
+    
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text-dark);
+    }
+    
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 2rem; }
+    h4 { font-size: 1.5rem; }
+    h5 { font-size: 1.25rem; }
+    h6 { font-size: 1rem; }
+    
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+    
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    a:hover {
+      color: var(--secondary-color);
+    }
+    
+    /* LAYOUT */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* HEADER */
+    header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    nav a {
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    
+    nav a:hover {
+      background: var(--bg-light);
+      color: var(--primary-color);
+    }
+    
+    /* BREADCRUMB */
+    .breadcrumb {
+      background: var(--bg-light);
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-top: 80px;
+    }
+    
+    .breadcrumb-content {
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb a {
+      color: var(--text-light);
+    }
+    
+    .breadcrumb a:hover {
+      color: var(--primary-color);
+    }
+    
+    .current {
+      color: var(--text-light);
+      font-weight: 600;
+    }
+    
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.6rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* MAIN CONTENT */
+    main {
+      padding: 80px 0;
+    }
+    
+    .privacy-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .section {
+      margin-bottom: 4rem;
+    }
+    
+    .section h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+    }
+    
+    .section h3 {
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .section p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .section ul {
+      margin-bottom: 1.5rem;
+      margin-left: 2rem;
+    }
+    
+    .section li {
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--border-color) 100%);
+      border-left: 4px solid var(--primary-color);
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+    
+    .highlight-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-info {
+      background: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .contact-info h4 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+    
+    .contact-item i {
+      color: var(--primary-color);
+      width: 20px;
+    }
+    
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--border-color) 100%);
+      padding: 60px 0;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .cta-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    
+    .cta-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 91, 153, 0.3);
+    }
+    
+    /* FOOTER */
+    footer {
+      background: #1a1a2e;
+      color: white;
+      padding: 60px 0 40px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+    }
+    
+    .footer-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+    
+    .footer-section p {
+      color: #b8c5d6;
+      line-height: 1.8;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-section ul li a {
+      color: #b8c5d6;
+      transition: var(--transition);
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--secondary-color);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid #34495e;
+      color: #95a5a6;
+      margin-top: 50px;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 25px;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .section h2 {
+        font-size: 1.8rem;
+      }
+      
+      .section h3 {
+        font-size: 1.3rem;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="logo.png" alt="Domédicos del Norte Logo">
+          <span>Domédicos del Norte</span>
+        </div>
+        <nav>
+          <a href="index.html">Inicio</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="contacto.html">Contacto</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-content">
+        <a href="index.html">Inicio</a> / <span class="current">Política de Privacidad</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Política de Privacidad</h1>
+        <p class="hero-subtitle">Protección de tus datos personales y cumplimiento normativo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <div class="privacy-content">
+        <div class="section">
+          <h2>Última Actualización</h2>
+          <p>Esta política de privacidad fue actualizada el <strong>22 de abril de 2026</strong> y está sujeta a modificaciones para cumplir con la legislación vigente y nuestras prácticas comerciales.</p>
+        </div>
+
+        <div class="section">
+          <h2>1. Información que Recopilamos</h2>
+          <h3>Información Personal</h3>
+          <p>En Domédicos del Norte recopilamos información personal que nos proporcionas voluntariamente al:</p>
+          <ul>
+            <li>Contactarnos a través de nuestro formulario web</li>
+            <li>Solicitar cotizaciones de productos</li>
+            <li>Realizar compras en línea</li>
+            <li>Suscribirte a nuestro boletín informativo</li>
+            <li>Participar en eventos o promociones</li>
+          </ul>
+          
+          <h3>Tipos de Información</h3>
+          <ul>
+            <li><strong>Nombre completo</strong></li>
+            <li><strong>Dirección de correo electrónico</strong></li>
+            <li><strong>Número de teléfono</strong></li>
+            <li><strong>Dirección física</strong></li>
+            <li><strong>Información de facturación</strong></li>
+            <li><strong>Preferencias de productos</strong></li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>2. Uso de la Información</h2>
+          <p>Utilizamos tu información personal para:</p>
+          <ul>
+            <li>Procesar y cumplir con tus solicitudes de productos y servicios</li>
+            <li>Proporcionar atención al cliente y soporte técnico</li>
+            <li>Enviar información sobre productos, servicios y promociones</li>
+            <li>Mejorar nuestros productos y servicios</li>
+            <li>Cumplir con obligaciones legales y regulatorias</li>
+            <li>Prevenir fraudes y actividades no autorizadas</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>3. Compartir Información</h2>
+          <p>No vendemos, alquilamos ni compartimos tu información personal con terceros, excepto en las siguientes circunstancias:</p>
+          <ul>
+            <li><strong>Proveedores de servicios</strong> que nos ayudan a operar nuestro negocio</li>
+            <li><strong>Socios logísticos</strong> para la entrega de productos</li>
+            <li><strong>Autoridades gubernamentales</strong> cuando sea requerido por ley</li>
+            <li><strong>Protección de derechos</strong> para prevenir daños o actividades ilegales</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>4. Cookies y Tecnologías Similares</h2>
+          <p>Nuestro sitio web utiliza cookies para:</p>
+          <ul>
+            <li>Mejorar la experiencia del usuario</li>
+            <li>Analizar el tráfico del sitio web</li>
+            <li>Recordar tus preferencias</li>
+            <li>Personalizar contenido y anuncios</li>
+          </ul>
+          
+          <div class="highlight-box">
+            <h4>Gestión de Cookies</h4>
+            <p>Puedes configurar tu navegador para aceptar o rechazar cookies. Sin embargo, deshabilitar las cookies puede afectar la funcionalidad de nuestro sitio web.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>5. Seguridad de Datos</h2>
+          <p>Implementamos medidas de seguridad técnicas y organizativas para proteger tu información personal contra:</p>
+          <ul>
+            <li>Acceso no autorizado</li>
+            <li>Alteración, divulgación o destrucción</li>
+            <li>Pérdida accidental</li>
+            <li>Uso indebido</li>
+          </ul>
+          
+          <p>Estas medidas incluyen:</p>
+          <ul>
+            <li>Encriptación de datos</li>
+            <li>Firewalls y sistemas de detección</li>
+            <li>Acceso restringido a la información</li>
+            <li>Capacitación del personal</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>6. Derechos del Titular de Datos</h2>
+          <p>Como titular de datos personales, tienes derecho a:</p>
+          <ul>
+            <li><strong>Conocer</strong> qué datos personales tenemos sobre ti</li>
+            <li><strong>Actualizar</strong> tu información personal</li>
+            <li><strong>Rectificar</strong> información incorrecta</li>
+            <li><strong>Suprimir</strong> tus datos personales</li>
+            <li><strong>Limitar</strong> el tratamiento de tus datos</li>
+            <li><strong>Portabilidad</strong> de tus datos</li>
+            <li><strong>Oponerte</strong> al tratamiento de tus datos</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>7. Conservación de Datos</h2>
+          <p>Conservamos tu información personal solo durante el tiempo necesario para:</p>
+          <ul>
+            <li>Cumplir con los fines para los que fue recopilada</li>
+            <li>Satisfacer requerimientos legales, regulatorios o fiscales</li>
+            <li>Resolver disputas y hacer cumplir nuestros acuerdos</li>
+            <li>Proteger nuestros derechos legales</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>8. Transferencia Internacional de Datos</h2>
+          <p>Tu información personal puede ser transferida y procesada en servidores ubicados fuera de Colombia. Nos aseguramos de que estas transferencias cumplan con:</p>
+          <ul>
+            <li>La Ley 1581 de 2012 de Protección de Datos de Colombia</li>
+            <li>Reglamento GDPR de la Unión Europea</li>
+            <li>LGPD de Brasil</li>
+            <li>Otras legislaciones aplicables</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>9. Menores de Edad</h2>
+          <p>Nuestros servicios no están dirigidos a menores de 18 años. No recopilamos intencionalmente información personal de menores. Si descubrimos que hemos recopilado información de un menor, la eliminaremos inmediatamente.</p>
+        </div>
+
+        <div class="section">
+          <h2>10. Cambios a esta Política</h2>
+          <p>Podemos actualizar esta política de privacidad periódicamente para reflejar cambios en nuestras prácticas o por requisitos legales. Te notificaremos cualquier cambio significativo a través de:</p>
+          <ul>
+            <li>Correo electrónico</li>
+            <li>Avisos en nuestro sitio web</li>
+            <li>Notificaciones push</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>11. Contacto y Ejercicio de Derechos</h2>
+          <p>Para ejercer tus derechos de protección de datos o tener preguntas sobre esta política, contacta a nuestro:</p>
+          
+          <div class="contact-info">
+            <h4>Delegado de Protección de Datos</h4>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>privacidad@domedicosdelnorte.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+57 310 610 7017</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Calle 72 #50-30, Barranquilla, Atlántico, Colombia</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <span>Lun-Vie: 8:00 AM - 6:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>12. Legislación Aplicable</h2>
+          <p>Esta política se rige por las siguientes leyes y regulaciones:</p>
+          <ul>
+            <li><strong>Ley 1581 de 2012</strong> - Régimen General de Protección de Datos Personales (Colombia)</li>
+            <li><strong>Decreto 1377 de 2013</strong> - Reglamentación parcial de la Ley 1581</li>
+            <li><strong>Reglamento (UE) 2016/679</strong> - GDPR (Unión Europea)</li>
+            <li><strong>Ley 13.709/2018</strong> - LGPD (Brasil)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Tienes Preguntas sobre tu Privacidad?</h2>
+        <p>Estamos aquí para ayudarte a proteger tus datos personales y responder cualquier duda sobre nuestra política de privacidad.</p>
+        <a href="contacto.html" class="btn-primary">
+          <i class="fas fa-envelope"></i>
+          <span>Contactar a Privacidad</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Domédicos del Norte</h3>
+          <p>Distribuidor líder de equipos médicos en Barranquilla con más de 30 años de experiencia. Ofrecemos productos de alta calidad con garantía y servicio técnico especializado.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+            <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Calle 72 #50-30, Barranquilla, Atlántico</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+57 310 610 7017</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>info@domedicosdelnorte.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <span>Lun-Vie: 8:00 AM - 6:00 PM</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

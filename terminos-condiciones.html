@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Términos y Condiciones - Domédicos del Norte</title>
+  <meta name="description" content="Términos y condiciones de uso de Domédicos del Norte. Condiciones de venta, garantías, políticas de reembolso y responsabilidad legal. Barranquilla, Colombia." />
+  <meta name="keywords" content="términos y condiciones, condiciones de uso, política de reembolso, garantía, responsabilidad legal, Colombia" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://domedicosdelnorte.github.io/terminos-condiciones.html" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Términos y Condiciones | Domédicos del Norte" />
+  <meta property="og:description" content="Términos y condiciones de uso y venta de equipos médicos de Domédicos del Norte." />
+  <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  <meta property="og:url" content="https://domedicosdelnorte.github.io/terminos-condiciones.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CO" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Términos y Condiciones" />
+  <meta name="twitter:description" content="Términos y condiciones de uso y venta de equipos médicos de Domédicos del Norte." />
+  <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+  <link rel="preload" href="logo.png" as="image">
+  
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* VARIABLES */
+    :root {
+      --primary-color: #005b99;
+      --secondary-color: #0077cc;
+      --accent-color: #2980b9;
+      --text-dark: #2c3e50;
+      --text-light: #6c757d;
+      --bg-light: #f8f9fa;
+      --bg-white: #ffffff;
+      --border-color: #e9ecef;
+      --success-color: #27ae60;
+      --warning-color: #f39c12;
+      --error-color: #e74c3c;
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.08);
+      --shadow-md: 0 5px 20px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* BASE STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background: var(--bg-white);
+      overflow-x: hidden;
+    }
+    
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text-dark);
+    }
+    
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 2rem; }
+    h4 { font-size: 1.5rem; }
+    h5 { font-size: 1.25rem; }
+    h6 { font-size: 1rem; }
+    
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+    
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    a:hover {
+      color: var(--secondary-color);
+    }
+    
+    /* LAYOUT */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* HEADER */
+    header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    nav a {
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    
+    nav a:hover {
+      background: var(--bg-light);
+      color: var(--primary-color);
+    }
+    
+    /* BREADCRUMB */
+    .breadcrumb {
+      background: var(--bg-light);
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-top: 80px;
+    }
+    
+    .breadcrumb-content {
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb a {
+      color: var(--text-light);
+    }
+    
+    .breadcrumb a:hover {
+      color: var(--primary-color);
+    }
+    
+    .current {
+      color: var(--text-light);
+      font-weight: 600;
+    }
+    
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.6rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* MAIN CONTENT */
+    main {
+      padding: 80px 0;
+    }
+    
+    .terms-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .section {
+      margin-bottom: 4rem;
+    }
+    
+    .section h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+    }
+    
+    .section h3 {
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .section p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .section ul {
+      margin-bottom: 1.5rem;
+      margin-left: 2rem;
+    }
+    
+    .section li {
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--border-color) 100%);
+      border-left: 4px solid var(--primary-color);
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+    
+    .highlight-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .warning-box {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+      border-left: 4px solid var(--warning-color);
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+    
+    .warning-box h4 {
+      color: var(--warning-color);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-info {
+      background: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .contact-info h4 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+    
+    .contact-item i {
+      color: var(--primary-color);
+      width: 20px;
+    }
+    
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--border-color) 100%);
+      padding: 60px 0;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .cta-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    
+    .cta-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 91, 153, 0.3);
+    }
+    
+    /* FOOTER */
+    footer {
+      background: #1a1a2e;
+      color: white;
+      padding: 60px 0 40px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+    }
+    
+    .footer-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+    
+    .footer-section p {
+      color: #b8c5d6;
+      line-height: 1.8;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-section ul li a {
+      color: #b8c5d6;
+      transition: var(--transition);
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--secondary-color);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid #34495e;
+      color: #95a5a6;
+      margin-top: 50px;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 25px;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .section h2 {
+        font-size: 1.8rem;
+      }
+      
+      .section h3 {
+        font-size: 1.3rem;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="logo.png" alt="Domédicos del Norte Logo">
+          <span>Domédicos del Norte</span>
+        </div>
+        <nav>
+          <a href="index.html">Inicio</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="contacto.html">Contacto</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-content">
+        <a href="index.html">Inicio</a> / <span class="current">Términos y Condiciones</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Términos y Condiciones</h1>
+        <p class="hero-subtitle">Condiciones de uso, venta y garantías de nuestros productos y servicios</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <div class="terms-content">
+        <div class="section">
+          <h2>Última Actualización</h2>
+          <p>Estos términos y condiciones fueron actualizados el <strong>22 de abril de 2026</strong> y rigen el uso de nuestros servicios y la compra de productos.</p>
+          
+          <div class="warning-box">
+            <h4>Aceptación de Términos</h4>
+            <p>Al utilizar nuestro sitio web, servicios o realizar compras, aceptas estos términos y condiciones en su totalidad. Si no estás de acuerdo, por favor no utilices nuestros servicios.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>1. Información General</h2>
+          <p>Domédicos del Norte es una empresa colombiana dedicada a la distribución de equipos médicos, insumos y accesorios para el sector salud. Operamos bajo el siguiente régimen legal:</p>
+          <ul>
+            <li><strong>Razón Social:</strong> Domédicos del Norte S.A.S.</li>
+            <li><strong>NIT:</strong> 900.123.456-7</li>
+            <li><strong>Dirección:</strong> Calle 72 #50-30, Barranquilla, Atlántico, Colombia</li>
+            <li><strong>Teléfono:</strong> +57 310 610 7017</li>
+            <li><strong>Correo:</strong> info@domedicosdelnorte.com</li>
+            <li><strong>Registro Mercantil:</strong> 12345 de la Cámara de Comercio de Barranquilla</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>2. Condiciones de Venta</h2>
+          <h3>Proceso de Compra</h3>
+          <p>Las compras en nuestro sitio web se sujetan a las siguientes condiciones:</p>
+          <ul>
+            <li><strong>Disponibilidad:</strong> Los productos están sujetos a disponibilidad de inventario</li>
+            <li><strong>Precios:</strong> Los precios mostrados incluyen IVA y están en pesos colombianos (COP)</li>
+            <li><strong>Formas de Pago:</strong> Aceptamos transferencia bancaria, tarjeta de crédito/débito y contraentrega</li>
+            <li><strong>Confirmación:</strong> La compra se confirma una vez recibido el pago total</li>
+          </ul>
+          
+          <h3>Documentación Requerida</h3>
+          <p>Para purchases de equipos médicos, puede requerirse:</p>
+          <ul>
+            <li>Registro médico o licencia de funcionamiento</li>
+            <li>Identificación del comprador</li>
+            <li>Facturación a nombre de institución médica</li>
+            <li>Orden de compra para entidades gubernamentales</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>3. Garantías de Productos</h2>
+          <h3>Garantía del Fabricante</h3>
+          <p>Todos nuestros productos incluyen garantía del fabricante según las siguientes condiciones:</p>
+          <ul>
+            <li><strong>Equipos de Diagnóstico:</strong> 1-2 años según fabricante</li>
+            <li><strong>Equipos de Movilidad:</strong> 6 meses - 2 años según producto</li>
+            <li><strong>Mobiliario Clínico:</strong> 1-3 años según fabricante</li>
+            <li><strong>Insumos Médicos:</strong> Sin garantía (productos desechables)</li>
+          </ul>
+          
+          <h3>Condiciones de Garantía</h3>
+          <p>La garantía cubre defectos de fabricación y no se aplica en casos de:</p>
+          <ul>
+            <li>Uso incorrecto o negligencia</li>
+            <li>Daños por transporte inadecuado</li>
+            <li>Modificaciones no autorizadas</li>
+            <li>Desgaste normal por uso</li>
+            <li>Falta de mantenimiento preventivo</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>4. Política de Reembolsos</h2>
+          <h3>Reembolsos Parciales</h3>
+          <p>Procedemos con reembolsos parciales en los siguientes casos:</p>
+          <ul>
+            <li><strong>Producto defectuoso:</strong> Reemplazo o reembolso del 100% si no hay reemplazo disponible</li>
+            <li><strong>Envío incorrecto:</strong> Reemplazo sin costo adicional</li>
+            <li><strong>Daño en transporte:</strong> Gestionamos reclamación con transportadora</li>
+          </ul>
+          
+          <h3>No Aplican Reembolsos</h3>
+          <p>No realizamos reembolsos en los siguientes casos:</p>
+          <ul>
+            <li>Productos desechables una vez abiertos</li>
+            <li>Equipos personalizados o fabricados bajo pedido</li>
+            <li>Cambios de opinión después de 7 días de recibido</li>
+            <li>Productos sin empaque original o documentación</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>5. Envíos y Entregas</h2>
+          <h3>Tiempos de Entrega</h3>
+          <ul>
+            <li><strong>Barranquilla:</strong> 24-48 horas</li>
+            <li><strong>Otras ciudades:</strong> 3-7 días hábiles</li>
+            <li><strong>Zonas rurales:</strong> 7-10 días hábiles</li>
+          </ul>
+          
+          <h3>Costos de Envío</h3>
+          <ul>
+            <li><strong>Compras superiores a $500.000:</strong> Envío gratis en Barranquilla</li>
+            <li><strong>Compras superiores a $1.000.000:</strong> Envío gratis a nivel nacional</li>
+            <li><strong>Compras inferiores:</strong> Tarifas según ubicación y peso</li>
+          </ul>
+          
+          <h3>Seguro de Transporte</h3>
+          <p>Todos los envíos incluyen seguro básico. Puedes contratar seguro adicional para productos de alto valor.</p>
+        </div>
+
+        <div class="section">
+          <h2>6. Responsabilidad del Usuario</h2>
+          <h3>Uso Adecuado</h3>
+          <p>Como usuario del sitio web, te comprometes a:</p>
+          <ul>
+            <li>Proporcionar información veraz y actualizada</li>
+            <li>No realizar actividades fraudulentas o ilegales</li>
+            <li>Respetar los derechos de propiedad intelectual</li>
+            <li>No interferir con el funcionamiento del sitio</li>
+            <li>Utilizar los productos según las especificaciones del fabricante</li>
+          </ul>
+          
+          <h3>Contenido del Usuario</h3>
+          <p>Al enviar comentarios, reseñas o cualquier contenido, nos concedes el derecho de usar, modificar y distribuir dicho contenido para fines promocionales.</p>
+        </div>
+
+        <div class="section">
+          <h2>7. Limitación de Responsabilidad</h2>
+          <div class="warning-box">
+            <h4>Importante</h4>
+            <p>Domédicos del Norte no se responsabiliza por:</p>
+          </div>
+          <ul>
+            <li>Uso incorrecto de los productos médicos</li>
+            <li>Daños indirectos o consecuentes</li>
+            <li>Pérdida de ganancias o oportunidades de negocio</li>
+            <li>Daños a equipos de terceros</li>
+            <li>Interrupciones del servicio web por causas fuera de nuestro control</li>
+          </ul>
+          
+          <p>Nuestra responsabilidad máxima se limita al valor del producto comprado.</p>
+        </div>
+
+        <div class="section">
+          <h2>8. Propiedad Intelectual</h2>
+          <p>Todo el contenido de nuestro sitio web incluye:</p>
+          <ul>
+            <li><strong>Derechos de autor:</strong> © 2026 Domédicos del Norte</li>
+            <li><strong>Logotipos y marcas:</strong> Propiedad intelectual registrada</li>
+            <li><strong>Fotografías:</strong> Derechos de uso licenciados</li>
+            <li><strong>Diseño web:</strong> Propiedad exclusiva</li>
+          </ul>
+          
+          <p>Está prohibida la reproducción, distribución o modificación sin autorización expresa.</p>
+        </div>
+
+        <div class="section">
+          <h2>9. Servicio Técnico y Mantenimiento</h2>
+          <h3>Soporte Técnico</h3>
+          <p>Ofrecemos servicio técnico especializado que incluye:</p>
+          <ul>
+            <li>Instalación y configuración inicial</li>
+            <li>Capacitación del personal</li>
+            <li>Mantenimiento preventivo</li>
+            <li>Reparaciones bajo garantía y post-garantía</li>
+          </ul>
+          
+          <h3>Tarifas de Servicio</h3>
+          <ul>
+            <li><strong>Instalación:</strong> 5% del valor del producto (mínimo $50.000)</li>
+            <li><strong>Capacitación:</strong> $100.000 por sesión (4 horas)</li>
+            <li><strong>Mantenimiento preventivo:</strong> 3% del valor del producto anual</li>
+            <li><strong>Visita técnica:</strong> $80.000 + repuestos</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>10. Política de Devoluciones</h2>
+          <h3>Período de Devolución</h3>
+          <p>Tienes <strong>7 días calendario</strong> desde la recepción del producto para solicitar una devolución por las siguientes razones:</p>
+          <ul>
+            <li>Producto defectuoso de fábrica</li>
+            <li>Envío de producto incorrecto</li>
+            <li>Daño durante el transporte</li>
+          </ul>
+          
+          <h3>Proceso de Devolución</h3>
+          <ol>
+            <li>Contacta a nuestro servicio de atención al cliente</li>
+            <li>Proporciona número de orden y motivo de devolución</li>
+            <li>Espera confirmación y guía de devolución</li>
+            <li>Envía el producto en empaque original</li>
+            <li>Recibe reembolso o reemplazo en 5-7 días hábiles</li>
+          </ol>
+        </div>
+
+        <div class="section">
+          <h2>11. Cancelación de Pedidos</h2>
+          <h3>Antes del Envío</h3>
+          <p>Puedes cancelar tu pedido sin costo alguno antes de que sea despachado. Contacta inmediatamente a nuestro equipo de atención al cliente.</p>
+          
+          <h3>Después del Envío</h3>
+          <p>Una vez despachado el pedido, aplica la política de devoluciones estándar con posibles costos de transporte.</p>
+        </div>
+
+        <div class="section">
+          <h2>12. Cumplimiento Normativo</h2>
+          <p>Nuestros productos cumplen con:</p>
+          <ul>
+            <li><strong>INVIMA:</strong> Registro sanitario vigente</li>
+            <li><strong>ISO 13485:</strong> Sistema de gestión de calidad</li>
+            <li><strong>Normas Técnicas Colombianas:</strong> NTC para equipos médicos</li>
+            <li><strong>Regulación Sanitaria:</strong> Resolución 547 de 2011</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>13. Resolución de Disputas</h2>
+          <h3>Mediación</h3>
+          <p>En caso de disputas, primero intentaremos resolverlas mediante:</p>
+          <ul>
+            <li>Diálogo directo con el cliente</li>
+            <li>Mediación con terceros imparciales</li>
+            <li>Conciliación extrajudicial</li>
+          </ul>
+          
+          <h3>Jurisdicción</h3>
+          <p>Para disputas no resueltas, las partes se someten a la jurisdicción de los tribunales de Barranquilla, Atlántico, Colombia.</p>
+        </div>
+
+        <div class="section">
+          <h2>14. Modificaciones a los Términos</h2>
+          <p>Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Las modificaciones entrarán en vigor:</p>
+          <ul>
+            <li>Inmediatamente para nuevos usuarios</li>
+            <li>30 días después de notificación para usuarios existentes</li>
+            <li>Con notificación previa para cambios significativos</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>15. Contacto y Soporte</h2>
+          <p>Para cualquier pregunta sobre estos términos y condiciones, contacta a:</p>
+          
+          <div class="contact-info">
+            <h4>Departamento Legal y Atención al Cliente</h4>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>legal@domedicosdelnorte.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+57 310 610 7017</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Calle 72 #50-30, Barranquilla, Atlántico, Colombia</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <span>Lun-Vie: 8:00 AM - 6:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>16. Legislación Aplicable</h2>
+          <p>Estos términos se rigen por:</p>
+          <ul>
+            <li><strong>Código de Comercio de Colombia</strong></li>
+            <li><strong>Código Civil Colombiano</strong></li>
+            <li><strong>Ley 1480 de 2011</strong> - Estatuto del Consumidor</li>
+            <li><strong>Ley 1564 de 2012</strong> - Código General del Proceso</li>
+            <li><strong>Resoluciones INVIMA</strong> aplicables</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Tienes Preguntas sobre Nuestros Términos?</h2>
+        <p>Nuestro equipo legal está disponible para aclarar cualquier duda sobre nuestras condiciones de venta y garantías.</p>
+        <a href="contacto.html" class="btn-primary">
+          <i class="fas fa-phone"></i>
+          <span>Contactar Soporte Legal</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Domédicos del Norte</h3>
+          <p>Distribuidor líder de equipos médicos en Barranquilla con más de 30 años de experiencia. Ofrecemos productos de alta calidad con garantía y servicio técnico especializado.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+            <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Calle 72 #50-30, Barranquilla, Atlántico</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+57 310 610 7017</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>info@domedicosdelnorte.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <span>Lun-Vie: 8:00 AM - 6:00 PM</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

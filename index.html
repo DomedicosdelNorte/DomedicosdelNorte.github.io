@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'none';">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index, follow">
   <title>Domédicos del Norte - Equipos Médicos Barranquilla | Distribuidor Oficial</title>
   <meta name="description" content="Distribuidor líder de equipos médicos en Barranquilla con 30 años de experiencia. Equipos de diagnóstico, movilidad, hospitalarios, insumos y especializados. Envíos a toda Colombia." />
   <meta name="keywords" content="equipos médicos Barranquilla, distribuidor equipos médicos Colombia, Domédicos del Norte, equipos médicos hospitalarios, insumos médicos, equipos diagnóstico" />
@@ -608,6 +615,25 @@
       flex-wrap: wrap;
     }
     
+    /* MEDICAL DISCLAIMER */
+    .medical-disclaimer {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-top: 3px solid var(--warning-color);
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    .disclaimer-content p {
+      margin: 0;
+      color: var(--text-dark);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    .disclaimer-content strong {
+      color: var(--warning-color);
+    }
+    
     /* FOOTER MEJORADO */
     footer {
       background: #1a1a2e;
@@ -820,6 +846,84 @@
         </nav>
       </div>
     </div>
+  
+  <!-- Schema.org Business Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Domédicos del Norte",
+    "description": "Distribuidor líder de equipos médicos en Barranquilla con 30 años de experiencia",
+    "url": "https://domedicosdelnorte.github.io",
+    "telephone": "+57 310 610 7017",
+    "email": "info@domedicosdelnorte.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 72 #50-30",
+      "addressLocality": "Barranquilla",
+      "addressRegion": "Atlántico",
+      "addressCountry": "CO",
+      "postalCode": "080001"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "10.9639",
+      "longitude": "-74.7964"
+    },
+    "openingHours": "Mo-Fr 08:00-18:00",
+    "priceRange": "$$",
+    "image": "https://domedicosdelnorte.github.io/logo.png",
+    "sameAs": [
+      "https://wa.me/573106107017"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Equipos Médicos",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Equipos de Diagnóstico",
+            "category": "Medical Device"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Equipos de Movilidad",
+            "category": "Medical Device"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Mobiliario Clínico",
+            "category": "Medical Device"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Insumos Médicos",
+            "category": "Medical Supply"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Equipos Especializados",
+            "category": "Medical Device"
+          }
+        }
+      ]
+    }
+  }
+  </script>
   </header>
 
   <!-- Hero Section -->
@@ -1032,12 +1136,21 @@
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2024 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
+        <p>&copy; 2026 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
       </div>
     </div>
   </footer>
 
-<!-- WhatsApp Float Button -->
+  <!-- Medical Disclaimer -->
+  <div class="medical-disclaimer">
+    <div class="container">
+      <div class="disclaimer-content">
+        <p><strong>Aviso Médico:</strong> La información proporcionada en este sitio web tiene fines informativos únicamente. Los productos médicos deben ser utilizados bajo la supervisión de profesionales de la salud calificados. Consulte siempre a un médico antes de utilizar cualquier equipo médico.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Float Button -->
   <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20equipos%20médicos" 
      class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
     <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
