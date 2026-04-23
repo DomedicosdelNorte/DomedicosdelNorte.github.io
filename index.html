@@ -617,15 +617,17 @@
     
     /* LEGAL SECTION */
     .legal-section {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
       padding: 80px 0;
       text-align: center;
+      color: white;
     }
     
     .legal-content h2 {
       font-size: 2.5rem;
-      color: var(--primary-color);
+      color: white;
       margin-bottom: 3rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     
     .legal-grid {
@@ -637,18 +639,20 @@
     }
     
     .legal-card {
-      background: var(--bg-white);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 16px;
       padding: 2rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       transition: var(--transition);
+      backdrop-filter: blur(10px);
     }
     
     .legal-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
       border-color: var(--primary-color);
+      background: rgba(255, 255, 255, 1);
     }
     
     .legal-icon {
@@ -674,25 +678,31 @@
     }
     
     .legal-card p {
-      color: var(--text-light);
+      color: #555;
       margin-bottom: 1.5rem;
       line-height: 1.6;
+      font-weight: 500;
     }
     
     .btn-legal {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, #005b99, #0077cc);
       color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
+      padding: 1rem 2rem;
+      border-radius: 10px;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       transition: var(--transition);
       display: inline-block;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(0, 91, 153, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     
     .btn-legal:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 91, 153, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 91, 153, 0.4);
+      background: linear-gradient(135deg, #0077cc, #0099ff);
     }
     
     /* MEDICAL DISCLAIMER */
@@ -937,7 +947,7 @@
     "description": "Distribuidor líder de equipos médicos en Barranquilla con 30 años de experiencia",
     "url": "https://domedicosdelnorte.github.io",
     "telephone": "+57 310 610 7017",
-    "email": "info@domedicosdelnorte.com",
+    "email": "domedicosdelnorte@hotmail.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Calle 72 #50-30",

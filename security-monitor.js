@@ -687,6 +687,250 @@ class SecurityMonitor {
         
         button.onclick = () => this.showSecurityPanel();
         document.body.appendChild(button);
+        
+        // Agregar botón de backup manual
+        this.addBackupButton();
+    }
+    
+    addBackupButton() {
+        // Botón de backup manual visible para todos
+        const backupButton = document.createElement('button');
+        backupButton.innerHTML = '💾';
+        backupButton.title = 'Crear Backup Manual';
+        backupButton.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 80px;
+            background: #28a745;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        `;
+        
+        backupButton.onclick = () => {
+            this.createBackup();
+            this.showNotification('Backup creado exitosamente');
+        };
+        
+        document.body.appendChild(backupButton);
+    }
+    
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #28a745;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                z-index: 10000;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                font-weight: 500;
+            ">
+                ✅ ${message}
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+    
+    // PANELES DE VISUALIZACIÓN DE DATOS
+    showBackupPanel() {
+        const panel = document.createElement('div');
+        panel.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 50px;
+                right: 20px;
+                width: 400px;
+                max-height: 500px;
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                z-index: 10000;
+                font-family: Arial, sans-serif;
+                overflow-y: auto;
+            ">
+                <h3 style="margin: 0 0 15px 0; color: #333;">💾 Panel de Backups</h3>
+                <div id="backup-list">
+                    Cargando lista de backups...
+                </div>
+                <div style="margin-top: 15px;">
+                    <button onclick="this.parentElement.parentElement.remove()" style="
+                        padding: 8px 16px;
+                        background: #dc3545;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">Cerrar</button>
+                    <button onclick="window.securityMonitor.createBackup(); window.securityMonitor.showBackupPanel();" style="
+                        margin-left: 10px;
+                        padding: 8px 16px;
+                        background: #007bff;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">Crear Nuevo Backup</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(panel);
+        this.updateBackupPanel();
+    }
+    
+    updateBackupPanel() {
+        const backupList = document.getElementById('backup-list');
+        if (!backupList) return;
+        
+        const keys = Object.keys(localStorage).filter(key => key.startsWith('domedicos_backup_'));
+        keys.sort((a, b) => b.localeCompare(a)); // Más recientes primero
+        
+        if (keys.length === 0) {
+            backupList.innerHTML = '<p style="color: #666;">No hay backups disponibles</p>';
+            return;
+        }
+        
+        let html = '<div style="font-size: 14px;">';
+        keys.slice(0, 10).forEach((key, index) => {
+            const backup = JSON.parse(localStorage.getItem(key));
+            const date = new Date(backup.timestamp);
+            const size = JSON.stringify(backup).length;
+            
+            html += `
+                <div style="
+                    border: 1px solid #eee;
+                    border-radius: 4px;
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    background: #f9f9f9;
+                ">
+                    <div style="font-weight: bold; color: #333;">Backup #${index + 1}</div>
+                    <div style="color: #666; font-size: 12px;">${date.toLocaleString()}</div>
+                    <div style="color: #666; font-size: 12px;">Tamaño: ${(size / 1024).toFixed(2)} KB</div>
+                    <div style="margin-top: 8px;">
+                        <button onclick="window.securityMonitor.downloadBackup(JSON.parse(localStorage.getItem('${key}')))" style="
+                            padding: 4px 8px;
+                            background: #28a745;
+                            color: white;
+                            border: none;
+                            border-radius: 3px;
+                            cursor: pointer;
+                            font-size: 11px;
+                        ">Descargar</button>
+                        <button onclick="localStorage.removeItem('${key}'); window.securityMonitor.showBackupPanel();" style="
+                            margin-left: 5px;
+                            padding: 4px 8px;
+                            background: #dc3545;
+                            color: white;
+                            border: none;
+                            border-radius: 3px;
+                            cursor: pointer;
+                            font-size: 11px;
+                        ">Eliminar</button>
+                    </div>
+                </div>
+            `;
+        });
+        
+        html += '</div>';
+        backupList.innerHTML = html;
+    }
+    
+    // Agregar botón de backup al panel principal
+    showSecurityPanel() {
+        const panel = document.createElement('div');
+        panel.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 50px;
+                right: 20px;
+                width: 350px;
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                z-index: 10000;
+                font-family: Arial, sans-serif;
+            ">
+                <h3 style="margin: 0 0 15px 0; color: #333;">🛡️ Panel de Seguridad</h3>
+                <div id="security-stats">
+                    Cargando estadísticas...
+                </div>
+                <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="this.parentElement.parentElement.remove()" style="
+                        padding: 8px 16px;
+                        background: #dc3545;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">Cerrar</button>
+                    <button onclick="window.securityMonitor.showBackupPanel()" style="
+                        padding: 8px 16px;
+                        background: #28a745;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">💾 Ver Backups</button>
+                    <button onclick="window.securityMonitor.exportSecurityData()" style="
+                        padding: 8px 16px;
+                        background: #007bff;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">📊 Exportar Datos</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(panel);
+        this.updateSecurityPanel();
+    }
+    
+    exportSecurityData() {
+        const data = {
+            timestamp: Date.now(),
+            company: 'Domédicos del Norte',
+            version: '3.0',
+            securityStats: this.getSecurityStats(),
+            securitySettings: this.getSecuritySettings(),
+            blockedIPs: Array.from(this.blockedIPs),
+            suspiciousIPs: Array.from(this.suspiciousIPs),
+            uptime: Date.now() - this.startTime
+        };
+        
+        const dataStr = JSON.stringify(data, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        const url = URL.createObjectURL(dataBlob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `domedicos_security_report_${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+        
+        URL.revokeObjectURL(url);
+        this.showNotification('Reporte de seguridad exportado');
     }
 }
 
@@ -696,10 +940,8 @@ let securityMonitor;
 document.addEventListener('DOMContentLoaded', () => {
     securityMonitor = new SecurityMonitor();
     
-    // Activar panel de control (solo en desarrollo)
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        securityMonitor.enableSecurityPanel();
-    }
+    // Activar panel de control para todos los usuarios
+    securityMonitor.enableSecurityPanel();
 });
 
 // Exportar para uso global
