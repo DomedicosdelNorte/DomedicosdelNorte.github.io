@@ -615,6 +615,86 @@
       flex-wrap: wrap;
     }
     
+    /* LEGAL SECTION */
+    .legal-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .legal-content h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 3rem;
+    }
+    
+    .legal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .legal-card {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+    
+    .legal-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
+    }
+    
+    .legal-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .legal-icon i {
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .legal-card h3 {
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+    
+    .legal-card p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .btn-legal {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      display: inline-block;
+    }
+    
+    .btn-legal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 91, 153, 0.3);
+    }
+    
     /* MEDICAL DISCLAIMER */
     .medical-disclaimer {
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -843,6 +923,7 @@
           <a href="#nosotros">Nosotros</a>
           <a href="#mantenimiento">Mantenimiento</a>
           <a href="contacto.html">Contacto</a>
+          <a href="#legal">Información Legal</a>
         </nav>
       </div>
     </div>
@@ -1133,6 +1214,15 @@
             <li><a href="contacto.html">Contacto</a></li>
           </ul>
         </div>
+        
+        <div class="footer-section">
+          <h3>Información Legal</h3>
+          <ul>
+            <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+            <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+            <li><a href="#disclaimer">Aviso Médico</a></li>
+          </ul>
+        </div>
       </div>
       
       <div class="footer-bottom">
@@ -1140,6 +1230,43 @@
       </div>
     </div>
   </footer>
+
+  <!-- Legal Section -->
+  <section id="legal" class="legal-section">
+    <div class="container">
+      <div class="legal-content">
+        <h2>Información Legal</h2>
+        <div class="legal-grid">
+          <div class="legal-card">
+            <div class="legal-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Política de Privacidad</h3>
+            <p>Protección de tus datos personales y cumplimiento normativo GDPR/LGPD.</p>
+            <a href="politica-privacidad.html" class="btn-legal">Leer Más</a>
+          </div>
+          
+          <div class="legal-card">
+            <div class="legal-icon">
+              <i class="fas fa-file-contract"></i>
+            </div>
+            <h3>Términos y Condiciones</h3>
+            <p>Condiciones de venta, garantías y responsabilidades de nuestros servicios.</p>
+            <a href="terminos-condiciones.html" class="btn-legal">Leer Más</a>
+          </div>
+          
+          <div class="legal-card">
+            <div class="legal-icon">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h3>Aviso Médico</h3>
+            <p>Información importante sobre el uso de equipos médicos y supervisión profesional.</p>
+            <a href="#disclaimer" class="btn-legal">Ver Aviso</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Medical Disclaimer -->
   <div class="medical-disclaimer">
