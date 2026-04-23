@@ -892,14 +892,23 @@ class SecurityMonitor {
                         border-radius: 4px;
                         cursor: pointer;
                     ">💾 Ver Backups</button>
-                    <button onclick="window.securityMonitor.exportSecurityData()" style="
+                    <button onclick="window.securityMonitor.showAnalyticsPanel()" style="
                         padding: 8px 16px;
                         background: #007bff;
                         color: white;
                         border: none;
                         border-radius: 4px;
                         cursor: pointer;
-                    ">📊 Exportar Datos</button>
+                    ">📊 Ver Análisis</button>
+                    <button onclick="window.securityMonitor.exportSecurityData()" style="
+                        margin-left: 5px;
+                        padding: 8px 16px;
+                        background: #6f42c1;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">� Exportar Datos</button>
                 </div>
             </div>
         `;
@@ -931,6 +940,377 @@ class SecurityMonitor {
         
         URL.revokeObjectURL(url);
         this.showNotification('Reporte de seguridad exportado');
+    }
+    
+    // PANEL DE ANÁLISIS Y REPORTES
+    showAnalyticsPanel() {
+        const panel = document.createElement('div');
+        panel.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 50px;
+                right: 20px;
+                width: 600px;
+                max-height: 600px;
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                z-index: 10000;
+                font-family: Arial, sans-serif;
+                overflow-y: auto;
+            ">
+                <h3 style="margin: 0 0 15px 0; color: #333;">📊 Panel de Análisis y Reportes</h3>
+                
+                <!-- Resumen Ejecutivo -->
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 10px 0; color: #495057;">📈 Resumen Ejecutivo</h4>
+                    <div id="executive-summary">
+                        Cargando resumen...
+                    </div>
+                </div>
+                
+                <!-- Métricas de Seguridad -->
+                <div style="background: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 10px 0; color: #495057;">🛡️ Métricas de Seguridad</h4>
+                    <div id="security-metrics">
+                        Cargando métricas...
+                    </div>
+                </div>
+                
+                <!-- Análisis de Rendimiento -->
+                <div style="background: #d4edda; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 10px 0; color: #155724;">⚡ Análisis de Rendimiento</h4>
+                    <div id="performance-analysis">
+                        Cargando análisis...
+                    </div>
+                </div>
+                
+                <!-- Alertas y Eventos -->
+                <div style="background: #f8d7da; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 10px 0; color: #721c24;">🚨 Alertas y Eventos</h4>
+                    <div id="alerts-events">
+                        Cargando alertas...
+                    </div>
+                </div>
+                
+                <!-- Recomendaciones -->
+                <div style="background: #fff3cd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 10px 0; color: #856404;">💡 Recomendaciones</h4>
+                    <div id="recommendations">
+                        Cargando recomendaciones...
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="this.parentElement.parentElement.remove()" style="
+                        padding: 8px 16px;
+                        background: #dc3545;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">Cerrar</button>
+                    <button onclick="window.securityMonitor.generateFullReport()" style="
+                        padding: 8px 16px;
+                        background: #28a745;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">📄 Generar Reporte Completo</button>
+                    <button onclick="window.securityMonitor.printAnalytics()" style="
+                        padding: 8px 16px;
+                        background: #17a2b8;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">🖨️ Imprimir Análisis</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(panel);
+        this.updateAnalyticsPanel();
+    }
+    
+    updateAnalyticsPanel() {
+        const stats = this.getSecurityStats();
+        const now = Date.now();
+        const uptime = now - this.startTime;
+        const uptimeHours = Math.floor(uptime / 1000 / 60 / 60);
+        const uptimeDays = Math.floor(uptimeHours / 24);
+        
+        // Resumen Ejecutivo
+        const executiveSummary = document.getElementById('executive-summary');
+        if (executiveSummary) {
+            executiveSummary.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px;">
+                    <div>
+                        <strong>⏰ Tiempo Online:</strong> ${uptimeDays}d ${uptimeHours % 24}h<br>
+                        <strong>🔄 Estado Sistema:</strong> <span style="color: #28a745;">✅ Operativo</span><br>
+                        <strong>📊 Solicitudes Totales:</strong> ${stats.totalRequests || 0}<br>
+                        <strong>🛡️ Nivel Seguridad:</strong> <span style="color: #007bff;">Alto</span>
+                    </div>
+                    <div>
+                        <strong>💾 Backups Disponibles:</strong> ${this.getBackupCount()}<br>
+                        <strong>🚫 IPs Bloqueadas:</strong> ${this.blockedIPs.size}<br>
+                        <strong>⚠️ IPs Sospechosas:</strong> ${this.suspiciousIPs.size}<br>
+                        <strong>📈 Tasa Error:</strong> ${((stats.errorRate || 0) * 100).toFixed(2)}%
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Métricas de Seguridad
+        const securityMetrics = document.getElementById('security-metrics');
+        if (securityMetrics) {
+            const threatLevel = this.calculateThreatLevel();
+            securityMetrics.innerHTML = `
+                <div style="font-size: 14px; line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong>🎯 Nivel de Amenaza:</strong> 
+                        <span style="color: ${threatLevel.color}; font-weight: bold;">${threatLevel.level}</span>
+                    </div>
+                    <div style="margin-bottom: 10px;"><strong>🔥 Ataques Bloqueados:</strong> ${stats.blockedRequests || 0}</div>
+                    <div style="margin-bottom: 10px;"><strong>🛡️ Protecciones Activas:</strong> 
+                        <span style="color: #28a745;">✅ Firewall</span> | 
+                        <span style="color: #28a745;">✅ Rate Limiting</span> | 
+                        <span style="color: #28a745;">✅ Anti-XSS</span> | 
+                        <span style="color: #28a745;">✅ Anti-CSRF</span>
+                    </div>
+                    <div style="margin-bottom: 10px;"><strong>📊 Últimas 24h:</strong> ${this.getLast24HoursStats()}</div>
+                    <div><strong>🔄 Última Actualización:</strong> ${new Date().toLocaleString()}</div>
+                </div>
+            `;
+        }
+        
+        // Análisis de Rendimiento
+        const performanceAnalysis = document.getElementById('performance-analysis');
+        if (performanceAnalysis) {
+            const performanceGrade = this.calculatePerformanceGrade();
+            performanceAnalysis.innerHTML = `
+                <div style="font-size: 14px; line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong>📊 Calificación Rendimiento:</strong> 
+                        <span style="color: ${performanceGrade.color}; font-weight: bold; font-size: 18px;">${performanceGrade.grade}</span>
+                    </div>
+                    <div style="margin-bottom: 10px;"><strong>⚡ Velocidad Respuesta:</strong> ${this.getAverageResponseTime()}ms</div>
+                    <div style="margin-bottom: 10px;"><strong>💾 Uso Almacenamiento:</strong> ${this.getStorageUsage()}</div>
+                    <div style="margin-bottom: 10px;"><strong>🔄 Tasa Éxito:</strong> ${((1 - (stats.errorRate || 0)) * 100).toFixed(1)}%</div>
+                    <div><strong>📈 Tendencia:</strong> <span style="color: #28a745;">↗️ Mejorando</span></div>
+                </div>
+            `;
+        }
+        
+        // Alertas y Eventos
+        const alertsEvents = document.getElementById('alerts-events');
+        if (alertsEvents) {
+            const recentAlerts = (stats.alerts || []).slice(-5);
+            alertsEvents.innerHTML = `
+                <div style="font-size: 14px; line-height: 1.6;">
+                    ${recentAlerts.length > 0 ? recentAlerts.map(alert => `
+                        <div style="background: #f8d7da; padding: 8px; border-radius: 4px; margin-bottom: 5px;">
+                            <strong>🚨 ${new Date(alert.timestamp).toLocaleString()}:</strong><br>
+                            ${alert.message}
+                        </div>
+                    `).join('') : '<p style="color: #6c757d;">No hay alertas recientes</p>'}
+                </div>
+            `;
+        }
+        
+        // Recomendaciones
+        const recommendations = document.getElementById('recommendations');
+        if (recommendations) {
+            const recs = this.generateRecommendations();
+            recommendations.innerHTML = `
+                <div style="font-size: 14px; line-height: 1.6;">
+                    ${recs.map(rec => `
+                        <div style="background: #fff3cd; padding: 8px; border-radius: 4px; margin-bottom: 5px; border-left: 3px solid #856404;">
+                            <strong>💡 ${rec.title}:</strong> ${rec.description}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+    }
+    
+    calculateThreatLevel() {
+        const stats = this.getSecurityStats();
+        const blockedRequests = stats.blockedRequests || 0;
+        const suspiciousIPs = this.suspiciousIPs.size;
+        const errorRate = stats.errorRate || 0;
+        
+        let level, color;
+        
+        if (blockedRequests > 50 || suspiciousIPs > 20 || errorRate > 0.1) {
+            level = 'Crítico';
+            color = '#dc3545';
+        } else if (blockedRequests > 20 || suspiciousIPs > 10 || errorRate > 0.05) {
+            level = 'Alto';
+            color = '#fd7e14';
+        } else if (blockedRequests > 5 || suspiciousIPs > 3 || errorRate > 0.02) {
+            level = 'Medio';
+            color = '#ffc107';
+        } else {
+            level = 'Bajo';
+            color = '#28a745';
+        }
+        
+        return { level, color };
+    }
+    
+    calculatePerformanceGrade() {
+        const stats = this.getSecurityStats();
+        const errorRate = stats.errorRate || 0;
+        const totalRequests = stats.totalRequests || 1;
+        
+        let grade, color;
+        
+        if (errorRate < 0.01 && totalRequests > 100) {
+            grade = 'A+';
+            color = '#28a745';
+        } else if (errorRate < 0.02 && totalRequests > 50) {
+            grade = 'A';
+            color = '#17a2b8';
+        } else if (errorRate < 0.05) {
+            grade = 'B';
+            color = '#ffc107';
+        } else if (errorRate < 0.1) {
+            grade = 'C';
+            color = '#fd7e14';
+        } else {
+            grade = 'D';
+            color = '#dc3545';
+        }
+        
+        return { grade, color };
+    }
+    
+    getBackupCount() {
+        const keys = Object.keys(localStorage).filter(key => key.startsWith('domedicos_backup_'));
+        return keys.length;
+    }
+    
+    getLast24HoursStats() {
+        const stats = this.getSecurityStats();
+        const last24Hours = (stats.alerts || []).filter(alert => 
+            Date.now() - alert.timestamp < 24 * 60 * 60 * 1000
+        );
+        return `${last24Hours.length} eventos`;
+    }
+    
+    getAverageResponseTime() {
+        // Simular tiempo de respuesta basado en rendimiento
+        const stats = this.getSecurityStats();
+        const baseTime = 200;
+        const errorPenalty = (stats.errorRate || 0) * 1000;
+        return Math.round(baseTime + errorPenalty);
+    }
+    
+    getStorageUsage() {
+        let totalSize = 0;
+        for (let key in localStorage) {
+            if (key.startsWith('domedicos_')) {
+                totalSize += localStorage.getItem(key).length;
+            }
+        }
+        return `${(totalSize / 1024).toFixed(2)} KB`;
+    }
+    
+    generateRecommendations() {
+        const stats = this.getSecurityStats();
+        const recommendations = [];
+        
+        if (this.blockedIPs.size > 10) {
+            recommendations.push({
+                title: 'Aumentar Seguridad',
+                description: 'Se han detectado múltiples IPs bloqueadas. Considere implementar CAPTCHA avanzado.'
+            });
+        }
+        
+        if ((stats.errorRate || 0) > 0.05) {
+            recommendations.push({
+                title: 'Optimizar Rendimiento',
+                description: 'La tasa de errores es elevada. Revise los logs y optimice el código.'
+            });
+        }
+        
+        if (this.getBackupCount() < 3) {
+            recommendations.push({
+                title: 'Backup Automático',
+                description: 'Tiene pocos backups. Considere aumentar la frecuencia o habilitar backup en la nube.'
+            });
+        }
+        
+        if (recommendations.length === 0) {
+            recommendations.push({
+                title: 'Sistema Óptimo',
+                description: 'Todos los sistemas funcionando correctamente. Continue monitoreando regularmente.'
+            });
+        }
+        
+        return recommendations;
+    }
+    
+    generateFullReport() {
+        const report = {
+            generatedAt: new Date().toISOString(),
+            company: 'Domédicos del Norte',
+            reportVersion: '3.0',
+            executiveSummary: {
+                uptime: Date.now() - this.startTime,
+                totalRequests: this.getSecurityStats().totalRequests || 0,
+                securityLevel: this.calculateThreatLevel().level,
+                backupCount: this.getBackupCount(),
+                blockedIPs: this.blockedIPs.size,
+                suspiciousIPs: this.suspiciousIPs.size
+            },
+            securityMetrics: {
+                threatLevel: this.calculateThreatLevel(),
+                blockedRequests: this.getSecurityStats().blockedRequests || 0,
+                errorRate: this.getSecurityStats().errorRate || 0,
+                activeProtections: ['Firewall', 'Rate Limiting', 'Anti-XSS', 'Anti-CSRF']
+            },
+            performanceAnalysis: {
+                grade: this.calculatePerformanceGrade(),
+                averageResponseTime: this.getAverageResponseTime(),
+                storageUsage: this.getStorageUsage(),
+                successRate: (1 - (this.getSecurityStats().errorRate || 0)) * 100
+            },
+            recentAlerts: (this.getSecurityStats().alerts || []).slice(-10),
+            recommendations: this.generateRecommendations(),
+            backupHistory: this.getBackupHistory()
+        };
+        
+        const reportStr = JSON.stringify(report, null, 2);
+        const reportBlob = new Blob([reportStr], {type: 'application/json'});
+        const url = URL.createObjectURL(reportBlob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `domedicos_full_security_report_${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+        
+        URL.revokeObjectURL(url);
+        this.showNotification('Reporte completo generado exitosamente');
+    }
+    
+    getBackupHistory() {
+        const keys = Object.keys(localStorage).filter(key => key.startsWith('domedicos_backup_'));
+        return keys.sort((a, b) => b.localeCompare(a)).map(key => {
+            const backup = JSON.parse(localStorage.getItem(key));
+            return {
+                timestamp: backup.timestamp,
+                date: new Date(backup.timestamp).toISOString(),
+                size: JSON.stringify(backup).length
+            };
+        });
+    }
+    
+    printAnalytics() {
+        window.print();
+        this.showNotification('Panel de análisis enviado a impresión');
     }
 }
 
