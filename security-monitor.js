@@ -755,8 +755,8 @@ class SecurityMonitor {
             }
         });
         
-        // Agregar botón de backup manual (oculto)
-        this.addBackupButton();
+        // NO agregar botones públicos - solo acceso secreto
+        // this.addBackupButton(); // Comentado - debe ser oculto
     }
     
     showLoginDialog() {
@@ -854,6 +854,8 @@ class SecurityMonitor {
             
             // Agregar botones flotantes solo para usuarios autenticados
             this.addSecurityButtons();
+            // Agregar botón de backup solo después de login
+            this.addBackupButton();
             
             this.showNotification('✅ Sesión iniciada - Panel de seguridad activado');
             console.log('✅ Usuario autenticado:', username);
@@ -930,14 +932,14 @@ class SecurityMonitor {
     }
     
     addBackupButton() {
-        // Botón de backup manual visible para todos
+        // Botón de backup manual - SOLO después de login
         const backupButton = document.createElement('button');
         backupButton.innerHTML = '💾';
         backupButton.title = 'Crear Backup Manual';
         backupButton.style.cssText = `
             position: fixed;
             bottom: 20px;
-            left: 80px;
+            left: 140px;
             background: #28a745;
             color: white;
             border: none;
@@ -1557,7 +1559,7 @@ let securityMonitor;
 document.addEventListener('DOMContentLoaded', () => {
     securityMonitor = new SecurityMonitor();
     
-    // Activar panel de control para todos los usuarios
+    // Activar panel de control SOLO con acceso secreto
     securityMonitor.enableSecurityPanel();
 });
 
