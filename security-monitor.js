@@ -10,7 +10,7 @@ class SecurityMonitor {
         this.suspiciousIPs = new Set();
         this.blockedIPs = new Set();
         this.rateLimitWindow = 60000; // 1 minuto
-        this.maxRequestsPerWindow = 100;
+        this.maxRequestsPerWindow = 1000; // Aumentado a 1000 (prácticamente nulo)
         this.backupInterval = null;
         this.uptimeCheckInterval = null;
         this.init();
@@ -293,12 +293,14 @@ class SecurityMonitor {
             url: window.location.href
         });
 
-        // Verificar rate limit
+        // Verificar rate limit - PRÁCTICAMENTE NULO
         const recentRequests = clientRequests.filter(
             req => now - req.timestamp < this.rateLimitWindow
         );
 
-        if (recentRequests.length > this.maxRequestsPerWindow) {
+        // Solo bloquear si es extremadamente abusivo (>2000 peticiones/minuto)
+        if (recentRequests.length > 2000) {
+            console.warn(`Actividad extremadamente sospechosa: ${recentRequests.length} peticiones/minuto`);
             this.handleRateLimitExceeded(clientId);
         }
 
@@ -306,60 +308,20 @@ class SecurityMonitor {
     }
 
     handleRateLimitExceeded(clientId) {
-        console.warn(`🚨 Rate limit excedido para cliente: ${clientId}`);
-        this.suspiciousIPs.add(clientId);
+        console.warn(`🚨 Actividad extremadamente sospechosa: ${clientId}`);
         
-        // Mostrar advertencia
-        this.showRateLimitWarning();
-        
-        // Bloquear temporalmente si es repetido
-        if (this.suspiciousIPs.has(clientId)) {
-            this.temporaryBlock(clientId);
-        }
+        // Solo bloquear si es abuso extremo (>2000 peticiones/minuto)
+        this.showCAPTCHAChallenge(clientId);
     }
 
-    showRateLimitWarning() {
-        const warning = document.createElement('div');
-        warning.innerHTML = `
-            <div style="
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #ff6b6b;
-                color: white;
-                padding: 15px 20px;
-                border-radius: 5px;
-                z-index: 10000;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            ">
-                ⚠️ Actividad sospechosa detectada. Por favor, reduzca la velocidad de navegación.
-            </div>
-        `;
+    showCAPTCHAChallenge(clientId) {
+        // Mostrar CAPTCHA simple para actividad extremadamente sospechosa
+        const captcha = document.createElement('div');
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        const answer = num1 + num2;
         
-        document.body.appendChild(warning);
-        
-        setTimeout(() => {
-            warning.remove();
-        }, 5000);
-    }
-
-    temporaryBlock(clientId) {
-        console.warn(`🚫 Cliente bloqueado temporalmente: ${clientId}`);
-        this.blockedIPs.add(clientId);
-        
-        // Mostrar mensaje de bloqueo
-        this.showBlockedMessage();
-        
-        // Desbloquear después de 5 minutos
-        setTimeout(() => {
-            this.blockedIPs.delete(clientId);
-            this.suspiciousIPs.delete(clientId);
-        }, 300000);
-    }
-
-    showBlockedMessage() {
-        const message = document.createElement('div');
-        message.innerHTML = `
+        captcha.innerHTML = `
             <div style="
                 position: fixed;
                 top: 0;
@@ -372,14 +334,134 @@ class SecurityMonitor {
                 align-items: center;
                 justify-content: center;
                 z-index: 10001;
-                font-size: 18px;
+                font-size: 16px;
             ">
-                <div style="text-align: center;">
-                    🚫 Acceso Bloqueado Temporalmente
+                <div style="text-align: center; background: #333; padding: 30px; border-radius: 10px;">
+                    🔒 Verificación de Seguridad
                     <br><br>
-                    Se ha detectado actividad sospechosa.
+                    Por favor resuelve: <strong>${num1} + ${num2} = ?</strong>
+                    <br><br>
+                    <input type="number" id="captcha-answer" placeholder="Tu respuesta" style="
+                        padding: 8px; font-size: 16px; border: none; border-radius: 5px; text-align: center; width: 100px;
+                    ">
+                    <br><br>
+                    <button onclick="window.securityMonitor.verifyCAPTCHA(${answer})" style="
+                        padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;
+                    ">Verificar</button>
+                    <br><br>
+                    <small style="color: #ccc;">Esta medida protege contra bots automatizados.</small>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(captcha);
+        
+        // Enfocar input automáticamente
+        setTimeout(() => {
+            const input = document.getElementById('captcha-answer');
+            if (input) {
+                input.focus();
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.verifyCAPTCHA(answer);
+                    }
+                });
+            }
+        }, 100);
+    }
+    
+    verifyCAPTCHA(correctAnswer) {
+        const input = document.getElementById('captcha-answer');
+        const userAnswer = parseInt(input.value);
+        
+        if (userAnswer === correctAnswer) {
+            // CAPTCHA correcto - remover desafío
+            const captcha = document.querySelector('div[style*="position: fixed"]');
+            if (captcha) captcha.remove();
+            
+            this.showNotification('✅ Verificación completada - Puedes continuar navegando');
+            console.log('✅ CAPTCHA verificado correctamente');
+        } else {
+            // CAPTCHA incorrecto - mostrar nuevo desafío
+            const captcha = document.querySelector('div[style*="position: fixed"]');
+            if (captcha) captcha.remove();
+            
+            // Generar nuevo CAPTCHA
+            setTimeout(() => {
+                const clientId = this.getClientId();
+                this.showCAPTCHAChallenge(clientId);
+            }, 500);
+        }
+    }
+
+    showRateLimitWarning() {
+        const warning = document.createElement('div');
+        warning.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #ffc107;
+                color: #333;
+                padding: 12px 18px;
+                border-radius: 8px;
+                z-index: 10000;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                font-size: 14px;
+            ">
+                🐌 Navegación muy rápida detectada
+                <br>
+                <small>Por favor, reduce un poco la velocidad para mejor experiencia.</small>
+            </div>
+        `;
+        
+        document.body.appendChild(warning);
+        
+        setTimeout(() => {
+            warning.remove();
+        }, 3000);
+    }
+
+    temporaryBlock(clientId) {
+        console.warn(`🚫 Cliente bloqueado temporalmente: ${clientId}`);
+        this.blockedIPs.add(clientId);
+        
+        // Mostrar mensaje de bloqueo más amigable
+        this.showBlockedMessage();
+        
+        // Reducido a 1 minuto en lugar de 5 minutos
+        setTimeout(() => {
+            this.blockedIPs.delete(clientId);
+            this.suspiciousIPs.delete(clientId);
+            this.showNotification('Acceso restaurado - Puedes continuar navegando');
+        }, 60000); // Reducido de 300000 a 60000ms
+    }
+
+    showBlockedMessage() {
+        const message = document.createElement('div');
+        message.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.8);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10001;
+                font-size: 16px;
+            ">
+                <div style="text-align: center; max-width: 400px; padding: 20px;">
+                    ⏳ Pausa de Seguridad Temporal
+                    <br><br>
+                    Hemos detectado actividad inusual.
                     <br>
-                    Por favor, espere 5 minutos antes de continuar.
+                    Por tu seguridad, espera 1 minuto.
+                    <br><br>
+                    <small style="color: #ccc;">Esta medida protege contra ataques automatizados.</small>
                 </div>
             </div>
         `;
@@ -388,7 +470,7 @@ class SecurityMonitor {
         
         setTimeout(() => {
             message.remove();
-        }, 5000);
+        }, 3000);
     }
 
     cleanupRateLimit() {
@@ -442,46 +524,32 @@ class SecurityMonitor {
     }
 
     setupRealTimeDetection() {
-        // Monitorear eventos inusuales
-        let keyboardMashCount = 0;
-        let lastKeyboardTime = 0;
-
-        document.addEventListener('keydown', (e) => {
-            const now = Date.now();
+        // DETECCIÓN MÍNIMA - Solo actividad extremadamente sospechosa
+        
+        // Detectar inactividad prolongada (>20 minutos)
+        let lastActivity = Date.now();
+        let inactivityTimer;
+        
+        const resetInactivityTimer = () => {
+            lastActivity = Date.now();
+            clearTimeout(inactivityTimer);
             
-            // Detectar keyboard mashing (ataque de fuerza bruta)
-            if (now - lastKeyboardTime < 50) {
-                keyboardMashCount++;
-                if (keyboardMashCount > 20) {
-                    this.handleAnomaly('Keyboard mashing detectado');
-                    keyboardMashCount = 0;
+            inactivityTimer = setTimeout(() => {
+                const inactiveTime = Date.now() - lastActivity;
+                if (inactiveTime > 20 * 60 * 1000) { // 20 minutos
+                    console.log('Usuario inactivo por más de 20 minutos');
+                    // No hacer nada, solo registrar
                 }
-            } else {
-                keyboardMashCount = 0;
-            }
-            lastKeyboardTime = now;
+            }, 20 * 60 * 1000);
+        };
+        
+        // Monitorear actividad del usuario
+        ['mousemove', 'keydown', 'click', 'scroll'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer);
         });
-
-        // Detectar clicks rápidos (click bombing)
-        let clickCount = 0;
-        let clickStartTime = 0;
-
-        document.addEventListener('click', () => {
-            const now = Date.now();
-            
-            if (clickCount === 0) {
-                clickStartTime = now;
-            }
-            
-            clickCount++;
-            
-            if (now - clickStartTime < 1000 && clickCount > 10) {
-                this.handleAnomaly('Click bombing detectado');
-                clickCount = 0;
-            } else if (now - clickStartTime > 1000) {
-                clickCount = 0;
-            }
-        });
+        
+        // Iniciar timer
+        resetInactivityTimer();
     }
 
     handleAnomalies(anomalies) {
@@ -664,12 +732,148 @@ class SecurityMonitor {
         }
     }
 
-    // MÉTODO PÚBLICO PARA ACTIVAR PANEL
+    // MÉTODO PÚBLICO PARA ACTIVAR PANEL - OCULTO
     enableSecurityPanel() {
-        // Agregar botón flotante para panel
-        const button = document.createElement('button');
-        button.innerHTML = '🛡️';
-        button.style.cssText = `
+        // NO mostrar botones públicos - solo acceso secreto
+        
+        // Agregar acceso secreto con combinación de teclas
+        let secretSequence = [];
+        const secretCode = ['d', 'o', 'm', 'e', 'd', 'i', 'c', 'o', 's']; // DOMEDICOS
+        
+        document.addEventListener('keydown', (e) => {
+            secretSequence.push(e.key.toLowerCase());
+            
+            // Mantener solo los últimos 9 caracteres
+            if (secretSequence.length > secretCode.length) {
+                secretSequence.shift();
+            }
+            
+            // Verificar si coincide con la secuencia secreta
+            if (JSON.stringify(secretSequence) === JSON.stringify(secretCode)) {
+                this.showLoginDialog();
+                secretSequence = []; // Resetear secuencia
+            }
+        });
+        
+        // Agregar botón de backup manual (oculto)
+        this.addBackupButton();
+    }
+    
+    showLoginDialog() {
+        const loginDialog = document.createElement('div');
+        loginDialog.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.9);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10001;
+                font-size: 16px;
+            ">
+                <div style="text-align: center; background: #333; padding: 30px; border-radius: 10px; max-width: 400px;">
+                    🔐 Acceso de Empleado
+                    <br><br>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; text-align: left;">Usuario:</label>
+                        <input type="text" id="security-username" placeholder="Usuario" style="
+                            width: 100%; padding: 10px; border: none; border-radius: 5px; font-size: 14px;
+                        ">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; text-align: left;">Contraseña:</label>
+                        <input type="password" id="security-password" placeholder="Contraseña" style="
+                            width: 100%; padding: 10px; border: none; border-radius: 5px; font-size: 14px;
+                        ">
+                    </div>
+                    <button onclick="window.securityMonitor.verifyLogin()" style="
+                        padding: 12px 24px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; width: 100%;
+                    ">Iniciar Sesión</button>
+                    <br><br>
+                    <button onclick="this.parentElement.parentElement.remove()" style="
+                        padding: 8px 16px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;
+                    ">Cancelar</button>
+                    <br><br>
+                    <small style="color: #ccc;">Acceso exclusivo para personal autorizado</small>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(loginDialog);
+        
+        // Enfocar usuario automáticamente
+        setTimeout(() => {
+            const usernameInput = document.getElementById('security-username');
+            if (usernameInput) {
+                usernameInput.focus();
+                
+                // Enter para enviar
+                usernameInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        document.getElementById('security-password').focus();
+                    }
+                });
+                
+                const passwordInput = document.getElementById('security-password');
+                passwordInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.verifyLogin();
+                    }
+                });
+            }
+        }, 100);
+    }
+    
+    verifyLogin() {
+        const username = document.getElementById('security-username').value;
+        const password = document.getElementById('security-password').value;
+        
+        // Credenciales por defecto (en producción deberían estar en servidor)
+        const validCredentials = [
+            { username: 'admin', password: 'domedicos2026' },
+            { username: 'empleado', password: 'medicos2026' },
+            { username: 'security', password: 'seguridad2026' }
+        ];
+        
+        const isValid = validCredentials.some(cred => 
+            cred.username === username && cred.password === password
+        );
+        
+        if (isValid) {
+            // Login exitoso
+            const loginDialog = document.querySelector('div[style*="position: fixed"]');
+            if (loginDialog) loginDialog.remove();
+            
+            // Mostrar panel de seguridad
+            this.showSecurityPanel();
+            
+            // Agregar botones flotantes solo para usuarios autenticados
+            this.addSecurityButtons();
+            
+            this.showNotification('✅ Sesión iniciada - Panel de seguridad activado');
+            console.log('✅ Usuario autenticado:', username);
+        } else {
+            // Login fallido
+            this.showNotification('❌ Credenciales incorrectas');
+            
+            // Limpiar campos
+            document.getElementById('security-username').value = '';
+            document.getElementById('security-password').value = '';
+            document.getElementById('security-username').focus();
+        }
+    }
+    
+    addSecurityButtons() {
+        // Botón de panel principal
+        const panelButton = document.createElement('button');
+        panelButton.innerHTML = '🛡️';
+        panelButton.title = 'Panel de Seguridad';
+        panelButton.style.cssText = `
             position: fixed;
             bottom: 20px;
             left: 20px;
@@ -685,11 +889,44 @@ class SecurityMonitor {
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         `;
         
-        button.onclick = () => this.showSecurityPanel();
-        document.body.appendChild(button);
+        panelButton.onclick = () => this.showSecurityPanel();
+        document.body.appendChild(panelButton);
         
-        // Agregar botón de backup manual
-        this.addBackupButton();
+        // Botón de logout
+        const logoutButton = document.createElement('button');
+        logoutButton.innerHTML = '🚪';
+        logoutButton.title = 'Cerrar Sesión';
+        logoutButton.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 80px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        `;
+        
+        logoutButton.onclick = () => this.logout();
+        document.body.appendChild(logoutButton);
+    }
+    
+    logout() {
+        // Remover botones flotantes
+        const buttons = document.querySelectorAll('button[style*="position: fixed"]');
+        buttons.forEach(button => button.remove());
+        
+        // Limpiar sesión
+        this.showNotification('🚪 Sesión cerrada - Panel de seguridad desactivado');
+        console.log('🚪 Sesión de seguridad cerrada');
+        
+        // Reactivar acceso secreto
+        this.enableSecurityPanel();
     }
     
     addBackupButton() {
