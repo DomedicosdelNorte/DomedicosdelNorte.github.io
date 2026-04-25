@@ -854,8 +854,8 @@ class SecurityMonitor {
             
             // Agregar botones flotantes solo para usuarios autenticados
             this.addSecurityButtons();
-            // El botón de backup se agrega en addSecurityButtons()
-            // this.addBackupButton(); // Ya no se agrega aquí
+            // El botón de backup está completamente eliminado
+            // this.addBackupButton(); // Nunca se muestra
             
             this.showNotification('✅ Sesión iniciada - Panel de seguridad activado');
             console.log('✅ Usuario autenticado:', username);
@@ -917,8 +917,8 @@ class SecurityMonitor {
         logoutButton.onclick = () => this.logout();
         document.body.appendChild(logoutButton);
         
-        // Agregar botón de backup solo para usuarios autenticados
-        this.addBackupButton();
+        // NO agregar botón de backup - completamente oculto
+        // this.addBackupButton(); // Comentado - no mostrar nunca
     }
     
     logout() {
