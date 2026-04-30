@@ -934,34 +934,9 @@ class SecurityMonitor {
         this.enableSecurityPanel();
     }
     
-    addBackupButton() {
-        // Botón de backup manual - SOLO después de login
-        const backupButton = document.createElement('button');
-        backupButton.innerHTML = '💾';
-        backupButton.title = 'Crear Backup Manual';
-        backupButton.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            left: 140px;
-            background: #28a745;
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1000;
-            font-size: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        `;
-        
-        backupButton.onclick = () => {
-            this.createBackup();
-            this.showNotification('Backup creado exitosamente');
-        };
-        
-        document.body.appendChild(backupButton);
-    }
+    // addBackupButton() - ELIMINADO COMPLETAMENTE
+    // Este método ha sido eliminado para evitar que el botón de backup aparezca
+    // La función de backup sigue disponible desde el panel de seguridad interno
     
     showNotification(message) {
         const notification = document.createElement('div');
