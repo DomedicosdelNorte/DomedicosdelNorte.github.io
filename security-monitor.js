@@ -90,8 +90,8 @@ class SecurityMonitor {
             
             console.log('💾 Backup automático creado');
             
-            // Ofrecer descarga manual
-            this.offerBackupDownload(backupData);
+            // NO ofrecer descarga manual - solo desde panel interno
+            // this.offerBackupDownload(backupData); // Eliminado para evitar botón público
             
         } catch (error) {
             console.error('❌ Error en backup:', error);
@@ -111,30 +111,9 @@ class SecurityMonitor {
         }
     }
 
-    offerBackupDownload(backupData) {
-        // Crear botón de descarga si no existe
-        if (!document.getElementById('backup-download')) {
-            const button = document.createElement('button');
-            button.id = 'backup-download';
-            button.innerHTML = '📥 Descargar Backup';
-            button.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 80px;
-                background: #28a745;
-                color: white;
-                border: none;
-                padding: 10px 15px;
-                border-radius: 5px;
-                cursor: pointer;
-                z-index: 1000;
-                font-size: 12px;
-            `;
-            
-            button.onclick = () => this.downloadBackup(backupData);
-            document.body.appendChild(button);
-        }
-    }
+    // offerBackupDownload() - ELIMINADO COMPLETAMENTE
+    // Este método ha sido eliminado para evitar que el botón de descarga aparezca
+    // La descarga de backup solo está disponible desde el panel de seguridad interno
 
     downloadBackup(backupData) {
         const dataStr = JSON.stringify(backupData, null, 2);
