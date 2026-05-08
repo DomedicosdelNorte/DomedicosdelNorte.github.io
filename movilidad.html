@@ -999,6 +999,24 @@
     </svg>
   </a>
 
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID', {
+      cookie_flags: 'secure;samesite=none;max-age=7200',
+      anonymize_ip: true
+    });
+  </script>
+  
+  <!-- Analytics Tracker Avanzado -->
+  <script src="analytics-tracker.js"></script>
+  
+  <!-- Carrito de Cotización -->
+  <script src="cart-system.js"></script>
+  
   <!-- Banner de Cookies GDPR Compliant -->
   <script src="cookie-banner.js"></script>
   
