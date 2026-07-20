@@ -47,7 +47,7 @@ class CotizacionCart {
             <div id="cart-button" style="
                 position: fixed;
                 bottom: 20px;
-                right: 20px;
+                right: 90px;
                 background: linear-gradient(135deg, #25d366, #128c7e);
                 color: white;
                 border-radius: 50%;
