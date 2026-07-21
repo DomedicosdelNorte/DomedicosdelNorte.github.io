@@ -701,6 +701,21 @@
       }
     }
     
+    /* STRICT GRID AND IMAGE CONSTRAINTS FOR INSUMOS */
+    .product-card, .card, .grid-item, .article-card, .product-item {
+        max-width: 300px !important;
+        margin: 15px auto !important;
+        box-sizing: border-box !important;
+    }
+
+    .product-card img, .card img, .grid-item img, .article-card img, .product-item img {
+        width: 100% !important;
+        height: 200px !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+
     /* ACCESIBILIDAD MEJORADA -->
     @media (prefers-reduced-motion: reduce) {
       * {
@@ -755,7 +770,7 @@
           <a href="index.html#nosotros">Nosotros</a>
           <a href="index.html#mantenimiento">Mantenimiento</a>
           <a href="contacto.html">Contacto</a>
-          <a href="#legal">Información Legal</a>
+          <a href="index.html#legal">Información Legal</a>
         </nav>
       </div>
     </div>
