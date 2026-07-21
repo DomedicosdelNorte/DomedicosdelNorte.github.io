@@ -741,6 +741,29 @@
         border-color: #333;
       }
     }
+
+    /* FORCE BOUNDED CARDS AND IMAGES IN INSUMOS */
+    .product-card, .card, .product-item, .grid-item, article {
+      max-width: 300px !important;
+      width: 100% !important;
+      margin: 15px auto !important;
+      overflow: hidden !important;
+    }
+
+    .product-card img, .card img, .product-item img, .grid-item img, article img {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 200px !important;
+      max-height: 200px !important;
+      object-fit: contain !important;
+      display: block !important;
+      margin: 0 auto !important;
+    }
+
+    .product-card p, .card p, .product-item p {
+      font-size: 0.9rem !important;
+      line-height: 1.3 !important;
+    }
   </style>
 </head>
 <body>
