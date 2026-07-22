@@ -290,7 +290,11 @@ class SecurityMonitor {
         console.warn(`🚨 Actividad extremadamente sospechosa: ${clientId}`);
         
         // Solo bloquear si es abuso extremo (>2000 peticiones/minuto)
-        this.showCAPTCHAChallenge(clientId);
+        // REMOVED: Random CAPTCHA popup - now only triggers on inactivity
+        // this.showCAPTCHAChallenge(clientId);
+        
+        // Just log the suspicious activity
+        this.sendAlert('Actividad extremadamente sospechosa detectada: ' + clientId);
     }
 
     showCAPTCHAChallenge(clientId) {
@@ -505,7 +509,7 @@ class SecurityMonitor {
     setupRealTimeDetection() {
         // DETECCIÓN MÍNIMA - Solo actividad extremadamente sospechosa
         
-        // Detectar inactividad prolongada (>20 minutos)
+        // Detectar inactividad prolongada (>15 minutos) - Trigger CAPTCHA
         let lastActivity = Date.now();
         let inactivityTimer;
         
@@ -515,11 +519,12 @@ class SecurityMonitor {
             
             inactivityTimer = setTimeout(() => {
                 const inactiveTime = Date.now() - lastActivity;
-                if (inactiveTime > 20 * 60 * 1000) { // 20 minutos
-                    console.log('Usuario inactivo por más de 20 minutos');
-                    // No hacer nada, solo registrar
+                if (inactiveTime > 15 * 60 * 1000) { // 15 minutos (900 segundos)
+                    console.log('Usuario inactivo por más de 15 minutos - Triggering CAPTCHA');
+                    // Trigger CAPTCHA modal after 15 minutes of inactivity
+                    this.showCAPTCHAChallenge('inactivity_timeout');
                 }
-            }, 20 * 60 * 1000);
+            }, 15 * 60 * 1000);
         };
         
         // Monitorear actividad del usuario
