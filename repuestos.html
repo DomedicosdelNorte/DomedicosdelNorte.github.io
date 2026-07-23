@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com;">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
   <title>Repuestos y Accesorios - Domédicos del Norte</title>
-  <meta name="description" content="Distribuidor especializado en repuestos y accesorios para equipos médicos en Barranquilla y Colombia. Baterías, sensores, cables y más. 30 años de experiencia, envíos a nivel nacional." />
+  <meta name="description" content="Distribuidor especializado en repuestos y accesorios para equipos médicos en Barranquilla y Colombia. Baterías, sensores, cables y más. 30 años de experiencia.">
   <meta name="keywords" content="repuestos médicos Barranquilla, accesorios equipos médicos, baterías tensiómetro, sensores pulsioxímetro Colombia" />
   
   <!-- Canonical URL -->
@@ -138,16 +138,25 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary-color);
+    }
+
+    .logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
     
     .logo img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
+      height: 45px !important;
+      width: auto !important;
+      max-width: none !important;
+      object-fit: contain !important;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05);
     }
     
     nav {
@@ -290,7 +299,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="none"/><use xlink:href="#grain"/></svg>');
       opacity: 0.3;
     }
     
@@ -478,7 +487,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23005b99" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="black" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="none"/><use xlink:href="#dots"/></svg>');
     }
     
     .cta-content {
@@ -606,93 +615,6 @@
       border-top: 1px solid #34495e;
       color: #95a5a6;
       margin-top: 50px;
-    }
-    
-    /* ANIMACIONES */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .article {
-      animation: fadeInUp 0.6s ease-out;
-    }
-    
-    .article:nth-child(1) { animation-delay: 0.1s; }
-    .article:nth-child(2) { animation-delay: 0.2s; }
-    .article:nth-child(3) { animation-delay: 0.3s; }
-    .article:nth-child(4) { animation-delay: 0.4s; }
-    .article:nth-child(5) { animation-delay: 0.5s; }
-    .article:nth-child(6) { animation-delay: 0.6s; }
-    
-    /* RESPONSIVE MEJORADO */
-    @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 25px;
-      }
-      
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        background: var(--bg-light);
-        margin-top: 1rem;
-        border-radius: 8px;
-      }
-      
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-      
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-      
-      .articles {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .cta-content h2 {
-        font-size: 2rem;
-      }
-      
-      .cta-content p {
-        font-size: 1.1rem;
-      }
-      
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-    }
-    
-    /* ACCESIBILIDAD MEJORADA */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
     }
     
     /* COMING SOON SECTION STYLES */
@@ -826,35 +748,59 @@
       }
     }
 
-    /* FORCE BLUE THEME FOR REPUESTOS HERO & NAVBAR */
-    header, .hero, nav.navbar, .navbar-collapse {
-      background: linear-gradient(135deg, #005b99, #0077cc) !important;
-      background-color: #005b99 !important;
-    }
-    header *, .hero *, nav.navbar * {
-      color: #ffffff !important;
-    }
-
-    /* FIX DROPDOWN CONTRAST */
-    .dropdown-menu {
-      background: #ffffff !important;
-      border: 1px solid #ddd !important;
-    }
-
-    .dropdown-menu a {
-      color: #333333 !important;
-    }
-
-    .dropdown-menu a:hover {
-      background: #f8f9fa !important;
-      color: #005b99 !important;
-    }
-
-    /* FIX LOGO DISTORTION */
-    .logo img {
-      max-height: 50px !important;
-      width: auto !important;
-      object-fit: contain !important;
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 25px;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: var(--bg-light);
+        margin-top: 1rem;
+        border-radius: 8px;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .articles {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-content h2 {
+        font-size: 2rem;
+      }
+      
+      .cta-content p {
+        font-size: 1.1rem;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
     }
   </style>
 </head>
@@ -1002,90 +948,45 @@
         </div>
         
         <div class="footer-section">
-          <h3>Servicios</h3>
-          <ul>
-            <li><a href="index.html#servicios">Venta de Equipos</a></li>
-            <li><a href="index.html#mantenimiento">Mantenimiento</a></li>
-            <li><a href="index.html#calibracion">Calibración</a></li>
-            <li><a href="index.html#asesoria">Asesoría Técnica</a></li>
-            <li><a href="index.html#garantia">Garantía</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
           <h3>Contacto</h3>
           <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
-            <span>Calle 72 #50-30, Barranquilla, Atlántico</span>
+            <span>Barranquilla, Atlántico, Colombia</span>
           </div>
           <div class="contact-item">
             <i class="fas fa-phone"></i>
-            <span>+57 310 610 7017</span>
+            <span><a href="tel:+575350101">+57 5 350 10 10</a></span>
           </div>
           <div class="contact-item">
             <i class="fas fa-envelope"></i>
-            <span>domedicosdelnorte@hotmail.com</span>
+            <span><a href="mailto:domedicosdelnorte@hotmail.com">domedicosdelnorte@hotmail.com</a></span>
           </div>
           <div class="contact-item">
-            <i class="fas fa-clock"></i>
-            <span>Lun-Vie: 8:00 AM - 6:00 PM</span>
+            <i class="fas fa-whatsapp"></i>
+            <span><a href="https://wa.me/573106107017" target="_blank">+57 310 610 7017</a></span>
           </div>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+            <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+            <li><a href="index.html#legal">Información Legal</a></li>
+          </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2026 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
+        <p>&copy; 2024 Domédicos del Norte. Todos los derechos reservados. | Distribuidor Oficial de Equipos Médicos</p>
       </div>
     </div>
   </footer>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20repuestos%20y%20accesorios" 
-     class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
-    <i class="fab fa-whatsapp"></i>
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20repuestos%20para%20equipos%20médicos" 
+     class="whatsapp-float" title="Contactar por WhatsApp" target="_blank">
+    <i class="fas fa-whatsapp"></i>
   </a>
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID', {
-      cookie_flags: 'secure;samesite=none;max-age=7200',
-      anonymize_ip: true
-    });
-  </script>
-  
-  <!-- Analytics Tracker Avanzado -->
-  <script src="analytics-tracker.js"></script>
-  
-  <!-- Carrito de Cotización -->
-  <script src="cart-system.js"></script>
-  
-  <!-- Banner de Cookies GDPR Compliant -->
-  <script src="cookie-banner.js"></script>
-  
-  <!-- Sistema de Seguridad Avanzada - Fase 3 -->
-  <script src="security-monitor.js"></script>
-  
-  <!-- Configuración de Seguridad -->
-  <script>
-    window.SECURITY_CONFIG = {
-      company: "Domédicos del Norte",
-      version: "3.0",
-      features: {
-        uptime: true,
-        backup: true,
-        firewall: true,
-        rateLimit: true,
-        anomalyDetection: true,
-        securityPanel: true
-      },
-      alerts: {
-        email: "domedicosdelnorte@hotmail.com",
-        enabled: true
-      }
-    };
-  </script>
 </body>
 </html>
