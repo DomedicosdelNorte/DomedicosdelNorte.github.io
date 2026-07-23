@@ -117,7 +117,7 @@
     
     /* HEADER MEJORADO */
     header {
-      background: var(--bg-white);
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%) !important;
       box-shadow: var(--shadow-sm);
       position: fixed;
       top: 0;
@@ -167,20 +167,20 @@
     
     nav a {
       font-weight: 500;
-      color: var(--text-dark);
+      color: #ffffff !important;
       padding: 0.5rem 1rem;
       border-radius: 8px;
       transition: var(--transition);
     }
     
     nav a:hover {
-      background: var(--bg-light);
-      color: var(--primary-color);
+      background: rgba(255,255,255,0.2);
+      color: #ffffff !important;
     }
     
     nav a.active {
-      background: var(--primary-color);
-      color: var(--bg-white);
+      background: rgba(255,255,255,0.3);
+      color: #ffffff !important;
     }
     
     .dropdown {
@@ -191,6 +191,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      color: #ffffff !important;
     }
     
     .dropdown-menu {
@@ -217,7 +218,7 @@
     .dropdown-menu a {
       display: block;
       padding: 0.75rem 1rem;
-      color: var(--text-dark);
+      color: var(--text-dark) !important;
       border-bottom: 1px solid var(--border-color);
     }
     
