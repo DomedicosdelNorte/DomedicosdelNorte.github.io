@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com;">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
   <title>Insumos Medicos e Instrumental Hospitalario - Domédicos del Norte</title>
-  <meta name="description" content="Distribuidor especializado en insumos médicos en Barranquilla y Colombia. Botiquines, nebulizadores, guantes, material de curación y más. 30 años de experiencia, envíos a nivel nacional." />
+  <meta name="description" content="Distribuidor especializado en insumos médicos en Barranquilla y Colombia. Botiquines, nebulizadores, guantes, material de curación y más. 30 años de experiencia.">
   <meta name="keywords" content="insumos médicos Barranquilla, botiquín primeros auxilios, nebulizador, guantes médicos, material curación Colombia" />
   
   <!-- Canonical URL -->
@@ -184,7 +184,7 @@
       border-radius: 0 0 10px 10px;
     }
     
-    /* WhatsApp Button -->
+    /* WhatsApp Button */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
@@ -237,7 +237,7 @@
       }
     }
     
-    /* BREADCRUMB -->
+    /* BREADCRUMB */
     .breadcrumb {
       background: #f8f9fa;
       padding: 15px 0;
@@ -263,7 +263,7 @@
       font-weight: 600;
     }
     
-    /* HERO SECTION MEJORADO -->
+    /* HERO SECTION MEJORADO */
     .category-hero {
       background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
       color: white;
@@ -280,7 +280,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="none"/><use xlink:href="#grain"/></svg>');
       opacity: 0.3;
     }
     
@@ -307,7 +307,7 @@
       animation: fadeInUp 1s ease 0.2s both;
     }
     
-    /* MAIN CONTENT -->
+    /* MAIN CONTENT */
     main {
       padding: 80px 0;
     }
@@ -332,7 +332,7 @@
       line-height: 1.8;
     }
     
-    /* PRODUCTS GRID MEJORADO -->
+    /* PRODUCTS GRID MEJORADO */
     .products-showcase {
       margin: 80px 0;
     }
@@ -395,9 +395,10 @@
     }
     
     .article-image img {
-      width: 100% !important;
-      max-height: 250px !important;
-      object-fit: contain !important;
+      max-width: 100%;
+      max-height: 220px;
+      width: 100%;
+      object-fit: contain;
       transition: transform 0.4s ease;
     }
     
@@ -484,7 +485,7 @@
       box-shadow: 0 15px 40px rgba(0, 91, 153, 0.3);
     }
     
-    /* CTA SECTION MEJORADA -->
+    /* CTA SECTION MEJORADA */
     .cta-section {
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       padding: 100px 0;
@@ -499,26 +500,23 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(0,91,153,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      opacity: 0.5;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="black" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="none"/><use xlink:href="#dots"/></svg>');
     }
     
     .cta-content {
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
     
     .cta-content h2 {
-      font-size: 3rem;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
       color: #005b99;
-      margin-bottom: 30px;
-      font-weight: 800;
     }
     
     .cta-content p {
-      font-size: 1.3rem;
-      color: #6c757d;
-      margin-bottom: 50px;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
@@ -526,37 +524,40 @@
     
     .cta-buttons {
       display: flex;
-      gap: 30px;
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
     }
     
-    .btn-primary, .btn-secondary {
+    .btn-primary {
+      background: linear-gradient(135deg, #005b99, #0077cc);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 18px 35px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.1rem;
-      transition: all 0.4s ease;
-    }
-    
-    .btn-primary {
-      background: #25d366;
-      color: white;
-      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      gap: 0.5rem;
     }
     
     .btn-primary:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+      box-shadow: 0 15px 40px rgba(0, 91, 153, 0.3);
     }
     
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.95);
+      background: white;
       color: #005b99;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       border: 2px solid #005b99;
     }
     
@@ -567,7 +568,7 @@
       box-shadow: 0 10px 30px rgba(0, 91, 153, 0.3);
     }
     
-    /* FOOTER MEJORADO -->
+    /* FOOTER MEJORADO */
     footer {
       background: #1a1a2e;
       color: white;
@@ -578,20 +579,20 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 50px;
-      margin-bottom: 60px;
+      margin-bottom: 50px;
     }
     
     .footer-section h3 {
       font-size: 1.5rem;
-      margin-bottom: 30px;
-      color: #ffffff;
+      margin-bottom: 1.5rem;
+      color: white;
       font-weight: 700;
     }
     
-    .footer-section p, .footer-section ul {
-      color: #b8b8b8;
+    .footer-section p {
+      color: #b8c5d6;
       line-height: 1.8;
-      font-size: 1.05rem;
+      margin-bottom: 1rem;
     }
     
     .footer-section ul {
@@ -599,23 +600,16 @@
     }
     
     .footer-section ul li {
-      margin-bottom: 15px;
-      transition: transform 0.3s ease;
+      margin-bottom: 0.8rem;
     }
     
-    .footer-section ul li:hover {
-      transform: translateX(5px);
-    }
-    
-    .footer-section a {
-      color: #3498db;
-      text-decoration: none;
+    .footer-section ul li a {
+      color: #b8c5d6;
       transition: all 0.3s ease;
-      font-weight: 600;
     }
     
-    .footer-section a:hover {
-      color: #2980b9;
+    .footer-section ul li a:hover {
+      color: #0077cc;
     }
     
     .footer-bottom {
@@ -623,9 +617,10 @@
       padding-top: 40px;
       border-top: 1px solid #34495e;
       color: #95a5a6;
+      font-size: 0.95rem;
     }
     
-    /* ANIMACIONES -->
+    /* ANIMATIONS */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -637,37 +632,19 @@
       }
     }
     
-    /* RESPONSIVE MEJORADO -->
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 25px;
-      }
-      
       nav {
         flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      nav a {
-        padding: 8px 14px;
-        font-size: 0.9rem;
+        gap: 15px;
       }
       
       .category-hero h1 {
         font-size: 2.5rem;
       }
       
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-      
       .category-intro h2 {
-        font-size: 2.2rem;
-      }
-      
-      .intro-text {
-        font-size: 1.1rem;
+        font-size: 2rem;
       }
       
       .articles {
@@ -678,111 +655,6 @@
       .article-image {
         height: 220px;
       }
-      
-      .article-content {
-        padding: 25px;
-      }
-      
-      .article-title {
-        font-size: 1.5rem;
-      }
-      
-      .cta-content h2 {
-        font-size: 2.2rem;
-      }
-      
-      .cta-content p {
-        font-size: 1.1rem;
-      }
-      
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-    }
-    
-    /* STRICT GRID AND IMAGE CONSTRAINTS FOR INSUMOS */
-    .product-card, .card, .grid-item, .article-card, .product-item {
-        max-width: 300px !important;
-        margin: 15px auto !important;
-        box-sizing: border-box !important;
-    }
-
-    .product-card img, .card img, .grid-item img, .article-card img, .product-item img {
-        width: 100% !important;
-        height: 200px !important;
-        object-fit: contain !important;
-        display: block !important;
-        margin: 0 auto !important;
-    }
-
-    /* ACCESIBILIDAD MEJORADA -->
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    
-    /* DARK MODE SUPPORT -->
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #0f0f0f;
-        color: #e0e0e0;
-      }
-      
-      .cta-section {
-        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-      }
-      
-      .article {
-        background: #1a1a1a;
-        border-color: #333;
-      }
-    }
-
-    /* FORCE BOUNDED CARDS AND IMAGES IN INSUMOS */
-    .product-card, .card, .product-item, .grid-item, article {
-      max-width: 300px !important;
-      width: 100% !important;
-      margin: 15px auto !important;
-      overflow: hidden !important;
-    }
-
-    .product-card img, .card img, .product-item img, .grid-item img, article img {
-      width: 100% !important;
-      max-width: 100% !important;
-      height: 200px !important;
-      max-height: 200px !important;
-      object-fit: contain !important;
-      display: block !important;
-      margin: 0 auto !important;
-    }
-
-    .product-card p, .card p, .product-item p {
-      font-size: 0.9rem !important;
-      line-height: 1.3 !important;
-    }
-
-    /* FORCE MULTI-COLUMN GRID & CARD BORDERS FOR INSUMOS */
-    .products-container, .products-grid, .row, main section .grid, .catalog-grid {
-      display: grid !important;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-      gap: 20px !important;
-      justify-content: center !important;
-      padding: 20px 0 !important;
-    }
-
-    .product-card, .card, .product-item, .grid-item {
-      border: 1px solid #e0e0e0 !important;
-      border-radius: 8px !important;
-      padding: 15px !important;
-      background: #ffffff !important;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: space-between !important;
     }
   </style>
 </head>
@@ -804,7 +676,7 @@
               <a href="diagnostico.html">Equipos de Diagnóstico</a>
               <a href="movilidad.html">Equipos de Movilidad</a>
               <a href="hospitalario.html">Mobiliario Clínico</a>
-              <a href="insumos.html" class="active">Insumos Medicos e Instrumental Hospitalario</a>
+              <a href="insumos.html" class="active">Insumos Médicos e Instrumental</a>
               <a href="especializados.html">Equipos Especializados</a>
               <a href="repuestos.html">Repuestos y Accesorios</a>
             </div>
@@ -823,7 +695,7 @@
   <div class="breadcrumb">
     <div class="container">
       <div class="breadcrumb-content">
-        <a href="index.html">Inicio</a> / <span class="current">Insumos Medicos e Instrumental Hospitalario</span>
+        <a href="index.html">Inicio</a> / <span class="current">Insumos Médicos e Instrumental Hospitalario</span>
       </div>
     </div>
   </div>
@@ -832,8 +704,8 @@
   <section class="category-hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Insumos Medicos e Instrumental Hospitalario</h1>
-        <p class="hero-subtitle">Productos desechables, consumibles e instrumental hospitalario</p>
+        <h1>Insumos Médicos e Instrumental Hospitalario</h1>
+        <p class="hero-subtitle">Amplia variedad de insumos consumibles y material quirúrgico de calidad garantizada</p>
       </div>
     </div>
   </section>
@@ -843,522 +715,189 @@
     <div class="container">
       <!-- Introduction -->
       <section class="category-intro">
-        <h2>Insumos Médicos de Alta Calidad</h2>
+        <h2>Insumos de Calidad Profesional</h2>
         <p class="intro-text">
-          En <strong>Domédicos del Norte</strong> ofrecemos equipos hospitalarios de alta calidad diseñados para el entorno clínico. Nuestros productos cumplen con los más estrictos estándares sanitarios y de seguridad, garantizando durabilidad y funcionalidad en entornos de alto uso.
+          Domédicos del Norte ofrece una completa línea de insumos médicos e instrumental hospitalario, 
+          desde botiquines de primeros auxilios hasta nebulizadores, guantes, material de curación y más. 
+          Todos nuestros productos cuentan con garantía de calidad y certificaciones sanitarias.
         </p>
       </section>
 
       <!-- Products Grid -->
       <section class="products-showcase">
         <div class="articles">
-          <article class="article">
+          
+          <!-- Product 1 -->
+          <div class="article">
             <div class="article-image">
-              <img src="botiquin morral de primeros auxilios.png" alt="Botiquín completo para primeros auxilios" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
+              <img src="botiquin morral de primeros auxilios.png" alt="Botiquín Morral de Primeros Auxilios">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Botiquín de Primeros Auxilios</h3>
-              <p class="article-description">
-                Botiquín completo con todos los elementos esenciales para primeros auxilios. Incluye gasas, vendajes, antisépticos, tijeras, pinzas y medicamentos básicos. Ideal para hogares, oficinas y vehículos.
-              </p>
+              <h3 class="article-title">Botiquín Morral de Primeros Auxilios</h3>
+              <p class="article-description">Botiquín completo en presentación de morral portátil con todos los elementos esenciales para atender emergencias básicas.</p>
               <div class="product-features">
+                <span class="feature-tag">Portátil</span>
                 <span class="feature-tag">Completo</span>
-                <span class="feature-tag">Certificado</span>
-                <span class="feature-tag">Multiuso</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Botiquín" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Botiquín%20Morral%20de%20Primeros%20Auxilios" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-
-
-          <article class="article">
+          <!-- Product 2 -->
+          <div class="article">
             <div class="article-image">
-              <img src="Termometro Digital.webp" alt="Termómetro digital para medición de temperatura" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
+              <img src="Nebulizador Portatil.png" alt="Nebulizador Portátil">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Termómetro Digital</h3>
-              <p class="article-description">
-                Termómetro digital de alta precisión con lectura rápida en 60 segundos. Pantalla LCD clara y memoria de última medición. Indicador de fiebre y apagado automático.
-              </p>
+              <h3 class="article-title">Nebulizador Portátil</h3>
+              <p class="article-description">Nebulizador portátil de fácil uso para administración de medicamentos en aerosol. Ideal para tratamientos respiratorios.</p>
               <div class="product-features">
-                <span class="feature-tag">60 Segundos</span>
-                <span class="feature-tag">Memoria</span>
-                <span class="feature-tag">Fiebre</span>
+                <span class="feature-tag">Portátil</span>
+                <span class="feature-tag">Eficiente</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Termómetro" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Nebulizador%20Portátil" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-          <article class="article">
+          <!-- Product 3 -->
+          <div class="article">
             <div class="article-image">
-              <img src="guante-latex-examen-no-esteril.webp" alt="Guantes de látex desechables" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
+              <img src="Guante de Nitrilo Para examen no Esteril.webp" alt="Guante de Nitrilo Para Examen no Estéril">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Guantes de Látex</h3>
-              <p class="article-description">
-                Guantes de látex desechables de alta calidad para procedimientos médicos. Textura mejorada para mayor sensibilidad y agarre. Tallas múltiples disponibles con certificación médica.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Desechable</span>
-                <span class="feature-tag">Alta Calidad</span>
-                <span class="feature-tag">Certificado</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20los%20Guantes%20de%20Látex" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="guantes esteriles.png" alt="Mascarillas quirúrgicas desechables" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Mascarillas Quirúrgicas</h3>
-              <p class="article-description">
-                Mascarillas quirúrgicas de 3 capas con alta eficiencia de filtración. Material hipoalergénico con ajuste nasal y elásticos cómodos. Cumple con normas sanitarias internacionales.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">3 Capas</span>
-                <span class="feature-tag">Alta Filtración</span>
-                <span class="feature-tag">Hipoalergénico</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20las%20Mascarillas" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Tarros algodonero.webp" alt="Tarros algodoneros estériles para consultorio" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Tarros Algodoneros</h3>
-              <p class="article-description">
-                Tarros algodoneros estériles con tapa hermética y dispensador. Contenido de algodón de alta calidad absorbente. Ideal para consultorios y clínicas médicas.
-              </p>
+              <h3 class="article-title">Guante de Nitrilo para Examen No Estéril</h3>
+              <p class="article-description">Guantes de nitrilo de excelente calidad, resistentes y flexibles, ideales para uso médico y sanitario en general.</p>
               <div class="product-features">
                 <span class="feature-tag">Estéril</span>
-                <span class="feature-tag">Tapa Hermética</span>
-                <span class="feature-tag">Alta Absorción</span>
+                <span class="feature-tag">Seguro</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20los%20Tarros%20Algodoneros" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Guante%20de%20Nitrilo" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-          <article class="article">
+          <!-- Product 4 -->
+          <div class="article">
             <div class="article-image">
-              <img src="Guante de Nitrilo Para examen no Esteril.webp" alt="Guantes de nitrilo desechables" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
+              <img src="aspirador de secreciones.webp" alt="Aspirador de Secreciones">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Guantes de Nitrilo</h3>
-              <p class="article-description">
-                Guantes de nitrilo desechables de alta resistencia química y mecánica. Sin látex, ideal para personas alérgicas. Textura mejorada para mayor sensibilidad y agarre. Tallas múltiples disponibles.
-              </p>
+              <h3 class="article-title">Aspirador de Secreciones</h3>
+              <p class="article-description">Aspirador de secreciones portátil con gran potencia de succión, diseñado para uso médico profesional y hospitalario.</p>
               <div class="product-features">
-                <span class="feature-tag">Sin Látex</span>
-                <span class="feature-tag">Resistente</span>
-                <span class="feature-tag">Alta Sensibilidad</span>
+                <span class="feature-tag">Potente</span>
+                <span class="feature-tag">Portátil</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20los%20Guantes%20de%20Nitrilo" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Aspirador%20de%20Secreciones" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-          <article class="article">
+          <!-- Product 5 -->
+          <div class="article">
             <div class="article-image">
-              <img src="Vendas de gasa 4''x 5 Yardas.webp" alt="Vendas de gasa estériles" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
+              <img src="Curas Lukoplast profesional Standard color piel x 100und.webp" alt="Curas Lukoplast Profesional Standard">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Vendas de Gasa</h3>
-              <p class="article-description">
-                Vendas de gasa estériles de 4 pulgadas x 5 yardas. Material de alta calidad absorbente y transpirable. Ideal para vendajes y curaciones. Empaquetado individualmente.
-              </p>
+              <h3 class="article-title">Curas Lukoplast Profesional Standard</h3>
+              <p class="article-description">Curas adhesivas profesionales de alta calidad, color piel, pack de 100 unidades. Ideales para protección de heridas.</p>
               <div class="product-features">
-                <span class="feature-tag">Estéril</span>
-                <span class="feature-tag">4'' x 5 Yardas</span>
-                <span class="feature-tag">Absorbente</span>
+                <span class="feature-tag">Profesional</span>
+                <span class="feature-tag">Pack 100</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20las%20Vendas%20de%20Gasa" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Curas%20Lukoplast" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-          <article class="article">
+          <!-- Product 6 -->
+          <div class="article">
             <div class="article-image">
-              <img src="Curas Lukoplast profesional Standard color piel x 100und.webp" alt="Curas adhesivas Lukoplast" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Curas Adhesivas Lukoplast</h3>
-              <p class="article-description">
-                Curas adhesivas profesionales Lukoplast color piel. Paquete x 100 unidades de diferentes tamaños. Material hipoalergénico y transpirable. Ideal para consultorios y clínicas.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">100 Unidades</span>
-                <span class="feature-tag">Color Piel</span>
-                <span class="feature-tag">Hipoalergénico</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20las%20Curas%20Lukoplast" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Bajalenguas de Madera paquete x 20.webp" alt="Bajalenguas de madera desechables" loading="lazy" style="max-height: 250px; width: 100%; object-fit: contain;">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Bajalenguas de Madera</h3>
-              <p class="article-description">
-                Bajalenguas de madera desechables paquete x 20 unidades. Material natural sin tratamiento químico. Ideal para examen de garganta y diagnóstico. Empaquetado individualmente.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">20 Unidades</span>
-                <span class="feature-tag">Natural</span>
-                <span class="feature-tag">Desechable</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20los%20Bajalenguas" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Papel Termorreactivo Ref.910350.webp" alt="Papel termorreactivo para electrocardiógrafo" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Papel Termorreactivo</h3>
-              <p class="article-description">
-                Papel termorreactivo Ref.910350 para electrocardiógrafo. Alta calidad de impresión y durabilidad. Compatible con la mayoría de equipos ECG. Rollo de alta capacidad.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Ref.910350</span>
-                <span class="feature-tag">Alta Calidad</span>
-                <span class="feature-tag">Compatible</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Papel%20Termorreactivo" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Pato psingo para orina.webp" alt="Pato psingo para recolección de orina" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Pato Psingo para Orina</h3>
-              <p class="article-description">
-                Pato psingo para recolección de orina de alta calidad. Material resistente y fácil de limpiar. Diseño ergonómico para mayor comodidad del paciente. Ideal para uso hospitalario.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Resistente</span>
-                <span class="feature-tag">Ergonómico</span>
-                <span class="feature-tag">Hospitalario</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Pato%20Psingo" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="pato-coprologico-adulto-acero-inoxidable.png" alt="Pato coprológico de acero inoxidable" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Pato Coprológico Acero</h3>
-              <p class="article-description">
-                Pato coprológico adulto en acero inoxidable de alta calidad. Material duradero y fácil de esterilizar. Diseño ergonómico y antideslizante. Ideal para uso hospitalario.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Acero Inoxidable</span>
-                <span class="feature-tag">Duradero</span>
-                <span class="feature-tag">Esterilizable</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Pato%20Coprológico" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="gasa precortada esteril.webp" alt="Gasa precortada estéril" loading="lazy">
+              <img src="gasa precortada esteril.webp" alt="Gasa Precortada Estéril">
             </div>
             <div class="article-content">
               <h3 class="article-title">Gasa Precortada Estéril</h3>
-              <p class="article-description">
-                Gasa precortada estéril de alta calidad absorbente. Empaquetado individualmente para mantener esterilidad. Ideal para curaciones y procedimientos médicos. Tamaños variados.
-              </p>
+              <p class="article-description">Gasa médica precortada y estéril, de máxima calidad, ideal para curación de heridas y procedimientos quirúrgicos.</p>
               <div class="product-features">
                 <span class="feature-tag">Estéril</span>
-                <span class="feature-tag">Precortada</span>
-                <span class="feature-tag">Individual</span>
+                <span class="feature-tag">Médica</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Gasa%20Precortada" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Gasa%20Precortada%20Estéril" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-          <article class="article">
+          <!-- Product 7 -->
+          <div class="article">
             <div class="article-image">
-              <img src="Bandeja para instrumental en acero.jpg" alt="Bandeja para instrumental en acero inoxidable" loading="lazy">
+              <img src="Vendas de gasa 4''x 5 Yardas.webp" alt="Vendas de Gasa 4'' x 5 Yardas">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Bandeja de Instrumental</h3>
-              <p class="article-description">
-                Bandeja para instrumental en acero inoxidable de alta calidad. Diseño con compartimentos para organización. Resistente a corrosión y fácil de esterilizar. Ideal para procedimientos médicos.
-              </p>
+              <h3 class="article-title">Vendas de Gasa 4" x 5 Yardas</h3>
+              <p class="article-description">Vendas de gasa estéril en presentación de 4 pulgadas x 5 yardas. Excelentes para fijación y curación de heridas.</p>
               <div class="product-features">
-                <span class="feature-tag">Acero Inoxidable</span>
-                <span class="feature-tag">Compartimentos</span>
-                <span class="feature-tag">Esterilizable</span>
+                <span class="feature-tag">Estéril</span>
+                <span class="feature-tag">5 Yardas</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Bandeja%20de%20Instrumental" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Vendas%20de%20Gasa" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-          <article class="article">
+          <!-- Product 8 -->
+          <div class="article">
             <div class="article-image">
-              <img src="cinta-metrica.jpg" alt="Cinta métrica médica" loading="lazy">
+              <img src="Tarros algodonero.webp" alt="Tarros Algodonero">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Cinta Métrica Médica</h3>
-              <p class="article-description">
-                Cinta métrica médica de alta precisión para medición de pacientes. Escala métrica y en pulgadas. Material duradero y fácil de limpiar. Ideal para consultorios y clínicas.
-              </p>
+              <h3 class="article-title">Tarros Algodonero</h3>
+              <p class="article-description">Tarros algodoneros de plástico resistente, diseñados para almacenamiento seguro de algodón y materiales médicos.</p>
               <div class="product-features">
-                <span class="feature-tag">Precisión</span>
-                <span class="feature-tag">Métrica/Pulgadas</span>
-                <span class="feature-tag">Duradera</span>
+                <span class="feature-tag">Resistente</span>
+                <span class="feature-tag">Práctico</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Cinta%20Métrica" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Tarros%20Algodonero" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-          <article class="article">
+          <!-- Product 9 -->
+          <div class="article">
             <div class="article-image">
-              <img src="incentivo respiratorio .png" alt="Incentivador respiratorio para terapia pulmonar" loading="lazy">
+              <img src="Pato psingo para orina.webp" alt="Pato Psingo para Orina">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Incentivador Respiratorio</h3>
-              <p class="article-description">
-                Incentivador respiratorio para terapia pulmonar y recuperación postoperatoria. Sistema de bolas con indicadores visuales de volumen. Diseño ergonómico y fácil de usar.
-              </p>
+              <h3 class="article-title">Pato Psingo para Orina</h3>
+              <p class="article-description">Pato psingo estéril para recolección de orina, de uso hospitalario y clínico. Calidad garantizada.</p>
               <div class="product-features">
-                <span class="feature-tag">Terapia</span>
-                <span class="feature-tag">Visual</span>
-                <span class="feature-tag">Ergonómico</span>
+                <span class="feature-tag">Estéril</span>
+                <span class="feature-tag">Clínico</span>
               </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Incentivador%20Respiratorio" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
+              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20Pato%20Psingo%20para%20Orina" class="btn-cotizar" target="_blank">
+                <span>📞</span>
+                <span>Cotizar Ahora</span>
               </a>
             </div>
-          </article>
+          </div>
 
-          <article class="article">
-            <div class="article-image">
-              <img src="tallimetro-infantometro.jpg" alt="Tallímetro infantómetro para medición de altura" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Tallímetro Infantómetro</h3>
-              <p class="article-description">
-                Tallímetro infantómetro de precisión para medición de altura en niños y bebés. Escala graduada clara y base estable. Material duradero y fácil de limpiar.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Pediatría</span>
-                <span class="feature-tag">Precisión</span>
-                <span class="feature-tag">Duradero</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Tallímetro" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="cinta-metrica.jpg" alt="Cinta métrica médica para mediciones corporales" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Cinta Métrica Médica</h3>
-              <p class="article-description">
-                Cinta métrica profesional para mediciones corporales con doble escala. Material flexible y duradero con sistema de retracción automática. Ideal para consultorios.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Doble Escala</span>
-                <span class="feature-tag">Flexible</span>
-                <span class="feature-tag">Retracción</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Cinta%20Métrica" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="balanza-digital-peso-corporal-2.webp" alt="Balanza digital profesional para consultorio" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Balanza Digital Profesional</h3>
-              <p class="article-description">
-                Balanza digital de alta precisión para uso profesional en consultorios. Medición de peso, altura y cálculo automático de IMC. Plataforma amplia y antideslizante.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Profesional</span>
-                <span class="feature-tag">IMC</span>
-                <span class="feature-tag">Antideslizante</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Balanza%20Profesional" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Pato psingo para orina.webp" alt="Pato psingo orinal masculino desechable" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Pato Psingo Orinal</h3>
-              <p class="article-description">
-                Orinal masculino desechable de alta capacidad con tapa hermética. Material resistente a fugas y diseño ergonómico. Ideal para pacientes encamados y movilidad reducida.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Desechable</span>
-                <span class="feature-tag">Alta Capacidad</span>
-                <span class="feature-tag">Hermético</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Pato%20Psingo" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Kit de organo de los sentidos.jpg" alt="Kit de órganos de los sentidos para educación médica" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Kit Órganos Sentidos</h3>
-              <p class="article-description">
-                Kit educativo de órganos de los sentidos para enseñanza médica. Modelos anatómicos detallados y materiales de alta calidad. Ideal para instituciones educativas y consultorios.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Educativo</span>
-                <span class="feature-tag">Anatómico</span>
-                <span class="feature-tag">Alta Calidad</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Kit%20de%20Órganos" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="Bandeja para instrumental en acero.jpg" alt="Bandeja de instrumental médico de acero inoxidable" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Bandeja de Instrumental</h3>
-              <p class="article-description">
-                Bandeja de acero inoxidable para organización de instrumental médico. Diseño resistente y fácil de esterilizar. Múltiples compartimentos para mejor organización.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Acero Inoxidable</span>
-                <span class="feature-tag">Esterilizable</span>
-                <span class="feature-tag">Múltiples Compartimentos</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20la%20Bandeja%20de%20Instrumental" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="article">
-            <div class="article-image">
-              <img src="pato-coprologico-adulto-acero-inoxidable.png" alt="Pato coprológico adulto en acero inoxidable" loading="lazy">
-            </div>
-            <div class="article-content">
-              <h3 class="article-title">Pato Coprológico Adulto</h3>
-              <p class="article-description">
-                Pato coprológico para adultos fabricado en acero inoxidable de alta calidad. Diseño ergonómico y resistente para recolección de muestras. Fácil de limpiar y esterilizar para uso clínico.
-              </p>
-              <div class="product-features">
-                <span class="feature-tag">Acero Inoxidable</span>
-                <span class="feature-tag">Adulto</span>
-                <span class="feature-tag">Esterilizable</span>
-              </div>
-              <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20el%20Pato%20Coprológico" 
-                 class="btn-cotizar" target="_blank">
-                <span>Cotizar</span>
-                <span>💬</span>
-              </a>
-            </div>
-          </article>
         </div>
       </section>
     </div>
@@ -1368,17 +907,16 @@
   <section class="cta-section">
     <div class="container">
       <div class="cta-content">
-        <h2>¿Necesita Insumos Medicos e Instrumental Hospitalario?</h2>
-        <p>Contáctenos para recibir asesoría especializada y cotización personalizada según sus necesidades de consumo</p>
+        <h2>¿Necesitas Insumos o Material Médico?</h2>
+        <p>Contáctanos para obtener cotizaciones especiales, descuentos por volumen y envío inmediato a toda Colombia.</p>
         <div class="cta-buttons">
-          <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20cotización%20para%20insumos%20médicos" 
-             class="btn-primary" target="_blank">
-            <span>💬</span>
-            <span>Cotización Inmediata</span>
+          <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20insumos%20médicos" class="btn-primary" target="_blank">
+            <span>📱</span>
+            <span>Cotización por WhatsApp</span>
           </a>
           <a href="contacto.html" class="btn-secondary">
             <span>📞</span>
-            <span>+57 310 610 7017</span>
+            <span>Llamar Ahora</span>
           </a>
         </div>
       </div>
@@ -1395,91 +933,47 @@
         </div>
         
         <div class="footer-section">
-          <h3>Contacto</h3>
-          <p><strong>Teléfono:</strong> +57 310 610 7017</p>
-          <p><strong>Email:</strong> domedicosdelnorte@hotmail.com</p>
-          <p><strong>Ciudad:</strong> Barranquilla, Atlántico</p>
-          <p><strong>Dirección:</strong> <a href="https://maps.google.com/?q=Calle+72+%2350-30+Barranquilla+Atlántico+Colombia" target="_blank">Calle 72 #50-30, Barranquilla, Atlántico</a></p>
-        </div>
-        
-        <div class="footer-section">
-          <h3>Horario</h3>
-          <p><strong>Lunes - Viernes:</strong> 8:00 AM - 6:00 PM</p>
-          <p><strong>Sábado:</strong> 9:00 AM - 1:00 PM</p>
-          <p><strong>Domingo:</strong> Cerrado</p>
-        </div>
-        
-        <div class="footer-section">
-          <h3>Servicios</h3>
+          <h3>Productos</h3>
           <ul>
-            <li><a href="index.html#servicios">Venta de Equipos</a></li>
-            <li><a href="index.html#mantenimiento">Mantenimiento</a></li>
-            <li><a href="index.html#nosotros">Sobre Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="diagnostico.html">Equipos de Diagnóstico</a></li>
+            <li><a href="movilidad.html">Equipos de Movilidad</a></li>
+            <li><a href="hospitalario.html">Mobiliario Clínico</a></li>
+            <li><a href="insumos.html">Insumos Médicos e Instrumental</a></li>
+            <li><a href="especializados.html">Equipos Especializados</a></li>
+            <li><a href="repuestos.html">Repuestos y Accesorios</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p><strong>📍 Ubicación:</strong><br>Barranquilla, Atlántico, Colombia</p>
+          <p><strong>📞 Teléfono:</strong><br><a href="tel:+575350101">+57 5 350 10 10</a></p>
+          <p><strong>📧 Email:</strong><br><a href="mailto:domedicosdelnorte@hotmail.com">domedicosdelnorte@hotmail.com</a></p>
+          <p><strong>💬 WhatsApp:</strong><br><a href="https://wa.me/573106107017" target="_blank">+57 310 610 7017</a></p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+            <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+            <li><a href="index.html#legal">Información Legal</a></li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2026 Domédicos del Norte. Todos los derechos reservados. Barranquilla, Colombia.</p>
+        <p>&copy; 2024 Domédicos del Norte. Todos los derechos reservados. | Distribuidor Oficial de Equipos Médicos en Barranquilla y Colombia</p>
       </div>
     </div>
   </footer>
 
-<!-- WhatsApp Float Button -->
-  <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20equipos%20médicos" 
-     class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20insumos%20médicos" class="whatsapp-float" title="Contactar por WhatsApp" target="_blank">
+    <i class="fas fa-whatsapp"></i>
   </a>
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID', {
-      cookie_flags: 'secure;samesite=none;max-age=7200',
-      anonymize_ip: true
-    });
-  </script>
-  
-  <!-- Analytics Tracker Avanzado -->
-  <script src="analytics-tracker.js"></script>
-  
-  <!-- Carrito de Cotización -->
-  <script src="cart-system.js"></script>
-  
-  <!-- Banner de Cookies GDPR Compliant -->
-  <script src="cookie-banner.js"></script>
-  
-  <!-- Sistema de Seguridad Avanzada - Fase 3 -->
-  <script src="security-monitor.js"></script>
-  
-  <!-- Sistema de Newsletters y Email Marketing -->
-  <link rel="stylesheet" href="newsletter-styles.css">
-  <script src="newsletter-system.js"></script>
-  
-  <!-- Configuración de Seguridad -->
-  <script>
-    window.SECURITY_CONFIG = {
-      company: "Domédicos del Norte",
-      version: "3.0",
-      features: {
-        uptime: true,
-        backup: true,
-        firewall: true,
-        rateLimit: true,
-        anomalyDetection: true,
-        securityPanel: true
-      },
-      alerts: {
-        email: "domedicosdelnorte@hotmail.com",
-        enabled: true
-      }
-    };
-  </script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </body>
 </html>
