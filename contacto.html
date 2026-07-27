@@ -815,15 +815,17 @@
         <!-- Contact Form -->
         <div class="contact-form">
           <h2>Envíanos un Mensaje</h2>
-          <form action="https://formspree.io/f/your-form-id" method="POST">
+          <form id="contact-form" action="https://formspree.io/f/mdaqyjwv" method="POST">
+            <input type="hidden" name="_subject" value="New Contact Form Message - Domédicos del Norte">
+            <input type="hidden" name="_captcha" value="false">
             <div class="form-row">
               <div class="form-group">
                 <label for="nombre">Nombre Completo *</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="name" required>
               </div>
               <div class="form-group">
                 <label for="telefono">Teléfono *</label>
-                <input type="tel" id="telefono" name="telefono" required>
+                <input type="tel" id="telefono" name="phone" required>
               </div>
             </div>
             
@@ -834,18 +836,19 @@
             
             <div class="form-group">
               <label for="asunto">Asunto *</label>
-              <input type="text" id="asunto" name="asunto" required>
+              <input type="text" id="asunto" name="subject" required>
             </div>
             
             <div class="form-group">
               <label for="mensaje">Mensaje *</label>
-              <textarea id="mensaje" name="mensaje" required placeholder="Describe tus necesidades de equipos médicos..."></textarea>
+              <textarea id="mensaje" name="message" required placeholder="Describe tus necesidades de equipos médicos..."></textarea>
             </div>
             
             <button type="submit" class="submit-btn">
               Enviar Mensaje
             </button>
           </form>
+          <div id="contact-form-message" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
         </div>
       </div>
     </div>
@@ -963,6 +966,67 @@
         enabled: true
       }
     };
+  </script>
+
+  <!-- Contact Form Handler -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('contact-form');
+      const formMessage = document.getElementById('contact-form-message');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const submitBtn = contactForm.querySelector('button[type="submit"]');
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = 'Enviando...';
+          submitBtn.disabled = true;
+
+          const formData = new FormData(contactForm);
+
+          try {
+            console.log('Submitting to:', contactForm.action);
+            const response = await fetch(contactForm.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+
+            console.log('Response status:', response.status);
+            console.log('Response ok:', response.ok);
+            
+            const data = await response.json();
+            console.log('Response data:', data);
+
+            if (response.ok) {
+              formMessage.style.display = 'block';
+              formMessage.style.backgroundColor = '#d4edda';
+              formMessage.style.color = '#155724';
+              formMessage.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
+              contactForm.reset();
+            } else {
+              formMessage.style.display = 'block';
+              formMessage.style.backgroundColor = '#f8d7da';
+              formMessage.style.color = '#721c24';
+              const errorMsg = data.error || 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.';
+              formMessage.textContent = errorMsg;
+            }
+          } catch (error) {
+            console.error('Form submission error:', error);
+            formMessage.style.display = 'block';
+            formMessage.style.backgroundColor = '#f8d7da';
+            formMessage.style.color = '#721c24';
+            formMessage.textContent = 'Hubo un error de conexión. Por favor, inténtalo de nuevo.';
+          } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>

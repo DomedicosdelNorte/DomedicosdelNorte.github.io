@@ -55,7 +55,9 @@ class NewsletterSystem {
                             </ul>
                         </div>
                         <div class="newsletter-form-container">
-                            <form id="newsletter-form" class="newsletter-form">
+                            <form id="newsletter-form" class="newsletter-form" action="https://formspree.io/f/mdaqyjwv" method="POST">
+                                <input type="hidden" name="_subject" value="New Newsletter Subscription - Domédicos del Norte">
+                                <input type="hidden" name="_captcha" value="false">
                                 <div class="form-group">
                                     <label for="newsletter-name">Nombre</label>
                                     <input type="text" id="newsletter-name" name="name" required
@@ -110,9 +112,10 @@ class NewsletterSystem {
     /**
      * Manejar suscripción
      */
-    handleSubscription(e) {
+    async handleSubscription(e) {
         e.preventDefault();
         
+        const form = document.getElementById('newsletter-form');
         const name = document.getElementById('newsletter-name').value.trim();
         const email = document.getElementById('newsletter-email').value.trim().toLowerCase();
         const interest = document.getElementById('newsletter-interest').value;
@@ -134,42 +137,77 @@ class NewsletterSystem {
             return;
         }
 
-        // Verificar si ya está suscrito
+        // Verificar si ya está suscrito (localStorage check)
         if (this.isSubscribed(email)) {
             this.showMessage('Este correo ya está suscrito a nuestro newsletter', 'warning');
             return;
         }
 
-        // Agregar suscriptor
-        const subscriber = {
-            id: Date.now(),
-            name: name,
-            email: email,
-            interest: interest,
-            subscribedAt: new Date().toISOString(),
-            status: 'active'
-        };
+        // Submit to Formspree
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span>Enviando...</span><span>📧</span>';
+        submitBtn.disabled = true;
 
-        this.subscribers.push(subscriber);
-        this.saveSubscribers();
-
-        // Mostrar mensaje de éxito
-        this.showMessage('¡Gracias por suscribirte! Revisa tu correo para confirmar tu suscripción y recibir tu descuento.', 'success');
-
-        // Limpiar formulario
-        document.getElementById('newsletter-form').reset();
-
-        // Enviar evento a Google Analytics
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'newsletter_subscription', {
-                'event_category': 'engagement',
-                'event_label': interest,
-                'value': 1
+        try {
+            console.log('Submitting newsletter to:', form.action);
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
             });
-        }
 
-        // Enviar notificación por WhatsApp (opcional)
-        this.sendWhatsAppNotification(subscriber);
+            console.log('Newsletter response status:', response.status);
+            console.log('Newsletter response ok:', response.ok);
+            
+            const data = await response.json();
+            console.log('Newsletter response data:', data);
+
+            if (response.ok) {
+                // Also save to localStorage for local tracking
+                const subscriber = {
+                    id: Date.now(),
+                    name: name,
+                    email: email,
+                    interest: interest,
+                    subscribedAt: new Date().toISOString(),
+                    status: 'active'
+                };
+
+                this.subscribers.push(subscriber);
+                this.saveSubscribers();
+
+                // Mostrar mensaje de éxito
+                this.showMessage('¡Gracias por suscribirte! Revisa tu correo para confirmar tu suscripción y recibir tu descuento.', 'success');
+
+                // Limpiar formulario
+                form.reset();
+
+                // Enviar evento a Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'newsletter_subscription', {
+                        'event_category': 'engagement',
+                        'event_label': interest,
+                        'value': 1
+                    });
+                }
+
+                // Enviar notificación por WhatsApp (opcional)
+                this.sendWhatsAppNotification(subscriber);
+            } else {
+                const errorMsg = data.error || 'Hubo un error al suscribirte. Por favor, inténtalo de nuevo.';
+                this.showMessage(errorMsg, 'error');
+            }
+        } catch (error) {
+            console.error('Newsletter submission error:', error);
+            this.showMessage('Hubo un error de conexión. Por favor, inténtalo de nuevo.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
     }
 
     /**
