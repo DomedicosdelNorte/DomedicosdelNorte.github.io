@@ -987,7 +987,7 @@
 
           try {
             console.log('Submitting to:', contactForm.action);
-            const response = await fetch(contactForm.action, {
+            const response = await fetch("https://formspree.io/f/mdaqyjwv", {
               method: 'POST',
               body: JSON.stringify(Object.fromEntries(formData)),
               headers: {
