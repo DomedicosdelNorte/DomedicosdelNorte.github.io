@@ -1,69 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Página Principal -->
+  <!-- Página principal -->
   <url>
-    <loc>https://domedicosdelnorte.github.io/</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://domedicosdelnorte.com/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Equipos de Diagnóstico -->
+  <!-- Categorías -->
   <url>
-    <loc>https://domedicosdelnorte.github.io/diagnostico.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://domedicosdelnorte.com/diagnostico.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://domedicosdelnorte.com/movilidad.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://domedicosdelnorte.com/hospitalario.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://domedicosdelnorte.com/insumos.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://domedicosdelnorte.com/especializados.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://domedicosdelnorte.com/repuestos-biomedicos.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Páginas informativas -->
+  <url>
+    <loc>https://domedicosdelnorte.com/servicios</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Equipos de Movilidad -->
   <url>
-    <loc>https://domedicosdelnorte.github.io/movilidad.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://domedicosdelnorte.com/nosotros</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Equipos Hospitalarios -->
   <url>
-    <loc>https://domedicosdelnorte.github.io/hospitalario.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://domedicosdelnorte.com/mantenimiento</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <!-- Insumos Médicos -->
-  <url>
-    <loc>https://domedicosdelnorte.github.io/insumos.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Equipos Especializados -->
-  <url>
-    <loc>https://domedicosdelnorte.github.io/especializados.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Repuestos Biomédicos -->
-  <url>
-    <loc>https://domedicosdelnorte.github.io/repuestos-biomedicos.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Contacto -->
   <url>
-    <loc>https://domedicosdelnorte.github.io/contacto.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://domedicosdelnorte.com/contacto</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
