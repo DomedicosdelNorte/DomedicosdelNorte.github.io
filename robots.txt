@@ -1,25 +1,21 @@
-# Robots.txt para Domédicos del Norte
-# https://domedicosdelnorte.github.io
+# Domedicos del Norte
+# Robots configuration for production domain
 
 User-agent: *
 Allow: /
 
-# Priorizar indexación de contenido importante
-Allow: /diagnostico.html
-Allow: /movilidad.html
-Allow: /hospitalario.html
-Allow: /insumos.html
-Allow: /especializados.html
-Allow: /repuestos-biomedicos.html
+# Sitemap oficial
+Sitemap: https://domedicosdelnorte.com/sitemap.xml
 
-# Bloquear archivos temporales y de sistema
-Disallow: /*.tmp$
-Disallow: /*.bak$
-Disallow: /diagnostico-old.html
-Disallow: /_*
+# Motores de búsqueda principales
+User-agent: Googlebot
+Allow: /
 
-# Ubicación del sitemap
-Sitemap: https://domedicosdelnorte.github.io/sitemap.xml
+User-agent: Bingbot
+Allow: /
 
-# Tiempo de crawl (opcional)
-Crawl-delay: 1
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
