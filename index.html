@@ -248,14 +248,13 @@
     
     /* HERO SECTION MEJORADO */
     .hero {
-      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      background: linear-gradient(135deg, #005b99 0%, #003f6b 50%, #005b99 100%);
       color: white;
-      padding: 140px 0;
-      text-align: center;
+      padding: 120px 0;
       position: relative;
       overflow: hidden;
     }
-    
+
     .hero::before {
       content: '';
       position: absolute;
@@ -263,15 +262,31 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      opacity: 0.3;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hexagons" width="28" height="49" patternUnits="userSpaceOnUse"><path d="M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagons)"/></svg>');
+      opacity: 0.4;
     }
-    
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(27, 166, 217, 0.15) 0%, transparent 70%);
+      animation: heroGlow 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroGlow {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-20px, 20px); }
+    }
+
     .hero-content {
       position: relative;
       z-index: 2;
     }
-    
+
     .hero h1 {
       font-size: 4rem;
       margin-bottom: 25px;
@@ -279,7 +294,7 @@
       text-shadow: 0 4px 20px rgba(0,0,0,0.3);
       animation: fadeInUp 1s ease;
     }
-    
+
     .hero-subtitle {
       font-size: 1.6rem;
       margin-bottom: 50px;
@@ -289,13 +304,341 @@
       margin-right: auto;
       animation: fadeInUp 1s ease 0.2s both;
     }
-    
+
     .hero-buttons {
       display: flex;
       gap: 25px;
       justify-content: center;
       flex-wrap: wrap;
       animation: fadeInUp 1s ease 0.4s both;
+    }
+
+    /* PREMIUM HERO SECTION */
+    .hero-premium-wrapper {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-premium-content {
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    .hero-premium-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1ba6d9;
+      margin-bottom: 25px;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero-premium-badge::before {
+      content: '🏆';
+      font-size: 1.1rem;
+    }
+
+    .hero-premium-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 25px;
+      color: white;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    .hero-premium-subtitle {
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 35px;
+      max-width: 650px;
+      animation: fadeInUp 1s ease 0.4s both;
+    }
+
+    .hero-premium-subtitle strong {
+      color: #1ba6d9;
+      font-weight: 700;
+    }
+
+    .hero-premium-buttons {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 50px;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+
+    .hero-premium-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .hero-premium-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+    }
+
+    .hero-premium-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #005b99;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero-premium-btn-secondary:hover {
+      background: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-premium-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      animation: fadeInUp 1s ease 0.8s both;
+    }
+
+    .hero-stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      padding: 20px 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .hero-stat-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .hero-stat-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .hero-stat-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1ba6d9;
+      margin-bottom: 5px;
+    }
+
+    .hero-stat-label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.4;
+    }
+
+    .hero-premium-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInRight 1s ease 0.4s both;
+    }
+
+    .hero-premium-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-premium-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #1ba6d9, #25d366);
+    }
+
+    .hero-premium-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(27, 166, 217, 0.2) 0%, transparent 70%);
+    }
+
+    .hero-premium-logo {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero-premium-logo img {
+      max-width: 180px;
+      height: auto;
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    }
+
+    .hero-premium-illustration {
+      position: relative;
+      z-index: 2;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(27, 166, 217, 0.2) 0%, rgba(37, 211, 102, 0.1) 100%);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-premium-illustration::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="medhex" width="20" height="35" patternUnits="userSpaceOnUse"><path d="M10 0l10 5.77v11.55l-10 5.77L0 17.32V5.77L10 0z" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23medhex)"/></svg>');
+      opacity: 0.5;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-premium-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .hero-premium-title {
+        font-size: 2.8rem;
+      }
+
+      .hero-premium-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .hero-premium-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 80px 0;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .hero-premium-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-premium-title {
+        font-size: 2.2rem;
+      }
+
+      .hero-premium-subtitle {
+        font-size: 1rem;
+      }
+
+      .hero-premium-buttons {
+        flex-direction: column;
+      }
+
+      .hero-premium-btn-primary,
+      .hero-premium-btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-premium-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .hero-stat-value {
+        font-size: 1.3rem;
+      }
+
+      .hero-stat-label {
+        font-size: 0.75rem;
+      }
+
+      .hero-premium-visual {
+        margin-top: 40px;
+      }
+
+      .hero-premium-card {
+        padding: 30px 20px;
+      }
+
+      .hero-premium-logo img {
+        max-width: 140px;
+      }
+
+      .hero-premium-illustration {
+        height: 150px;
+      }
     }
     
     .btn-primary, .btn-secondary {
@@ -1029,19 +1372,64 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <div class="hero-content">
-        <h1>Domédicos del Norte</h1>
-        <p class="hero-subtitle">Distribuidor líder de equipos médicos con 30 años de experiencia en Barranquilla</p>
-        <div class="hero-buttons">
-          <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20equipos%20médicos" 
-             class="btn-primary" target="_blank">
-            <span>💬</span>
-            <span>WhatsApp Cotización</span>
-          </a>
-          <a href="#categories" class="btn-secondary">
-            <span>📋</span>
-            <span>Ver Categorías</span>
-          </a>
+      <div class="hero-premium-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+        <!-- Left Side: Content -->
+        <div class="hero-premium-content">
+          <span class="hero-premium-badge">30+ Años de Experiencia en el Sector Salud</span>
+          <h1 class="hero-premium-title">Equipos Médicos y Suministros Hospitalarios para Toda Colombia</h1>
+          <p class="hero-premium-subtitle">
+            Distribuidor especializado en equipos médicos, dispositivos de diagnóstico, mobiliario clínico e insumos hospitalarios para clínicas, hospitales, IPS y profesionales de la salud.<br><br>
+            Más de <strong>30 años</strong> brindando asesoría técnica, garantía y envíos seguros a nivel nacional.
+          </p>
+          <div class="hero-premium-buttons">
+            <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20una%20cotización%20de%20equipos%20médicos" 
+               class="hero-premium-btn-primary" target="_blank">
+              <span>💬</span>
+              <span>Solicitar Cotización</span>
+            </a>
+            <a href="#categories" class="hero-premium-btn-secondary">
+              <span>📋</span>
+              <span>Ver Catálogo</span>
+            </a>
+          </div>
+          <div class="hero-premium-stats">
+            <div class="hero-stat-card">
+              <span class="hero-stat-icon">🏆</span>
+              <div class="hero-stat-value">30+</div>
+              <div class="hero-stat-label">Años de experiencia</div>
+            </div>
+            <div class="hero-stat-card">
+              <span class="hero-stat-icon">📦</span>
+              <div class="hero-stat-value">5,000+</div>
+              <div class="hero-stat-label">Equipos suministrados</div>
+            </div>
+            <div class="hero-stat-card">
+              <span class="hero-stat-icon">🇨🇴</span>
+              <div class="hero-stat-value">100%</div>
+              <div class="hero-stat-label">Cobertura Nacional</div>
+            </div>
+            <div class="hero-stat-card">
+              <span class="hero-stat-icon">🏥</span>
+              <div class="hero-stat-value">IPS</div>
+              <div class="hero-stat-label">Clínicas • Hospitales</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Visual Panel -->
+        <div class="hero-premium-visual">
+          <div class="hero-premium-card">
+            <div class="hero-premium-logo">
+              <img src="logo.png" alt="Domédicos del Norte Logo">
+            </div>
+            <div class="hero-premium-illustration">
+              <div style="position: relative; z-index: 3; text-align: center; color: white;">
+                <div style="font-size: 4rem; margin-bottom: 10px;">🩺</div>
+                <div style="font-size: 3rem;">🏥</div>
+                <div style="font-size: 2.5rem; margin-top: 10px;">💊</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
