@@ -1,6 +1,7 @@
 /**
  * Carrito de Cotización para Domédicos del Norte
  * Sistema de cotización multi-producto con envío a WhatsApp
+ * @charset UTF-8
  */
 
 class CotizacionCart {
@@ -467,8 +468,8 @@ class CotizacionCart {
         }
         
         // Construir mensaje detallado
-        let message = '🏥 *DOMÉDICOS DEL NORTE - SOLICITUD DE COTIZACIÓN*\n\n';
-        message += '📋 *PRODUCTOS SOLICITADOS:*\n\n';
+        let message = '🩺 **DOMÉDICOS DEL NORTE – SOLICITUD DE COTIZACIÓN**\n\n';
+        message += 'Hola, deseo cotizar los siguientes productos:\n\n';
         
         // Agrupar productos por categoría
         const groupedItems = this.items.reduce((groups, item) => {
@@ -480,28 +481,16 @@ class CotizacionCart {
         }, {});
         
         Object.keys(groupedItems).forEach((category, catIndex) => {
-            message += `📁 *${category.toUpperCase()}*\n`;
+            message += `📁 **${category.toUpperCase()}**\n`;
             groupedItems[category].forEach((item, index) => {
-                message += `   ${index + 1}. *${item.name}*\n`;
-                message += `      📊 Cantidad: ${item.quantity} unidad(es)\n`;
+                message += `• ${item.name}\n`;
             });
             message += '\n';
         });
         
-        message += `💰 *RESUMEN:*\n`;
-        message += `   📦 Total productos: ${this.cartCount}\n`;
-        message += `   📋 Tipos diferentes: ${this.items.length}\n\n`;
-        
-        message += `📝 *INFORMACIÓN DEL SOLICITANTE:*\n`;
-        message += `📅 Fecha: ${new Date().toLocaleDateString('es-CO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}\n`;
-        message += `🕐 Hora: ${new Date().toLocaleTimeString('es-CO')}\n`;
-        message += `🌐 Página: ${window.location.href}\n`;
-        message += `📱 Solicitado desde: ${navigator.userAgent.includes('Mobile') ? 'Móvil' : 'Escritorio'}\n\n`;
-        
-        message += `🎯 *POR FAVOR, ENVIAR COTIZACIÓN PARA ESTOS PRODUCTOS*\n`;
-        message += `📞 *Teléfono de contacto:* +57 310 610 7017\n`;
-        message += `📧 *Email:* domedicosdelnorte@hotmail.com\n\n`;
-        message += `⏰ *Tiempo estimado de respuesta:* Inmediata durante horario laboral`;
+        message += 'Gracias.\n\n';
+        message += ' *Teléfono de contacto:* +57 310 610 7017\n';
+        message += '📧 *Email:* domedicosdelnorte@hotmail.com';
         
         // Codificar mensaje para WhatsApp
         const encodedMessage = encodeURIComponent(message);

@@ -1,6 +1,7 @@
 /**
  * FASE 3 - Sistema de Seguridad Avanzada
  * Domédicos del Norte - Protección a Nivel de Aplicación
+ * @charset UTF-8
  */
 
 class SecurityMonitor {
@@ -1109,7 +1110,7 @@ class SecurityMonitor {
                         border: none;
                         border-radius: 4px;
                         cursor: pointer;
-                    ">� Exportar Datos</button>
+                    ">📥 Exportar Datos</button>
                 </div>
             </div>
         `;

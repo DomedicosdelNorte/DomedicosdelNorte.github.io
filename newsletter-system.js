@@ -1,6 +1,7 @@
 /**
  * Sistema de Newsletters y Email Marketing
  * Domédicos del Norte
+ * @charset UTF-8
  */
 
 class NewsletterSystem {
@@ -261,7 +262,7 @@ class NewsletterSystem {
      */
     sendWhatsAppNotification(subscriber) {
         const message = `📧 Nueva suscripción al newsletter:
-        
+
 👤 Nombre: ${subscriber.name}
 📧 Email: ${subscriber.email}
 🎯 Interés: ${subscriber.interest}
