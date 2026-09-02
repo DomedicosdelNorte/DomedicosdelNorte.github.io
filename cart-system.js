@@ -468,9 +468,9 @@ class CotizacionCart {
         }
         
         // Construir mensaje detallado
-        let message = '🩺 **DOMÉDICOS DEL NORTE – SOLICITUD DE COTIZACIÓN**\n\n';
+        let message = '📋 *DOMÉDICOS DEL NORTE – SOLICITUD DE COTIZACIÓN*\n\n';
         message += 'Hola, deseo cotizar los siguientes productos:\n\n';
-        
+
         // Agrupar productos por categoría
         const groupedItems = this.items.reduce((groups, item) => {
             if (!groups[item.category]) {
@@ -479,17 +479,17 @@ class CotizacionCart {
             groups[item.category].push(item);
             return groups;
         }, {});
-        
+
         Object.keys(groupedItems).forEach((category, catIndex) => {
-            message += `📁 **${category.toUpperCase()}**\n`;
+            message += `🩺 *${category.toUpperCase()}*\n`;
             groupedItems[category].forEach((item, index) => {
                 message += `• ${item.name}\n`;
             });
             message += '\n';
         });
-        
+
         message += 'Gracias.\n\n';
-        message += ' *Teléfono de contacto:* +57 310 610 7017\n';
+        message += '📞 *Teléfono de contacto:* +57 310 610 7017\n';
         message += '📧 *Email:* domedicosdelnorte@hotmail.com';
         
         // Codificar mensaje para WhatsApp
