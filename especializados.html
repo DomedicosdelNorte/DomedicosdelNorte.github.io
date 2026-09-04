@@ -68,23 +68,52 @@
   }
   </script>
 
-  <!-- JSON-LD Structured Data - Product Category -->
+  <!-- JSON-LD Structured Data - CollectionPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "CollectionPage",
     "name": "Equipos Especializados",
-    "description": "Monitores de signos vitales, equipos de diagnóstico avanzado y tecnología médica especializada en Barranquilla y Colombia con garantía y envío nacional.",
-    "category": "Equipos Especializados",
-    "brand": {
-      "@type": "Brand",
-      "name": "Domédicos del Norte"
+    "description": "Catálogo de equipos especializados: monitores de signos vitales, equipos de diagnóstico avanzado y tecnología médica especializada en Barranquilla y Colombia con garantía y envío nacional.",
+    "url": "https://domedicosdelnorte.com/especializados.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Domédicos del Norte",
+      "url": "https://domedicosdelnorte.com/"
     },
-    "offers": {
-      "@type": "Offer",
-      "availability": "https://schema.org/InStock",
-      "priceValidationUntil": "2026-12-31",
-      "description": "Precio disponible bajo cotización directa"
+    "about": {
+      "@type": "Service",
+      "serviceType": "Distribución y Cotización de Equipos Médicos",
+      "provider": {
+        "@type": "MedicalBusiness",
+        "name": "Domédicos del Norte",
+        "telephone": "+57 310 610 7017"
+      }
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Monitores de signos vitales"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Electrocardiógrafos"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Equipos de diagnóstico avanzado"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Tecnología médica especializada"
+        }
+      ]
     }
   }
   </script>

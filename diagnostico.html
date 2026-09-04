@@ -68,23 +68,52 @@
   }
   </script>
 
-  <!-- JSON-LD Structured Data - Product Category -->
+  <!-- JSON-LD Structured Data - CollectionPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "CollectionPage",
     "name": "Equipos de Diagnóstico Médico",
-    "description": "Tensiómetros, estetoscopios, glucómetros, electrocardiógrafos y equipos de diagnóstico de alta precisión en Barranquilla y Colombia con garantía.",
-    "category": "Diagnóstico Médico",
-    "brand": {
-      "@type": "Brand",
-      "name": "Domédicos del Norte"
+    "description": "Catálogo de equipos de diagnóstico médico: tensiómetros, estetoscopios, glucómetros, electrocardiógrafos y equipos de diagnóstico de alta precisión en Barranquilla y Colombia con garantía.",
+    "url": "https://domedicosdelnorte.com/diagnostico.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Domédicos del Norte",
+      "url": "https://domedicosdelnorte.com/"
     },
-    "offers": {
-      "@type": "Offer",
-      "availability": "https://schema.org/InStock",
-      "priceValidationUntil": "2026-12-31",
-      "description": "Precio disponible bajo cotización directa"
+    "about": {
+      "@type": "Service",
+      "serviceType": "Distribución y Cotización de Equipos Médicos",
+      "provider": {
+        "@type": "MedicalBusiness",
+        "name": "Domédicos del Norte",
+        "telephone": "+57 310 610 7017"
+      }
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Tensiómetros"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Estetoscopios"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Glucómetros"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Electrocardiógrafos"
+        }
+      ]
     }
   }
   </script>
