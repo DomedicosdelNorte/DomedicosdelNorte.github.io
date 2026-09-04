@@ -29,8 +29,8 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Domédicos del Norte - Equipos Médicos Barranquilla" />
   <meta property="og:description" content="Distribuidor líder de equipos médicos con 30 años de experiencia. Equipos de diagnóstico, movilidad, hospitalarios y más. Envíos a toda Colombia." />
-  <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
-  <meta property="og:url" content="https://domedicosdelnorte.github.io/index.html" />
+  <meta property="og:image" content="https://domedicosdelnorte.com/logo.png" />
+  <meta property="og:url" content="https://domedicosdelnorte.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_CO" />
   
@@ -38,11 +38,47 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Domédicos del Norte - Equipos Médicos" />
   <meta name="twitter:description" content="Distribuidor líder de equipos médicos en Barranquilla. 30 años de experiencia, envíos a toda Colombia." />
-  <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  <meta name="twitter:image" content="https://domedicosdelnorte.com/logo.png" />
   
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  
+
+  <!-- Hreflang for Colombian Spanish -->
+  <link rel="alternate" hreflang="es-CO" href="https://domedicosdelnorte.com/" />
+
+  <!-- JSON-LD Structured Data - MedicalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Domédicos del Norte",
+    "url": "https://domedicosdelnorte.com/",
+    "logo": "https://domedicosdelnorte.com/logo.png",
+    "description": "Distribuidor líder de equipos médicos y hospitalarios en Barranquilla y Colombia con más de 30 años de experiencia.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 70 # 50-20",
+      "addressLocality": "Barranquilla",
+      "addressRegion": "Atlántico",
+      "postalCode": "080001",
+      "addressCountry": "CO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "10.9878",
+      "longitude": "-74.7885"
+    },
+    "telephone": "+57 310 610 7017",
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 08:00-18:00",
+    "sameAs": [
+      "https://www.facebook.com/domedicosdelnorte",
+      "https://www.instagram.com/domedicosdelnorte",
+      "https://wa.me/573106107017"
+    ]
+  }
+  </script>
+
   <!-- CSS INLINE - VERSIÓN RECONSTRUIDA DESDE CERO -->
   <style>
     /* RESET COMPLETO */
@@ -1434,23 +1470,23 @@
         <div class="hero-carousel">
           <div class="hero-carousel-slides">
             <div class="hero-slide active">
-              <img src="hero-corporativo-01.webp" alt="Equipos médicos corporativos">
+              <img src="hero-corporativo-01.webp" alt="Equipos médicos corporativos" loading="eager" fetchpriority="high">
             </div>
             <div class="hero-slide">
-              <img src="hero-corporativo-02.webp" alt="Equipos médicos hospitalarios">
+              <img src="hero-corporativo-02.webp" alt="Equipos médicos hospitalarios" loading="lazy">
             </div>
             <div class="hero-slide">
-              <img src="hero-corporativo-03.webp" alt="Dispositivos médicos">
+              <img src="hero-corporativo-03.webp" alt="Dispositivos médicos" loading="lazy">
             </div>
             <div class="hero-slide">
-              <img src="hero-corporativo-04.webp" alt="Suministros hospitalarios">
+              <img src="hero-corporativo-04.webp" alt="Suministros hospitalarios" loading="lazy">
             </div>
           </div>
           <div class="hero-carousel-dots">
-            <button class="hero-dot active" data-slide="0"></button>
-            <button class="hero-dot" data-slide="1"></button>
-            <button class="hero-dot" data-slide="2"></button>
-            <button class="hero-dot" data-slide="3"></button>
+            <button class="hero-dot active" data-slide="0" aria-label="Ver slide 1 de carrusel"></button>
+            <button class="hero-dot" data-slide="1" aria-label="Ver slide 2 de carrusel"></button>
+            <button class="hero-dot" data-slide="2" aria-label="Ver slide 3 de carrusel"></button>
+            <button class="hero-dot" data-slide="3" aria-label="Ver slide 4 de carrusel"></button>
           </div>
         </div>
       </div>
@@ -1589,6 +1625,182 @@
     </div>
   </section>
 
+  <!-- Brands Section -->
+  <section id="marcas" class="brands-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Marcas que Distribuimos</h2>
+        <p>Trabajamos con marcas reconocidas del sector salud, ofreciendo equipos originales, garantía, respaldo técnico y disponibilidad para instituciones y profesionales de la salud en Colombia.</p>
+      </div>
+
+      <!-- Premium Brands -->
+      <div class="brands-subsection">
+        <h3 class="brands-subtitle">Marcas Premium / Institucional</h3>
+        <div class="brand-grid">
+          <div class="brand-card">
+            <img src="images/marcas/welch-allyn.png" alt="Logo Welch Allyn equipos médicos Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Welch Allyn</h3>
+            <p class="brand-category">Diagnóstico clínico</p>
+            <p class="brand-description">Distribuimos equipos Welch Allyn para diagnóstico clínico en Barranquilla y Colombia con garantía y asesoría especializada.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/riester.png" alt="Logo Riester diagnóstico alemán Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Riester</h3>
+            <p class="brand-category">Diagnóstico alemán</p>
+            <p class="brand-description">Ofrecemos productos Riester de alta calidad para diagnóstico médico en Colombia con garantía y soporte técnico.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/littmann.png" alt="Logo Littmann fonendoscopios Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Littmann</h3>
+            <p class="brand-category">Fonendoscopios</p>
+            <p class="brand-description">Distribuimos fonendoscopios Littmann para profesionales de la salud en Barranquilla y toda Colombia con garantía oficial.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/gmd.png" alt="Logo GMD equipos médicos y movilidad Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">GMD</h3>
+            <p class="brand-category">Equipos médicos y movilidad</p>
+            <p class="brand-description">Suministramos equipos GMD y productos de movilidad para instituciones médicas en Colombia con garantía y servicio.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/mindray.png" alt="Logo Mindray monitores y biomédicos Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Mindray</h3>
+            <p class="brand-category">Monitores y biomédicos</p>
+            <p class="brand-description">Comercializamos monitores y equipos biomédicos Mindray para hospitales en Colombia con garantía y soporte técnico.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/philips.png" alt="Logo Philips Healthcare diagnóstico hospitalario Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Philips Healthcare</h3>
+            <p class="brand-category">Diagnóstico hospitalario</p>
+            <p class="brand-description">Distribuimos equipos Philips Healthcare para diagnóstico hospitalario en Colombia con garantía y asesoría profesional.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/comen.png" alt="Logo Comen monitores y ECG Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Comen</h3>
+            <p class="brand-category">Monitores y ECG</p>
+            <p class="brand-description">Ofrecemos monitores y equipos ECG Comen para clínicas en Barranquilla y Colombia con garantía y respaldo técnico.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/b-braun.png" alt="Logo B Braun dispositivos hospitalarios Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">B Braun</h3>
+            <p class="brand-category">Dispositivos hospitalarios</p>
+            <p class="brand-description">Distribuimos dispositivos hospitalarios B Braun para instituciones médicas en Colombia con garantía y certificación.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/bd.png" alt="Logo BD insumos médicos Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">BD (Becton Dickinson)</h3>
+            <p class="brand-category">Insumos médicos</p>
+            <p class="brand-description">Suministramos insumos médicos BD para hospitales en Barranquilla y Colombia con garantía y distribución nacional.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/omron.png" alt="Logo Omron tensiómetros digitales Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Omron Professional</h3>
+            <p class="brand-category">Tensiómetros digitales</p>
+            <p class="brand-description">Comercializamos tensiómetros Omron para uso profesional en Colombia con garantía y soporte técnico especializado.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/seca.png" alt="Logo Seca básculas médicas Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Seca</h3>
+            <p class="brand-category">Básculas médicas</p>
+            <p class="brand-description">Distribuimos básculas médicas Seca para instituciones de salud en Colombia con garantía y calibración certificada.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/defibtech.png" alt="Logo Defibtech desfibriladores DEA Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Defibtech</h3>
+            <p class="brand-category">Desfibriladores DEA</p>
+            <p class="brand-description">Ofrecemos desfibriladores Defibtech para emergencias en Colombia con garantía y capacitación incluida.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Economical Brands -->
+      <div class="brands-subsection">
+        <h3 class="brands-subtitle">Marcas Disponibles según disponibilidad</h3>
+        <div class="brand-grid">
+          <div class="brand-card">
+            <img src="images/marcas/valcri.png" alt="Logo Valcri tensiómetros y diagnóstico Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Valcri</h3>
+            <p class="brand-category">Tensiómetros y diagnóstico</p>
+            <p class="brand-description">Distribuimos equipos Valcri para diagnóstico médico en Barranquilla y Colombia con garantía y precios competitivos.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/more-fitness.png" alt="Logo More Fitness nebulizadores y movilidad Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">More Fitness</h3>
+            <p class="brand-category">Nebulizadores y movilidad</p>
+            <p class="brand-description">Ofrecemos nebulizadores y productos de movilidad More Fitness en Colombia con garantía y servicio técnico.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/yuwell.png" alt="Logo Yuwell oxímetros y oxigenoterapia Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Yuwell</h3>
+            <p class="brand-category">Oxímetros y oxigenoterapia</p>
+            <p class="brand-description">Suministramos oxímetros y equipos de oxigenoterapia Yuwell para Colombia con garantía y distribución nacional.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/choicemmed.png" alt="Logo ChoiceMMed pulsioxímetros Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">ChoiceMMed</h3>
+            <p class="brand-category">Pulsioxímetros</p>
+            <p class="brand-description">Comercializamos pulsioxímetros ChoiceMMed para uso médico en Colombia con garantía y soporte técnico.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/contec.png" alt="Logo Contec ECG y monitoreo Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Contec</h3>
+            <p class="brand-category">ECG y monitoreo</p>
+            <p class="brand-description">Distribuimos equipos ECG y de monitoreo Contec para clínicas en Barranquilla y Colombia con garantía incluida.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/rossmax.png" alt="Logo Rossmax diagnóstico Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Rossmax</h3>
+            <p class="brand-category">Diagnóstico</p>
+            <p class="brand-description">Ofrecemos equipos de diagnóstico Rossmax para profesionales de la salud en Colombia con garantía y asesoría.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/accu-chek.png" alt="Logo Accu-Chek glucómetros Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Accu-Chek</h3>
+            <p class="brand-category">Glucómetros</p>
+            <p class="brand-description">Suministramos glucómetros Accu-Chek para control de glucosa en Colombia con garantía y tiras de prueba.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/match-ii.png" alt="Logo Match II glucómetros Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Match II</h3>
+            <p class="brand-category">Glucómetros</p>
+            <p class="brand-description">Distribuimos glucómetros Match II para monitoreo de glucosa en Colombia con garantía y accesorios incluidos.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/microlife.png" alt="Logo Microlife tensiómetros Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Microlife</h3>
+            <p class="brand-category">Tensiómetros</p>
+            <p class="brand-description">Comercializamos tensiómetros Microlife para uso clínico en Colombia con garantía y validación clínica.</p>
+          </div>
+
+          <div class="brand-card">
+            <img src="images/marcas/beurer.png" alt="Logo Beurer salud en casa Colombia" class="brand-logo" loading="lazy">
+            <h3 class="brand-name">Beurer</h3>
+            <p class="brand-category">Salud en casa</p>
+            <p class="brand-description">Ofrecemos productos Beurer para salud en casa en Colombia con garantía y distribución a nivel nacional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- About Section -->
   <section class="about" id="nosotros">
     <div class="container">
@@ -1656,7 +1868,7 @@
           <p><strong>Teléfono:</strong> +57 310 610 7017</p>
           <p><strong>Email:</strong> domedicosdelnorte@hotmail.com</p>
           <p><strong>Ciudad:</strong> Barranquilla, Atlántico</p>
-          <p><strong>Dirección:</strong> <a href="https://maps.google.com/?q=Calle+72+%2350-30+Barranquilla+Atlántico+Colombia" target="_blank">Calle 72 #50-30, Barranquilla, Atlántico</a></p>
+          <p><strong>Dirección:</strong> <a href="https://maps.google.com/?q=Calle+72+%2350-30+Barranquilla+Atlántico+Colombia" target="_blank" rel="noopener noreferrer">Calle 72 #50-30, Barranquilla, Atlántico</a></p>
         </div>
         
         <div class="footer-section">

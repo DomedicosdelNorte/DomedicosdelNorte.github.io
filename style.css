@@ -98,7 +98,119 @@ animation:whatsapp-pulse 2.5s infinite;
 
 .whatsapp-float:hover{
 transform:scale(1.08);
-box-shadow:0 12px 28px rgba(0,0,0,0.35);
+box-shadow:0 12px 28px rgba(0,0,0,0.3);
+}
+
+/* =========================
+BRANDS SECTION
+========================= */
+
+.brands-section{
+padding:80px 0;
+background:#f8f9fa;
+}
+
+.brands-subsection{
+margin-bottom:60px;
+}
+
+.brands-subsection:last-child{
+margin-bottom:0;
+}
+
+.brands-subtitle{
+font-size:1.5rem;
+font-weight:700;
+color:#005B99;
+margin-bottom:30px;
+text-align:center;
+}
+
+.brand-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+padding:20px 0;
+}
+
+.brand-card{
+background:white;
+border-radius:10px;
+padding:25px 20px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+transition:all 0.35s ease;
+text-align:center;
+border:2px solid transparent;
+}
+
+.brand-card:hover{
+transform:translateY(-6px);
+box-shadow:0 18px 40px rgba(0,91,153,0.15);
+border-color:#005B99;
+}
+
+.brand-logo{
+max-height:80px;
+width:auto;
+margin:0 auto 15px;
+object-fit:contain;
+}
+
+.brand-name{
+font-size:1.2rem;
+font-weight:700;
+color:#005B99;
+margin:15px 0 8px;
+}
+
+.brand-category{
+font-size:0.9rem;
+color:#6c757d;
+margin-bottom:10px;
+font-weight:500;
+}
+
+.brand-description{
+font-size:0.85rem;
+color:#495057;
+line-height:1.5;
+margin-top:10px;
+}
+
+/* Responsive Brands Section */
+
+@media (max-width:1024px){
+.brand-grid{
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+}
+
+@media (max-width:768px){
+.brand-grid{
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.brand-card{
+padding:20px 15px;
+}
+
+.brand-logo{
+max-height:60px;
+}
+
+.brand-name{
+font-size:1.1rem;
+}
+
+.brand-category{
+font-size:0.85rem;
+}
+
+.brand-description{
+font-size:0.8rem;
+}
 }
 
 @keyframes whatsapp-pulse{
