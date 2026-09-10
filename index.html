@@ -65,6 +65,180 @@
   }
   </script>
 
+  <!-- JSON-LD Structured Data - Brand ItemList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Marcas de Equipos Médicos Distribuidas por Domédicos del Norte",
+    "description": "Lista de marcas de equipos médicos distribuidas en Barranquilla y Colombia",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Brand",
+          "name": "Welch Allyn",
+          "description": "Equipos de diagnóstico clínico"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Brand",
+          "name": "Riester",
+          "description": "Diagnóstico alemán"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Brand",
+          "name": "Littmann",
+          "description": "Fonendoscopios"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Brand",
+          "name": "GMD",
+          "description": "Equipos médicos y movilidad"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Brand",
+          "name": "Mindray",
+          "description": "Monitores y biomédicos"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "Brand",
+          "name": "Philips Healthcare",
+          "description": "Diagnóstico hospitalario"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "Brand",
+          "name": "Comen",
+          "description": "Monitores y ECG"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "item": {
+          "@type": "Brand",
+          "name": "B Braun",
+          "description": "Dispositivos hospitalarios"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "item": {
+          "@type": "Brand",
+          "name": "BD",
+          "description": "Insumos médicos"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "item": {
+          "@type": "Brand",
+          "name": "Omron",
+          "description": "Tensiómetros digitales"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "item": {
+          "@type": "Brand",
+          "name": "Seca",
+          "description": "Básculas médicas"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "item": {
+          "@type": "Brand",
+          "name": "Valcri",
+          "description": "Tensiómetros y diagnóstico"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "item": {
+          "@type": "Brand",
+          "name": "Yuwell",
+          "description": "Oxímetros y oxigenoterapia"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "item": {
+          "@type": "Brand",
+          "name": "ChoiceMMed",
+          "description": "Pulsioxímetros"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "item": {
+          "@type": "Brand",
+          "name": "Rossmax",
+          "description": "Diagnóstico"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "item": {
+          "@type": "Brand",
+          "name": "Accu-Chek",
+          "description": "Glucómetros"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "item": {
+          "@type": "Brand",
+          "name": "Microlife",
+          "description": "Diagnóstico"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "item": {
+          "@type": "Brand",
+          "name": "Diagnósticos Biomédicos",
+          "description": "Equipos de diagnóstico"
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- CSS INLINE - VERSIÓN RECONSTRUIDA DESDE CERO -->
   <style>
     /* RESET COMPLETO */
@@ -1285,6 +1459,72 @@
         background: #1a1a1a;
       }
     }
+
+    /* Brand Grid Static - CSS Grid Layout */
+    .brand-grid-static {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 30px;
+      padding: 40px 0;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .brand-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 180px;
+    }
+
+    .brand-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .brand-item img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(20%);
+      transition: filter 0.3s ease;
+    }
+
+    .brand-item:hover img {
+      filter: grayscale(0%);
+    }
+
+    @media (max-width: 768px) {
+      .brand-grid-static {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 20px;
+        padding: 30px 0;
+      }
+
+      .brand-item {
+        padding: 15px;
+        max-width: 140px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-grid-static {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 20px 0;
+      }
+
+      .brand-item {
+        padding: 12px;
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1619,169 +1859,61 @@
         <p>Trabajamos con marcas reconocidas del sector salud, ofreciendo equipos originales, garantía, respaldo técnico y disponibilidad para instituciones y profesionales de la salud en Colombia.</p>
       </div>
 
-      <!-- Premium Brands -->
-      <div class="brands-subsection">
-        <h3 class="brands-subtitle">Marcas Premium / Institucional</h3>
-        <div class="brand-grid">
-          <div class="brand-card">
-            <img src="images/marcas/welch-allyn.png" alt="Logo Welch Allyn equipos médicos Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Welch Allyn</h3>
-            <p class="brand-category">Diagnóstico clínico</p>
-            <p class="brand-description">Distribuimos equipos Welch Allyn para diagnóstico clínico en Barranquilla y Colombia con garantía y asesoría especializada.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/riester.png" alt="Logo Riester diagnóstico alemán Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Riester</h3>
-            <p class="brand-category">Diagnóstico alemán</p>
-            <p class="brand-description">Ofrecemos productos Riester de alta calidad para diagnóstico médico en Colombia con garantía y soporte técnico.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/littmann.png" alt="Logo Littmann fonendoscopios Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Littmann</h3>
-            <p class="brand-category">Fonendoscopios</p>
-            <p class="brand-description">Distribuimos fonendoscopios Littmann para profesionales de la salud en Barranquilla y toda Colombia con garantía oficial.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/gmd.png" alt="Logo GMD equipos médicos y movilidad Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">GMD</h3>
-            <p class="brand-category">Equipos médicos y movilidad</p>
-            <p class="brand-description">Suministramos equipos GMD y productos de movilidad para instituciones médicas en Colombia con garantía y servicio.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/mindray.png" alt="Logo Mindray monitores y biomédicos Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Mindray</h3>
-            <p class="brand-category">Monitores y biomédicos</p>
-            <p class="brand-description">Comercializamos monitores y equipos biomédicos Mindray para hospitales en Colombia con garantía y soporte técnico.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/philips.png" alt="Logo Philips Healthcare diagnóstico hospitalario Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Philips Healthcare</h3>
-            <p class="brand-category">Diagnóstico hospitalario</p>
-            <p class="brand-description">Distribuimos equipos Philips Healthcare para diagnóstico hospitalario en Colombia con garantía y asesoría profesional.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/comen.png" alt="Logo Comen monitores y ECG Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Comen</h3>
-            <p class="brand-category">Monitores y ECG</p>
-            <p class="brand-description">Ofrecemos monitores y equipos ECG Comen para clínicas en Barranquilla y Colombia con garantía y respaldo técnico.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/b-braun.png" alt="Logo B Braun dispositivos hospitalarios Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">B Braun</h3>
-            <p class="brand-category">Dispositivos hospitalarios</p>
-            <p class="brand-description">Distribuimos dispositivos hospitalarios B Braun para instituciones médicas en Colombia con garantía y certificación.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/bd.png" alt="Logo BD insumos médicos Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">BD (Becton Dickinson)</h3>
-            <p class="brand-category">Insumos médicos</p>
-            <p class="brand-description">Suministramos insumos médicos BD para hospitales en Barranquilla y Colombia con garantía y distribución nacional.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/omron.png" alt="Logo Omron tensiómetros digitales Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Omron Professional</h3>
-            <p class="brand-category">Tensiómetros digitales</p>
-            <p class="brand-description">Comercializamos tensiómetros Omron para uso profesional en Colombia con garantía y soporte técnico especializado.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/seca.png" alt="Logo Seca básculas médicas Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Seca</h3>
-            <p class="brand-category">Básculas médicas</p>
-            <p class="brand-description">Distribuimos básculas médicas Seca para instituciones de salud en Colombia con garantía y calibración certificada.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/defibtech.png" alt="Logo Defibtech desfibriladores DEA Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Defibtech</h3>
-            <p class="brand-category">Desfibriladores DEA</p>
-            <p class="brand-description">Ofrecemos desfibriladores Defibtech para emergencias en Colombia con garantía y capacitación incluida.</p>
-          </div>
+      <!-- Brand Grid - Static CSS Grid -->
+      <div class="brand-grid-static">
+        <div class="brand-item">
+          <img src="images/marcas/welch-allyn.png" alt="Welch Allyn - Insumos y Equipos Médicos" title="Welch Allyn" loading="lazy" width="150" height="80">
         </div>
-      </div>
-
-      <!-- Economical Brands -->
-      <div class="brands-subsection">
-        <h3 class="brands-subtitle">Marcas Disponibles según disponibilidad</h3>
-        <div class="brand-grid">
-          <div class="brand-card">
-            <img src="images/marcas/valcri.png" alt="Logo Valcri tensiómetros y diagnóstico Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Valcri</h3>
-            <p class="brand-category">Tensiómetros y diagnóstico</p>
-            <p class="brand-description">Distribuimos equipos Valcri para diagnóstico médico en Barranquilla y Colombia con garantía y precios competitivos.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/more-fitness.png" alt="Logo More Fitness nebulizadores y movilidad Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">More Fitness</h3>
-            <p class="brand-category">Nebulizadores y movilidad</p>
-            <p class="brand-description">Ofrecemos nebulizadores y productos de movilidad More Fitness en Colombia con garantía y servicio técnico.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/yuwell.png" alt="Logo Yuwell oxímetros y oxigenoterapia Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Yuwell</h3>
-            <p class="brand-category">Oxímetros y oxigenoterapia</p>
-            <p class="brand-description">Suministramos oxímetros y equipos de oxigenoterapia Yuwell para Colombia con garantía y distribución nacional.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/choicemmed.png" alt="Logo ChoiceMMed pulsioxímetros Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">ChoiceMMed</h3>
-            <p class="brand-category">Pulsioxímetros</p>
-            <p class="brand-description">Comercializamos pulsioxímetros ChoiceMMed para uso médico en Colombia con garantía y soporte técnico.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/contec.png" alt="Logo Contec ECG y monitoreo Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Contec</h3>
-            <p class="brand-category">ECG y monitoreo</p>
-            <p class="brand-description">Distribuimos equipos ECG y de monitoreo Contec para clínicas en Barranquilla y Colombia con garantía incluida.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/rossmax.png" alt="Logo Rossmax diagnóstico Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Rossmax</h3>
-            <p class="brand-category">Diagnóstico</p>
-            <p class="brand-description">Ofrecemos equipos de diagnóstico Rossmax para profesionales de la salud en Colombia con garantía y asesoría.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/accu-chek.png" alt="Logo Accu-Chek glucómetros Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Accu-Chek</h3>
-            <p class="brand-category">Glucómetros</p>
-            <p class="brand-description">Suministramos glucómetros Accu-Chek para control de glucosa en Colombia con garantía y tiras de prueba.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/match-ii.png" alt="Logo Match II glucómetros Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Match II</h3>
-            <p class="brand-category">Glucómetros</p>
-            <p class="brand-description">Distribuimos glucómetros Match II para monitoreo de glucosa en Colombia con garantía y accesorios incluidos.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/microlife.png" alt="Logo Microlife tensiómetros Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Microlife</h3>
-            <p class="brand-category">Tensiómetros</p>
-            <p class="brand-description">Comercializamos tensiómetros Microlife para uso clínico en Colombia con garantía y validación clínica.</p>
-          </div>
-
-          <div class="brand-card">
-            <img src="images/marcas/beurer.png" alt="Logo Beurer salud en casa Colombia" class="brand-logo" loading="lazy">
-            <h3 class="brand-name">Beurer</h3>
-            <p class="brand-category">Salud en casa</p>
-            <p class="brand-description">Ofrecemos productos Beurer para salud en casa en Colombia con garantía y distribución a nivel nacional.</p>
-          </div>
+        <div class="brand-item">
+          <img src="images/marcas/riester.png" alt="Riester - Insumos y Equipos Médicos" title="Riester" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/littmann.png" alt="Littmann - Insumos y Equipos Médicos" title="Littmann" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/GMD.png" alt="GMD - Insumos y Equipos Médicos" title="GMD" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/mindray.jpg" alt="Mindray - Insumos y Equipos Médicos" title="Mindray" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/philips-healthcare.jpg" alt="Philips Healthcare - Insumos y Equipos Médicos" title="Philips Healthcare" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/Comen.jpg" alt="Comen - Insumos y Equipos Médicos" title="Comen" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/b-braun.jpg" alt="B Braun - Insumos y Equipos Médicos" title="B Braun" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/bd.png" alt="BD - Insumos y Equipos Médicos" title="BD" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/omron.png" alt="Omron - Insumos y Equipos Médicos" title="Omron" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/seca.png" alt="Seca - Insumos y Equipos Médicos" title="Seca" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/valcri.webp" alt="Valcri - Insumos y Equipos Médicos" title="Valcri" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/yuwell.png" alt="Yuwell - Insumos y Equipos Médicos" title="Yuwell" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/ChoiceMMed.webp" alt="ChoiceMMed - Insumos y Equipos Médicos" title="ChoiceMMed" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/rossmax.png" alt="Rossmax - Insumos y Equipos Médicos" title="Rossmax" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/accu-chek.jpg" alt="Accu-Chek - Insumos y Equipos Médicos" title="Accu-Chek" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/microlife.png" alt="Microlife - Insumos y Equipos Médicos" title="Microlife" loading="lazy" width="150" height="80">
+        </div>
+        <div class="brand-item">
+          <img src="images/marcas/Diagnosticosbiomedicos.jpg" alt="Diagnósticos Biomédicos - Insumos y Equipos Médicos" title="Diagnósticos Biomédicos" loading="lazy" width="150" height="80">
         </div>
       </div>
     </div>
