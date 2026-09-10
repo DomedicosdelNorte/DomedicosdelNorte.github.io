@@ -1471,17 +1471,18 @@
     }
 
     .brand-item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px;
-      background: #ffffff;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 12px !important;
+      height: 90px !important;
+      overflow: visible !important;
+      background: #ffffff !important;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
       max-width: 180px;
-      height: 100px;
       box-sizing: border-box;
     }
 
@@ -1491,12 +1492,12 @@
     }
 
     .brand-item img {
-      width: 100% !important;
-      height: 100% !important;
+      width: auto !important;
+      height: auto !important;
       max-width: 100% !important;
       max-height: 100% !important;
       object-fit: contain !important;
-      object-position: center !important;
+      display: block !important;
       filter: grayscale(20%);
       transition: filter 0.3s ease;
     }
@@ -1513,19 +1514,24 @@
       }
 
       .brand-item {
-        padding: 12px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px !important;
+        height: 70px !important;
+        overflow: visible !important;
+        background: #ffffff !important;
         max-width: 140px;
-        height: 80px;
         box-sizing: border-box;
       }
 
       .brand-item img {
-        width: 100% !important;
-        height: 100% !important;
+        width: auto !important;
+        height: auto !important;
         max-width: 100% !important;
         max-height: 100% !important;
         object-fit: contain !important;
-        object-position: center !important;
+        display: block !important;
       }
     }
 
@@ -1537,19 +1543,24 @@
       }
 
       .brand-item {
-        padding: 10px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 8px !important;
+        height: 60px !important;
+        overflow: visible !important;
+        background: #ffffff !important;
         max-width: 100%;
-        height: 70px;
         box-sizing: border-box;
       }
 
       .brand-item img {
-        width: 100% !important;
-        height: 100% !important;
+        width: auto !important;
+        height: auto !important;
         max-width: 100% !important;
         max-height: 100% !important;
         object-fit: contain !important;
-        object-position: center !important;
+        display: block !important;
       }
     }
   </style>
