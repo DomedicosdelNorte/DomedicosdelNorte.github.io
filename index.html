@@ -1481,6 +1481,8 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
       max-width: 180px;
+      height: 100px;
+      box-sizing: border-box;
     }
 
     .brand-item:hover {
@@ -1489,11 +1491,12 @@
     }
 
     .brand-item img {
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center !important;
       filter: grayscale(20%);
       transition: filter 0.3s ease;
     }
@@ -1512,14 +1515,17 @@
       .brand-item {
         padding: 12px;
         max-width: 140px;
+        height: 80px;
+        box-sizing: border-box;
       }
 
       .brand-item img {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        object-fit: contain;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
       }
     }
 
@@ -1533,14 +1539,17 @@
       .brand-item {
         padding: 10px;
         max-width: 100%;
+        height: 70px;
+        box-sizing: border-box;
       }
 
       .brand-item img {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        object-fit: contain;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
       }
     }
   </style>
@@ -1880,58 +1889,58 @@
       <!-- Brand Grid - Static CSS Grid -->
       <div class="brand-grid-static">
         <div class="brand-item">
-          <img src="images/marcas/welch-allyn.png" alt="Welch Allyn - Insumos y Equipos Médicos" title="Welch Allyn" loading="lazy" width="150" height="80">
+          <img src="images/marcas/welch-allyn.png" alt="Welch Allyn - Insumos y Equipos Médicos" title="Welch Allyn" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/riester.png" alt="Riester - Insumos y Equipos Médicos" title="Riester" loading="lazy" width="150" height="80">
+          <img src="images/marcas/riester.png" alt="Riester - Insumos y Equipos Médicos" title="Riester" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/littmann.png" alt="Littmann - Insumos y Equipos Médicos" title="Littmann" loading="lazy" width="150" height="80">
+          <img src="images/marcas/littmann.png" alt="Littmann - Insumos y Equipos Médicos" title="Littmann" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/GMD.png" alt="GMD - Insumos y Equipos Médicos" title="GMD" loading="lazy" width="150" height="80">
+          <img src="images/marcas/GMD.png" alt="GMD - Insumos y Equipos Médicos" title="GMD" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/mindray.jpg" alt="Mindray - Insumos y Equipos Médicos" title="Mindray" loading="lazy" width="150" height="80">
+          <img src="images/marcas/mindray.jpg" alt="Mindray - Insumos y Equipos Médicos" title="Mindray" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/philips-healthcare.jpg" alt="Philips Healthcare - Insumos y Equipos Médicos" title="Philips Healthcare" loading="lazy" width="150" height="80">
+          <img src="images/marcas/philips-healthcare.jpg" alt="Philips Healthcare - Insumos y Equipos Médicos" title="Philips Healthcare" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/Comen.jpg" alt="Comen - Insumos y Equipos Médicos" title="Comen" loading="lazy" width="150" height="80">
+          <img src="images/marcas/Comen.jpg" alt="Comen - Insumos y Equipos Médicos" title="Comen" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/b-braun.jpg" alt="B Braun - Insumos y Equipos Médicos" title="B Braun" loading="lazy" width="150" height="80">
+          <img src="images/marcas/b-braun.jpg" alt="B Braun - Insumos y Equipos Médicos" title="B Braun" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/bd.png" alt="BD - Insumos y Equipos Médicos" title="BD" loading="lazy" width="150" height="80">
+          <img src="images/marcas/bd.png" alt="BD - Insumos y Equipos Médicos" title="BD" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/omron.png" alt="Omron - Insumos y Equipos Médicos" title="Omron" loading="lazy" width="150" height="80">
+          <img src="images/marcas/omron.png" alt="Omron - Insumos y Equipos Médicos" title="Omron" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/seca.png" alt="Seca - Insumos y Equipos Médicos" title="Seca" loading="lazy" width="150" height="80">
+          <img src="images/marcas/seca.png" alt="Seca - Insumos y Equipos Médicos" title="Seca" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/valcri.webp" alt="Valcri - Insumos y Equipos Médicos" title="Valcri" loading="lazy" width="150" height="80">
+          <img src="images/marcas/valcri.webp" alt="Valcri - Insumos y Equipos Médicos" title="Valcri" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/yuwell.png" alt="Yuwell - Insumos y Equipos Médicos" title="Yuwell" loading="lazy" width="150" height="80">
+          <img src="images/marcas/yuwell.png" alt="Yuwell - Insumos y Equipos Médicos" title="Yuwell" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/ChoiceMMed.webp" alt="ChoiceMMed - Insumos y Equipos Médicos" title="ChoiceMMed" loading="lazy" width="150" height="80">
+          <img src="images/marcas/ChoiceMMed.webp" alt="ChoiceMMed - Insumos y Equipos Médicos" title="ChoiceMMed" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/rossmax.png" alt="Rossmax - Insumos y Equipos Médicos" title="Rossmax" loading="lazy" width="150" height="80">
+          <img src="images/marcas/rossmax.png" alt="Rossmax - Insumos y Equipos Médicos" title="Rossmax" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/accu-chek.jpg" alt="Accu-Chek - Insumos y Equipos Médicos" title="Accu-Chek" loading="lazy" width="150" height="80">
+          <img src="images/marcas/accu-chek.jpg" alt="Accu-Chek - Insumos y Equipos Médicos" title="Accu-Chek" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/microlife.png" alt="Microlife - Insumos y Equipos Médicos" title="Microlife" loading="lazy" width="150" height="80">
+          <img src="images/marcas/microlife.png" alt="Microlife - Insumos y Equipos Médicos" title="Microlife" loading="lazy">
         </div>
         <div class="brand-item">
-          <img src="images/marcas/Diagnosticosbiomedicos.jpg" alt="Diagnósticos Biomédicos - Insumos y Equipos Médicos" title="Diagnósticos Biomédicos" loading="lazy" width="150" height="80">
+          <img src="images/marcas/Diagnosticosbiomedicos.jpg" alt="Diagnósticos Biomédicos - Insumos y Equipos Médicos" title="Diagnósticos Biomédicos" loading="lazy">
         </div>
       </div>
     </div>
