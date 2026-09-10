@@ -136,11 +136,14 @@ padding:20px 0;
 .brand-card{
 background:white;
 border-radius:10px;
-padding:25px 20px;
+padding:15px;
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
 transition:all 0.35s ease;
 text-align:center;
 border:2px solid transparent;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .brand-card:hover{
@@ -150,8 +153,10 @@ border-color:#005B99;
 }
 
 .brand-logo{
-max-height:80px;
+max-width:100%;
+max-height:100%;
 width:auto;
+height:auto;
 margin:0 auto 15px;
 object-fit:contain;
 }
@@ -193,11 +198,18 @@ gap:15px;
 }
 
 .brand-card{
-padding:20px 15px;
+padding:12px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .brand-logo{
-max-height:60px;
+max-width:100%;
+max-height:100%;
+width:auto;
+height:auto;
+object-fit:contain;
 }
 
 .brand-name{
