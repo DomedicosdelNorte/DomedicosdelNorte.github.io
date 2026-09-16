@@ -162,6 +162,9 @@ class SecurityMonitor {
     }
 
     isMaliciousRequest(url, options) {
+        if (['google-analytics.com', 'analytics.google.com', 'google.com/g/collect'].some(d => url.includes(d))) {
+            return false;
+        }
         // Whitelist for Google Analytics and legitimate services
         const whitelistedDomains = [
             'google-analytics.com',
