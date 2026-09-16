@@ -55,7 +55,7 @@ class AnalyticsTracker {
         document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = e.target.href;
-                const message = href.includes('?text=') ? decodeURIComponent(href.split('?text=')[1]) : '';
+                const message = href && href.includes('?text=') ? decodeURIComponent(href.split('?text=')[1]) : '';
                 
                 this.trackEvent('whatsapp_click', {
                     'phone': '573106107017',
