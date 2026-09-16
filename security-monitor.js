@@ -162,6 +162,21 @@ class SecurityMonitor {
     }
 
     isMaliciousRequest(url, options) {
+        // Whitelist for Google Analytics and legitimate services
+        const whitelistedDomains = [
+            'google-analytics.com',
+            'analytics.google.com',
+            'google.com'
+        ];
+        
+        const isWhitelisted = whitelistedDomains.some(domain => 
+            url.includes(domain) || url.includes('google.com/g/collect')
+        );
+        
+        if (isWhitelisted) {
+            return false;
+        }
+        
         const suspiciousPatterns = [
             /<script/i,
             /javascript:/i,
