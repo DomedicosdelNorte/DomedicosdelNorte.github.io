@@ -1600,13 +1600,15 @@
   <!-- Product Search Bar -->
   <div class="search-container">
     <div class="container">
-      <input 
-        type="text" 
-        id="productSearch" 
-        class="search-input" 
-        placeholder="Buscar producto (ej. Nebulizador, Tensiómetro, Silla de ruedas)..."
-        autocomplete="off"
-      >
+      <form id="searchForm" onsubmit="return false;">
+        <input 
+          type="text" 
+          id="productSearch" 
+          class="search-input" 
+          placeholder="Buscar producto (ej. Nebulizador, Tensiómetro, Silla de ruedas)..."
+          autocomplete="off"
+        >
+      </form>
     </div>
   </div>
 
@@ -2222,6 +2224,8 @@
   <script>
     function filterProducts() {
       const searchInput = document.getElementById('productSearch');
+      if (!searchInput) return;
+      
       const filterText = searchInput.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       
       // Filter category cards
@@ -2234,21 +2238,25 @@
           card.style.display = 'none';
         }
       });
-
-      // If search is cleared, show all cards
-      if (filterText === '') {
-        categoryCards.forEach(card => {
-          card.style.display = '';
-        });
-      }
     }
 
-    // Attach event listener to search input
+    // Attach event listeners to search input and form
     document.addEventListener('DOMContentLoaded', function() {
       const searchInput = document.getElementById('productSearch');
+      const searchForm = document.getElementById('searchForm');
+      
       if (searchInput) {
+        // Real-time filtering on input and keyup
         searchInput.addEventListener('input', filterProducts);
         searchInput.addEventListener('keyup', filterProducts);
+      }
+      
+      if (searchForm) {
+        // Prevent form submission on Enter key
+        searchForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          filterProducts();
+        });
       }
     });
   </script>
