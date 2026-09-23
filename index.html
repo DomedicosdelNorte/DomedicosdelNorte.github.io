@@ -2222,6 +2222,47 @@
 
   <!-- Product Search Filter -->
   <script>
+    // Product routing map for direct subpage navigation
+    const productRoutes = {
+      'silla de ruedas': 'movilidad.html',
+      'sillas de ruedas': 'movilidad.html',
+      'silla': 'movilidad.html',
+      'sillas': 'movilidad.html',
+      'muletas': 'movilidad.html',
+      'bastones': 'movilidad.html',
+      'nebulizador': 'diagnostico.html',
+      'nebulizadores': 'diagnostico.html',
+      'tensiometro': 'diagnostico.html',
+      'tensiómetro': 'diagnostico.html',
+      'tensiómetros': 'diagnostico.html',
+      'estetoscopio': 'diagnostico.html',
+      'estetoscopios': 'diagnostico.html',
+      'glucometro': 'diagnostico.html',
+      'glucómetro': 'diagnostico.html',
+      'glucómetros': 'diagnostico.html',
+      'electrocardiografo': 'diagnostico.html',
+      'electrocardiógrafo': 'diagnostico.html',
+      'colchon antiescaras': 'hospitalario.html',
+      'colchones antiescaras': 'hospitalario.html',
+      'colchon': 'hospitalario.html',
+      'colchones': 'hospitalario.html',
+      'divan': 'hospitalario.html',
+      'divanes': 'hospitalario.html',
+      'mobiliario': 'hospitalario.html',
+      'botiquin': 'insumos.html',
+      'botiquines': 'insumos.html',
+      'guantes': 'insumos.html',
+      'material de curacion': 'insumos.html',
+      'material de curación': 'insumos.html',
+      'instrumental': 'insumos.html',
+      'bateria': 'repuestos.html',
+      'baterias': 'repuestos.html',
+      'sensores': 'repuestos.html',
+      'cables': 'repuestos.html',
+      'tiras reactivas': 'repuestos.html',
+      'accesorios': 'repuestos.html'
+    };
+
     function filterProducts() {
       const searchInput = document.getElementById('productSearch');
       if (!searchInput) return;
@@ -2230,25 +2271,31 @@
       
       // Filter category cards (main product categories on homepage)
       const categoryCards = document.querySelectorAll('.category-card');
-      let hasMatches = false;
       
       categoryCards.forEach(card => {
         const cardText = card.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         if (cardText.includes(filterText)) {
           card.style.display = '';
-          hasMatches = true;
         } else {
           card.style.display = 'none';
         }
       });
+    }
 
-      // Smooth scroll to categories section if there's a search term and matches
-      if (filterText && hasMatches) {
-        const categoriesSection = document.querySelector('.categories');
-        if (categoriesSection) {
-          categoriesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    function handleSearchSubmit() {
+      const searchInput = document.getElementById('productSearch');
+      if (!searchInput) return;
+      
+      const query = searchInput.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      
+      // Check if query matches any product route
+      if (productRoutes[query]) {
+        window.location.href = productRoutes[query];
+        return;
       }
+      
+      // Fallback: filter categories without page jump
+      filterProducts();
     }
 
     // Attach event listeners to search input and form
@@ -2257,16 +2304,16 @@
       const searchForm = document.getElementById('searchForm');
       
       if (searchInput) {
-        // Real-time filtering on input and keyup
+        // Real-time filtering on input and keyup (no automatic scroll)
         searchInput.addEventListener('input', filterProducts);
         searchInput.addEventListener('keyup', filterProducts);
       }
       
       if (searchForm) {
-        // Prevent form submission on Enter key
+        // Handle form submission on Enter key for routing
         searchForm.addEventListener('submit', function(e) {
           e.preventDefault();
-          filterProducts();
+          handleSearchSubmit();
         });
       }
     });
