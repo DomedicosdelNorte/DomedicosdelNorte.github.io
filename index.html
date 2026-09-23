@@ -1433,6 +1433,64 @@
       }
     }
 
+    /* Product Search Bar Styles */
+    .search-container {
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      padding: 15px 0;
+      position: relative;
+      z-index: 1001;
+      box-shadow: 0 4px 15px rgba(0, 91, 153, 0.2);
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 800px;
+      padding: 16px 24px;
+      font-size: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #2c3e50;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-input:focus {
+      border-color: #1BA6D9;
+      box-shadow: 0 6px 25px rgba(27, 166, 217, 0.3);
+      background: white;
+    }
+
+    .search-input::placeholder {
+      color: #6c757d;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .search-container {
+        padding: 12px 0;
+      }
+
+      .search-input {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        border-radius: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .search-container {
+        padding: 10px 0;
+      }
+
+      .search-input {
+        padding: 12px 18px;
+        font-size: 0.9rem;
+        border-radius: 35px;
+      }
+    }
+
     /* Brand Grid Static - CSS Grid Layout */
     .brand-grid-static {
       display: grid;
@@ -1539,6 +1597,19 @@
   </style>
 </head>
 <body>
+  <!-- Product Search Bar -->
+  <div class="search-container">
+    <div class="container">
+      <input 
+        type="text" 
+        id="productSearch" 
+        class="search-input" 
+        placeholder="Buscar producto (ej. Nebulizador, Tensiómetro, Silla de ruedas)..."
+        autocomplete="off"
+      >
+    </div>
+  </div>
+
   <!-- Header -->
   <header>
     <div class="container">
@@ -2144,6 +2215,41 @@
           interval = setInterval(nextSlide, slideInterval);
         });
       });
+    });
+  </script>
+
+  <!-- Product Search Filter -->
+  <script>
+    function filterProducts() {
+      const searchInput = document.getElementById('productSearch');
+      const filterText = searchInput.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      
+      // Filter category cards
+      const categoryCards = document.querySelectorAll('.category-card');
+      categoryCards.forEach(card => {
+        const cardText = card.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (cardText.includes(filterText)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // If search is cleared, show all cards
+      if (filterText === '') {
+        categoryCards.forEach(card => {
+          card.style.display = '';
+        });
+      }
+    }
+
+    // Attach event listener to search input
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('productSearch');
+      if (searchInput) {
+        searchInput.addEventListener('input', filterProducts);
+        searchInput.addEventListener('keyup', filterProducts);
+      }
     });
   </script>
 
