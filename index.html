@@ -2228,16 +2228,27 @@
       
       const filterText = searchInput.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       
-      // Filter category cards
+      // Filter category cards (main product categories on homepage)
       const categoryCards = document.querySelectorAll('.category-card');
+      let hasMatches = false;
+      
       categoryCards.forEach(card => {
         const cardText = card.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         if (cardText.includes(filterText)) {
           card.style.display = '';
+          hasMatches = true;
         } else {
           card.style.display = 'none';
         }
       });
+
+      // Smooth scroll to categories section if there's a search term and matches
+      if (filterText && hasMatches) {
+        const categoriesSection = document.querySelector('.categories');
+        if (categoriesSection) {
+          categoriesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     }
 
     // Attach event listeners to search input and form
