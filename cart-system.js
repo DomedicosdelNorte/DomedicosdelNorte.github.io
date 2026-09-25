@@ -183,6 +183,7 @@ class CotizacionCart {
             </div>
             
             <style>
+            
                 @keyframes fadeIn {
                     from { opacity: 0; }
                     to { opacity: 1; }
@@ -466,12 +467,11 @@ class CotizacionCart {
             this.showNotification('El carrito está vacío. Agrega productos primero.');
             return;
         }
-        
-        // Construir mensaje detallado
-        let message = '📋 *DOMÉDICOS DEL NORTE – SOLICITUD DE COTIZACIÓN*\n\n';
+
+        // Unicode escape sequences to prevent file-encoding issues with emojis
+        let message = '\uD83D\uDCCB *DOMÉDICOS DEL NORTE – SOLICITUD DE COTIZACIÓN*\n\n';
         message += 'Hola, deseo cotizar los siguientes productos:\n\n';
 
-        // Agrupar productos por categoría
         const groupedItems = this.items.reduce((groups, item) => {
             if (!groups[item.category]) {
                 groups[item.category] = [];
@@ -480,43 +480,43 @@ class CotizacionCart {
             return groups;
         }, {});
 
-        Object.keys(groupedItems).forEach((category, catIndex) => {
-            message += `🩺 *${category.toUpperCase()}*\n`;
-            groupedItems[category].forEach((item, index) => {
+        Object.keys(groupedItems).forEach((category) => {
+            message += `\uFA7A *${category.toUpperCase()}*\n`;
+
+            groupedItems[category].forEach((item) => {
                 message += `• ${item.name}\n`;
             });
+
             message += '\n';
         });
 
         message += 'Gracias.\n\n';
-        message += '📞 *Teléfono de contacto:* +57 310 610 7017\n';
-        message += '📧 *Email:* domedicosdelnorte@hotmail.com';
-        
-        // Codificar mensaje para WhatsApp
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/573106107017?text=${encodedMessage}`;
-        
-        // Abrir WhatsApp en nueva ventana
+        message += '\uD83D\uDCDE *Teléfono de contacto:* +57 310 610 7017\n';
+        message += '\uD83D\uDCE7 *Email:* domedicosdelnorte@hotmail.com';
+
+        const whatsappUrl = `https://wa.me/573106107017?text=${encodeURIComponent(message)}`;
+
         window.open(whatsappUrl, '_blank');
-        
-        // Evento Analytics
+
         if (window.analyticsTracker) {
             window.analyticsTracker.trackEvent('begin_checkout', {
-                'value': this.cartCount,
-                'currency': 'COP',
-                'items': this.items.map(item => ({
-                    'item_name': item.name,
-                    'item_category': item.category,
-                    'quantity': item.quantity
+                value: this.cartCount,
+                currency: 'COP',
+                items: this.items.map(item => ({
+                    item_name: item.name,
+                    item_category: item.category,
+                    quantity: item.quantity
                 }))
             });
-            
-            window.analyticsTracker.trackWhatsAppConversion('cotizacion_multiple', '573106107017');
+
+            window.analyticsTracker.trackWhatsAppConversion(
+                'cotizacion_multiple',
+                '573106107017'
+            );
         }
-        
-        // Mostrar notificación y limpiar carrito
+
         this.showNotification('📱 Enviando cotización por WhatsApp...');
-        
+
         setTimeout(() => {
             this.clearCart();
             this.closeCart();
