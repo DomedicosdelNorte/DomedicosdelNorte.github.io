@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Domédicos del Norte - Productos Médicos</title>
+    <link>https://domedicosdelnorte.com/</link>
+    <description>Distribuidor líder de equipos médicos en Barranquilla con más de 30 años de experiencia</description>
+    
+    <item>
+      <g:id>DIAG-001</g:id>
+      <title>Fonendoscopio OIS100</title>
+      <description>Estetoscopio de alta fidelidad con cabeza dual para adultos y niños. Acústica superior para detección precisa de sonidos cardíacos y pulmonares. Diseño ergonómico para uso prolongado.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/Fonendoscopio.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>52000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>OIS</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-002</g:id>
+      <title>Glucómetro Digital Match II</title>
+      <description>Glucometro de alta precisión para monitoreo de glucosa en sangre. Resultados rápidos en 5 segundos, memoria para 500 lecturas y conexión USB para transferencia de datos. Incluye tiras reactivas.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/glucometro match II.png</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>80000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Match</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-003</g:id>
+      <title>Tensiometro Digital Valcri B07</title>
+      <description>Tensiómetro digital de muñeca compacto. Tecnología de medición avanzada con indicador de hipertensión. Ideal para uso personal y clínico.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/tensiometro digital valcri b07.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>80000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Valcri</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-004</g:id>
+      <title>Kit colors Tensiometro + Fonendoscopio GMD</title>
+      <description>Set completo que incluye tensiómetro y estetoscopio. Perfecto para profesionales de la salud. Incluye maletín de transporte.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/Kit tensiometro + fonendoscopio.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>65000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>GMD</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-005</g:id>
+      <title>Balanza Digital de Peso Corporal Carditek</title>
+      <description>Balanza digital de alta precisión para medición de peso corporal. Capacidad hasta 180kg, plataforma antideslizante, indicador de IMC y función de tara. Ideal para consultorios y clínicas.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/Balanza Digital de peso corporal.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>40000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Carditek</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-006</g:id>
+      <title>Pulsioximetro Profesional</title>
+      <description>Pulsioxímetro de alta precisión para monitoreo continuo de saturación de oxígeno y frecuencia cardíaca. Pantalla OLED brillante con alarmas configurables y memoria extendida. Ideal para uso clínico.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/pulsioximetro.jpg</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>60000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Do Médicos del Norte</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-007</g:id>
+      <title>Nebulizador Portátil</title>
+      <description>Nebulizador portátil de alta eficiencia para tratamientos respiratorios. Diseño compacto y silencioso, ideal para uso domiciliar y clínico. Batería recargable de larga duración con múltiples modos de nebulización.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/Nebulizador Portatil.png</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>120000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Do Médicos del Norte</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-008</g:id>
+      <title>Balanza Mecánica Análoga con Tallímetro</title>
+      <description>Balanza mecánica de grado médico con tallímetro integrado para medición precisa de peso y estatura. Capacidad hasta 200kg con escala de alta precisión. Ideal para consultorios y clínicas.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/balanza-mecanica-grado-medico-con-tallimetro.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>1100000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Do Médicos del Norte</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-009</g:id>
+      <title>Cartilla Snellen</title>
+      <description>Cartilla tipo Snellen estándar para examen de agudeza visual. Escala de 10/10 a 20/200 con iluminación óptima. Material duradero y fácil de limpiar. Ideal para consultorios oftalmológicos.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/Cartilla Tipo Snellen.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>27500 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Snellen</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-010</g:id>
+      <title>Termómetro Infrarrojo</title>
+      <description>Termómetro infrarrojo sin contacto para medición rápida de temperatura corporal y objetos. Pantalla LCD con luz de fondo y memoria de últimas lecturas. Ideal para uso clínico y doméstico.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/Termometro infrarrojo.jpg</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>90000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Do Médicos del Norte</g:brand>
+    </item>
+    
+    <item>
+      <g:id>DIAG-011</g:id>
+      <title>Pulsioxímetro Pediátrico GMD</title>
+      <description>Pulsioxímetro diseñado específicamente para niños con sensor de tamaño apropiado. Medición precisa de SpO2 y frecuencia cardíaca. Pantalla colorida y fácil de leer. Ideal para pediatría.</description>
+      <link>https://domedicosdelnorte.com/diagnostico.html</link>
+      <g:image_link>https://domedicosdelnorte.com/pulsioximetro pediatrico.jpg</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100000 COP</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>GMD</g:brand>
+    </item>
+    
+  </channel>
+</rss>
