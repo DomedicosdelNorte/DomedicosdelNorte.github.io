@@ -20,6 +20,14 @@ padding:15px;
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
 transition:all 0.35s ease;
 overflow:hidden;
+display:flex;
+flex-direction:column;
+}
+
+.article-content{
+display:flex;
+flex-direction:column;
+flex:1;
 }
 
 .article:hover{
@@ -53,7 +61,7 @@ BUTTON STYLE
 display:inline-block;
 margin-top:10px;
 padding:10px 16px;
-background:#1e88e5;
+background:#0056b3;
 color:white;
 border-radius:6px;
 text-decoration:none;
@@ -62,9 +70,13 @@ transition:all 0.25s ease;
 }
 
 .btn-cotizar:hover{
-background:#1565c0;
+background:#004494;
 transform:scale(1.05);
 box-shadow:0 8px 18px rgba(0,0,0,0.15);
+}
+
+.button-container{
+margin-top:auto;
 }
 
 /* =========================
