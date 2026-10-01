@@ -468,8 +468,8 @@ class CotizacionCart {
             return;
         }
 
-        // Unicode escape sequences to prevent file-encoding issues with emojis
-        let message = '\uD83D\uDCCB *DOMÉDICOS DEL NORTE – SOLICITUD DE COTIZACIÓN*\n\n';
+        // Clean text formatting without emoji characters to prevent encoding issues
+        let message = '*DOMÉDICOS DEL NORTE – SOLICITUD DE COTIZACIÓN*\n\n';
         message += 'Hola, deseo cotizar los siguientes productos:\n\n';
 
         const groupedItems = this.items.reduce((groups, item) => {
@@ -481,7 +481,7 @@ class CotizacionCart {
         }, {});
 
         Object.keys(groupedItems).forEach((category) => {
-            message += `\uFA7A *${category.toUpperCase()}*\n`;
+            message += `*${category.toUpperCase()}*\n`;
 
             groupedItems[category].forEach((item) => {
                 message += `• ${item.name}\n`;
@@ -491,8 +491,8 @@ class CotizacionCart {
         });
 
         message += 'Gracias.\n\n';
-        message += '\uD83D\uDCDE *Teléfono de contacto:* +57 310 610 7017\n';
-        message += '\uD83D\uDCE7 *Email:* domedicosdelnorte@hotmail.com';
+        message += '*Teléfono de contacto:* +57 310 610 7017\n';
+        message += '*Email:* domedicosdelnorte@hotmail.com';
 
         const whatsappUrl = `https://wa.me/573106107017?text=${encodeURIComponent(message)}`;
 
@@ -515,12 +515,12 @@ class CotizacionCart {
             );
         }
 
-        this.showNotification('📱 Enviando cotización por WhatsApp...');
+        this.showNotification('Enviando cotización por WhatsApp...');
 
         setTimeout(() => {
             this.clearCart();
             this.closeCart();
-            this.showNotification('✅ Cotización enviada correctamente');
+            this.showNotification('Cotización enviada correctamente');
         }, 2000);
     }
 

@@ -381,7 +381,7 @@ class SecurityMonitor {
             const captcha = document.querySelector('div[style*="position: fixed"]');
             if (captcha) captcha.remove();
             
-            this.showNotification('✅ Verificación completada - Puedes continuar navegando');
+            this.showNotification('Verificación completada - Puedes continuar navegando');
             console.log('✅ CAPTCHA verificado correctamente');
         } else {
             // CAPTCHA incorrecto - mostrar nuevo desafío
@@ -860,11 +860,11 @@ class SecurityMonitor {
             // El botón de backup está completamente eliminado
             // this.addBackupButton(); // Nunca se muestra
             
-            this.showNotification('✅ Sesión iniciada - Panel de seguridad activado');
+            this.showNotification('Sesión iniciada - Panel de seguridad activado');
             console.log('✅ Usuario autenticado:', username);
         } else {
             // Login fallido
-            this.showNotification('❌ Credenciales incorrectas');
+            this.showNotification('Credenciales incorrectas');
             
             // Limpiar campos
             document.getElementById('security-username').value = '';
