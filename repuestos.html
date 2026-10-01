@@ -702,101 +702,7 @@
       margin-top: 50px;
     }
     
-    /* COMING SOON SECTION STYLES */
-    .coming-soon-message {
-      text-align: center;
-      padding: 60px 40px;
-      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
-      border-radius: 20px;
-      box-shadow: var(--shadow-md);
-      border: 2px solid var(--border-color);
-    }
-    
-    .message-content h3 {
-      font-size: 2.5rem;
-      color: white;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-    }
-    
-    .message-content p {
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .coming-soon-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .coming-soon-list li {
-      background: rgba(255,255,255,0.15);
-      padding: 1rem 1.5rem;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.3);
-      font-size: 1rem;
-      color: white;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    
-    .coming-soon-list li:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--primary-color);
-    }
-    
-    .contact-info {
-      background: rgba(255,255,255,0.15);
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.3);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    
-    .contact-info p {
-      margin-bottom: 1rem;
-      color: white;
-    }
-    
-    .contact-info p strong {
-      color: white;
-    }
-    
-    .contact-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-    
-    .contact-buttons .btn-primary {
-      background: linear-gradient(135deg, #27ae60, #2ecc71);
-      border: none;
-      padding: 1rem 2rem;
-    }
-    
-    .contact-buttons .btn-secondary {
-      background: white;
-      color: #005b99;
-      border: 2px solid white;
-      padding: 1rem 2rem;
-    }
-    
+
     /* DARK MODE SUPPORT */
     @media (prefers-color-scheme: dark) {
       body {
@@ -957,34 +863,173 @@
       <!-- Products Grid -->
       <section class="products-showcase">
         <div class="articles">
-          <div class="coming-soon-message">
-            <div class="message-content">
-              <h3>Comunícate con nosotros para mayor información</h3>
-              <ul class="coming-soon-list">
-                <li>🔋 Baterías originales para equipos médicos</li>
-                <li>🔌 Sensores y accesorios de diagnóstico</li>
-                <li>🔌 Cables y conectores especializados</li>
-                <li>💊 Consumibles y suministros médicos</li>
-                <li>🛡️ Fundas y protectores de equipos</li>
-                <li>🔧 Herramientas de mantenimiento</li>
-              </ul>
-              <div class="contact-info">
-                <p><strong>¿Necesitas un repuesto específico?</strong></p>
-                <p>Contáctanos directamente y te ayudaremos a encontrar lo que necesitas.</p>
-                <div class="contact-buttons">
-                  <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20repuestos%20para%20equipos%20médicos" 
-                     class="btn-primary" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});">
-                    <span>💬</span>
-                    <span>Consultar por WhatsApp</span>
-                  </a>
-                  <a href="contacto.html" class="btn-secondary">
-                    <span>📞</span>
-                    <span>Llamar ahora</span>
-                  </a>
-                </div>
+          <article class="article">
+            <div class="article-image">
+              <img src="Bateria para tensiometro.webp" alt="Batería para tensiómetro" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Batería para Tensiómetro</h3>
+              <p class="article-description">
+                Batería recargable de alta capacidad para tensiómetros digitales. Compatible con la mayoría de modelos. Carga rápida y larga duración. Ideal para uso prolongado.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Recargable</span>
+                <span class="feature-tag">Alta Capacidad</span>
+                <span class="feature-tag">Compatible</span>
+              </div>
+              <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
+              <div class="button-container" style="margin-top: auto;">
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Batería%20para%20Tensiómetro"
+                   class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
+                  <span>Agregar al carrito</span>
+                  <span>🛒</span>
+                </a>
               </div>
             </div>
-          </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Sensor de pulso oximetro.webp" alt="Sensor de pulso para oxímetro" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Sensor de Pulso para Oxímetro</h3>
+              <p class="article-description">
+                Sensor de pulso de alta precisión para oxímetros. Diseño ergonómico para uso continuo. Compatible con múltiples marcas. Medición precisa de SpO2.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Alta Precisión</span>
+                <span class="feature-tag">Ergonómico</span>
+                <span class="feature-tag">Compatible</span>
+              </div>
+              <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
+              <div class="button-container" style="margin-top: auto;">
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Sensor%20de%20Pulso"
+                   class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
+                  <span>Agregar al carrito</span>
+                  <span>🛒</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Cable USB para equipos medicos.webp" alt="Cable USB para equipos médicos" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Cable USB para Equipos Médicos</h3>
+              <p class="article-description">
+                Cable USB de alta calidad para transferencia de datos desde equipos médicos. Compatibilidad universal con múltiples dispositivos. Velocidad de transferencia optimizada.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Alta Calidad</span>
+                <span class="feature-tag">Universal</span>
+                <span class="feature-tag">Rápido</span>
+              </div>
+              <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
+              <div class="button-container" style="margin-top: auto;">
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Cable%20USB"
+                   class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
+                  <span>Agregar al carrito</span>
+                  <span>🛒</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- B2B Featured Card (Apple-style Integrated) -->
+          <article class="article b2b-featured-card" style="background: linear-gradient(135deg, #f4f8fc 0%, #e9f2fb 100%); border: 1px solid #cce0ff; border-radius: 16px; padding: 24px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.08); text-align: center;">
+            <div class="article-content" style="padding: 0;">
+              <h3 class="article-title" style="font-size: 1.1rem; font-weight: 600; color: #002b5b; margin-bottom: 10px;">
+                ¿Compras al por mayor para clínica, IPS o consultorio?
+              </h3>
+              <p class="article-description" style="font-size: 0.88rem; color: #4a5568; margin: 10px 0 18px 0; line-height: 1.5;">
+                Accede a escala de precios corporativa, atención prioritaria y facturación formal.
+              </p>
+              <a href="https://wa.me/573106107017?text=Hola%20Domedicos%20del%20Norte%2C%20requiero%20una%20cotizaci%C3%B3n%20al%20por%20mayor%20para%20una%20cl%C3%ADnica%20%2F%20IPS%20%2F%20consultorio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20atenci%C3%B3n%20institucional%3F"
+                 class="btn-cotizar"
+                 target="_blank"
+                 style="background-color: #0056b3; color: white; padding: 10px 22px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 0.85rem; display: inline-block; border: none;">
+                Cotizar por Mayor
+              </a>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Funda protectora para equipos.webp" alt="Funda protectora para equipos médicos" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Funda Protectora para Equipos</h3>
+              <p class="article-description">
+                Funda protectora resistente para equipos médicos. Material impermeable y anti-golpes. Protege contra polvo, humedad y daños físicos. Ideal para transporte y almacenamiento.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Impermeable</span>
+                <span class="feature-tag">Anti-golpes</span>
+                <span class="feature-tag">Resistente</span>
+              </div>
+              <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
+              <div class="button-container" style="margin-top: auto;">
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Funda%20Protectora"
+                   class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
+                  <span>Agregar al carrito</span>
+                  <span>🛒</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Kit de mantenimiento.webp" alt="Kit de herramientas de mantenimiento" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Kit de Herramientas de Mantenimiento</h3>
+              <p class="article-description">
+                Kit completo de herramientas para mantenimiento de equipos médicos. Incluye destornilladores, pinzas y accesorios especializados. Organizado en maletín portátil.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Kit Completo</span>
+                <span class="feature-tag">Especializado</span>
+                <span class="feature-tag">Organizado</span>
+              </div>
+              <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
+              <div class="button-container" style="margin-top: auto;">
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Kit%20de%20Mantenimiento"
+                   class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
+                  <span>Agregar al carrito</span>
+                  <span>🛒</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="Consumibles para equipos.webp" alt="Consumibles para equipos médicos" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Consumibles para Equipos Médicos</h3>
+              <p class="article-description">
+                Set de consumibles esenciales para el funcionamiento de equipos médicos. Incluye filtros, tiras reactivas y accesorios desechables. Alta calidad y compatibilidad garantizada.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Set Completo</span>
+                <span class="feature-tag">Desechables</span>
+                <span class="feature-tag">Calidad</span>
+              </div>
+              <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
+              <div class="button-container" style="margin-top: auto;">
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Consumibles"
+                   class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
+                  <span>Agregar al carrito</span>
+                  <span>🛒</span>
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
     </div>
