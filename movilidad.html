@@ -875,6 +875,47 @@
       }
     }
   </style>
+
+<style id="fix-banner-grid-styles">
+  /* Arreglo del banner institucional */
+  .institutional-banner, .institutional-card, [class*="institutional"], div:has(> a[href*="wa.me"]) {
+    background: linear-gradient(135deg, #005b99 0%, #003366 100%) !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    margin: 30px 0 !important;
+    width: 100% !important;
+    grid-column: 1 / -1 !important; /* Ocupa todo el ancho del grid sin dejar huecos */
+    box-shadow: 0 4px 15px rgba(0, 91, 153, 0.2) !important;
+  }
+
+  .institutional-banner h3, .institutional-banner h4, .institutional-banner p,
+  .institutional-card h3, .institutional-card h4, .institutional-card p,
+  div:has(> a[href*="wa.me"]) h3, div:has(> a[href*="wa.me"]) p {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+  }
+
+  .institutional-banner p, .institutional-card p {
+    opacity: 0.95 !important;
+  }
+
+  /* Boton dentro del banner institucional */
+  .institutional-banner a, .institutional-card a {
+    background-color: #25d366 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    border: none !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2) !important;
+  }
+
+  /* Asegurar que las etiquetas faded de caracteristicas tengan buen contraste */
+  .badge, .tag, .product-feature, .feature-tag, span[class*="badge"], span[class*="tag"] {
+    background-color: #e6f0fa !important;
+    color: #004080 !important;
+    font-weight: 600 !important;
+  }
+</style>
 </head>
 <body>
   <!-- Header -->
