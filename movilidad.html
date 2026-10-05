@@ -239,7 +239,7 @@
     .dropdown-menu a {
       display: block;
       padding: 12px 20px;
-      color: #005b99;
+      color: white !important;
       text-decoration: none;
       font-weight: 500;
       transition: all 0.3s ease;
@@ -325,7 +325,7 @@
     }
     
     .breadcrumb a {
-      color: #005b99;
+      color: white !important;
       text-decoration: none;
       font-weight: 500;
     }
@@ -365,10 +365,12 @@
       z-index: 2;
     }
     
-    .category-hero h1 {
+    .category-hero h1,
+    .category-hero .seo-title-main {
       font-size: 3.5rem;
       margin-bottom: 25px;
       font-weight: 800;
+      color: white;
       text-shadow: 0 4px 20px rgba(0,0,0,0.3);
       animation: fadeInUp 1s ease;
     }
@@ -395,7 +397,7 @@
     
     .category-intro h2 {
       font-size: 2.8rem;
-      color: #005b99;
+      color: white !important;
       margin-bottom: 30px;
       font-weight: 800;
     }
@@ -488,7 +490,7 @@
     .article-title {
       font-size: 1.8rem;
       font-weight: 700;
-      color: #005b99;
+      color: white !important;
       margin-bottom: 20px;
       line-height: 1.3;
     }
@@ -509,7 +511,7 @@
     
     .feature-tag {
       background: linear-gradient(135deg, #e8f4ff, #d4e9ff);
-      color: #005b99;
+      color: white !important;
       padding: 6px 14px;
       border-radius: 25px;
       font-size: 0.85rem;
@@ -586,7 +588,7 @@
     
     .cta-content h2 {
       font-size: 3rem;
-      color: #005b99;
+      color: white !important;
       margin-bottom: 30px;
       font-weight: 800;
     }
@@ -632,7 +634,7 @@
     
     .btn-secondary {
       background: rgba(255, 255, 255, 0.95);
-      color: #005b99;
+      color: white !important;
       border: 2px solid #005b99;
     }
     
@@ -682,7 +684,7 @@
 
     .seo-content-block h2 {
       font-size: 2rem;
-      color: #005b99;
+      color: white !important;
       margin-bottom: 24px;
       text-align: center;
       font-weight: 700;
@@ -699,7 +701,7 @@
     }
 
     .seo-content-block strong {
-      color: #005b99;
+      color: white !important;
       font-weight: 700;
     }
 
@@ -709,10 +711,7 @@
     }
 
     .seo-title-main {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #005b99;
-      margin-bottom: 16px;
+      /* SEO class for single H1 - no visual overrides needed */
     }
     
     /* FOOTER MEJORADO */
@@ -802,7 +801,8 @@
         font-size: 0.9rem;
       }
       
-      .category-hero h1 {
+      .category-hero h1,
+      .category-hero .seo-title-main {
         font-size: 2.5rem;
       }
       
