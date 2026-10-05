@@ -68,53 +68,45 @@
   }
   </script>
 
-  <!-- JSON-LD Structured Data - CollectionPage -->
+  <!-- JSON-LD Structured Data - Advanced Dual Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Equipos de Movilidad",
-    "description": "Catálogo de equipos de movilidad: sillas de ruedas, muletas, bastones, andadores y equipos de movilidad para pacientes en Barranquilla y Colombia con garantía y envío nacional.",
-    "url": "https://domedicosdelnorte.com/movilidad.html",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Domédicos del Norte",
-      "url": "https://domedicosdelnorte.com/"
-    },
-    "about": {
-      "@type": "Service",
-      "serviceType": "Distribución y Cotización de Equipos Médicos",
-      "provider": {
+    "@graph": [
+      {
         "@type": "MedicalBusiness",
-        "name": "Domédicos del Norte",
-        "telephone": "+57 310 610 7017"
-      }
-    },
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Sillas de ruedas"
+        "@id": "https://domedicosdelnorte.com/#organization",
+        "name": "Domédicos del Norte S.A.S",
+        "url": "https://domedicosdelnorte.com",
+        "telephone": "+57-310-610-7017",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Carrera 48 # 72-58 Local 9, Centro Comercial Papiros Plaza",
+          "addressLocality": "Barranquilla",
+          "addressRegion": "Atlántico",
+          "postalCode": "080001",
+          "addressCountry": "CO"
         },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Muletas"
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 10.9952,
+          "longitude": -74.8075
         },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Bastones"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "Andadores"
+        "areaServed": ["Barranquilla", "Soledad", "Puerto Colombia", "Malambo"]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://domedicosdelnorte.com/movilidad/#webpage",
+        "url": "https://domedicosdelnorte.com/movilidad",
+        "name": "Equipos de Movilidad y Sillas de Ruedas en Barranquilla | Domédicos del Norte",
+        "isPartOf": { "@id": "https://domedicosdelnorte.com/#organization" },
+        "about": {
+          "@type": "Thing",
+          "name": "Equipos de Movilidad Reducida y Ortopedia"
         }
-      ]
-    }
+      }
+    ]
   }
   </script>
 
@@ -650,6 +642,78 @@
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(0, 91, 153, 0.3);
     }
+
+    /* WhatsApp CTA Button */
+    .btn-whatsapp-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #25d366;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp-action:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+      background: #128c7e;
+    }
+
+    .btn-whatsapp-action svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* SEO Content Block */
+    .seo-content-block {
+      background: #f8f9fa;
+      padding: 60px 0;
+      margin: 40px 0;
+      border-radius: 16px;
+    }
+
+    .seo-content-block h2 {
+      font-size: 2rem;
+      color: #005b99;
+      margin-bottom: 24px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .seo-content-block p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .seo-content-block strong {
+      color: #005b99;
+      font-weight: 700;
+    }
+
+    .seo-content-block em {
+      color: #0077cc;
+      font-style: italic;
+    }
+
+    .seo-title-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #005b99;
+      margin-bottom: 16px;
+    }
     
     /* FOOTER MEJORADO */
     footer {
@@ -858,7 +922,7 @@
   <section class="category-hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Equipos de Movilidad</h1>
+        <h1 class="seo-title-main">Equipos de Movilidad Reducida en Barranquilla</h1>
         <p class="hero-subtitle">Soluciones de movilidad para mejorar la calidad de vida</p>
       </div>
     </div>
@@ -877,6 +941,7 @@
 
       <!-- Products Grid -->
       <section class="products-showcase">
+        <h2>Sillas de Ruedas Hospitalarias y de Traslado en Barranquilla</h2>
         <div class="articles">
           <article class="article">
             <div class="article-image">
@@ -971,7 +1036,13 @@
               </a>
             </div>
           </article>
+        </div>
+      </section>
 
+      <!-- Second Product Category -->
+      <section class="products-showcase">
+        <h2>Caminadores, Muletas y Bastones de Apoyo Ortopédico</h2>
+        <div class="articles">
           <article class="article">
             <div class="article-image">
               <img src="baston con mango t.jpg" alt="Bastón con mango en T para apoyo ortopédico" loading="lazy">
@@ -1076,24 +1147,41 @@
     </div>
   </main>
 
-  <!-- CTA Section -->
+  <!-- High-Converting WhatsApp CTA Section -->
   <section class="cta-section">
     <div class="container">
-      <div class="cta-content">
-        <h2>¿Necesita Equipos de Movilidad?</h2>
-        <p>Contáctenos para recibir asesoría especializada y cotización personalizada según sus necesidades específicas</p>
-        <div class="cta-buttons">
-          <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20cotización%20para%20equipos%20de%20movilidad" 
-             class="btn-primary" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});">
-            <span>💬</span>
-            <span>Cotización Inmediata</span>
-          </a>
-          <a href="contacto.html" class="btn-secondary">
-            <span>📞</span>
-            <span>+57 310 610 7017</span>
-          </a>
-        </div>
+      <div class="cta-whatsapp-container text-center my-4">
+        <a id="btn-wa-movilidad-main"
+           href="https://wa.me/573106107017?text=Hola,%20quisiera%20cotizar%20equipos%20de%20Movilidad%20en%20Barranquilla"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-whatsapp-action"
+           onclick="gtag('event', 'click_whatsapp_movilidad', {'event_category': 'Conversion_Local', 'event_label': 'Categoria_Movilidad'});">
+           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.075-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+           </svg>
+           <span>Cotizar Equipos de Movilidad por WhatsApp</span>
+        </a>
       </div>
+    </div>
+  </section>
+
+  <!-- SEO Content Section -->
+  <section id="seo-local-info" class="seo-content-block">
+    <div class="container">
+      <h2>Equipos de Movilidad en Barranquilla: Soluciones de Ortopedia y Calidad de Vida</h2>
+      <p>
+        En <strong>Domédicos del Norte</strong> nos especializamos en la venta de <em>sillas de ruedas en Barranquilla</em> y equipos de movilidad reducida de la más alta calidad. Con más de 30 años de experiencia en el sector médico, entendemos la importancia de proporcionar productos que mejoran significativamente la calidad de vida de nuestros pacientes.
+      </p>
+      <p>
+        Nuestro catálogo incluye una amplia variedad de <strong>caminadores para adulto mayor</strong>, muletas de antebrazo, bastones ortopédicos de apoyo, andadores con ruedas, y sillas de ducha diseñadas para garantizar seguridad y comodidad. Todos nuestros productos son fabricados con materiales duraderos y seguros, cumpliendo con los más altos estándares de la industria médica.
+      </p>
+      <p>
+        Como líderes en <strong>ortopedia en la Costa Caribe</strong>, ofrecemos servicio técnico especializado, garantía en todos nuestros equipos, y <em>entrega inmediata</em> en Barranquilla y municipios aledaños como Soledad, Puerto Colombia y Malambo. Nuestro equipo de asesores expertos está capacitado para ayudarle a seleccionar el equipo de movilidad ideal según las necesidades específicas de cada paciente.
+      </p>
+      <p>
+        Trabajamos directamente con clínicas, IPS, hogares geriátricos y familias particulares, proporcionando soluciones integrales de movilidad que facilitan el traslado seguro de pacientes y la recuperación de lesiones. Ya sea que necesite una silla de ruedas manual o eléctrica, un caminador para rehabilitación, o un bastón de apoyo ortopédico, en Domédicos del Norte tiene la solución perfecta para usted.
+      </p>
     </div>
   </section>
 
