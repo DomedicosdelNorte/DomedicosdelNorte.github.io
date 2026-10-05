@@ -176,7 +176,7 @@ class CotizacionCart {
                                 flex: 2;
                                 font-weight: bold;
                                 transition: all 0.3s ease;
-                            ">📱 Enviar por WhatsApp</button>
+                            ">Enviar por WhatsApp</button>
                         </div>
                     </div>
                 </div>

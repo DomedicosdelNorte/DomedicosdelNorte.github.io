@@ -18,7 +18,7 @@ class SecurityMonitor {
     }
 
     init() {
-        console.log('🛡️ Sistema de Seguridad Activado - Domédicos del Norte');
+        console.log('Sistema de Seguridad Activado - Domédicos del Norte');
         this.startUptimeMonitoring();
         this.startBackupSystem();
         this.setupRateLimiting();
@@ -50,7 +50,7 @@ class SecurityMonitor {
         this.saveSecurityData();
         
         // Log de uptime
-        console.log(`⏰ Uptime Check: ${Math.floor(uptime / 1000 / 60)} minutos online`);
+        console.log(`Uptime Check: ${Math.floor(uptime / 1000 / 60)} minutos online`);
         
         // Alerta si hay problemas
         if (performance.now() > 5000) { // Si la página tarda más de 5 segundos
@@ -89,13 +89,13 @@ class SecurityMonitor {
             // Mantener solo los últimos 7 backups
             this.cleanupOldBackups();
             
-            console.log('💾 Backup automático creado');
+            console.log('Backup automático creado');
             
             // NO ofrecer descarga manual - solo desde panel interno
             // this.offerBackupDownload(backupData); // Eliminado para evitar botón público
             
         } catch (error) {
-            console.error('❌ Error en backup:', error);
+            console.error('Error en backup:', error);
             this.sendAlert('Error en sistema de backup');
         }
     }
@@ -127,7 +127,7 @@ class SecurityMonitor {
         link.click();
         
         URL.revokeObjectURL(url);
-        console.log('📥 Backup descargado manualmente');
+        console.log('Backup descargado manualmente');
     }
 
     // 3. FIREWALL A NIVEL DE APLICACIÓN
@@ -382,7 +382,7 @@ class SecurityMonitor {
             if (captcha) captcha.remove();
             
             this.showNotification('Verificación completada - Puedes continuar navegando');
-            console.log('✅ CAPTCHA verificado correctamente');
+            console.log('CAPTCHA verificado correctamente');
         } else {
             // CAPTCHA incorrecto - mostrar nuevo desafío
             const captcha = document.querySelector('div[style*="position: fixed"]');
@@ -576,7 +576,7 @@ class SecurityMonitor {
         // Reducir límites de rate limiting
         this.maxRequestsPerWindow = Math.max(10, this.maxRequestsPerWindow * 0.8);
         
-        console.log('🔒 Nivel de seguridad aumentado');
+        console.log('Nivel de seguridad aumentado');
     }
 
     // UTILIDADES
@@ -630,7 +630,7 @@ class SecurityMonitor {
     }
 
     sendAlert(message) {
-        console.error('🚨 ALERTA DE SEGURIDAD:', message);
+        console.error('ALERTA DE SEGURIDAD:', message);
         
         // Guardar alerta
         const stats = this.getSecurityStats();
@@ -659,7 +659,7 @@ class SecurityMonitor {
 
     loadSecurityData() {
         const stats = this.getSecurityStats();
-        console.log('📊 Estadísticas de seguridad cargadas:', stats);
+        console.log('Estadísticas de seguridad cargadas:', stats);
     }
 
     getSecuritySettings() {
@@ -861,7 +861,7 @@ class SecurityMonitor {
             // this.addBackupButton(); // Nunca se muestra
             
             this.showNotification('Sesión iniciada - Panel de seguridad activado');
-            console.log('✅ Usuario autenticado:', username);
+            console.log('Usuario autenticado:', username);
         } else {
             // Login fallido
             this.showNotification('Credenciales incorrectas');
@@ -899,7 +899,7 @@ class SecurityMonitor {
         
         // Botón de logout
         const logoutButton = document.createElement('button');
-        logoutButton.innerHTML = '🚪';
+        logoutButton.innerHTML = 'Salir';
         logoutButton.title = 'Cerrar Sesión';
         logoutButton.style.cssText = `
             position: fixed;
@@ -930,8 +930,8 @@ class SecurityMonitor {
         buttons.forEach(button => button.remove());
         
         // Limpiar sesión
-        this.showNotification('🚪 Sesión cerrada - Panel de seguridad desactivado');
-        console.log('🚪 Sesión de seguridad cerrada');
+        this.showNotification('Sesión cerrada - Panel de seguridad desactivado');
+        console.log('Sesión de seguridad cerrada');
         
         // Reactivar acceso secreto
         this.enableSecurityPanel();
@@ -956,7 +956,7 @@ class SecurityMonitor {
                 box-shadow: 0 4px 6px rgba(0,0,0,0.1);
                 font-weight: 500;
             ">
-                ✅ ${message}
+                ${message}
             </div>
         `;
         
@@ -1269,13 +1269,13 @@ class SecurityMonitor {
             executiveSummary.innerHTML = `
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px;">
                     <div>
-                        <strong>⏰ Tiempo Online:</strong> ${uptimeDays}d ${uptimeHours % 24}h<br>
-                        <strong>🔄 Estado Sistema:</strong> <span style="color: #28a745;">✅ Operativo</span><br>
-                        <strong>📊 Solicitudes Totales:</strong> ${stats.totalRequests || 0}<br>
-                        <strong>🛡️ Nivel Seguridad:</strong> <span style="color: #007bff;">Alto</span>
+                        <strong>Tiempo Online:</strong> ${uptimeDays}d ${uptimeHours % 24}h<br>
+                        <strong>Estado Sistema:</strong> <span style="color: #28a745;">Operativo</span><br>
+                        <strong>Solicitudes Totales:</strong> ${stats.totalRequests || 0}<br>
+                        <strong>Nivel Seguridad:</strong> <span style="color: #007bff;">Alto</span>
                     </div>
                     <div>
-                        <strong>💾 Backups Disponibles:</strong> ${this.getBackupCount()}<br>
+                        <strong>Backups Disponibles:</strong> ${this.getBackupCount()}<br>
                         <strong>🚫 IPs Bloqueadas:</strong> ${this.blockedIPs.size}<br>
                         <strong>⚠️ IPs Sospechosas:</strong> ${this.suspiciousIPs.size}<br>
                         <strong>📈 Tasa Error:</strong> ${((stats.errorRate || 0) * 100).toFixed(2)}%
@@ -1290,18 +1290,18 @@ class SecurityMonitor {
             const threatLevel = this.calculateThreatLevel();
             securityMetrics.innerHTML = `
                 <div style="font-size: 14px; line-height: 1.6;">
-                    <div style="margin-bottom: 10px;"><strong>🎯 Nivel de Amenaza:</strong> 
+                    <div style="margin-bottom: 10px;"><strong>Nivel de Amenaza:</strong>
                         <span style="color: ${threatLevel.color}; font-weight: bold;">${threatLevel.level}</span>
                     </div>
-                    <div style="margin-bottom: 10px;"><strong>🔥 Ataques Bloqueados:</strong> ${stats.blockedRequests || 0}</div>
-                    <div style="margin-bottom: 10px;"><strong>🛡️ Protecciones Activas:</strong> 
-                        <span style="color: #28a745;">✅ Firewall</span> | 
-                        <span style="color: #28a745;">✅ Rate Limiting</span> | 
-                        <span style="color: #28a745;">✅ Anti-XSS</span> | 
-                        <span style="color: #28a745;">✅ Anti-CSRF</span>
+                    <div style="margin-bottom: 10px;"><strong>Ataques Bloqueados:</strong> ${stats.blockedRequests || 0}</div>
+                    <div style="margin-bottom: 10px;"><strong>Protecciones Activas:</strong>
+                        <span style="color: #28a745;">Firewall</span> |
+                        <span style="color: #28a745;">Rate Limiting</span> |
+                        <span style="color: #28a745;">Anti-XSS</span> |
+                        <span style="color: #28a745;">Anti-CSRF</span>
                     </div>
-                    <div style="margin-bottom: 10px;"><strong>📊 Últimas 24h:</strong> ${this.getLast24HoursStats()}</div>
-                    <div><strong>🔄 Última Actualización:</strong> ${new Date().toLocaleString()}</div>
+                    <div style="margin-bottom: 10px;"><strong>Últimas 24h:</strong> ${this.getLast24HoursStats()}</div>
+                    <div><strong>Última Actualización:</strong> ${new Date().toLocaleString()}</div>
                 </div>
             `;
         }
