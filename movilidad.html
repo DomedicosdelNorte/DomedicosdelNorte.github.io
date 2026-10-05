@@ -916,6 +916,51 @@
     font-weight: 600 !important;
   }
 </style>
+
+<style id="master-ui-fix">
+  /* Quitar espacios extra antes del hero */
+  main { padding-top: 0 !important; margin-top: 0 !important; }
+  .category-hero { margin-top: 0 !important; }
+
+  /* Arreglar Badges y etiquetas desvanecidas */
+  .badge, .tag, .product-badge, .feature-tag, span[class*="badge"], span[class*="tag"] {
+    background-color: #005b99 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    display: inline-block !important;
+    margin: 2px !important;
+  }
+
+  /* Arreglar Tarjeta / Banner Institucional */
+  div:has(> a[href*="wa.me"]), .institutional-card, [class*="institutional"] {
+    background: #005b99 !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    margin: 30px 0 !important;
+    width: 100% !important;
+    grid-column: 1 / -1 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  }
+
+  div:has(> a[href*="wa.me"]) *, .institutional-card *, [class*="institutional"] * {
+    color: #ffffff !important;
+  }
+
+  div:has(> a[href*="wa.me"]) a, .institutional-card a, [class*="institutional"] a {
+    background-color: #25d366 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    padding: 10px 20px !important;
+    border-radius: 25px !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    margin-top: 10px !important;
+  }
+</style>
 </head>
 <body>
   <!-- Header -->
@@ -951,11 +996,7 @@
   </header>
 
   <!-- Breadcrumb -->
-  <div class="breadcrumb">
-    <div class="container">
-      <div class="breadcrumb-content">
-        <a href="index.html">Inicio</a> / <span class="current">Equipos de Movilidad</span>
-      </div>
+  
     </div>
   </div>
 
