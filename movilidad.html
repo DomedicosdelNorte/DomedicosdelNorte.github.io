@@ -918,6 +918,9 @@
 </style>
 
 <style id="master-ui-fix">
+  /* Remove orphan breadcrumb spacing */
+  .breadcrumb { display: none !important; }
+
   /* Quitar espacios extra antes del hero */
   main { padding-top: 0 !important; margin-top: 0 !important; }
   .category-hero { margin-top: 0 !important; }
@@ -934,9 +937,9 @@
     margin: 2px !important;
   }
 
-  /* Arreglar Tarjeta / Banner Institucional */
-  div:has(> a[href*="wa.me"]), .institutional-card, [class*="institutional"] {
-    background: #005b99 !important;
+  /* Arreglar Tarjeta / Banner Institucional B2B */
+  .b2b-featured-card, div:has(> a[href*="wa.me"]), .institutional-card, [class*="institutional"] {
+    background: linear-gradient(135deg, #005b99 0%, #003366 100%) !important;
     color: #ffffff !important;
     border-radius: 12px !important;
     padding: 24px !important;
@@ -946,15 +949,27 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
   }
 
-  div:has(> a[href*="wa.me"]) *, .institutional-card *, [class*="institutional"] * {
+  /* Override inline styles on B2B card if present */
+  .b2b-featured-card[style*="background"] {
+    background: linear-gradient(135deg, #005b99 0%, #003366 100%) !important;
+  }
+
+  .b2b-featured-card *, div:has(> a[href*="wa.me"]) *, .institutional-card *, [class*="institutional"] * {
     color: #ffffff !important;
   }
 
-  div:has(> a[href*="wa.me"]) a, .institutional-card a, [class*="institutional"] a {
+  .b2b-featured-card h3, .b2b-featured-card h4, .b2b-featured-card p,
+  div:has(> a[href*="wa.me"]) h3, div:has(> a[href*="wa.me"]) h4, div:has(> a[href*="wa.me"]) p,
+  .institutional-card h3, .institutional-card h4, .institutional-card p,
+  [class*="institutional"] h3, [class*="institutional"] h4, [class*="institutional"] p {
+    color: #ffffff !important;
+  }
+
+  .b2b-featured-card a, div:has(> a[href*="wa.me"]) a, .institutional-card a, [class*="institutional"] a {
     background-color: #25d366 !important;
     color: #ffffff !important;
     font-weight: bold !important;
-    padding: 10px 20px !important;
+    padding: 10px 22px !important;
     border-radius: 25px !important;
     display: inline-block !important;
     text-decoration: none !important;
@@ -994,11 +1009,6 @@
       </div>
     </div>
   </header>
-
-  <!-- Breadcrumb -->
-  
-    </div>
-  </div>
 
   <!-- Hero Section -->
   <section class="category-hero">
