@@ -850,47 +850,6 @@
     }
   </style>
 
-<style id="fix-banner-grid-styles">
-  /* Arreglo del banner institucional */
-  .institutional-banner, .institutional-card, [class*="institutional"], div:has(> a[href*="wa.me"]) {
-    background: linear-gradient(135deg, #005b99 0%, #003366 100%) !important;
-    color: #ffffff !important;
-    border-radius: 12px !important;
-    padding: 24px !important;
-    margin: 30px 0 !important;
-    width: 100% !important;
-    grid-column: 1 / -1 !important; /* Ocupa todo el ancho del grid sin dejar huecos */
-    box-shadow: 0 4px 15px rgba(0, 91, 153, 0.2) !important;
-  }
-
-  .institutional-banner h3, .institutional-banner h4, .institutional-banner p,
-  .institutional-card h3, .institutional-card h4, .institutional-card p,
-  div:has(> a[href*="wa.me"]) h3, div:has(> a[href*="wa.me"]) p {
-    color: #ffffff !important;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
-  }
-
-  .institutional-banner p, .institutional-card p {
-    opacity: 0.95 !important;
-  }
-
-  /* Boton dentro del banner institucional */
-  .institutional-banner a, .institutional-card a {
-    background-color: #25d366 !important;
-    color: #ffffff !important;
-    font-weight: bold !important;
-    border: none !important;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2) !important;
-  }
-
-  /* Asegurar que las etiquetas faded de caracteristicas tengan buen contraste */
-  .badge, .tag, .product-feature, .feature-tag, span[class*="badge"], span[class*="tag"] {
-    background-color: #e6f0fa !important;
-    color: #004080 !important;
-    font-weight: 600 !important;
-  }
-</style>
-
 <style id="master-ui-fix">
   /* Remove orphan breadcrumb spacing */
   .breadcrumb { display: none !important; }
@@ -898,31 +857,6 @@
   /* Quitar espacios extra antes del hero */
   main { padding-top: 0 !important; margin-top: 0 !important; }
   .category-hero { margin-top: 0 !important; }
-
-  /* Badge & Tag styling (match hospitalario.html) */
-  .badge, .tag, .product-tag, .feature-tag, span[class*="badge"], span[class*="tag"] {
-    background-color: #e6f0fa !important;
-    color: #005b99 !important;
-    font-weight: 600 !important;
-    border: 1px solid #b8d5f0 !important;
-    padding: 4px 10px !important;
-    border-radius: 6px !important;
-    font-size: 0.82rem !important;
-    display: inline-block !important;
-    margin: 2px !important;
-  }
-
-  /* Remove dark background behind add-to-cart buttons */
-  .btn-cotizar, .add-to-cart-btn {
-    background-color: #0056b3 !important;
-  }
-
-  /* Ensure B2B card flows as standard 1-column grid item */
-  .b2b-featured-card {
-    grid-column: auto !important;
-    width: auto !important;
-    margin: 0 !important;
-  }
 </style>
 </head>
 <body>
@@ -1060,9 +994,9 @@
           </article>
 
           <!-- B2B Featured Card (Apple-style Integrated) -->
-          <article class="article b2b-featured-card" style="background: linear-gradient(135deg, #f4f8fc 0%, #e9f2fb 100%); border: 1px solid #cce0ff; border-radius: 16px; padding: 24px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.08); text-align: center;">
+          <article class="article b2b-featured-card" style="background: #f0f7ff; border: 1px solid #d0e2f5; border-radius: 12px; padding: 20px; text-align: center;">
             <div class="article-content" style="padding: 0;">
-              <h3 class="article-title" style="font-size: 1.1rem; font-weight: 600; color: #002b5b; margin-bottom: 10px;">
+              <h3 class="article-title" style="font-size: 1.1rem; font-weight: 600; color: #005b99; margin-bottom: 10px;">
                 ¿Compras al por mayor para clínica, IPS o consultorio?
               </h3>
               <p class="article-description" style="font-size: 0.88rem; color: #4a5568; margin: 10px 0 18px 0; line-height: 1.5;">
@@ -1071,7 +1005,7 @@
               <a href="https://wa.me/573106107017?text=Hola%20Domedicos%20del%20Norte%2C%20requiero%20una%20cotizaci%C3%B3n%20al%20por%20mayor%20para%20una%20cl%C3%ADnica%20%2F%20IPS%20%2F%20consultorio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20atenci%C3%B3n%20institucional%3F"
                  class="btn-cotizar"
                  target="_blank"
-                 style="background-color: #0056b3; color: white; padding: 10px 22px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 0.85rem; display: inline-block; border: none;">
+                 style="background-color: #0056b3; color: #ffffff; padding: 10px 22px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 0.85rem; display: inline-block; border: none;">
                 Cotizar por Mayor
               </a>
             </div>
