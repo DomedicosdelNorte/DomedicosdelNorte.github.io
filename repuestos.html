@@ -481,8 +481,9 @@
     .article-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform 0.4s ease;
+      max-height: 250px;
     }
     
     .article:hover .article-image img {
@@ -640,6 +641,59 @@
       box-shadow: 0 10px 30px rgba(0, 91, 153, 0.3);
     }
     
+    /* SEO Content Block */
+    .seo-content-block {
+      background: #f8f9fa;
+      padding: 60px 0;
+      margin: 40px 0;
+      border-radius: 16px;
+    }
+
+    .seo-text-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 12px;
+    }
+
+    .seo-text-container h2 {
+      font-size: 1.75rem;
+      color: #002b5b !important;
+      margin-bottom: 24px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .seo-text-container p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #4a5568 !important;
+      margin-bottom: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .seo-text-container strong {
+      color: #0056b3 !important;
+      font-weight: 700;
+    }
+
+    .seo-text-container em {
+      color: #0056b3 !important;
+      font-style: italic;
+    }
+
+    .seo-text-container a {
+      color: #0056b3 !important;
+      text-decoration: none;
+    }
+
+    .seo-text-container a:hover {
+      text-decoration: underline;
+    }
+
     /* FOOTER MEJORADO */
     footer {
       background: #1a1a2e;
@@ -865,21 +919,21 @@
         <div class="articles">
           <article class="article">
             <div class="article-image">
-              <img src="Bateria para tensiometro.webp" alt="Batería para tensiómetro" loading="lazy">
+              <img src="bombillo-riester.jpg" alt="Bombillo para equipo de órganos Riester 3,5 V-10609" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Batería para Tensiómetro</h3>
+              <h3 class="article-title">Bombillo para Equipo de Órganos Riester 3,5 V-10609</h3>
               <p class="article-description">
-                Batería recargable de alta capacidad para tensiómetros digitales. Compatible con la mayoría de modelos. Carga rápida y larga duración. Ideal para uso prolongado.
+                Bombillo original Riester 3,5 V para equipos de órganos. Alta luminosidad y durabilidad prolongada. Compatible con modelos 10609. Iluminación precisa para procedimientos médicos.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Recargable</span>
-                <span class="feature-tag">Alta Capacidad</span>
-                <span class="feature-tag">Compatible</span>
+                <span class="feature-tag">Original Riester</span>
+                <span class="feature-tag">3,5 V</span>
+                <span class="feature-tag">Alta Luminosidad</span>
               </div>
               <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
               <div class="button-container" style="margin-top: auto;">
-                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Batería%20para%20Tensiómetro"
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Bombillo%20Riester"
                    class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
                   <span>Agregar al carrito</span>
                   <span>&#128722;</span>
@@ -890,21 +944,21 @@
 
           <article class="article">
             <div class="article-image">
-              <img src="Sensor de pulso oximetro.webp" alt="Sensor de pulso para oxímetro" loading="lazy">
+              <img src="papel-ecg-80mm.jpg" alt="Papel para electrocardiógrafo 80 mm × 20 mm" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Sensor de Pulso para Oxímetro</h3>
+              <h3 class="article-title">Papel para Electrocardiógrafo 80 mm × 20 mm</h3>
               <p class="article-description">
-                Sensor de pulso de alta precisión para oxímetros. Diseño ergonómico para uso continuo. Compatible con múltiples marcas. Medición precisa de SpO2.
+                Papel térmico de alta calidad para electrocardiógrafos. Dimensiones 80 mm × 20 mm. Paquete por 50 unidades. Grabación nítida y duradera para diagnósticos precisos.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Alta Precisión</span>
-                <span class="feature-tag">Ergonómico</span>
-                <span class="feature-tag">Compatible</span>
+                <span class="feature-tag">80 mm × 20 mm</span>
+                <span class="feature-tag">Paquete 50 unidades</span>
+                <span class="feature-tag">Térmico</span>
               </div>
               <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
               <div class="button-container" style="margin-top: auto;">
-                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Sensor%20de%20Pulso"
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Papel%20ECG%2080mm"
                    class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
                   <span>Agregar al carrito</span>
                   <span>&#128722;</span>
@@ -915,21 +969,21 @@
 
           <article class="article">
             <div class="article-image">
-              <img src="Cable USB para equipos medicos.webp" alt="Cable USB para equipos médicos" loading="lazy">
+              <img src="papel-monitor-fetal.jpg" alt="Papel para monitor fetal 152 mm × 90 mm" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Cable USB para Equipos Médicos</h3>
+              <h3 class="article-title">Papel para Monitor Fetal 152 mm × 90 mm</h3>
               <p class="article-description">
-                Cable USB de alta calidad para transferencia de datos desde equipos médicos. Compatibilidad universal con múltiples dispositivos. Velocidad de transferencia optimizada.
+                Papel de registro para monitores fetales. Dimensiones 152 mm × 90 mm. Paquete por 50 unidades. Alta calidad para trazados fetales claros y precisos.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Alta Calidad</span>
-                <span class="feature-tag">Universal</span>
-                <span class="feature-tag">Rápido</span>
+                <span class="feature-tag">152 mm × 90 mm</span>
+                <span class="feature-tag">Paquete 50 unidades</span>
+                <span class="feature-tag">Monitor Fetal</span>
               </div>
               <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
               <div class="button-container" style="margin-top: auto;">
-                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Cable%20USB"
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Papel%20Monitor%20Fetal"
                    class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
                   <span>Agregar al carrito</span>
                   <span>&#128722;</span>
@@ -958,21 +1012,21 @@
 
           <article class="article">
             <div class="article-image">
-              <img src="Funda protectora para equipos.webp" alt="Funda protectora para equipos médicos" loading="lazy">
+              <img src="papel-schiller.jpg" alt="Papel Schiller Cardiovit 114 mm × 150 mm × 75 mm" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Funda Protectora para Equipos</h3>
+              <h3 class="article-title">Papel Schiller Cardiovit 114 mm × 150 mm × 75 mm</h3>
               <p class="article-description">
-                Funda protectora resistente para equipos médicos. Material impermeable y anti-golpes. Protege contra polvo, humedad y daños físicos. Ideal para transporte y almacenamiento.
+                Papel de registro para equipos Schiller Cardiovit. Dimensiones 114 mm × 150 mm × 75 mm. Paquete por 5 unidades. Original Schiller para máxima compatibilidad.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Impermeable</span>
-                <span class="feature-tag">Anti-golpes</span>
-                <span class="feature-tag">Resistente</span>
+                <span class="feature-tag">114 mm × 150 mm</span>
+                <span class="feature-tag">Paquete 5 unidades</span>
+                <span class="feature-tag">Original Schiller</span>
               </div>
               <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
               <div class="button-container" style="margin-top: auto;">
-                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Funda%20Protectora"
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Papel%20Schiller"
                    class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
                   <span>Agregar al carrito</span>
                   <span>&#128722;</span>
@@ -983,21 +1037,21 @@
 
           <article class="article">
             <div class="article-image">
-              <img src="Kit de mantenimiento.webp" alt="Kit de herramientas de mantenimiento" loading="lazy">
+              <img src="bateria-zonacare.jpg" alt="Batería Zonacare PM-7000D ICR 18650" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Kit de Herramientas de Mantenimiento</h3>
+              <h3 class="article-title">Batería Zonacare PM-7000D ICR 18650</h3>
               <p class="article-description">
-                Kit completo de herramientas para mantenimiento de equipos médicos. Incluye destornilladores, pinzas y accesorios especializados. Organizado en maletín portátil.
+                Batería recargable para monitor de signos vitales Zonacare modelo PM-7000D. Referencia ICR 18650-14,8 V-2200 mAh. Alta capacidad y larga duración para uso continuo.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Kit Completo</span>
-                <span class="feature-tag">Especializado</span>
-                <span class="feature-tag">Organizado</span>
+                <span class="feature-tag">ICR 18650</span>
+                <span class="feature-tag">14,8 V</span>
+                <span class="feature-tag">2200 mAh</span>
               </div>
               <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
               <div class="button-container" style="margin-top: auto;">
-                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Kit%20de%20Mantenimiento"
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Batería%20Zonacare"
                    class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
                   <span>Agregar al carrito</span>
                   <span>&#128722;</span>
@@ -1008,50 +1062,116 @@
 
           <article class="article">
             <div class="article-image">
-              <img src="Consumibles para equipos.webp" alt="Consumibles para equipos médicos" loading="lazy">
+              <img src="marcador-edan.jpg" alt="Marcador de eventos Edan F3/F9" loading="lazy">
             </div>
             <div class="article-content">
-              <h3 class="article-title">Consumibles para Equipos Médicos</h3>
+              <h3 class="article-title">Marcador de Eventos Edan F3/F9</h3>
               <p class="article-description">
-                Set de consumibles esenciales para el funcionamiento de equipos médicos. Incluye filtros, tiras reactivas y accesorios desechables. Alta calidad y compatibilidad garantizada.
+                Marcador de eventos original para monitor fetal marca Edan modelos F3 y F9. Permite marcar momentos específicos durante el monitoreo fetal. Compatible con firmware Edan.
               </p>
               <div class="product-features">
-                <span class="feature-tag">Set Completo</span>
-                <span class="feature-tag">Desechables</span>
-                <span class="feature-tag">Calidad</span>
+                <span class="feature-tag">Original Edan</span>
+                <span class="feature-tag">F3/F9</span>
+                <span class="feature-tag">Monitor Fetal</span>
               </div>
               <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
               <div class="button-container" style="margin-top: auto;">
-                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Consumibles"
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Marcador%20Edan"
                    class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
                   <span>Agregar al carrito</span>
                   <span>&#128722;</span>
                 </a>
               </div>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="regulador-oxigeno.jpg" alt="Regulador de oxígeno 0 a 15 L/min CGA 540" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Regulador de Oxígeno 0 a 15 L/min</h3>
+              <p class="article-description">
+                Regulador de oxígeno médico con rango de 0 a 15 L/min. Conexión CGA 540 estándar. Precisión en el flujo para terapia respiratoria. Fácil lectura y operación segura.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">0-15 L/min</span>
+                <span class="feature-tag">CGA 540</span>
+                <span class="feature-tag">Precisión</span>
+              </div>
+              <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
+              <div class="button-container" style="margin-top: auto;">
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Regulador%20Oxígeno"
+                   class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
+                  <span>Agregar al carrito</span>
+                  <span>&#128722;</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="article">
+            <div class="article-image">
+              <img src="bateria-edan-f3.jpg" alt="Batería para monitor fetal Edan F3" loading="lazy">
+            </div>
+            <div class="article-content">
+              <h3 class="article-title">Batería para Monitor Fetal Edan F3</h3>
+              <p class="article-description">
+                Batería recargable original para monitor fetal Edan F3. Alta capacidad para operación continua durante monitoreo prolongado. Compatible con sistema de carga Edan.
+              </p>
+              <div class="product-features">
+                <span class="feature-tag">Original Edan</span>
+                <span class="feature-tag">F3</span>
+                <span class="feature-tag">Recargable</span>
+              </div>
+              <div class="product-price" style="margin-top: 12px; margin-bottom: 12px; font-size: 1.1rem; font-weight: bold; background: #f8f9fa; padding: 8px 16px; border-radius: 20px; display: inline-block;">Consultar precio</div>
+              <div class="button-container" style="margin-top: auto;">
+                <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20quiero%20información%20sobre%20Batería%20Edan%20F3"
+                   class="btn-cotizar" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});" style="background-color: #0056b3;">
+                  <span>Agregar al carrito</span>
+                  <span>&#128722;</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- B2B Featured Card (Apple-style Integrated) -->
+          <article class="article b2b-featured-card" style="background: linear-gradient(135deg, #f4f8fc 0%, #e9f2fb 100%); border: 1px solid #cce0ff; border-radius: 16px; padding: 24px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.08); text-align: center;">
+            <div class="article-content" style="padding: 0;">
+              <h3 class="article-title" style="font-size: 1.1rem; font-weight: 600; color: #002b5b; margin-bottom: 10px;">
+                ¿Compras al por mayor para clínica, IPS o consultorio?
+              </h3>
+              <p class="article-description" style="font-size: 0.88rem; color: #4a5568; margin: 10px 0 18px 0; line-height: 1.5;">
+                Accede a escala de precios corporativa, atención prioritaria y facturación formal.
+              </p>
+              <a href="https://wa.me/573106107017?text=Hola%20Domedicos%20del%20Norte%2C%20requiero%20una%20cotizaci%C3%B3n%20al%20por%20mayor%20para%20una%20cl%C3%ADnica%20%2F%20IPS%20%2F%20consultorio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20atenci%C3%B3n%20institucional%3F"
+                 class="btn-cotizar"
+                 target="_blank"
+                 style="background-color: #0056b3; color: white; padding: 10px 22px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 0.85rem; display: inline-block; border: none;">
+                Cotizar por Mayor
+              </a>
             </div>
           </article>
         </div>
       </section>
+
     </div>
   </main>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
+  <!-- SEO Content Section -->
+  <section id="seo-local-info" class="seo-content-block">
     <div class="container">
-      <div class="cta-content">
-        <h2>¿Necesitas Repuestos para tus Equipos?</h2>
-        <p>Contáctanos para encontrar el repuesto exacto que necesitas. Contamos con stock amplio y envío rápido a todo Colombia.</p>
-        <div class="cta-buttons">
-          <a href="https://wa.me/573106107017?text=Hola%20Domédicos,%20necesito%20información%20sobre%20repuestos%20para%20equipos%20médicos" 
-             class="btn-primary" target="blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'Contact', 'event_label': 'Cotizacion_WhatsApp'});">
-            <span>WhatsApp</span>
-            <span>Cotización Inmediata</span>
-          </a>
-          <a href="contacto.html" class="btn-secondary">
-            <span>Teléfono</span>
-            <span>+57 310 610 7017</span>
-          </a>
-        </div>
+      <div class="seo-text-container" style="max-width: 1200px; margin: 40px auto; padding: 30px; background-color: #ffffff; border-radius: 12px;">
+        <h2>Repuestos y Accesorios para Equipos Médicos en Barranquilla</h2>
+        <p>
+          En <strong>Domédicos del Norte</strong> ofrecemos una amplia gama de repuestos y accesorios originales para mantener sus equipos médicos funcionando en óptimas condiciones. Contamos con piezas específicas para monitores fetales Edan F3/F9, electrocardiógrafos de múltiples marcas, otoscopios y oftalmoscopios Riester, así como baterías recargables para monitores de signos vitales Zonacare y otros fabricantes.
+        </p>
+        <p>
+          Nuestro catálogo incluye papeles térmicos de alta calidad para electrocardiógrafos (80 mm × 20 mm), monitores fetales (152 mm × 90 mm) y equipos Schiller Cardiovit (114 mm × 150 mm × 75 mm), garantizando registros claros y precisos para diagnósticos confiables. También disponemos de bombillos originales Riester 3,5 V-10609 para equipos de órganos y reguladores de oxígeno médicos CGA 540 con rango de 0 a 15 L/min.
+        </p>
+        <p>
+          Como distribuidores líderes en la Costa Caribe, ofrecemos entrega inmediata en Barranquilla, Soledad, Puerto Colombia y Malambo. Todos nuestros repuestos cuentan con garantía de calidad y compatibilidad verificada con los equipos principales del mercado médico colombiano. Trabajamos directamente con clínicas, IPS y hospitales para asegurar el suministro continuo de repuestos críticos.
+        </p>
       </div>
     </div>
   </section>
