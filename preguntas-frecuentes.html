@@ -155,6 +155,7 @@
       color: #2c3e50;
       background: #ffffff;
       overflow-x: hidden;
+      padding-top: 80px;
     }
     
     .container {
@@ -163,27 +164,43 @@
       padding: 0 20px;
     }
     
-    /* HEADER */
+    /* HEADER MEJORADO */
     header {
-      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%) !important;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 1000;
-      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
     }
     
     .header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
     
     .logo img {
-      height: 45px;
-      width: auto;
+      height: 45px !important;
+      width: auto !important;
+      max-width: none !important;
+      object-fit: contain !important;
+      display: block;
       transition: transform 0.3s ease;
     }
     
@@ -193,24 +210,37 @@
     
     nav {
       display: flex;
-      gap: 25px;
       align-items: center;
+      gap: 2rem;
     }
     
     nav a {
-      color: #ffffff;
-      text-decoration: none;
       font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.3s ease;
+      color: #ffffff !important;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
     }
     
     nav a:hover {
-      color: #f0f7ff;
+      background: rgba(255,255,255,0.2);
+      color: #ffffff !important;
+    }
+    
+    nav a.active {
+      background: rgba(255,255,255,0.3);
+      color: #ffffff !important;
     }
     
     .dropdown {
       position: relative;
+    }
+    
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffffff !important;
     }
     
     .dropdown-menu {
@@ -219,11 +249,12 @@
       top: 100%;
       left: 0;
       background: #ffffff;
-      min-width: 200px;
+      min-width: 220px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
       border-radius: 8px;
       padding: 10px 0;
       z-index: 1001;
+      margin-top: 10px;
     }
     
     .dropdown:hover .dropdown-menu {
@@ -234,6 +265,7 @@
       color: #005b99;
       padding: 10px 20px;
       display: block;
+      background: transparent;
     }
     
     .dropdown-menu a:hover {
@@ -241,21 +273,46 @@
       color: #0056b3;
     }
     
-    /* HERO SECTION */
-    .hero {
-      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
-      color: #ffffff;
+    /* BREADCRUMB */
+    .breadcrumb {
+      background: #f8f9fa;
+      padding: 15px 0;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .breadcrumb-content {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    
+    .breadcrumb-content a {
+      color: #005b99;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .breadcrumb-content a:hover {
+      color: #003366;
+    }
+    
+    .breadcrumb-content .current {
+      color: #6c757d;
+      font-weight: 500;
+    }
+    
+    /* CATEGORY HERO */
+    .category-hero {
       padding: 60px 0;
       text-align: center;
     }
     
-    .hero h1 {
+    .hero-content h1 {
       font-size: 2.5rem;
       font-weight: 700;
       margin-bottom: 15px;
     }
     
-    .hero p {
+    .hero-subtitle {
       font-size: 1.2rem;
       opacity: 0.9;
     }
@@ -415,28 +472,43 @@
         <nav>
           <a href="index.html">Inicio</a>
           <div class="dropdown">
-            <a href="#">Productos</a>
+            <a href="#" class="dropdown-toggle">Productos</a>
             <div class="dropdown-menu">
-              <a href="hospitalario.html">Hospitalario</a>
-              <a href="movilidad.html">Movilidad</a>
-              <a href="repuestos.html">Repuestos</a>
-              <a href="insumos.html">Insumos</a>
-              <a href="diagnostico.html">Diagnóstico</a>
-              <a href="especializados.html">Especializados</a>
+              <a href="diagnostico.html">Equipos de Diagnóstico</a>
+              <a href="movilidad.html">Equipos de Movilidad</a>
+              <a href="hospitalario.html">Mobiliario Clínico</a>
+              <a href="insumos.html">Insumos Medicos e Instrumental Hospitalario</a>
+              <a href="especializados.html">Equipos Especializados</a>
+              <a href="repuestos.html">Repuestos y Accesorios</a>
             </div>
           </div>
-          <a href="contacto.html">Contacto</a>
+          <a href="index.html#servicios">Servicios</a>
+          <a href="index.html#nosotros">Nosotros</a>
+          <a href="index.html#mantenimiento">Mantenimiento</a>
           <a href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="index.html#legal">Información Legal</a>
         </nav>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
     <div class="container">
-      <h1>Preguntas Frecuentes</h1>
-      <p>Encuentra respuestas a las dudas más comunes sobre nuestros productos y servicios</p>
+      <div class="breadcrumb-content">
+        <a href="index.html">Inicio</a> / <span class="current">Preguntas Frecuentes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="category-hero" style="background: linear-gradient(135deg, #005b99, #0077cc) !important; color: #ffffff !important;">
+    <div class="container">
+      <div class="hero-content">
+        <h1 style="color: #ffffff !important;">Preguntas Frecuentes</h1>
+        <p class="hero-subtitle" style="color: #ffffff !important;">Encuentra respuestas a las dudas más comunes sobre nuestros productos y servicios</p>
+      </div>
     </div>
   </section>
 
