@@ -243,61 +243,55 @@
       color: #ffffff !important;
     }
     
+    .dropdown-toggle::after {
+      content: '▼';
+      font-size: 0.7rem;
+      margin-left: 0.3rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .dropdown:hover .dropdown-toggle::after {
+      transform: rotate(180deg);
+    }
+    
     .dropdown-menu {
-      display: none;
       position: absolute;
       top: 100%;
       left: 0;
       background: #ffffff;
-      min-width: 220px;
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      border-radius: 8px;
-      padding: 10px 0;
+      min-width: 220px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
       z-index: 1001;
       margin-top: 10px;
     }
     
     .dropdown:hover .dropdown-menu {
-      display: block;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
     
     .dropdown-menu a {
-      color: #005b99;
-      padding: 10px 20px;
       display: block;
+      padding: 0.75rem 1rem;
+      color: #005b99 !important;
+      border-bottom: 1px solid #e9ecef;
       background: transparent;
+    }
+    
+    .dropdown-menu a:last-child {
+      border-bottom: none;
     }
     
     .dropdown-menu a:hover {
       background: #f0f7ff;
       color: #0056b3;
-    }
-    
-    /* BREADCRUMB */
-    .breadcrumb {
-      background: #f8f9fa;
-      padding: 15px 0;
-      border-bottom: 1px solid #e9ecef;
-    }
-    
-    .breadcrumb-content {
-      font-size: 0.9rem;
-      color: #6c757d;
-    }
-    
-    .breadcrumb-content a {
-      color: #005b99;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .breadcrumb-content a:hover {
-      color: #003366;
-    }
-    
-    .breadcrumb-content .current {
-      color: #6c757d;
-      font-weight: 500;
     }
     
     /* CATEGORY HERO */
@@ -492,15 +486,6 @@
       </div>
     </div>
   </header>
-
-  <!-- Breadcrumb -->
-  <div class="breadcrumb">
-    <div class="container">
-      <div class="breadcrumb-content">
-        <a href="index.html">Inicio</a> / <span class="current">Preguntas Frecuentes</span>
-      </div>
-    </div>
-  </div>
 
   <!-- Hero Section -->
   <section class="category-hero" style="background: linear-gradient(135deg, #005b99, #0077cc) !important; color: #ffffff !important;">
