@@ -211,7 +211,7 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
     }
     
     nav a {
@@ -220,16 +220,23 @@
       padding: 0.5rem 1rem;
       border-radius: 8px;
       transition: all 0.3s ease;
+      text-decoration: none !important;
+      border-bottom: none !important;
+      white-space: nowrap !important;
     }
     
     nav a:hover {
       background: rgba(255,255,255,0.2);
       color: #ffffff !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
     }
     
     nav a.active {
       background: rgba(255,255,255,0.3);
       color: #ffffff !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
     }
     
     .dropdown {
@@ -241,6 +248,9 @@
       align-items: center;
       gap: 0.5rem;
       color: #ffffff !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
+      white-space: nowrap !important;
     }
     
     .dropdown-toggle::after {
