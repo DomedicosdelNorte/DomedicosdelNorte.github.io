@@ -3,7 +3,7 @@
   <!-- Página principal -->
   <url>
     <loc>https://domedicosdelnorte.com/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,70 +11,64 @@
   <!-- Categorías Principales -->
   <url>
     <loc>https://domedicosdelnorte.com/hospitalario.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://domedicosdelnorte.com/movilidad.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://domedicosdelnorte.com/repuestos.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://domedicosdelnorte.com/diagnostico.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://domedicosdelnorte.com/insumos.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://domedicosdelnorte.com/especializados.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Páginas informativas y de contacto -->
   <url>
-    <loc>https://domedicosdelnorte.com/servicios.html</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://domedicosdelnorte.com/nosotros.html</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://domedicosdelnorte.com/mantenimiento.html</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://domedicosdelnorte.com/preguntas-frecuentes.html</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://domedicosdelnorte.com/contacto.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://domedicosdelnorte.com/politica-privacidad.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://domedicosdelnorte.com/terminos-condiciones.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
