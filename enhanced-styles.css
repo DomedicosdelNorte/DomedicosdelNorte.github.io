@@ -1603,6 +1603,18 @@ main {
   transition: all 0.2s ease;
   position: relative;
   border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.article-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f8fbff 0%, #ffffff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .article::before {
@@ -1640,14 +1652,15 @@ main {
 .article img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Cambiado a contain para que quepan las imágenes */
-  transition: transform 0.6s ease;
+  object-fit: contain;
+  transition: transform 0.2s ease;
   max-width: 100%;
   max-height: 100%;
 }
 
 .article:hover img {
-  transform: scale(1.1);
+  transform: scale(1.04);
+}
 }
 
 .article-content {
@@ -2619,6 +2632,10 @@ section.animate-in {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
   }
+
+  .article-image {
+    height: 180px;
+  }
   
   .brands-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -2662,6 +2679,10 @@ section.animate-in {
   
   .articles {
     grid-template-columns: 1fr;
+  }
+
+  .article-image {
+    height: 160px;
   }
   
   /* Quick Quote Responsive */
