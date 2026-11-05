@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT6BS8NK1T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TT6BS8NK1T');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'none';">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index, follow">
+  <title>Guías y Recursos Técnicos | Domédicos del Norte Barranquilla</title>
+  <meta name="description" content="Guías técnicas especializadas sobre mobiliario clínico, equipos médicos y ergonomía para optimizar consultorios y clínicas en Barranquilla." />
+  <meta name="keywords" content="guías técnicas, mobiliario clínico, equipos médicos, ergonomía, Barranquilla" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://domedicosdelnorte.com/blog.html" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Guías y Recursos Técnicos | Domédicos del Norte" />
+  <meta property="og:description" content="Guías técnicas especializadas sobre mobiliario clínico, equipos médicos y ergonomía para optimizar consultorios y clínicas en Barranquilla." />
+  <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  <meta property="og:url" content="https://domedicosdelnorte.com/blog.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CO" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Guías y Recursos Técnicos" />
+  <meta name="twitter:description" content="Guías técnicas especializadas sobre mobiliario clínico, equipos médicos y ergonomía para optimizar consultorios y clínicas en Barranquilla." />
+  <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="logo.png" type="image/png" />
+
+  <!-- Hreflang for Colombian Spanish -->
+  <link rel="alternate" hreflang="es-CO" href="https://domedicosdelnorte.com/blog.html" />
+
+  <!-- JSON-LD Structured Data - BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://domedicosdelnorte.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://domedicosdelnorte.com/blog.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data - CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://domedicosdelnorte.com/blog",
+    "url": "https://domedicosdelnorte.com/blog.html",
+    "name": "Guías y Recursos Técnicos | Domédicos del Norte",
+    "description": "Guías técnicas especializadas sobre mobiliario clínico, equipos médicos y ergonomía",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "Article",
+          "position": 1,
+          "name": "Guía de Mobiliario Clínico y Equipamiento Médico en Barranquilla",
+          "url": "https://domedicosdelnorte.com/blog/guia-mobiliario-clinico-barranquilla.html"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- CSS INLINE -->
+  <style>
+    /* RESET COMPLETO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #2c3e50;
+      background: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* VARIABLES */
+    :root {
+      --primary-color: #005b99;
+      --secondary-color: #0077cc;
+      --text-dark: #2c3e50;
+      --text-light: #6c757d;
+      --bg-light: #f8f9fa;
+      --bg-white: #ffffff;
+      --border-color: #e9ecef;
+    }
+
+    /* HEADER MEJORADO */
+    header {
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a,
+    .dropdown-toggle {
+      color: #ffffff !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
+      white-space: nowrap !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover,
+    .dropdown-toggle:hover {
+      opacity: 0.9;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle::after {
+      content: '▼';
+      font-size: 0.7rem;
+      margin-left: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown:hover .dropdown-toggle::after {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 20px;
+      color: #005b99;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-radius: 0;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f8f9fa;
+      color: #0077cc;
+    }
+
+    .dropdown-menu a:first-child {
+      border-radius: 10px 10px 0 0;
+    }
+
+    .dropdown-menu a:last-child {
+      border-radius: 0 0 10px 10px;
+    }
+
+    /* HERO SECTION */
+    .blog-hero {
+      background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
+      color: white;
+      padding: 150px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .blog-hero p {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.95;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 80px 0;
+    }
+
+    /* CATEGORY FILTER BAR */
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 12px 28px;
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 30px;
+      color: #2c3e50;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: linear-gradient(135deg, #005b99, #0077cc);
+      color: white;
+      border-color: #005b99;
+      transform: translateY(-2px);
+    }
+
+    /* FEATURED ARTICLE CARD */
+    .featured-article {
+      background: linear-gradient(135deg, #f4f8fc 0%, #e9f2fb 100%);
+      border: 2px solid #cce0ff;
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 60px;
+      box-shadow: 0 10px 30px rgba(0, 86, 179, 0.1);
+    }
+
+    .featured-article h2 {
+      font-size: clamp(1.8rem, 4vw, 2.2rem);
+      color: #005b99;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .featured-article .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #005b99, #0077cc);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .featured-article p {
+      font-size: 1.1rem;
+      color: #4a5568;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .featured-article .btn-primary {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #005b99, #0077cc);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .featured-article .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 91, 153, 0.3);
+    }
+
+    /* ARTICLE GRID */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .article-card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border: 1px solid #e9ecef;
+      transition: all 0.3s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+
+    .article-card h3 {
+      font-size: 1.4rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .article-card p {
+      color: #6c757d;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .article-card .btn-secondary {
+      display: inline-block;
+      padding: 10px 24px;
+      background: transparent;
+      color: #005b99;
+      text-decoration: none;
+      border: 2px solid #005b99;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .article-card .btn-secondary:hover {
+      background: #005b99;
+      color: white;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1a1a2e;
+      color: white;
+      padding: 60px 0 40px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: #b8b8b8;
+      line-height: 1.8;
+      text-decoration: none;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: #3498db;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #34495e;
+      color: #95a5a6;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 20px;
+      }
+
+      nav a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+
+      .blog-hero {
+        padding: 120px 0 80px;
+      }
+
+      .category-filter {
+        gap: 10px;
+      }
+
+      .filter-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+      }
+
+      .featured-article {
+        padding: 25px;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">
+            <img src="logo.png" alt="Domédicos del Norte - Logo">
+          </a>
+        </div>
+        <nav>
+          <a href="index.html">Inicio</a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="diagnostico.html">Equipos de Diagnóstico</a>
+              <a href="movilidad.html">Equipos de Movilidad</a>
+              <a href="hospitalario.html">Mobiliario Clínico</a>
+              <a href="insumos.html">Insumos Medicos e Instrumental Hospitalario</a>
+              <a href="especializados.html">Equipos Especializados</a>
+              <a href="repuestos.html">Repuestos y Accesorios</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Guías y Recursos</a>
+            <div class="dropdown-menu">
+              <a href="blog/guia-mobiliario-clinico-barranquilla.html">Guía de Mobiliario Clínico</a>
+              <a href="blog.html" class="active">Todas las Guías</a>
+            </div>
+          </div>
+          <a href="index.html#servicios">Servicios</a>
+          <a href="index.html#nosotros">Nosotros</a>
+          <a href="index.html#mantenimiento">Mantenimiento</a>
+          <a href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
+          <a href="contacto.html">Contacto</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Guías y Recursos Técnicos</h1>
+      <p>Información especializada para optimizar su consultorio, clínica o espacio de cuidado médico en Barranquilla.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <!-- Category Filter Bar -->
+      <div class="category-filter">
+        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn">Mobiliario Clínico</button>
+        <button class="filter-btn">Movilidad</button>
+        <button class="filter-btn">Consultorios</button>
+      </div>
+
+      <!-- Featured Article -->
+      <div class="featured-article">
+        <span class="badge">Destacado</span>
+        <h2>Guía de Mobiliario Clínico y Equipamiento Médico en Barranquilla: Claves de Ergonomía y Pintura Electrostática</h2>
+        <p>Criterios técnicos para elegir camas hospitalarias, camillas y mobiliario de soporte garantizando la máxima durabilidad frente a la humedad y el uso intensivo. Descubra por qué la pintura electrostática en polvo supera a la pintura convencional en el clima de Barranquilla.</p>
+        <a href="blog/guia-mobiliario-clinico-barranquilla.html" class="btn-primary">Leer artículo completo</a>
+      </div>
+
+      <!-- Article Grid -->
+      <div class="articles-grid">
+        <div class="article-card">
+          <h3>Próximamente: Guía de Equipos de Movilidad</h3>
+          <p>Todo lo que necesita saber sobre sillas de ruedas, caminadores y equipos de soporte ortopédico.</p>
+          <a href="#" class="btn-secondary">Leer más</a>
+        </div>
+        <div class="article-card">
+          <h3>Próximamente: Guía de Insumos Hospitalarios</h3>
+          <p>Criterios de selección para gasas, guantes, esparadrapo y material quirúrgico de alta calidad.</p>
+          <a href="#" class="btn-secondary">Leer más</a>
+        </div>
+        <div class="article-card">
+          <h3>Próximamente: Guía de Equipos de Diagnóstico</h3>
+          <p>Recomendaciones técnicas para equipos de diagnóstico y monitoreo de signos vitales.</p>
+          <a href="#" class="btn-secondary">Leer más</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Domédicos del Norte</h3>
+          <p>Distribuidor líder de equipos médicos en Barranquilla con más de 30 años de experiencia.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p><strong>Teléfono:</strong> +57 310 610 7017</p>
+          <p><strong>Email:</strong> domedicosdelnorte@hotmail.com</p>
+          <p><strong>Dirección:</strong> Carrera 48 #72-58, Barranquilla</p>
+        </div>
+        <div class="footer-section">
+          <h3>Enlaces</h3>
+          <a href="index.html">Inicio</a>
+          <a href="hospitalario.html">Mobiliario Clínico</a>
+          <a href="movilidad.html">Equipos de Movilidad</a>
+          <a href="contacto.html">Contacto</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Domédicos del Norte. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
