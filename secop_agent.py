@@ -58,7 +58,7 @@ def get_google_sheets_client():
         
         print(f"DEBUG: Service account email: {key_dict.get('client_email', 'N/A')}")
         
-        credentials = ServiceAccountCredentials.from_json_key(key_dict)
+        credentials = ServiceAccountCredentials.from_json_key_dict(key_dict)
         client = gspread.authorize(credentials)
         print("DEBUG: Successfully authenticated with Google Sheets")
         return client
