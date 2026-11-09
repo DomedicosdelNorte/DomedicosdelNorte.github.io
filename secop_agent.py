@@ -2,16 +2,15 @@
 """
 SECOP II Monitoring Agent
 Automated monitoring of SECOP II public procurement for medical/furniture tenders in Atlántico region.
-Filters tenders published in the last 48 hours and sends HTML report via SMTP email.
+Filters tenders published in the last 48 hours and appends them to a Google Sheet.
 """
 
 import requests
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from datetime import datetime, timedelta
 import os
 import json
+from datetime import datetime, timedelta
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # Configuration
 SECOPII_API_URL = "https://www.datos.gov.co/resource/jgit-wwrg.json"
@@ -20,12 +19,23 @@ CATEGORY_MEDICAL = "medical"
 CATEGORY_FURNITURE = "furniture"
 HOURS_TO_FILTER = 48
 
-# SMTP Configuration (from GitHub Secrets)
-SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SENDER_EMAIL = os.getenv("SENDER_EMAIL")
-SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
-RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
+# Google Sheets Configuration (from GitHub Secrets)
+GCP_SA_KEY = os.getenv("GCP_SA_KEY")
+SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
+
+def get_google_sheets_client():
+    """Authenticate with Google Sheets using service account key."""
+    try:
+        # Decode the base64-encoded key
+        import base64
+        key_dict = json.loads(base64.b64decode(GCP_SA_KEY))
+        credentials = ServiceAccountCredentials.from_json_key(key_dict)
+        client = gspread.authorize(credentials)
+        print("Successfully authenticated with Google Sheets")
+        return client
+    except Exception as e:
+        print(f"Error authenticating with Google Sheets: {e}")
+        return None
 
 def fetch_tenders():
     """Fetch tenders from SECOP II API."""
@@ -87,145 +97,61 @@ def filter_by_region_and_category(tenders):
     print(f"Found {len(filtered)} tenders matching Atlántico region and medical/furniture categories")
     return filtered
 
-def generate_html_report(tenders):
-    """Generate HTML report from tender data."""
-    html = f"""
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SECOP II Monitoring Report - {datetime.now().strftime('%Y-%m-%d %H:%M')}</title>
-        <style>
-            body {{
-                font-family: Arial, sans-serif;
-                line-height: 1.6;
-                color: #333;
-                max-width: 900px;
-                margin: 0 auto;
-                padding: 20px;
-            }}
-            .header {{
-                background: linear-gradient(135deg, #005b99 0%, #0077cc 100%);
-                color: white;
-                padding: 30px;
-                border-radius: 10px;
-                margin-bottom: 30px;
-            }}
-            .header h1 {{
-                margin: 0;
-                font-size: 1.8rem;
-            }}
-            .header p {{
-                margin: 10px 0 0 0;
-                opacity: 0.9;
-            }}
-            .tender {{
-                background: #f8f9fa;
-                border: 1px solid #e9ecef;
-                border-radius: 8px;
-                padding: 20px;
-                margin-bottom: 20px;
-            }}
-            .tender h3 {{
-                color: #005b99;
-                margin-top: 0;
-            }}
-            .tender .meta {{
-                color: #6c757d;
-                font-size: 0.9rem;
-                margin: 10px 0;
-            }}
-            .tender .badge {{
-                display: inline-block;
-                padding: 4px 12px;
-                border-radius: 15px;
-                font-size: 0.8rem;
-                font-weight: 600;
-                margin-top: 10px;
-            }}
-            .badge-medical {{
-                background: #e3f2fd;
-                color: #1976d2;
-            }}
-            .badge-furniture {{
-                background: #fff3e0;
-                color: #f57c00;
-            }}
-            .no-tenders {{
-                text-align: center;
-                padding: 40px;
-                color: #6c757d;
-                font-size: 1.1rem;
-            }}
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <h1>🔍 SECOP II Monitoring Report</h1>
-            <p>Generated on {datetime.now().strftime('%Y-%m-%d %H:%M')} UTC</p>
-            <p>Region: {REGION_ATLANTICO} | Categories: Medical & Furniture | Last {HOURS_TO_FILTER} hours</p>
-        </div>
-    """
-    
-    if tenders:
-        for tender in tenders:
-            category_badge_class = 'badge-medical' if tender.get('category') == 'medical' else 'badge-furniture'
-            category_label = 'Medical' if tender.get('category') == 'medical' else 'Furniture'
-            
-            html += f"""
-            <div class="tender">
-                <h3>{tender.get('objeto_contrato', 'No title')}</h3>
-                <div class="meta">
-                    <strong>Entity:</strong> {tender.get('nombre_entidad', 'N/A')}<br>
-                    <strong>Department:</strong> {tender.get('departamento', 'N/A')}<br>
-                    <strong>Published:</strong> {tender.get('fecha_publicacion', 'N/A')}<br>
-                    <strong>Value:</strong> {tender.get('valor_contrato', 'N/A')}
-                </div>
-                <span class="badge {category_badge_class}">{category_label}</span>
-            </div>
-            """
-    else:
-        html += """
-        <div class="no-tenders">
-            <p>No tenders found matching the criteria in the last 48 hours.</p>
-        </div>
-        """
-    
-    html += """
-        </body>
-    </html>
-    """
-    
-    return html
-
-def send_email(html_report):
-    """Send HTML report via SMTP email."""
-    if not all([SENDER_EMAIL, SENDER_PASSWORD, RECEIVER_EMAIL]):
-        print("SMTP credentials not configured. Skipping email send.")
-        return False
-    
+def get_existing_tenders(client, worksheet):
+    """Get existing tenders from Google Sheet to avoid duplicates."""
     try:
-        print("Sending email report...")
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = f"SECOP II Monitoring Report - {datetime.now().strftime('%Y-%m-%d')}"
-        msg['From'] = SENDER_EMAIL
-        msg['To'] = RECEIVER_EMAIL
+        all_records = worksheet.get_all_values()
+        if len(all_records) > 1:
+            # Skip header row
+            existing_tenders = [row[0] for row in all_records[1:]]
+            print(f"Found {len(existing_tenders)} existing tenders in sheet")
+            return set(existing_tenders)
+        return set()
+    except Exception as e:
+        print(f"Error reading existing tenders from sheet: {e}")
+        return set()
+
+def append_tenders_to_sheet(client, tenders):
+    """Append new unique tenders to Google Sheet."""
+    try:
+        # Open the spreadsheet
+        sheet = client.open_by_key(SPREADSHEET_ID)
+        worksheet = sheet.sheet1
         
-        # Attach HTML report
-        html_part = MIMEText(html_report, 'html')
-        msg.attach(html_part)
+        # Get existing tenders to avoid duplicates
+        existing_tender_ids = get_existing_tenders(client, worksheet)
         
-        # Connect to SMTP server and send
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()
-            server.login(SENDER_EMAIL, SENDER_PASSWORD)
-            server.send_message(msg)
+        # Add header row if sheet is empty
+        if worksheet.row_count == 1:
+            worksheet.append_row(['ID', 'Objeto', 'Entidad', 'Departamento', 'Fecha Publicación', 'Valor', 'Categoría'])
+            print("Added header row to sheet")
         
-        print("Email sent successfully!")
+        # Append new unique tenders
+        new_tenders_count = 0
+        for tender in tenders:
+            tender_id = tender.get('id', tender.get('contrato_id', ''))
+            
+            # Skip if already exists
+            if tender_id in existing_tender_ids:
+                continue
+            
+            # Append tender to sheet
+            worksheet.append_row([
+                tender_id,
+                tender.get('objeto_contrato', 'N/A'),
+                tender.get('nombre_entidad', 'N/A'),
+                tender.get('departamento', 'N/A'),
+                tender.get('fecha_publicacion', 'N/A'),
+                tender.get('valor_contrato', 'N/A'),
+                tender.get('category', 'N/A')
+            ])
+            new_tenders_count += 1
+            print(f"Added tender: {tender.get('objeto_contrato', 'N/A')}")
+        
+        print(f"Successfully appended {new_tenders_count} new tenders to Google Sheet")
         return True
     except Exception as e:
-        print(f"Error sending email: {e}")
+        print(f"Error appending tenders to Google Sheet: {e}")
         return False
 
 def main():
@@ -233,6 +159,21 @@ def main():
     print("=" * 60)
     print("SECOP II Monitoring Agent - Domédicos del Norte")
     print("=" * 60)
+    
+    # Check for required environment variables
+    if not GCP_SA_KEY:
+        print("ERROR: GCP_SA_KEY environment variable not set. Please configure in GitHub Secrets.")
+        return
+    
+    if not SPREADSHEET_ID:
+        print("ERROR: SPREADSHEET_ID environment variable not set. Please configure in GitHub Secrets.")
+        return
+    
+    # Authenticate with Google Sheets
+    client = get_google_sheets_client()
+    if not client:
+        print("Failed to authenticate with Google Sheets. Exiting.")
+        return
     
     # Fetch tenders
     tenders = fetch_tenders()
@@ -247,17 +188,12 @@ def main():
     # Filter by recent publication (48 hours)
     recent_tenders = filter_recent_tenders(filtered_tenders)
     
-    # Generate HTML report
-    html_report = generate_html_report(recent_tenders)
+    if not recent_tenders:
+        print("No recent tenders found to append to sheet.")
+        return
     
-    # Save report to file
-    report_path = f"secop_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-    with open(report_path, 'w', encoding='utf-8') as f:
-        f.write(html_report)
-    print(f"Report saved to: {report_path}")
-    
-    # Send email
-    send_email(html_report)
+    # Append to Google Sheet
+    append_tenders_to_sheet(client, recent_tenders)
     
     print("=" * 60)
     print("SECOP II Agent execution completed successfully.")
