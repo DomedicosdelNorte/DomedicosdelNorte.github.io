@@ -2,7 +2,7 @@
 """
 SECOP II Monitoring Agent
 Automated monitoring of SECOP II public procurement for medical/furniture tenders in Atlántico region.
-Filters tenders published in the last 48 hours and appends them to a Google Sheet.
+Filters tenders published in the last 30 days and appends them to a Google Sheet.
 """
 
 import requests
@@ -17,7 +17,7 @@ SECOPII_API_URL = "https://www.datos.gov.co/resource/jgit-wwrg.json"
 REGION_ATLANTICO = "Atlántico"
 CATEGORY_MEDICAL = "medical"
 CATEGORY_FURNITURE = "furniture"
-HOURS_TO_FILTER = 48
+DAYS_TO_FILTER = 30
 
 # Google Sheets Configuration (from GitHub Secrets)
 GCP_SA_KEY = os.getenv("GCP_SA_KEY")
@@ -51,8 +51,8 @@ def fetch_tenders():
         return []
 
 def filter_recent_tenders(tenders):
-    """Filter tenders published in the last 48 hours."""
-    cutoff_time = datetime.now() - timedelta(hours=HOURS_TO_FILTER)
+    """Filter tenders published in the last 30 days."""
+    cutoff_time = datetime.now() - timedelta(days=DAYS_TO_FILTER)
     recent_tenders = []
     
     for tender in tenders:
@@ -67,7 +67,7 @@ def filter_recent_tenders(tenders):
             print(f"Error parsing date for tender {tender.get('id', 'unknown')}: {e}")
             continue
     
-    print(f"Found {len(recent_tenders)} tenders from the last {HOURS_TO_FILTER} hours")
+    print(f"Found {len(recent_tenders)} tenders from the last {DAYS_TO_FILTER} days")
     return recent_tenders
 
 def filter_by_region_and_category(tenders):
@@ -185,7 +185,7 @@ def main():
     # Filter by region and category
     filtered_tenders = filter_by_region_and_category(tenders)
     
-    # Filter by recent publication (48 hours)
+    # Filter by recent publication (30 days)
     recent_tenders = filter_recent_tenders(filtered_tenders)
     
     if not recent_tenders:
