@@ -30,9 +30,32 @@ def get_google_sheets_client():
         print(f"DEBUG: SPREADSHEET_ID: {SPREADSHEET_ID}")
         print(f"DEBUG: GCP_SA_KEY length: {len(GCP_SA_KEY) if GCP_SA_KEY else 0} characters")
         
-        # Decode the base64-encoded key
+        # Decode the base64-encoded key with automatic padding handling
         import base64
-        key_dict = json.loads(base64.b64decode(GCP_SA_KEY))
+        key_dict = None
+        
+        # Try base64 decoding with automatic padding
+        try:
+            # Add padding if needed (base64 requires length to be multiple of 4)
+            padded_key = GCP_SA_KEY
+            if len(GCP_SA_KEY) % 4 != 0:
+                padding_needed = 4 - (len(GCP_SA_KEY) % 4)
+                padded_key = GCP_SA_KEY + ('=' * padding_needed)
+                print(f"DEBUG: Added {padding_needed} padding characters to GCP_SA_KEY")
+            
+            decoded_key = base64.b64decode(padded_key)
+            key_dict = json.loads(decoded_key)
+            print(f"DEBUG: Successfully decoded GCP_SA_KEY using base64")
+        except Exception as decode_error:
+            print(f"DEBUG: Base64 decoding failed: {decode_error}")
+            print(f"DEBUG: Trying to load GCP_SA_KEY as raw JSON string...")
+            try:
+                key_dict = json.loads(GCP_SA_KEY)
+                print(f"DEBUG: Successfully loaded GCP_SA_KEY as raw JSON")
+            except Exception as json_error:
+                print(f"DEBUG ERROR: Raw JSON loading also failed: {json_error}")
+                raise json_error
+        
         print(f"DEBUG: Service account email: {key_dict.get('client_email', 'N/A')}")
         
         credentials = ServiceAccountCredentials.from_json_key(key_dict)
