@@ -61,6 +61,11 @@ def get_google_sheets_client():
         
         print(f"DEBUG: Service account email: {key_dict.get('client_email', 'N/A')}")
         
+        # Fix private_key formatting - replace literal '\n' with actual newlines
+        if 'private_key' in key_dict:
+            key_dict['private_key'] = key_dict['private_key'].replace('\\n', '\n')
+            print(f"DEBUG: Fixed private_key formatting")
+        
         creds = Credentials.from_service_account_info(key_dict, scopes=SCOPES)
         client = gspread.authorize(creds)
         print("DEBUG: Successfully authenticated with Google Sheets")
