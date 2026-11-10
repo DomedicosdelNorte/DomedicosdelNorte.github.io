@@ -10,7 +10,7 @@ import os
 import json
 from datetime import datetime, timedelta
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 
 # Configuration
 SECOPII_API_URL = "https://www.datos.gov.co/resource/jgit-wwrg.json"
@@ -22,6 +22,9 @@ DAYS_TO_FILTER = 30
 # Google Sheets Configuration (from GitHub Secrets)
 GCP_SA_KEY = os.getenv("GCP_SA_KEY")
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
+
+# Google API Scopes
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
 
 def get_google_sheets_client():
     """Authenticate with Google Sheets using service account key."""
@@ -58,8 +61,8 @@ def get_google_sheets_client():
         
         print(f"DEBUG: Service account email: {key_dict.get('client_email', 'N/A')}")
         
-        credentials = ServiceAccountCredentials.from_json_key_dict(key_dict)
-        client = gspread.authorize(credentials)
+        creds = Credentials.from_service_account_info(key_dict, scopes=SCOPES)
+        client = gspread.authorize(creds)
         print("DEBUG: Successfully authenticated with Google Sheets")
         return client
     except Exception as e:
