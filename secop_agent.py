@@ -8,7 +8,6 @@ Filters tenders published in the last 30 days and appends them to a Google Sheet
 import requests
 import os
 import json
-import base64
 from datetime import datetime, timedelta
 import gspread
 from google.oauth2.service_account import Credentials
@@ -23,86 +22,40 @@ DAYS_TO_FILTER = 30
 # Google Sheets Configuration (from GitHub Secrets)
 GCP_SA_KEY = os.getenv("GCP_SA_KEY")
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
+GCP_CREDENTIALS_FILE = "gcp_credentials.json"
 
 # Google API Scopes
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
 
-def parse_gcp_sa_key(secret_key):
+def load_gcp_credentials():
     """
-    Bulletproof secret parsing for GCP_SA_KEY.
-    Handles base64 encoding with automatic padding and fallback to raw JSON.
+    Load GCP service account credentials from environment variable or JSON file.
+    Simplified approach: tries raw JSON first, then falls back to file.
     """
-    print("DEBUG: Parsing GCP_SA_KEY...")
-    print(f"DEBUG: GCP_SA_KEY length: {len(secret_key) if secret_key else 0} characters")
+    print("DEBUG: Loading GCP credentials...")
     
-    key_dict = None
-    
-    # Try base64 decoding with automatic padding
-    try:
-        # Add padding if needed (base64 requires length to be multiple of 4)
-        padded_key = secret_key
-        if len(secret_key) % 4 != 0:
-            padding_needed = 4 - (len(secret_key) % 4)
-            padded_key = secret_key + ('=' * padding_needed)
-            print(f"DEBUG: Added {padding_needed} padding characters to GCP_SA_KEY")
-        
-        decoded_key = base64.b64decode(padded_key)
-        key_dict = json.loads(decoded_key)
-        print(f"DEBUG: Successfully decoded GCP_SA_KEY using base64")
-        return key_dict
-    except Exception as decode_error:
-        print(f"DEBUG: Base64 decoding failed: {decode_error}")
-        print(f"DEBUG: Trying to load GCP_SA_KEY as raw JSON string...")
+    # Try environment variable as raw JSON
+    if GCP_SA_KEY:
+        print(f"DEBUG: GCP_SA_KEY found, length: {len(GCP_SA_KEY)} characters")
         try:
-            key_dict = json.loads(secret_key)
+            key_dict = json.loads(GCP_SA_KEY)
             print(f"DEBUG: Successfully loaded GCP_SA_KEY as raw JSON")
             return key_dict
-        except Exception as json_error:
-            print(f"DEBUG ERROR: Raw JSON loading also failed: {json_error}")
-            raise ValueError(f"Failed to parse GCP_SA_KEY as base64 or JSON: {json_error}")
-
-def normalize_private_key(key_dict):
-    """
-    Advanced private key normalization to fix MalformedFraming errors.
-    - Strips surrounding quotes and whitespace
-    - Replaces escaped newlines with actual newlines
-    - Normalizes carriage returns
-    - Ensures PEM block structure is clean
-    """
-    if 'private_key' not in key_dict:
-        print("DEBUG: No private_key found in key_dict")
-        return key_dict
+        except Exception as e:
+            print(f"DEBUG: Failed to parse GCP_SA_KEY as JSON: {e}")
     
-    print("DEBUG: Normalizing private_key...")
-    private_key = key_dict['private_key']
+    # Fallback to JSON file
+    if os.path.exists(GCP_CREDENTIALS_FILE):
+        print(f"DEBUG: Loading credentials from file: {GCP_CREDENTIALS_FILE}")
+        try:
+            with open(GCP_CREDENTIALS_FILE, 'r') as f:
+                key_dict = json.load(f)
+            print(f"DEBUG: Successfully loaded credentials from JSON file")
+            return key_dict
+        except Exception as e:
+            print(f"DEBUG ERROR: Failed to load credentials from file: {e}")
     
-    # Strip surrounding quotes and whitespace
-    private_key = private_key.strip()
-    if (private_key.startswith('"') and private_key.endswith('"')) or \
-       (private_key.startswith("'") and private_key.endswith("'")):
-        private_key = private_key[1:-1]
-        print("DEBUG: Stripped surrounding quotes from private_key")
-    
-    # Replace escaped newlines with actual newlines
-    if '\\n' in private_key:
-        private_key = private_key.replace('\\n', '\n')
-        print("DEBUG: Replaced escaped newlines with actual newlines")
-    
-    # Normalize carriage returns (CRLF to LF)
-    if '\r\n' in private_key:
-        private_key = private_key.replace('\r\n', '\n')
-        print("DEBUG: Normalized carriage returns")
-    
-    # Ensure PEM block structure is clean
-    private_key = private_key.strip()
-    
-    # Verify PEM structure
-    if '-----BEGIN PRIVATE KEY-----' not in private_key or '-----END PRIVATE KEY-----' not in private_key:
-        print("DEBUG WARNING: PEM block structure may be malformed")
-    
-    key_dict['private_key'] = private_key
-    print("DEBUG: Private key normalization complete")
-    return key_dict
+    raise ValueError("No valid GCP credentials found in environment variable or gcp_credentials.json file")
 
 def get_google_sheets_client():
     """Authenticate with Google Sheets using service account key."""
@@ -110,13 +63,10 @@ def get_google_sheets_client():
         print("DEBUG: Attempting to authenticate with Google Sheets...")
         print(f"DEBUG: SPREADSHEET_ID: {SPREADSHEET_ID}")
         
-        # Parse the secret key with bulletproof handling
-        key_dict = parse_gcp_sa_key(GCP_SA_KEY)
+        # Load credentials from environment variable or JSON file
+        key_dict = load_gcp_credentials()
         
         print(f"DEBUG: Service account email: {key_dict.get('client_email', 'N/A')}")
-        
-        # Normalize private key to fix MalformedFraming errors
-        key_dict = normalize_private_key(key_dict)
         
         # Initialize credentials using modern google-auth library
         creds = Credentials.from_service_account_info(key_dict, scopes=SCOPES)
@@ -281,15 +231,13 @@ def main():
     
     # Check for required environment variables
     print(f"DEBUG: Checking environment variables...")
-    if not GCP_SA_KEY:
-        print("ERROR: GCP_SA_KEY environment variable not set. Please configure in GitHub Secrets.")
-        return
-    print(f"DEBUG: GCP_SA_KEY is set")
-    
     if not SPREADSHEET_ID:
         print("ERROR: SPREADSHEET_ID environment variable not set. Please configure in GitHub Secrets.")
         return
     print(f"DEBUG: SPREADSHEET_ID is set")
+    
+    # GCP credentials can be from environment variable or gcp_credentials.json file
+    print(f"DEBUG: GCP credentials will be loaded from environment variable or gcp_credentials.json file")
     
     # Authenticate with Google Sheets
     client = get_google_sheets_client()
