@@ -8,6 +8,7 @@ Filters tenders published in the last 30 days and appends them to a Google Sheet
 import requests
 import os
 import json
+import base64
 from datetime import datetime, timedelta
 import gspread
 from google.oauth2.service_account import Credentials
@@ -30,19 +31,34 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapi
 def load_gcp_credentials():
     """
     Load GCP service account credentials from environment variable or JSON file.
-    Simplified approach: tries raw JSON first, then falls back to file.
+    Tries raw JSON first, then base64-decoded JSON, then falls back to file.
     """
     print("DEBUG: Loading GCP credentials...")
     
-    # Try environment variable as raw JSON
+    # Try environment variable as raw JSON first
     if GCP_SA_KEY:
         print(f"DEBUG: GCP_SA_KEY found, length: {len(GCP_SA_KEY)} characters")
         try:
             key_dict = json.loads(GCP_SA_KEY)
             print(f"DEBUG: Successfully loaded GCP_SA_KEY as raw JSON")
             return key_dict
-        except Exception as e:
-            print(f"DEBUG: Failed to parse GCP_SA_KEY as JSON: {e}")
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"DEBUG: Failed to parse GCP_SA_KEY as raw JSON: {e}")
+            print(f"DEBUG: Trying base64 decoding...")
+            try:
+                # Add padding if needed (base64 requires length to be multiple of 4)
+                padded_key = GCP_SA_KEY
+                if len(GCP_SA_KEY) % 4 != 0:
+                    padding_needed = 4 - (len(GCP_SA_KEY) % 4)
+                    padded_key = GCP_SA_KEY + ('=' * padding_needed)
+                    print(f"DEBUG: Added {padding_needed} padding characters to GCP_SA_KEY")
+                
+                decoded_key = base64.b64decode(padded_key)
+                key_dict = json.loads(decoded_key)
+                print(f"DEBUG: Successfully decoded GCP_SA_KEY using base64")
+                return key_dict
+            except Exception as decode_error:
+                print(f"DEBUG: Base64 decoding also failed: {decode_error}")
     
     # Fallback to JSON file
     if os.path.exists(GCP_CREDENTIALS_FILE):
