@@ -2,8 +2,8 @@
 """
 SECOP II Monitoring Agent
 Automated monitoring of SECOP II public procurement for medical/furniture tenders in Atlántico region.
-Uses the jbjy-vk9h.json dataset endpoint.
-Filters tenders published in the last 30 days and appends them to a Google Sheet.
+Uses the jbjy-vk9h.json dataset endpoint with Socrata API query parameters.
+Filters tenders published in the last 30 days using fecha_de_inicio_del_contrato and appends them to a Google Sheet.
 """
 
 import requests
@@ -20,6 +20,7 @@ REGION_ATLANTICO = "Atlántico"
 CATEGORY_MEDICAL = "medical"
 CATEGORY_FURNITURE = "furniture"
 DAYS_TO_FILTER = 30
+API_LIMIT = 1000
 
 # Google Sheets Configuration (from GitHub Secrets)
 GCP_SA_KEY = os.getenv("GCP_SA_KEY")
@@ -97,11 +98,19 @@ def get_google_sheets_client():
         return None
 
 def fetch_tenders():
-    """Fetch tenders from SECOP II API."""
+    """Fetch tenders from SECOP II API with basic query parameters."""
     try:
         print(f"DEBUG: API URL: {SECOPII_API_URL}")
         print(f"DEBUG: Requesting tenders from SECOP II API...")
-        response = requests.get(SECOPII_API_URL, timeout=30)
+        
+        # Build query parameters - limit and order only
+        params = {
+            '$order': 'fecha_de_inicio_del_contrato DESC',
+            '$limit': API_LIMIT
+        }
+        
+        print(f"DEBUG: Query parameters: {params}")
+        response = requests.get(SECOPII_API_URL, params=params, timeout=30)
         print(f"DEBUG: Response status code: {response.status_code}")
         response.raise_for_status()
         data = response.json()
@@ -114,56 +123,66 @@ def fetch_tenders():
         print(f"DEBUG ERROR: Traceback: {traceback.format_exc()}")
         return []
 
-def filter_recent_tenders(tenders):
-    """Filter tenders published in the last 30 days."""
+def filter_tenders(tenders):
+    """Filter tenders by region, date, and keywords in Python."""
     cutoff_time = datetime.now() - timedelta(days=DAYS_TO_FILTER)
     print(f"DEBUG: Cutoff time for filtering: {cutoff_time}")
-    recent_tenders = []
-    
-    for tender in tenders:
-        try:
-            # Parse fecha_de_firma (SECOP II date format) - changed from fecha_publicacion
-            pub_date_str = tender.get('fecha_de_firma', '')
-            if pub_date_str:
-                pub_date = datetime.strptime(pub_date_str, '%Y-%m-%dT%H:%M:%S.%f')
-                if pub_date >= cutoff_time:
-                    recent_tenders.append(tender)
-        except Exception as e:
-            print(f"DEBUG ERROR: Error parsing date for tender {tender.get('id_contrato', 'unknown')}: {e}")
-            continue
-    
-    print(f"DEBUG: After date filtering: {len(recent_tenders)} tenders from the last {DAYS_TO_FILTER} days")
-    print(f"Found {len(recent_tenders)} tenders from the last {DAYS_TO_FILTER} days")
-    return recent_tenders
-
-def filter_by_region_and_category(tenders):
-    """Filter tenders by Atlántico region and medical/furniture categories."""
-    print(f"DEBUG: Starting region and category filtering with {len(tenders)} tenders...")
     filtered = []
     
     for tender in tenders:
-        entidad = tender.get('nombre_entidad', '').lower()
-        departamento = tender.get('departamento', '').lower()
+        try:
+            # Filter by department (Atlántico)
+            departamento = tender.get('departamento', '').lower()
+            if REGION_ATLANTICO.lower() not in departamento:
+                continue
+            
+            # Filter by date (last 30 days)
+            pub_date_str = tender.get('fecha_de_inicio_del_contrato', '')
+            if pub_date_str:
+                pub_date = datetime.strptime(pub_date_str, '%Y-%m-%dT%H:%M:%S.%f')
+                if pub_date < cutoff_time:
+                    continue
+            
+            # Filter by keywords
+            objeto = tender.get('objeto_del_contrato', '').lower()
+            keywords = ['mobiliario', 'cama', 'camilla', 'mesa', 'silla', 'hospital', 'clinico', 'consultorio', 
+                       'equipamiento', 'mobiliario clinico', 'insumos', 'medico', 'quirurgico', 'instrumental']
+            if not any(keyword in objeto for keyword in keywords):
+                continue
+            
+            filtered.append(tender)
+        except Exception as e:
+            print(f"DEBUG ERROR: Error filtering tender {tender.get('id_contrato', 'unknown')}: {e}")
+            continue
+    
+    print(f"DEBUG: After filtering: {len(filtered)} tenders matching all criteria")
+    print(f"Found {len(filtered)} tenders matching Atlántico region, last {DAYS_TO_FILTER} days, and medical/furniture keywords")
+    return filtered
+
+def assign_category(tenders):
+    """Assign category (medical/furniture) to tenders based on object description."""
+    print(f"DEBUG: Assigning categories to {len(tenders)} tenders...")
+    
+    for tender in tenders:
         objeto = tender.get('objeto_del_contrato', '').lower()
         
-        # Filter by Atlántico region
-        if REGION_ATLANTICO.lower() not in departamento and REGION_ATLANTICO.lower() not in entidad:
-            continue
-        
-        # Filter by medical/furniture keywords
-        medical_keywords = ['mobiliario', 'cama', 'camilla', 'mesa', 'silla', 'hospital', 'clinico', 'consultorio', 'equipamiento', 'mobiliario clínico']
+        # Categorize by keywords
+        medical_keywords = ['mobiliario', 'cama', 'camilla', 'mesa', 'silla', 'hospital', 'clinico', 'consultorio', 
+                          'equipamiento', 'mobiliario clinico', 'insumos', 'medico', 'quirurgico', 'instrumental']
         furniture_keywords = ['mueble', 'silla', 'cama', 'mesa', 'escritorio', 'archivador', 'estantería']
         
         is_medical = any(keyword in objeto for keyword in medical_keywords)
         is_furniture = any(keyword in objeto for keyword in furniture_keywords)
         
-        if is_medical or is_furniture:
-            tender['category'] = 'medical' if is_medical else 'furniture'
-            filtered.append(tender)
+        if is_medical:
+            tender['category'] = 'medical'
+        elif is_furniture:
+            tender['category'] = 'furniture'
+        else:
+            tender['category'] = 'other'
     
-    print(f"DEBUG: After region/category filtering: {len(filtered)} tenders matching Atlántico region and medical/furniture categories")
-    print(f"Found {len(filtered)} tenders matching Atlántico region and medical/furniture categories")
-    return filtered
+    print(f"DEBUG: Category assignment complete")
+    return tenders
 
 def get_existing_tenders(client, worksheet):
     """Get existing tenders from Google Sheet to avoid duplicates."""
@@ -200,7 +219,7 @@ def append_tenders_to_sheet(client, tenders):
         # Add header row if sheet is empty
         if worksheet.row_count == 1:
             print(f"DEBUG: Sheet is empty, adding header row...")
-            worksheet.append_row(['ID', 'Objeto del Contrato', 'Entidad', 'Departamento', 'Fecha de Firma', 'Valor del Contrato', 'Categoría'])
+            worksheet.append_row(['ID', 'Objeto del Contrato', 'Entidad', 'Departamento', 'Fecha de Inicio', 'Valor del Contrato', 'Categoría'])
             print("DEBUG: Added header row to sheet")
         
         # Append new unique tenders
@@ -221,7 +240,7 @@ def append_tenders_to_sheet(client, tenders):
                 tender.get('objeto_del_contrato', 'N/A'),
                 tender.get('nombre_entidad', 'N/A'),
                 tender.get('departamento', 'N/A'),
-                tender.get('fecha_de_firma', 'N/A'),
+                tender.get('fecha_de_inicio_del_contrato', 'N/A'),
                 tender.get('valor_del_contrato', 'N/A'),
                 tender.get('category', 'N/A')
             ])
@@ -269,20 +288,19 @@ def main():
         print("No tenders fetched. Exiting.")
         return
     
-    # Filter by region and category
-    print(f"DEBUG: Filtering tenders by region (Atlántico) and category (medical/furniture)...")
-    filtered_tenders = filter_by_region_and_category(tenders)
+    # Filter by region, date, and keywords
+    print(f"DEBUG: Filtering tenders by region (Atlántico), date (last {DAYS_TO_FILTER} days), and keywords...")
+    filtered_tenders = filter_tenders(tenders)
     
-    # Filter by recent publication (30 days)
-    print(f"DEBUG: Filtering tenders by date (last {DAYS_TO_FILTER} days)...")
-    recent_tenders = filter_recent_tenders(filtered_tenders)
-    
-    if not recent_tenders:
-        print("No recent tenders found to append to sheet.")
+    if not filtered_tenders:
+        print("No tenders found matching criteria.")
         return
     
+    # Assign categories to tenders
+    filtered_tenders = assign_category(filtered_tenders)
+    
     # Append to Google Sheet
-    append_tenders_to_sheet(client, recent_tenders)
+    append_tenders_to_sheet(client, filtered_tenders)
     
     print("=" * 60)
     print("SECOP II Agent execution completed successfully.")
