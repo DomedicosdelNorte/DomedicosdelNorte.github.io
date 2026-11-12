@@ -129,6 +129,26 @@ def filter_tenders(tenders):
     print(f"DEBUG: Cutoff time for filtering: {cutoff_time}")
     filtered = []
     
+    # Staffing phrases to exclude
+    staffing_phrases = [
+        'prestacion de servicios profesionales',
+        'prestación de servicios profesionales',
+        'prestacion de servicios de apoyo',
+        'prestación de servicios de apoyo',
+        'auxiliar de enfermeria',
+        'auxiliar de enfermería',
+        'conductor de ambulancia'
+    ]
+    
+    # Medical supply and clinical furniture keywords (excluding generic terms like "hospital")
+    keywords = [
+        'mobiliario', 'cama hospitalaria', 'camilla', 'insumos medicos', 'insumos médicos',
+        'dispositivos medicos', 'dispositivos médicos', 'equipo biomedico', 'equipo biomédico',
+        'equipos medicos', 'equipos médicos', 'dotacion hospitalaria', 'dotación hospitalaria',
+        'material medico', 'material médico', 'quirurgico', 'quirúrgico', 'instrumental',
+        'silla de ruedas', 'consultorio', 'clinico', 'clínico', 'equipamiento'
+    ]
+    
     for tender in tenders:
         try:
             # Filter by department (Atlántico)
@@ -143,11 +163,14 @@ def filter_tenders(tenders):
                 if pub_date < cutoff_time:
                     continue
             
-            # Filter by keywords
+            # Filter by keywords - medical supply and clinical furniture only
             objeto = tender.get('objeto_del_contrato', '').lower()
-            keywords = ['mobiliario', 'cama', 'camilla', 'mesa', 'silla', 'hospital', 'clinico', 'consultorio', 
-                       'equipamiento', 'mobiliario clinico', 'insumos', 'medico', 'quirurgico', 'instrumental']
             if not any(keyword in objeto for keyword in keywords):
+                continue
+            
+            # Exclude staffing/professional services contracts
+            if any(phrase in objeto for phrase in staffing_phrases):
+                print(f"DEBUG: Excluding staffing contract: {tender.get('id_contrato', 'unknown')}")
                 continue
             
             filtered.append(tender)
@@ -156,33 +179,8 @@ def filter_tenders(tenders):
             continue
     
     print(f"DEBUG: After filtering: {len(filtered)} tenders matching all criteria")
-    print(f"Found {len(filtered)} tenders matching Atlántico region, last {DAYS_TO_FILTER} days, and medical/furniture keywords")
+    print(f"Found {len(filtered)} tenders matching Atlántico region, last {DAYS_TO_FILTER} days, and medical supply/furniture keywords")
     return filtered
-
-def assign_category(tenders):
-    """Assign category (medical/furniture) to tenders based on object description."""
-    print(f"DEBUG: Assigning categories to {len(tenders)} tenders...")
-    
-    for tender in tenders:
-        objeto = tender.get('objeto_del_contrato', '').lower()
-        
-        # Categorize by keywords
-        medical_keywords = ['mobiliario', 'cama', 'camilla', 'mesa', 'silla', 'hospital', 'clinico', 'consultorio', 
-                          'equipamiento', 'mobiliario clinico', 'insumos', 'medico', 'quirurgico', 'instrumental']
-        furniture_keywords = ['mueble', 'silla', 'cama', 'mesa', 'escritorio', 'archivador', 'estantería']
-        
-        is_medical = any(keyword in objeto for keyword in medical_keywords)
-        is_furniture = any(keyword in objeto for keyword in furniture_keywords)
-        
-        if is_medical:
-            tender['category'] = 'medical'
-        elif is_furniture:
-            tender['category'] = 'furniture'
-        else:
-            tender['category'] = 'other'
-    
-    print(f"DEBUG: Category assignment complete")
-    return tenders
 
 def get_existing_tenders(client, worksheet):
     """Get existing tenders from Google Sheet to avoid duplicates."""
@@ -204,7 +202,7 @@ def get_existing_tenders(client, worksheet):
         return set()
 
 def append_tenders_to_sheet(client, tenders):
-    """Append new unique tenders to Google Sheet."""
+    """Append new unique tenders to Google Sheet with correct column mapping."""
     try:
         print(f"DEBUG: Opening spreadsheet with ID: {SPREADSHEET_ID}")
         # Open the spreadsheet
@@ -213,14 +211,18 @@ def append_tenders_to_sheet(client, tenders):
         worksheet = sheet.sheet1
         print(f"DEBUG: Worksheet title: {worksheet.title}")
         
-        # Get existing tenders to avoid duplicates
+        # Get existing tenders to avoid duplicates (from Column A - ID Proceso)
         existing_tender_ids = get_existing_tenders(client, worksheet)
         
-        # Add header row if sheet is empty
-        if worksheet.row_count == 1:
-            print(f"DEBUG: Sheet is empty, adding header row...")
-            worksheet.append_row(['ID', 'Objeto del Contrato', 'Entidad', 'Departamento', 'Fecha de Inicio', 'Valor del Contrato', 'Categoría'])
-            print("DEBUG: Added header row to sheet")
+        # Check if header row exists, if not add it
+        header_row = worksheet.row_values(1)
+        expected_headers = ["ID Proceso", "Fecha Publicación", "Entidad", "Objeto del Contrato", 
+                          "Presupuesto (COP)", "Enlace SECOP II", "Estado Interno", "Asignado A"]
+        
+        if header_row != expected_headers:
+            print(f"DEBUG: Header row does not match expected headers")
+            print(f"DEBUG: Current headers: {header_row}")
+            print(f"DEBUG: Expected headers: {expected_headers}")
         
         # Append new unique tenders
         new_tenders_count = 0
@@ -233,19 +235,46 @@ def append_tenders_to_sheet(client, tenders):
                 print(f"DEBUG: Skipping duplicate tender ID: {tender_id}")
                 continue
             
-            # Append tender to sheet
+            # Format date (YYYY-MM-DD)
+            fecha_pub = tender.get('fecha_de_inicio_del_contrato', tender.get('fecha_de_firma', 'N/A'))
+            if fecha_pub and fecha_pub != 'N/A':
+                try:
+                    fecha_dt = datetime.strptime(fecha_pub, '%Y-%m-%dT%H:%M:%S.%f')
+                    fecha_pub = fecha_dt.strftime('%Y-%m-%d')
+                except:
+                    pass
+            
+            # Format value as clean number
+            valor = tender.get('valor_del_contrato', 'N/A')
+            if valor and valor != 'N/A':
+                try:
+                    valor = str(int(float(valor)))
+                except:
+                    pass
+            
+            # Build SECOP II URL
+            urlproceso = tender.get('urlproceso', {})
+            if isinstance(urlproceso, dict) and 'url' in urlproceso:
+                secop_url = urlproceso['url']
+            else:
+                secop_url = f"https://community.secop.gov.co/Public/Tendering/OpportunityDetail/Index?noticeUID={tender_id}"
+            
+            # Append tender to sheet with correct column mapping
+            # Col A: ID Proceso, Col B: Fecha Publicación, Col C: Entidad, Col D: Objeto del Contrato
+            # Col E: Presupuesto (COP), Col F: Enlace SECOP II, Col G: Estado Interno, Col H: Asignado A
             print(f"DEBUG: Appending tender ID: {tender_id}")
             worksheet.append_row([
-                tender_id,
-                tender.get('objeto_del_contrato', 'N/A'),
-                tender.get('nombre_entidad', 'N/A'),
-                tender.get('departamento', 'N/A'),
-                tender.get('fecha_de_inicio_del_contrato', 'N/A'),
-                tender.get('valor_del_contrato', 'N/A'),
-                tender.get('category', 'N/A')
+                tender_id,  # Col A: ID Proceso
+                fecha_pub,  # Col B: Fecha Publicación
+                tender.get('nombre_entidad', 'N/A'),  # Col C: Entidad
+                tender.get('objeto_del_contrato', 'N/A'),  # Col D: Objeto del Contrato
+                valor,  # Col E: Presupuesto (COP)
+                secop_url,  # Col F: Enlace SECOP II
+                "Nuevo",  # Col G: Estado Interno
+                ""  # Col H: Asignado A
             ])
             new_tenders_count += 1
-            print(f"DEBUG: Successfully added tender: {tender.get('objeto_del_contrato', 'N/A')}")
+            print(f"DEBUG: Successfully added tender: {tender.get('objeto_del_contrato', 'N/A')[:50]}...")
         
         print(f"DEBUG: Successfully appended {new_tenders_count} new tenders to Google Sheet")
         print(f"Successfully appended {new_tenders_count} new tenders to Google Sheet")
@@ -295,9 +324,6 @@ def main():
     if not filtered_tenders:
         print("No tenders found matching criteria.")
         return
-    
-    # Assign categories to tenders
-    filtered_tenders = assign_category(filtered_tenders)
     
     # Append to Google Sheet
     append_tenders_to_sheet(client, filtered_tenders)
