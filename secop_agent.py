@@ -2,6 +2,7 @@
 """
 SECOP II Monitoring Agent
 Automated monitoring of SECOP II public procurement for medical/furniture tenders in Atlántico region.
+Uses the jbjy-vk9h.json dataset endpoint.
 Filters tenders published in the last 30 days and appends them to a Google Sheet.
 """
 
@@ -14,7 +15,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 # Configuration
-SECOPII_API_URL = "https://www.datos.gov.co/resource/jgit-wwrg.json"
+SECOPII_API_URL = "https://www.datos.gov.co/resource/jbjy-vk9h.json"
 REGION_ATLANTICO = "Atlántico"
 CATEGORY_MEDICAL = "medical"
 CATEGORY_FURNITURE = "furniture"
@@ -121,14 +122,14 @@ def filter_recent_tenders(tenders):
     
     for tender in tenders:
         try:
-            # Parse fecha_publicacion (SECOP II date format)
-            pub_date_str = tender.get('fecha_publicacion', '')
+            # Parse fecha_de_firma (SECOP II date format) - changed from fecha_publicacion
+            pub_date_str = tender.get('fecha_de_firma', '')
             if pub_date_str:
                 pub_date = datetime.strptime(pub_date_str, '%Y-%m-%dT%H:%M:%S.%f')
                 if pub_date >= cutoff_time:
                     recent_tenders.append(tender)
         except Exception as e:
-            print(f"DEBUG ERROR: Error parsing date for tender {tender.get('id', 'unknown')}: {e}")
+            print(f"DEBUG ERROR: Error parsing date for tender {tender.get('id_contrato', 'unknown')}: {e}")
             continue
     
     print(f"DEBUG: After date filtering: {len(recent_tenders)} tenders from the last {DAYS_TO_FILTER} days")
@@ -143,7 +144,7 @@ def filter_by_region_and_category(tenders):
     for tender in tenders:
         entidad = tender.get('nombre_entidad', '').lower()
         departamento = tender.get('departamento', '').lower()
-        objeto = tender.get('objeto_contrato', '').lower()
+        objeto = tender.get('objeto_del_contrato', '').lower()
         
         # Filter by Atlántico region
         if REGION_ATLANTICO.lower() not in departamento and REGION_ATLANTICO.lower() not in entidad:
@@ -199,14 +200,14 @@ def append_tenders_to_sheet(client, tenders):
         # Add header row if sheet is empty
         if worksheet.row_count == 1:
             print(f"DEBUG: Sheet is empty, adding header row...")
-            worksheet.append_row(['ID', 'Objeto', 'Entidad', 'Departamento', 'Fecha Publicación', 'Valor', 'Categoría'])
+            worksheet.append_row(['ID', 'Objeto del Contrato', 'Entidad', 'Departamento', 'Fecha de Firma', 'Valor del Contrato', 'Categoría'])
             print("DEBUG: Added header row to sheet")
         
         # Append new unique tenders
         new_tenders_count = 0
         print(f"DEBUG: Processing {len(tenders)} tenders for appending...")
         for tender in tenders:
-            tender_id = tender.get('id', tender.get('contrato_id', ''))
+            tender_id = tender.get('id_contrato', '')
             
             # Skip if already exists
             if tender_id in existing_tender_ids:
@@ -217,15 +218,15 @@ def append_tenders_to_sheet(client, tenders):
             print(f"DEBUG: Appending tender ID: {tender_id}")
             worksheet.append_row([
                 tender_id,
-                tender.get('objeto_contrato', 'N/A'),
+                tender.get('objeto_del_contrato', 'N/A'),
                 tender.get('nombre_entidad', 'N/A'),
                 tender.get('departamento', 'N/A'),
-                tender.get('fecha_publicacion', 'N/A'),
-                tender.get('valor_contrato', 'N/A'),
+                tender.get('fecha_de_firma', 'N/A'),
+                tender.get('valor_del_contrato', 'N/A'),
                 tender.get('category', 'N/A')
             ])
             new_tenders_count += 1
-            print(f"DEBUG: Successfully added tender: {tender.get('objeto_contrato', 'N/A')}")
+            print(f"DEBUG: Successfully added tender: {tender.get('objeto_del_contrato', 'N/A')}")
         
         print(f"DEBUG: Successfully appended {new_tenders_count} new tenders to Google Sheet")
         print(f"Successfully appended {new_tenders_count} new tenders to Google Sheet")
