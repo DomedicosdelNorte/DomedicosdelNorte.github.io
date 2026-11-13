@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-SECOP II Monitoring Agent
-Automated monitoring of SECOP II public procurement for medical/furniture tenders in Atlántico region.
-Uses the jbjy-vk9h.json dataset endpoint with Socrata API query parameters.
+SECOP II Monitoring Agent - Domédicos del Norte
+Automated monitoring of SECOP II public procurement for medical supply/furniture tenders
+across the Colombian Caribbean Region (Costa Caribe).
+Uses the jbjy-vk9h.json dataset endpoint.
 Filters tenders published in the last 30 days using fecha_de_inicio_del_contrato and appends them to a Google Sheet.
 """
 
@@ -10,17 +11,97 @@ import requests
 import os
 import json
 import base64
+import unicodedata
 from datetime import datetime, timedelta
 import gspread
 from google.oauth2.service_account import Credentials
 
 # Configuration
 SECOPII_API_URL = "https://www.datos.gov.co/resource/jbjy-vk9h.json"
-REGION_ATLANTICO = "Atlántico"
-CATEGORY_MEDICAL = "medical"
-CATEGORY_FURNITURE = "furniture"
 DAYS_TO_FILTER = 30
 API_LIMIT = 1000
+
+# Caribbean Region Departments (Costa Caribe) - with accent variations
+CARIBBEAN_DEPARTMENTS = [
+    'atlántico', 'atlantico',
+    'bolívar', 'bolivar',
+    'magdalena',
+    'cesar',
+    'córdoba', 'cordoba',
+    'sucre',
+    'la guajira', 'guajira'
+]
+
+# High-Priority Entity NITs and Names (normalized NIT digits)
+PRIORITY_ENTITIES = {
+    '890102006': ['gobernacion del atlantico', 'secretaria de salud departamental del atlantico'],
+    '890102018': ['alcaldia distrital de barranquilla', 'secretaria distrital de salud de barranquilla'],
+    '890480059': ['gobernacion de bolivar', 'secretaria de salud de bolivar'],
+    '890480184': ['dadis', 'departamento administrativo distrital de salud de cartagena'],
+    '800103920': ['gobernacion del magdalena', 'secretaria seccional de salud del magdalena'],
+    '892399999': ['gobernacion del cesar'],
+    '800098911': ['alcaldia de valledupar'],
+    '800103935': ['gobernacion de cordoba'],
+    '800096734': ['alcaldia de monteria'],
+    '892280021': ['gobernacion de sucre'],
+    '800104062': ['alcaldia de sincelejo'],
+    '892115015': ['gobernacion de la guajira'],
+    '892115007': ['alcaldia de riohacha']
+}
+
+# UNSPSC Codes - Families 42 & 43 (Medical Equipment & Supplies)
+UNSPSC_EXACT_CODES = [
+    # Textiles & Medical Apparel
+    '42131500', '42131600', '42131700', '42132100', '42132200',
+    # Patient Care, Supplies & Treatment
+    '42141500', '42141501', '42141502', '42141503', '42141504',
+    '42141600', '42141601', '42141602', '42141603', '42141605', '42141606', '42141607', '42141608',
+    '42141700', '42141701', '42141702', '42141703', '42141705',
+    '42141800', '42141801', '42141802', '42141803', '42141804', '42141805', '42141806', '42141807', '42141808', '42141809', '42141810', '42141811', '42141812', '42141813', '42141814', '42141815', '42141816',
+    '42141900', '42141901', '42141902', '42141903', '42141904', '42141905',
+    '42142000', '42142001', '42142002', '42142003', '42142004', '42142005', '42142006', '42142007',
+    '42142100', '42142101', '42142102', '42142103', '42142104', '42142105', '42142106', '42142107', '42142108', '42142109', '42142110', '42142111', '42142112', '42142113', '42142114', '42142119', '42142120', '42142121',
+    '42142200', '42142300', '42142400', '42142500', '42142501', '42142502', '42142503', '42142504', '42142505', '42142506', '42142507', '42142509', '42142510', '42142511', '42142512', '42142513', '42142514', '42142515', '42142516', '42142517', '42142518', '42142538',
+    '42142600', '42142700', '42142800', '42142900',
+    '42143100', '42143200', '42143300', '42143400', '42143500', '42143600', '42143700', '42143800', '42143900',
+    '42144000', '42144100', '42144200', '42144300',
+    # Dental Equipment & Supplies
+    '42151500', '42151600', '42151700', '42151800', '42151900', '42152000', '42152100', '42152200', '42152300', '42152400', '42152500', '42152600', '42152700', '42152800',
+    # Emergency, Dialysis, Diagnostic, Rehab, Sterilization & Surgical
+    '42170000', '42180000', '42191900', '42200000', '42210000', '42220000', '42230000', '42240000', '42250000', '42260000', '42270000', '42280000', '42290000', '42300000', '42310000', '42320000'
+]
+
+# UNSPSC Family Prefixes (to match any code starting with these)
+UNSPSC_FAMILY_PREFIXES = [
+    '4213', '4214', '4215', '4217', '4218', '4219',
+    '4220', '4221', '4222', '4223', '4224', '4225', '4226', '4227', '4228', '4229', '4230', '4231', '4232'
+]
+
+# Medical Supply & Furniture Keywords (case-insensitive, accent-normalized)
+MEDICAL_KEYWORDS = [
+    'suministros medicos', 'suministros médicos',
+    'equipos medicos', 'equipos médicos',
+    'insumos medicos', 'insumos médicos',
+    'material medico', 'material médico',
+    'dispositivos medicos', 'dispositivos médicos',
+    'equipo biomedico', 'equipo biomédico',
+    'mobiliario', 'cama hospitalaria', 'camilla', 'dotacion hospitalaria', 'dotación hospitalaria',
+    'quirurgico', 'quirúrgico', 'instrumental', 'silla de ruedas',
+    'consultorio', 'clinico', 'clínico', 'equipamiento',
+    'esterilizacion', 'esterilización', 'odontologico', 'odontológico', 'rehabilitacion', 'rehabilitación'
+]
+
+# Negative Filter - HR/Staffing/Non-Supply Services (case-insensitive, accent-normalized)
+STAFFING_NEGATIVE_FILTERS = [
+    'prestacion de servicios profesionales', 'prestación de servicios profesionales',
+    'prestacion de servicios de apoyo', 'prestación de servicios de apoyo',
+    'apoyo a la gestion', 'apoyo a la gestión',
+    'auxiliar de enfermeria', 'auxiliar de enfermería',
+    'enfermero', 'enfermera', 'medico general', 'médico general',
+    'especialista', 'conductor de ambulancia', 'conductor',
+    'aseo', 'vigilancia', 'contador', 'abogado',
+    'psicologo', 'psicólogo', 'trabajador social', 'nomina', 'nómina', 'honorarios'
+]
 
 # Google Sheets Configuration (from GitHub Secrets)
 GCP_SA_KEY = os.getenv("GCP_SA_KEY")
@@ -29,6 +110,21 @@ GCP_CREDENTIALS_FILE = "gcp_credentials.json"
 
 # Google API Scopes
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
+
+def normalize_text(text):
+    """Normalize text by removing accents and converting to lowercase."""
+    if not text:
+        return ''
+    # Remove accents
+    text = unicodedata.normalize('NFKD', text).encode('ASCII', 'ignore').decode('ASCII')
+    return text.lower()
+
+def normalize_nit(nit):
+    """Normalize NIT by removing hyphens and check digits."""
+    if not nit:
+        return ''
+    # Remove all non-digit characters
+    return ''.join(c for c in str(nit) if c.isdigit())
 
 def load_gcp_credentials():
     """
@@ -124,36 +220,17 @@ def fetch_tenders():
         return []
 
 def filter_tenders(tenders):
-    """Filter tenders by region, date, and keywords in Python."""
+    """Filter tenders by Caribbean region, priority entities, UNSPSC codes, keywords, and date."""
     cutoff_time = datetime.now() - timedelta(days=DAYS_TO_FILTER)
     print(f"DEBUG: Cutoff time for filtering: {cutoff_time}")
+    print(f"DEBUG: Filtering for Caribbean Region (Costa Caribe) departments")
     filtered = []
-    
-    # Staffing phrases to exclude
-    staffing_phrases = [
-        'prestacion de servicios profesionales',
-        'prestación de servicios profesionales',
-        'prestacion de servicios de apoyo',
-        'prestación de servicios de apoyo',
-        'auxiliar de enfermeria',
-        'auxiliar de enfermería',
-        'conductor de ambulancia'
-    ]
-    
-    # Medical supply and clinical furniture keywords (excluding generic terms like "hospital")
-    keywords = [
-        'mobiliario', 'cama hospitalaria', 'camilla', 'insumos medicos', 'insumos médicos',
-        'dispositivos medicos', 'dispositivos médicos', 'equipo biomedico', 'equipo biomédico',
-        'equipos medicos', 'equipos médicos', 'dotacion hospitalaria', 'dotación hospitalaria',
-        'material medico', 'material médico', 'quirurgico', 'quirúrgico', 'instrumental',
-        'silla de ruedas', 'consultorio', 'clinico', 'clínico', 'equipamiento'
-    ]
     
     for tender in tenders:
         try:
-            # Filter by department (Atlántico)
-            departamento = tender.get('departamento', '').lower()
-            if REGION_ATLANTICO.lower() not in departamento:
+            # Filter by Caribbean Region departments (case-insensitive, accent-normalized)
+            departamento = normalize_text(tender.get('departamento', ''))
+            if not any(dept in departamento for dept in CARIBBEAN_DEPARTMENTS):
                 continue
             
             # Filter by date (last 30 days)
@@ -163,14 +240,54 @@ def filter_tenders(tenders):
                 if pub_date < cutoff_time:
                     continue
             
-            # Filter by keywords - medical supply and clinical furniture only
-            objeto = tender.get('objeto_del_contrato', '').lower()
-            if not any(keyword in objeto for keyword in keywords):
+            # Check priority entity NIT matching
+            nit_entidad = normalize_nit(tender.get('nit_entidad', ''))
+            nombre_entidad = normalize_text(tender.get('nombre_entidad', ''))
+            
+            # Check if entity matches priority NITs or names
+            matches_priority_entity = False
+            if nit_entidad in PRIORITY_ENTITIES:
+                matches_priority_entity = True
+                print(f"DEBUG: Matched priority entity by NIT: {nit_entidad}")
+            else:
+                # Check entity name matches
+                for nit, names in PRIORITY_ENTITIES.items():
+                    if any(name in nombre_entidad for name in names):
+                        matches_priority_entity = True
+                        print(f"DEBUG: Matched priority entity by name: {tender.get('nombre_entidad')}")
+                        break
+            
+            # Check UNSPSC code matching
+            unspsc_code = tender.get('codigo_de_categoria_principal', '')
+            matches_unspsc = False
+            
+            if unspsc_code:
+                # Remove 'V1.' prefix if present
+                unspsc_clean = unspsc_code.replace('V1.', '')
+                
+                # Check exact code match
+                if unspsc_clean in UNSPSC_EXACT_CODES:
+                    matches_unspsc = True
+                    print(f"DEBUG: Matched exact UNSPSC code: {unspsc_clean}")
+                else:
+                    # Check family prefix match
+                    for prefix in UNSPSC_FAMILY_PREFIXES:
+                        if unspsc_clean.startswith(prefix):
+                            matches_unspsc = True
+                            print(f"DEBUG: Matched UNSPSC family prefix: {unspsc_clean} starts with {prefix}")
+                            break
+            
+            # Check keyword matching (normalized, accent-insensitive)
+            objeto_normalized = normalize_text(tender.get('objeto_del_contrato', ''))
+            matches_keywords = any(keyword in objeto_normalized for keyword in MEDICAL_KEYWORDS)
+            
+            # Tender must match: (priority entity OR (UNSPSC OR keywords)) AND Caribbean region
+            if not matches_priority_entity and not (matches_unspsc or matches_keywords):
                 continue
             
-            # Exclude staffing/professional services contracts
-            if any(phrase in objeto for phrase in staffing_phrases):
-                print(f"DEBUG: Excluding staffing contract: {tender.get('id_contrato', 'unknown')}")
+            # Negative filter - exclude HR/staffing/non-supply services
+            if any(negative in objeto_normalized for negative in STAFFING_NEGATIVE_FILTERS):
+                print(f"DEBUG: Excluding staffing/HR contract: {tender.get('id_contrato', 'unknown')}")
                 continue
             
             filtered.append(tender)
@@ -179,7 +296,7 @@ def filter_tenders(tenders):
             continue
     
     print(f"DEBUG: After filtering: {len(filtered)} tenders matching all criteria")
-    print(f"Found {len(filtered)} tenders matching Atlántico region, last {DAYS_TO_FILTER} days, and medical supply/furniture keywords")
+    print(f"Found {len(filtered)} tenders matching Caribbean Region, priority entities, UNSPSC/keywords, last {DAYS_TO_FILTER} days")
     return filtered
 
 def get_existing_tenders(client, worksheet):
@@ -289,10 +406,14 @@ def main():
     """Main execution function."""
     print("=" * 60)
     print("SECOP II Monitoring Agent - Domédicos del Norte")
+    print("Caribbean Region (Costa Caribe) Medical Procurement Monitor")
     print("=" * 60)
     print(f"DEBUG: Starting SECOP II agent execution...")
     print(f"DEBUG: Current time (UTC): {datetime.utcnow()}")
     print(f"DEBUG: Filter window: Last {DAYS_TO_FILTER} days")
+    print(f"DEBUG: Target Departments: {', '.join([d.capitalize() for d in CARIBBEAN_DEPARTMENTS[:8]])}")
+    print(f"DEBUG: Priority Entities: {len(PRIORITY_ENTITIES)} NITs configured")
+    print(f"DEBUG: UNSPSC Codes: {len(UNSPSC_EXACT_CODES)} exact codes, {len(UNSPSC_FAMILY_PREFIXES)} family prefixes")
     
     # Check for required environment variables
     print(f"DEBUG: Checking environment variables...")
@@ -317,8 +438,8 @@ def main():
         print("No tenders fetched. Exiting.")
         return
     
-    # Filter by region, date, and keywords
-    print(f"DEBUG: Filtering tenders by region (Atlántico), date (last {DAYS_TO_FILTER} days), and keywords...")
+    # Filter by Caribbean region, priority entities, UNSPSC, keywords, and date
+    print(f"DEBUG: Filtering tenders by Caribbean Region, priority entities, UNSPSC/keywords, and date...")
     filtered_tenders = filter_tenders(tenders)
     
     if not filtered_tenders:

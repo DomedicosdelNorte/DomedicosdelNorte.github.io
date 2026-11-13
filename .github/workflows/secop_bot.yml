@@ -2,8 +2,10 @@ name: SECOP II Monitoring Agent
 
 on:
   schedule:
-    # Run at 12:00 and 19:00 UTC daily
-    - cron: '0 12,19 * * *'
+    # Morning Sweep: 8:30 AM Colombia Time (UTC-5) = 13:30 UTC
+    - cron: '30 13 * * *'
+    # Afternoon Peak Sweep: 4:30 PM Colombia Time (UTC-5) = 21:30 UTC
+    - cron: '30 21 * * *'
   workflow_dispatch:
 
 jobs:
