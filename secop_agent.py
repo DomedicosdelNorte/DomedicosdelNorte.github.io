@@ -326,7 +326,7 @@ def filter_tenders(tenders):
             
             # Check priority entity NIT matching (for logging/boost, not bypass)
             nit_entidad = normalize_nit(tender.get('nit_entidad', ''))
-            nombre_entidad = normalize_text(tender.get('nombre_entidad', '')
+            nombre_entidad = normalize_text(tender.get('nombre_entidad', ''))
             
             matches_priority_entity = False
             if nit_entidad in PRIORITY_ENTITIES:
