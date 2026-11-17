@@ -235,32 +235,28 @@ def get_google_sheets_client():
         print(f"DEBUG ERROR: Traceback: {traceback.format_exc()}")
         return None
 
+DATE_FORMATS = ['%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S', '%Y-%m-%d']
+
 def parse_tender_date(tender):
-    """Parse and validate tender date from multiple fields."""
-    # Try fecha_de_inicio_del_contrato first
-    date_str = tender.get('fecha_de_inicio_del_contrato', '')
-    if date_str and date_str not in ['N/A', '', None]:
-        try:
-            return datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f')
-        except:
-            pass
-    
-    # Try fecha_de_firma
-    date_str = tender.get('fecha_de_firma', '')
-    if date_str and date_str not in ['N/A', '', None]:
-        try:
-            return datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f')
-        except:
-            pass
-    
-    # Try fecha_publicacion
-    date_str = tender.get('fecha_publicacion', '')
-    if date_str and date_str not in ['N/A', '', None]:
-        try:
-            return datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f')
-        except:
-            pass
-    
+    """Parse and validate tender date from multiple fields.
+
+    Returns a timezone-aware datetime in COLOMBIA_TZ so it can be safely
+    compared against cutoff times (also COLOMBIA_TZ aware). Returns None
+    when no valid date is found.
+    """
+    if not isinstance(tender, dict):
+        return None
+
+    for field in ('fecha_de_inicio_del_contrato', 'fecha_de_firma', 'fecha_publicacion'):
+        date_str = tender.get(field)
+        if not date_str or not isinstance(date_str, str) or date_str in ('N/A', 'n/a', '-'):
+            continue
+        date_str = date_str.strip()
+        for fmt in DATE_FORMATS:
+            try:
+                return datetime.strptime(date_str, fmt).replace(tzinfo=COLOMBIA_TZ)
+            except ValueError:
+                continue
     return None
 
 def fetch_tenders(days_offset=DAYS_TO_FILTER):
@@ -511,3 +507,377 @@ def filter_intelligence_tenders(tenders):
     
     print(f"DEBUG: After intelligence filtering: {len(filtered)} awarded contracts found")
     return filtered
+
+def get_existing_tenders(worksheet):
+    """Get existing tender IDs from Google Sheet Column A to avoid duplicates."""
+    try:
+        print("DEBUG: Reading existing tenders from Google Sheet...")
+        all_records = worksheet.get_all_values()
+        print(f"DEBUG: Total rows in sheet: {len(all_records)}")
+        if len(all_records) > 1:
+            existing_tenders = [row[0] for row in all_records[1:] if row]
+            print(f"DEBUG: Found {len(existing_tenders)} existing tenders in sheet")
+            return set(existing_tenders)
+        print("DEBUG: Sheet is empty or only has header row")
+        return set()
+    except Exception as e:
+        print(f"DEBUG ERROR: Exception while reading existing tenders: {type(e).__name__}: {e}")
+        return set()
+
+def ensure_worksheet_exists(sheet, title, headers):
+    """Ensure worksheet exists with correct headers, create if missing."""
+    try:
+        worksheet = sheet.worksheet(title)
+        print(f"DEBUG: Worksheet '{title}' already exists")
+
+        header_row = worksheet.row_values(1)
+        if header_row != headers:
+            print(f"DEBUG WARNING: Headers mismatch in '{title}', updating...")
+            worksheet.update_row(1, headers)
+
+        return worksheet
+    except gspread.WorksheetNotFound:
+        print(f"DEBUG: Worksheet '{title}' not found, creating...")
+        worksheet = sheet.add_worksheet(title=title, rows=1000, cols=len(headers))
+        worksheet.update_row(1, headers)
+        print(f"DEBUG: Created worksheet '{title}' with headers")
+        return worksheet
+    except Exception as e:
+        print(f"DEBUG ERROR: Exception while ensuring worksheet: {type(e).__name__}: {e}")
+        return None
+
+def _format_currency_value(valor):
+    """Format contract value as a clean numeric string."""
+    if not valor or valor == 'N/A':
+        return 'N/A'
+    try:
+        return str(int(float(valor)))
+    except (TypeError, ValueError):
+        return str(valor)
+
+def _sort_key_date(tender):
+    """Sort key for tenders - newest first, safe for missing parsed_date."""
+    parsed = tender.get('parsed_date') if isinstance(tender, dict) else None
+    if isinstance(parsed, datetime):
+        # Ensure aware for consistent comparison
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=COLOMBIA_TZ)
+        return parsed
+    return datetime.min.replace(tzinfo=COLOMBIA_TZ)
+
+def append_tenders_to_sheet(client, tenders):
+    """Append new unique tenders to Google Sheet with correct column mapping and date sorting."""
+    if not tenders or not isinstance(tenders, list):
+        print("DEBUG: No valid tenders to append to Hoja 1")
+        return False
+
+    try:
+        print(f"DEBUG: Opening spreadsheet with ID: {SPREADSHEET_ID}")
+        sheet = client.open_by_key(SPREADSHEET_ID)
+        print(f"DEBUG: Spreadsheet title: {sheet.title}")
+
+        oportunidades_headers = [
+            "ID Proceso", "Fecha Publicación", "Entidad", "Objeto del Contrato",
+            "Presupuesto (COP)", "Enlace SECOP II", "Modalidad", "Estado del Proceso",
+            "Estado Interno", "Asignado A"
+        ]
+
+        worksheet = ensure_worksheet_exists(sheet, WORKSHEET_OPORTUNIDADES, oportunidades_headers)
+        if not worksheet:
+            print("Failed to ensure worksheet exists")
+            return False
+
+        # Sort tenders by date descending (newest first)
+        tenders_sorted = sorted(tenders, key=_sort_key_date, reverse=True)
+        print(f"DEBUG: Sorted {len(tenders_sorted)} tenders by date (newest first)")
+
+        existing_tender_ids = get_existing_tenders(worksheet)
+
+        new_tenders = []
+        for tender in tenders_sorted:
+            if not isinstance(tender, dict):
+                continue
+            tender_id = tender.get('id_contrato', '') or ''
+            if tender_id and tender_id not in existing_tender_ids:
+                new_tenders.append(tender)
+
+        print(f"DEBUG: {len(new_tenders)} new tenders to append (after deduplication)")
+
+        if not new_tenders:
+            print("No new tenders to append.")
+            return True
+
+        rows_to_insert = []
+        for tender in new_tenders:
+            tender_id = tender.get('id_contrato', '') or ''
+            fecha_pub = tender.get('formatted_date', 'N/A') or 'N/A'
+            valor = _format_currency_value(tender.get('valor_del_contrato'))
+
+            urlproceso = tender.get('urlproceso', {})
+            if isinstance(urlproceso, dict) and urlproceso.get('url'):
+                secop_url = urlproceso['url']
+            else:
+                secop_url = f"https://community.secop.gov.co/Public/Tendering/OpportunityDetail/Index?noticeUID={tender_id}"
+
+            row_data = [
+                tender_id,                                                        # A: ID Proceso
+                fecha_pub,                                                       # B: Fecha Publicación
+                tender.get('nombre_entidad') or 'N/A',                            # C: Entidad
+                tender.get('objeto_del_contrato') or 'N/A',                       # D: Objeto del Contrato
+                valor,                                                           # E: Presupuesto (COP)
+                secop_url,                                                       # F: Enlace SECOP II
+                tender.get('modalidad') or 'N/A',                                # G: Modalidad
+                tender.get('estado') or 'N/A',                                   # H: Estado del Proceso
+                "Nuevo",                                                         # I: Estado Interno
+                ""                                                               # J: Asignado A
+            ]
+            if len(row_data) != 10:
+                print(f"DEBUG WARNING: Row data has {len(row_data)} columns, expected 10")
+            rows_to_insert.append(row_data)
+            print(f"DEBUG: Prepared tender for insertion: {tender_id} date: {fecha_pub} modalidad: {tender.get('modalidad', 'N/A')}")
+
+        if rows_to_insert:
+            try:
+                start_row = 2
+                end_row = start_row + len(rows_to_insert) - 1
+                range_name = f"A{start_row}:J{end_row}"
+                worksheet.update(range_name, rows_to_insert)
+                print(f"DEBUG: Successfully inserted {len(rows_to_insert)} new tenders at rows 2-{end_row}")
+            except Exception as update_error:
+                print(f"DEBUG WARNING: Failed to insert at specific rows: {update_error}")
+                print("DEBUG: Falling back to append_row method...")
+                for row_data in rows_to_insert:
+                    worksheet.append_row(row_data)
+                print(f"DEBUG: Successfully appended {len(rows_to_insert)} new tenders to end of sheet")
+
+        print(f"Successfully appended {len(new_tenders)} new tenders to Google Sheet")
+        return True
+    except Exception as e:
+        print(f"DEBUG ERROR: Exception during append to Google Sheet: {type(e).__name__}: {e}")
+        return False
+
+def append_intelligence_to_sheet(client, tenders):
+    """Append awarded/closed contracts to Inteligencia de Compras tab."""
+    if not tenders or not isinstance(tenders, list):
+        print("DEBUG: No valid tenders to append to Inteligencia de Compras")
+        return False
+
+    try:
+        print("DEBUG: Opening spreadsheet for intelligence tab...")
+        sheet = client.open_by_key(SPREADSHEET_ID)
+
+        inteligencia_headers = [
+            "Entidad Compradora", "Departamento", "Modalidad", "Objeto del Contrato",
+            "Fecha de Adjudicación", "Valor Adjudicado (COP)", "Proveedor Adjudicado", "NIT Proveedor"
+        ]
+
+        worksheet = ensure_worksheet_exists(sheet, WORKSHEET_INTELIGENCIA, inteligencia_headers)
+        if not worksheet:
+            print("Failed to ensure intelligence worksheet exists")
+            return False
+
+        tenders_sorted = sorted(tenders, key=_sort_key_date, reverse=True)
+        print(f"DEBUG: Sorted {len(tenders_sorted)} intelligence tenders by date (newest first)")
+
+        all_records = worksheet.get_all_values()
+        existing_keys = set()
+        if len(all_records) > 1:
+            for row in all_records[1:]:
+                if len(row) >= 6:
+                    key = f"{row[0]}|{row[4]}|{row[3][:50]}"
+                    existing_keys.add(key)
+
+        print(f"DEBUG: Found {len(existing_keys)} existing intelligence records")
+
+        new_tenders = []
+        for tender in tenders_sorted:
+            if not isinstance(tender, dict):
+                continue
+            entidad = tender.get('nombre_entidad') or 'N/A'
+            fecha = tender.get('formatted_date') or 'N/A'
+            objeto = tender.get('objeto_del_contrato') or 'N/A'
+            key = f"{entidad}|{fecha}|{objeto[:50]}"
+            if key not in existing_keys:
+                new_tenders.append(tender)
+
+        print(f"DEBUG: {len(new_tenders)} new intelligence records to append")
+
+        if not new_tenders:
+            print("No new intelligence records to append.")
+            return True
+
+        rows_to_insert = []
+        for tender in new_tenders:
+            valor = _format_currency_value(tender.get('valor_del_contrato'))
+
+            row_data = [
+                tender.get('nombre_entidad') or 'N/A',       # A: Entidad Compradora
+                tender.get('departamento') or 'N/A',        # B: Departamento
+                tender.get('modalidad') or 'N/A',           # C: Modalidad
+                tender.get('objeto_del_contrato') or 'N/A',  # D: Objeto del Contrato
+                tender.get('formatted_date') or 'N/A',      # E: Fecha de Adjudicación
+                valor,                                      # F: Valor Adjudicado (COP)
+                tender.get('proveedor_adjudicado') or 'N/A', # G: Proveedor Adjudicado
+                tender.get('documento_proveedor') or 'N/A'  # H: NIT Proveedor
+            ]
+            if len(row_data) != 8:
+                print(f"DEBUG WARNING: Intelligence row data has {len(row_data)} columns, expected 8")
+            rows_to_insert.append(row_data)
+            print(f"DEBUG: Prepared intelligence record: {tender.get('nombre_entidad')} valor: {valor}")
+
+        if rows_to_insert:
+            try:
+                start_row = 2
+                end_row = start_row + len(rows_to_insert) - 1
+                range_name = f"A{start_row}:H{end_row}"
+                worksheet.update(range_name, rows_to_insert)
+                print(f"DEBUG: Successfully inserted {len(rows_to_insert)} new intelligence records at rows 2-{end_row}")
+            except Exception as update_error:
+                print(f"DEBUG WARNING: Failed to insert at specific rows: {update_error}")
+                print("DEBUG: Falling back to append_row method...")
+                for row_data in rows_to_insert:
+                    worksheet.append_row(row_data)
+                print(f"DEBUG: Successfully appended {len(rows_to_insert)} new intelligence records to end of sheet")
+
+        print(f"Successfully appended {len(new_tenders)} new intelligence records to Google Sheet")
+        return True
+    except Exception as e:
+        print(f"DEBUG ERROR: Exception during intelligence append: {type(e).__name__}: {e}")
+        return False
+
+def clean_invalid_rows(client):
+    """Clean invalid rows from Hoja 1 (keep only valid contracts from last 60 days)."""
+    try:
+        print("DEBUG: Opening spreadsheet for cleanup...")
+        sheet = client.open_by_key(SPREADSHEET_ID)
+
+        oportunidades_headers = [
+            "ID Proceso", "Fecha Publicación", "Entidad", "Objeto del Contrato",
+            "Presupuesto (COP)", "Enlace SECOP II", "Modalidad", "Estado del Proceso",
+            "Estado Interno", "Asignado A"
+        ]
+        worksheet = ensure_worksheet_exists(sheet, WORKSHEET_OPORTUNIDADES, oportunidades_headers)
+        if not worksheet:
+            print("Failed to ensure worksheet exists for cleanup")
+            return False
+
+        all_records = worksheet.get_all_values()
+        print(f"DEBUG: Total rows in sheet: {len(all_records)}")
+
+        if len(all_records) <= 1:
+            print("Sheet only has header row, nothing to clean.")
+            return True
+
+        header_row = all_records[0]
+        if header_row != oportunidades_headers:
+            print("DEBUG WARNING: Header row mismatch. Skipping cleanup.")
+            print(f"DEBUG: Current headers: {header_row}")
+            return True
+
+        colombia_now = datetime.now(COLOMBIA_TZ)
+        cutoff_time = colombia_now - timedelta(days=DAYS_TO_FILTER)
+
+        rows_to_delete = []
+        for i, row in enumerate(all_records[1:], start=2):
+            if not row or len(row) < 2:
+                rows_to_delete.append(i)
+                continue
+
+            fecha_str = row[1]
+            if not fecha_str or fecha_str == 'N/A':
+                rows_to_delete.append(i)
+                continue
+
+            try:
+                fecha_dt = datetime.strptime(str(fecha_str).strip(), '%Y-%m-%d').replace(tzinfo=COLOMBIA_TZ)
+                if fecha_dt < cutoff_time or fecha_dt > colombia_now:
+                    rows_to_delete.append(i)
+            except (ValueError, TypeError):
+                rows_to_delete.append(i)
+
+        if rows_to_delete:
+            for row_num in sorted(rows_to_delete, reverse=True):
+                worksheet.delete_rows(row_num)
+            print(f"DEBUG: Deleted {len(rows_to_delete)} invalid/outdated rows from Hoja 1")
+        else:
+            print("DEBUG: No invalid rows found in Hoja 1.")
+
+        return True
+    except Exception as e:
+        print(f"DEBUG ERROR: Exception during cleanup: {type(e).__name__}: {e}")
+        return False
+
+def main():
+    """Main execution function."""
+    print("=" * 60)
+    print("SECOP II Monitoring Agent - Domédicos del Norte")
+    print("Caribbean Region (Costa Caribe) Medical Procurement Monitor")
+    print("=" * 60)
+    print("DEBUG: Starting SECOP II agent execution...")
+    print(f"DEBUG: Current time (Colombia): {datetime.now(COLOMBIA_TZ).strftime('%Y-%m-%d %H:%M:%S %Z')}")
+    print(f"DEBUG: Hoja 1 filter window: Last {DAYS_TO_FILTER} days (2 months)")
+    print(f"DEBUG: Inteligencia de Compras filter window: Last {DAYS_INTELLIGENCE} days (12 months)")
+    print(f"DEBUG: Target Departments: {', '.join([d.capitalize() for d in CARIBBEAN_DEPARTMENTS[:8]])}")
+    print(f"DEBUG: Priority Entities: {len(PRIORITY_ENTITIES)} NITs configured")
+    print(f"DEBUG: UNSPSC Codes: {len(UNSPSC_EXACT_CODES)} exact codes, {len(UNSPSC_FAMILY_PREFIXES)} family prefixes")
+    print("DEBUG: All Procurement Modalities: Licitación Pública, Subasta Inversa, Mínima Cuantía, Contratación Directa, Régimen Especial")
+
+    print("DEBUG: Checking environment variables...")
+    if not SPREADSHEET_ID:
+        print("ERROR: SPREADSHEET_ID environment variable not set. Please configure in GitHub Secrets.")
+        return
+    print("DEBUG: SPREADSHEET_ID is set")
+
+    print("DEBUG: GCP credentials will be loaded from environment variable or gcp_credentials.json file")
+
+    client = get_google_sheets_client()
+    if not client:
+        print("Failed to authenticate with Google Sheets. Exiting.")
+        return
+
+    print("DEBUG: Cleaning invalid/outdated rows from Hoja 1...")
+    clean_invalid_rows(client)
+
+    # === HOJA 1: Active Opportunities (Last 60 Days) ===
+    print(f"\n{'=' * 60}")
+    print("Processing Hoja 1: Active Opportunities (Last 60 Days)")
+    print(f"{'=' * 60}")
+
+    tenders_opportunities = fetch_tenders(days_offset=DAYS_TO_FILTER)
+
+    if tenders_opportunities:
+        print("DEBUG: Filtering for Hoja 1 (all modalities, Caribbean region, medical filter)...")
+        filtered_opportunities = filter_tenders(tenders_opportunities)
+
+        if filtered_opportunities:
+            append_tenders_to_sheet(client, filtered_opportunities)
+        else:
+            print("No tenders found matching Hoja 1 criteria.")
+    else:
+        print("No tenders fetched for Hoja 1.")
+
+    # === INTELIGENCIA DE COMPRAS: Awarded Contracts (Last 12 Months) ===
+    print(f"\n{'=' * 60}")
+    print("Processing Inteligencia de Compras: Awarded Contracts (Last 12 Months)")
+    print(f"{'=' * 60}")
+
+    tenders_intelligence = fetch_tenders(days_offset=DAYS_INTELLIGENCE)
+
+    if tenders_intelligence:
+        print("DEBUG: Filtering for Inteligencia de Compras (awarded/closed contracts, Caribbean region, medical filter)...")
+        filtered_intelligence = filter_intelligence_tenders(tenders_intelligence)
+
+        if filtered_intelligence:
+            append_intelligence_to_sheet(client, filtered_intelligence)
+        else:
+            print("No awarded contracts found matching intelligence criteria.")
+    else:
+        print("No tenders fetched for Inteligencia de Compras.")
+
+    print(f"\n{'=' * 60}")
+    print("SECOP II Agent execution completed successfully.")
+    print("Both tabs updated: Hoja 1 (Active Opportunities) and Inteligencia de Compras (Buying Patterns)")
+    print(f"{'=' * 60}")
+
+if __name__ == "__main__":
+    main()
