@@ -584,13 +584,30 @@ def append_tenders_to_sheet(client, tenders):
                 "Nuevo",  # Col I: Estado Interno
                 ""  # Col J: Asignado A
             ]
+            # Validate column count
+            if len(row_data) != 10:
+                print(f"DEBUG WARNING: Row data has {len(row_data)} columns, expected 10")
             rows_to_insert.append(row_data)
             print(f"DEBUG: Prepared tender for insertion: {tender_id} date: {fecha_pub} modalidad: {tender.get('modalidad', 'N/A')}")
         
-        # Insert rows at row 2 (batch insert at position)
+        # Insert new rows at row 2 using update method (batch insert)
         if rows_to_insert:
-            worksheet.insert_rows(rows_to_insert, row=2)
-            print(f"DEBUG: Successfully inserted {len(rows_to_insert)} new tenders at row 2")
+            try:
+                # Calculate range for insertion
+                start_row = 2
+                end_row = start_row + len(rows_to_insert) - 1
+                range_name = f"A{start_row}:J{end_row}"
+                
+                # Use update to write data directly (more reliable than insert_rows for batch)
+                worksheet.update(range_name, rows_to_insert)
+                print(f"DEBUG: Successfully inserted {len(rows_to_insert)} new tenders at rows 2-{end_row}")
+            except Exception as update_error:
+                print(f"DEBUG WARNING: Failed to insert at specific rows: {update_error}")
+                print(f"DEBUG: Falling back to append_row method...")
+                # Fallback: append rows instead of inserting at specific position
+                for row_data in rows_to_insert:
+                    worksheet.append_row(row_data)
+                print(f"DEBUG: Successfully appended {len(rows_to_insert)} new tenders to end of sheet")
         
         print(f"Successfully appended {len(new_tenders)} new tenders to Google Sheet")
         return True
@@ -664,7 +681,7 @@ def append_intelligence_to_sheet(client, tenders):
                 except:
                     pass
             
-            # Build row data
+            # Build row data - 8 columns
             row_data = [
                 tender.get('nombre_entidad', 'N/A'),  # Col A: Entidad Compradora
                 tender.get('departamento', 'N/A'),  # Col B: Departamento
@@ -675,13 +692,30 @@ def append_intelligence_to_sheet(client, tenders):
                 tender.get('proveedor_adjudicado', 'N/A'),  # Col G: Proveedor Adjudicado
                 tender.get('documento_proveedor', 'N/A')  # Col H: NIT Proveedor
             ]
+            # Validate column count
+            if len(row_data) != 8:
+                print(f"DEBUG WARNING: Intelligence row data has {len(row_data)} columns, expected 8")
             rows_to_insert.append(row_data)
             print(f"DEBUG: Prepared intelligence record: {tender.get('nombre_entidad')} valor: {valor}")
         
-        # Insert rows at row 2 (batch insert at position)
+        # Insert rows at row 2 using update method (batch insert)
         if rows_to_insert:
-            worksheet.insert_rows(rows_to_insert, row=2)
-            print(f"DEBUG: Successfully inserted {len(rows_to_insert)} new intelligence records at row 2")
+            try:
+                # Calculate range for insertion
+                start_row = 2
+                end_row = start_row + len(rows_to_insert) - 1
+                range_name = f"A{start_row}:H{end_row}"
+                
+                # Use update to write data directly (more reliable than insert_rows for batch)
+                worksheet.update(range_name, rows_to_insert)
+                print(f"DEBUG: Successfully inserted {len(rows_to_insert)} new intelligence records at rows 2-{end_row}")
+            except Exception as update_error:
+                print(f"DEBUG WARNING: Failed to insert at specific rows: {update_error}")
+                print(f"DEBUG: Falling back to append_row method...")
+                # Fallback: append rows instead of inserting at specific position
+                for row_data in rows_to_insert:
+                    worksheet.append_row(row_data)
+                print(f"DEBUG: Successfully appended {len(rows_to_insert)} new intelligence records to end of sheet")
         
         print(f"Successfully appended {len(new_tenders)} new intelligence records to Google Sheet")
         return True
