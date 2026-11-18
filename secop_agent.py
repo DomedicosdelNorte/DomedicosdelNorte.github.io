@@ -12,6 +12,7 @@ import os
 import json
 import base64
 import unicodedata
+import re
 from datetime import datetime, timedelta, timezone
 import gspread
 from google.oauth2.service_account import Credentials
@@ -91,10 +92,68 @@ MEDICAL_KEYWORDS = [
     'material medico', 'material médico',
     'dispositivos medicos', 'dispositivos médicos',
     'equipo biomedico', 'equipo biomédico',
-    'mobiliario', 'cama hospitalaria', 'camilla', 'dotacion hospitalaria', 'dotación hospitalaria',
+    'cama hospitalaria', 'camilla', 'dotacion hospitalaria', 'dotación hospitalaria',
     'quirurgico', 'quirúrgico', 'instrumental', 'silla de ruedas',
-    'consultorio', 'clinico', 'clínico', 'equipamiento',
+    'consultorio', 'clinico', 'clínico',
     'esterilizacion', 'esterilización', 'odontologico', 'odontológico', 'rehabilitacion', 'rehabilitación'
+]
+
+# Generic Furniture/Supply Keywords - these alone do NOT qualify a tender.
+# They require an explicit medical/clinical context term to match.
+GENERIC_FURNITURE_KEYWORDS = [
+    'mobiliarios?', 'muebles?', 'sillas?', 'mesas?', 'enseres',
+    'camas?', 'dotaciones?', 'equipamientos?', 'equipos?'
+]
+_GENERIC_FURNITURE_RE = re.compile(
+    r'\b(?:' + '|'.join(GENERIC_FURNITURE_KEYWORDS) + r')\b'
+)
+
+# Explicit Medical/Clinical Context stems - matched as word-prefixes on
+# normalized text (leading word boundary, suffixes allowed).
+MEDICAL_CONTEXT_KEYWORDS = [
+    'clinic', 'hospital', 'medic', 'biomed', 'salud',
+    'camill', 'consultori', 'quirurg', 'quirofan', 'enfermer',
+    'ambulanci', 'laboratori', 'odonto', 'urgencia', 'cirugia',
+    'diagnostic', 'imagenolog', 'radiolog', 'rehabilit',
+    'fisioterap', 'terapia', 'terapeut', 'pediatri', 'instrumental',
+    'esteriliz', 'optometr', 'vacun', 'farmac', 'droguer',
+    'ips', 'rayos x', 'empresa social del estado'
+]
+_MEDICAL_CONTEXT_RE = re.compile(
+    r'\b(?:' + '|'.join(sorted(MEDICAL_CONTEXT_KEYWORDS, key=len, reverse=True)) + r')'
+)
+# "E.S.E." (Empresa Social del Estado): the dotted form is unambiguous, and a
+# bare uppercase "ESE" only counts when the text is not entirely uppercase -
+# in all-caps text it collides with the Spanish demonstrative pronoun "ese".
+_ESE_DOTTED_RE = re.compile(r'\be\.s\.e\.?\b', re.IGNORECASE)
+_ESE_UPPER_RE = re.compile(r'\bESE\b')
+
+def _has_ese_entity(objeto_raw):
+    s = str(objeto_raw)
+    if _ESE_DOTTED_RE.search(s):
+        return True
+    return s != s.upper() and bool(_ESE_UPPER_RE.search(s))
+
+# UNSPSC Furnishings segment (56xx) - broad furniture/office codes that
+# require medical context just like the generic keywords above.
+UNSPSC_FURNITURE_PREFIXES = [
+    '5610', '5611', '5612', '5613', '5614', '5615', '5616', '5617', '5618', '5619'
+]
+
+# Non-Medical Sector Exclusions - gastronomy, education, office, military,
+# hospitality, etc. Normalized substring matching (case/accent-insensitive).
+NON_MEDICAL_SECTOR_FILTERS = [
+    # Gastronomy / food service
+    'gastronomia', 'restaurante', 'cocina', 'cafeteria', 'comedor',
+    'casino', 'refrigerio', 'almuerzo', 'alimentacion',
+    # Education / childcare / recreation
+    'escolar', 'educativ', 'aula', 'preescolar', 'escuela', 'colegio',
+    'universidad', 'biblioteca', 'guarderia', 'ludico',
+    # Office / administrative
+    'oficina', 'escritorio', 'papeleria',
+    # Other non-medical sectors
+    'militar', 'vehiculo', 'ferreteria', 'hotel', 'hostal', 'hospedaje',
+    'iglesia', 'templo', 'deportivo', 'gimnasio', 'coliseo'
 ]
 
 # Negative Filter - HR/Staffing/Non-Supply Services (case-insensitive, accent-normalized)
@@ -313,6 +372,54 @@ def fetch_tenders(days_offset=DAYS_TO_FILTER):
         print(f"DEBUG ERROR: Traceback: {traceback.format_exc()}")
         return []
 
+def check_medical_relevance(tender):
+    """Determine whether a tender is medically/clinically relevant.
+
+    Returns (is_relevant, reason). Applies, in order:
+      1. Hard negative filters: staffing/services + non-medical sectors
+         (gastronomy, education, office, military, hospitality, etc.)
+      2. Explicit medical signals: UNSPSC families 42/43 or medical keywords
+      3. Generic furniture/supply keywords or UNSPSC 56xx furnishing codes,
+         which only qualify when an explicit medical/clinical context term
+         is also present in the contract object
+    """
+    if not isinstance(tender, dict):
+        return False, 'not a dictionary'
+
+    objeto_raw = tender.get('objeto_del_contrato') or ''
+    objeto_normalized = normalize_text(objeto_raw)
+
+    if not objeto_normalized:
+        return False, 'empty contract object'
+
+    # Hard negative filters first - staffing/services and non-medical sectors
+    for term in STAFFING_NEGATIVE_FILTERS + NON_MEDICAL_SECTOR_FILTERS:
+        if term in objeto_normalized:
+            return False, f'excluded term [{term}]'
+
+    unspsc_code = str(tender.get('codigo_de_categoria_principal') or '').replace('V1.', '').strip()
+
+    matches_medical_unspsc = bool(unspsc_code) and (
+        unspsc_code in UNSPSC_EXACT_CODES or
+        any(unspsc_code.startswith(prefix) for prefix in UNSPSC_FAMILY_PREFIXES))
+
+    matches_medical_keywords = any(k in objeto_normalized for k in MEDICAL_KEYWORDS)
+
+    matches_generic = bool(_GENERIC_FURNITURE_RE.search(objeto_normalized)) or (
+        bool(unspsc_code) and any(unspsc_code.startswith(p) for p in UNSPSC_FURNITURE_PREFIXES))
+
+    has_medical_context = bool(_MEDICAL_CONTEXT_RE.search(objeto_normalized)) or \
+        _has_ese_entity(objeto_raw)
+
+    # Generic furniture/supplies without any medical/clinical context are rejected
+    if matches_generic and not (has_medical_context or matches_medical_keywords or matches_medical_unspsc):
+        return False, 'generic furniture/supplies without medical context'
+
+    if matches_medical_unspsc or matches_medical_keywords or (matches_generic and has_medical_context):
+        return True, 'medical match'
+
+    return False, 'no medical match'
+
 def filter_tenders(tenders):
     """Filter tenders by Caribbean region, UNSPSC codes, keywords, and date (all modalities)."""
     # Validate input data structure
@@ -368,36 +475,13 @@ def filter_tenders(tenders):
                         print(f"DEBUG: Matched priority entity by name: {tender.get('nombre_entidad')}")
                         break
             
-            # Check UNSPSC code matching
-            unspsc_code = tender.get('codigo_de_categoria_principal', '')
-            matches_unspsc = False
-            
-            if unspsc_code:
-                unspsc_clean = str(unspsc_code).replace('V1.', '')
-                if unspsc_clean in UNSPSC_EXACT_CODES:
-                    matches_unspsc = True
-                    print(f"DEBUG: Matched exact UNSPSC code: {unspsc_clean}")
-                else:
-                    for prefix in UNSPSC_FAMILY_PREFIXES:
-                        if unspsc_clean.startswith(prefix):
-                            matches_unspsc = True
-                            print(f"DEBUG: Matched UNSPSC family prefix: {unspsc_clean} starts with {prefix}")
-                            break
-            
-            # Check keyword matching (normalized, accent-insensitive)
-            objeto_normalized = normalize_text(tender.get('objeto_del_contrato', ''))
-            matches_keywords = any(keyword in objeto_normalized for keyword in MEDICAL_KEYWORDS)
-            
-            # FIXED BOOLEAN PRECEDENCE: Must match (UNSPSC OR keywords) AND Caribbean region
-            # Priority entity is just a boost, never bypasses medical requirement
-            # NO MODALITY RESTRICTION - capture all procurement modalities
-            if not (matches_unspsc or matches_keywords):
-                print(f"DEBUG: Discarding tender - no UNSPSC/keyword match: {tender.get('id_contrato', 'unknown')}")
-                continue
-            
-            # Negative filter - exclude HR/staffing/non-supply services
-            if any(negative in objeto_normalized for negative in STAFFING_NEGATIVE_FILTERS):
-                print(f"DEBUG: Excluding staffing/HR/non-supply contract: {tender.get('id_contrato', 'unknown')}")
+            # Strict medical relevance (shared with Inteligencia de Compras):
+            # Caribbean region already verified; require medical UNSPSC 42/43 or
+            # medical keywords; generic furniture needs medical context;
+            # staffing/services and non-medical sectors are hard-rejected.
+            is_relevant, reason = check_medical_relevance(tender)
+            if not is_relevant:
+                print(f"DEBUG: Discarding tender - {reason}: {tender.get('id_contrato', 'unknown')}")
                 continue
             
             # Extract modalidad and estado with safe fallbacks
@@ -468,28 +552,9 @@ def filter_intelligence_tenders(tenders):
             if not is_awarded:
                 continue
             
-            # Apply strict medical filter (UNSPSC OR keywords)
-            unspsc_code = tender.get('codigo_de_categoria_principal', '')
-            matches_unspsc = False
-            
-            if unspsc_code:
-                unspsc_clean = str(unspsc_code).replace('V1.', '')
-                if unspsc_clean in UNSPSC_EXACT_CODES:
-                    matches_unspsc = True
-                else:
-                    for prefix in UNSPSC_FAMILY_PREFIXES:
-                        if unspsc_clean.startswith(prefix):
-                            matches_unspsc = True
-                            break
-            
-            objeto_normalized = normalize_text(tender.get('objeto_del_contrato', ''))
-            matches_keywords = any(keyword in objeto_normalized for keyword in MEDICAL_KEYWORDS)
-            
-            if not (matches_unspsc or matches_keywords):
-                continue
-            
-            # Negative filter - exclude HR/staffing/non-supply services
-            if any(negative in objeto_normalized for negative in STAFFING_NEGATIVE_FILTERS):
+            # Apply the same strict medical relevance check as Hoja 1
+            is_relevant, reason = check_medical_relevance(tender)
+            if not is_relevant:
                 continue
             
             # Add parsed date and fields with safe fallbacks
@@ -792,7 +857,18 @@ def clean_invalid_rows(client):
                 fecha_dt = datetime.strptime(str(fecha_str).strip(), '%Y-%m-%d').replace(tzinfo=COLOMBIA_TZ)
                 if fecha_dt < cutoff_time or fecha_dt > colombia_now:
                     rows_to_delete.append(i)
+                    continue
             except (ValueError, TypeError):
+                rows_to_delete.append(i)
+                continue
+
+            # Re-validate medical relevance on the stored contract object
+            # (Col D) so non-medical furniture/general supply rows already
+            # in the sheet are removed as well.
+            objeto_str = row[3] if len(row) > 3 else ''
+            relevant, reason = check_medical_relevance({'objeto_del_contrato': objeto_str})
+            if not relevant:
+                print(f"DEBUG: Marking row {i} for deletion - not medically relevant ({reason}): {str(objeto_str)[:80]}")
                 rows_to_delete.append(i)
 
         if rows_to_delete:
