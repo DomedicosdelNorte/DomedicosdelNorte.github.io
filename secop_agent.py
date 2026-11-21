@@ -200,9 +200,17 @@ PROCUREMENT_MODALITIES = [
     'regimen especial con ofertas', 'régimen especial con ofertas'
 ]
 
-# Contract States for classification
-CONTRACT_STATES_AWARDED = ['adjudicado', 'celebrado', 'firmado']
-CONTRACT_STATES_ACTIVE = ['borrador', 'planeacion', 'publicado', 'abierto', 'en proceso']
+# Open/pre-execution states for Hoja 1 (active opportunities).
+# Process-state names cover SECOP proceso datasets (checked against
+# estado_del_procedimiento / fase when present); the contract-state
+# entries match the jbjy-vk9h lifecycle values that precede execution
+# ('En ejecución', 'Cerrado', 'terminado', 'Modificado', 'cedido', etc.
+# are all post-award and therefore excluded from Hoja 1).
+ESTADOS_ABIERTOS = [
+    'publicado', 'borrador', 'planeacion', 'fase de ofertas',
+    'manifestacion de interes', 'convocado',
+    'aprobado', 'en aprobacion', 'enviado proveedor'
+]
 
 # Google Sheets Configuration (from GitHub Secrets)
 GCP_SA_KEY = os.getenv("GCP_SA_KEY")
@@ -296,27 +304,50 @@ def get_google_sheets_client():
 
 DATE_FORMATS = ['%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S', '%Y-%m-%d']
 
+def _parse_date_str(date_str):
+    """Parse a SECOP date string into an aware COLOMBIA_TZ datetime, or None."""
+    if not date_str or not isinstance(date_str, str):
+        return None
+    date_str = date_str.strip()
+    if not date_str or date_str in ('N/A', 'n/a', '-'):
+        return None
+    for fmt in DATE_FORMATS:
+        try:
+            return datetime.strptime(date_str, fmt).replace(tzinfo=COLOMBIA_TZ)
+        except ValueError:
+            continue
+    return None
+
 def parse_tender_date(tender):
     """Parse and validate tender date from multiple fields.
 
     Returns a timezone-aware datetime in COLOMBIA_TZ so it can be safely
     compared against cutoff times (also COLOMBIA_TZ aware). Returns None
     when no valid date is found.
+
+    Field preference is fecha_de_inicio_del_contrato -> fecha_de_firma ->
+    fecha_publicacion, but a future contract START date does not disqualify
+    the record: the first parseable date that is not in the future wins, so
+    recently signed contracts starting next month still surface via their
+    signature/publication date. If every parseable date is in the future the
+    earliest one is returned and rejected downstream as expected.
     """
     if not isinstance(tender, dict):
         return None
 
+    now = datetime.now(COLOMBIA_TZ)
+    future_fallback = None
+
     for field in ('fecha_de_inicio_del_contrato', 'fecha_de_firma', 'fecha_publicacion'):
-        date_str = tender.get(field)
-        if not date_str or not isinstance(date_str, str) or date_str in ('N/A', 'n/a', '-'):
+        parsed = _parse_date_str(tender.get(field))
+        if parsed is None:
             continue
-        date_str = date_str.strip()
-        for fmt in DATE_FORMATS:
-            try:
-                return datetime.strptime(date_str, fmt).replace(tzinfo=COLOMBIA_TZ)
-            except ValueError:
-                continue
-    return None
+        if parsed <= now:
+            return parsed
+        if future_fallback is None or parsed < future_fallback:
+            future_fallback = parsed
+
+    return future_fallback
 
 def fetch_tenders(days_offset=DAYS_TO_FILTER):
     """Fetch tenders from SECOP II API with date filter in query parameters."""
@@ -420,6 +451,22 @@ def check_medical_relevance(tender):
 
     return False, 'no medical match'
 
+def is_open_state(tender):
+    """Return True when the tender is in an open/pre-execution state.
+
+    Checks estado_contrato plus estado_del_procedimiento / fase (the latter
+    two exist in SECOP proceso datasets; they are simply absent in
+    jbjy-vk9h). Matching is accent-insensitive substring on normalized text,
+    mirroring the ESTADOS_ABIERTOS allowlist logic.
+    """
+    if not isinstance(tender, dict):
+        return False
+    for field in ('estado_contrato', 'estado_del_procedimiento', 'fase'):
+        value = normalize_text(tender.get(field) or '')
+        if value and any(state in value for state in ESTADOS_ABIERTOS):
+            return True
+    return False
+
 def filter_tenders(tenders):
     """Filter tenders by Caribbean region, UNSPSC codes, keywords, and date (all modalities)."""
     # Validate input data structure
@@ -459,7 +506,13 @@ def filter_tenders(tenders):
             departamento = normalize_text(tender.get('departamento', ''))
             if not any(dept in departamento for dept in CARIBBEAN_DEPARTMENTS):
                 continue
-            
+
+            # Hoja 1 keeps only open/pre-execution processes; awarded contracts
+            # already in execution/closed states belong to Inteligencia de Compras
+            if not is_open_state(tender):
+                print(f"DEBUG: Discarding tender - not in open state: {tender.get('id_contrato', 'unknown')} estado: {tender.get('estado_contrato', 'N/A')}")
+                continue
+
             # Check priority entity NIT matching (for logging/boost, not bypass)
             nit_entidad = normalize_nit(tender.get('nit_entidad', ''))
             nombre_entidad = normalize_text(tender.get('nombre_entidad', ''))
@@ -544,12 +597,17 @@ def filter_intelligence_tenders(tenders):
             if not any(dept in departamento for dept in CARIBBEAN_DEPARTMENTS):
                 continue
             
-            # Check if contract is awarded/closed
+            # Awarded/executed contracts only: exclude processes still in an
+            # open state (those belong to Hoja 1). Every jbjy-vk9h record is
+            # already a contract, so additionally require an awarded supplier
+            # to keep the tab a pure competitive-intelligence database.
             estado_raw = tender.get('estado_contrato', '') or ''
             estado_normalized = normalize_text(estado_raw)
-            is_awarded = any(state in estado_normalized for state in CONTRACT_STATES_AWARDED)
-            
-            if not is_awarded:
+
+            if is_open_state(tender):
+                continue
+
+            if not str(tender.get('proveedor_adjudicado') or '').strip():
                 continue
             
             # Apply the same strict medical relevance check as Hoja 1
