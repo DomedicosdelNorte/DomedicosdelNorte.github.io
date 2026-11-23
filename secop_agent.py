@@ -19,6 +19,7 @@ from google.oauth2.service_account import Credentials
 
 # Configuration
 SECOPII_API_URL = "https://www.datos.gov.co/resource/jbjy-vk9h.json"
+PROCESOS_API_URL = "https://www.datos.gov.co/resource/p6dx-8zbt.json"
 DAYS_TO_FILTER = 60  # 2-month window for active opportunities
 DAYS_INTELLIGENCE = 365  # 12-month window for intelligence tab
 API_LIMIT = 1000
@@ -93,9 +94,12 @@ MEDICAL_KEYWORDS = [
     'dispositivos medicos', 'dispositivos médicos',
     'equipo biomedico', 'equipo biomédico',
     'cama hospitalaria', 'camilla', 'dotacion hospitalaria', 'dotación hospitalaria',
-    'quirurgico', 'quirúrgico', 'instrumental', 'silla de ruedas',
+    'quirurgico', 'quirúrgico', 'quirurg', 'instrumental', 'silla de ruedas', 'sillas de ruedas',
     'consultorio', 'clinico', 'clínico',
-    'esterilizacion', 'esterilización', 'odontologico', 'odontológico', 'rehabilitacion', 'rehabilitación'
+    'esterilizacion', 'esterilización', 'odontologico', 'odontológico', 'rehabilitacion', 'rehabilitación',
+    'insumo', 'insumos', 'biomedico', 'biomédico', 'hospitalario', 'ortoped',
+    'mobiliario hospitalario', 'movilidad reducida', 'monitor de signos',
+    'monitor de paciente', 'monitores de paciente'
 ]
 
 # Generic Furniture/Supply Keywords - these alone do NOT qualify a tender.
@@ -153,15 +157,17 @@ NON_MEDICAL_SECTOR_FILTERS = [
     'oficina', 'escritorio', 'papeleria',
     # Other non-medical sectors
     'militar', 'vehiculo', 'ferreteria', 'hotel', 'hostal', 'hospedaje',
-    'iglesia', 'templo', 'deportivo', 'gimnasio', 'coliseo'
+    'iglesia', 'templo', 'deportivo', 'gimnasio', 'coliseo',
+    'aire acondicionado'
 ]
 
 # Negative Filter - HR/Staffing/Non-Supply Services (case-insensitive, accent-normalized)
 STAFFING_NEGATIVE_FILTERS = [
-    # Service/staffing phrasing
-    'prestacion de servicios', 'prestación de servicios',
-    'prestar servicios', 'prestar los servicios',
-    'servicios profesionales', 'servicios tecnicos',
+    # Service/staffing phrasing (singular + plural variants)
+    'prestacion de servicio', 'prestación de servicio',
+    'servicios personales', 'servicio personal',
+    'prestar servicio', 'prestar los servicios',
+    'servicio profesional', 'servicios profesionales', 'servicios tecnicos', 'servicio tecnico',
     'servicios de apoyo', 'apoyo tecnico', 'apoyo técnico',
     'apoyo a la gestion', 'apoyo a la gestión',
     'acompanamiento', 'acompañamiento',
@@ -176,6 +182,7 @@ STAFFING_NEGATIVE_FILTERS = [
     'aseo', 'vigilancia', 'contador', 'abogado',
     'psicologo', 'psicólogo', 'trabajador social',
     'operador de maquinaria',
+    'auxiliar clinico', 'camillero', 'camillera',
     # Non-medical services
     'divulgacion', 'divulgación', 'radial', 'pauta',
     'alimentacion', 'alimentación', 'refrigerio', 'refrigerio',
@@ -208,8 +215,16 @@ PROCUREMENT_MODALITIES = [
 # are all post-award and therefore excluded from Hoja 1).
 ESTADOS_ABIERTOS = [
     'publicado', 'borrador', 'planeacion', 'fase de ofertas',
-    'manifestacion de interes', 'convocado',
+    'manifestacion de interes', 'convocado', 'abierto',
     'aprobado', 'en aprobacion', 'enviado proveedor'
+]
+
+# States that mean the process can no longer receive bids/offers. Checked on
+# the authoritative estado fields (not 'fase') so a stale open-looking fase
+# cannot resurrect a closed/awarded/evaluating process.
+ESTADOS_CERRADOS = [
+    'cancelado', 'cerrado', 'seleccionado', 'evaluacion', 'adjudicado',
+    'desierto', 'modificado', 'liquidado', 'en ejecucion', 'terminado', 'cedido'
 ]
 
 # Google Sheets Configuration (from GitHub Secrets)
@@ -403,6 +418,144 @@ def fetch_tenders(days_offset=DAYS_TO_FILTER):
         print(f"DEBUG ERROR: Traceback: {traceback.format_exc()}")
         return []
 
+# SECOP II Procesos de Contratación fields we map into the internal tender shape
+PROCESOS_SELECT_FIELDS = (
+    "entidad,nit_entidad,departamento_entidad,ciudad_entidad,"
+    "id_del_proceso,referencia_del_proceso,"
+    "nombre_del_procedimiento,descripci_n_del_procedimiento,"
+    "fase,estado_del_procedimiento,estado_de_apertura_del_proceso,adjudicado,"
+    "modalidad_de_contratacion,tipo_de_contrato,subtipo_de_contrato,"
+    "precio_base,codigo_principal_de_categoria,categorias_adicionales,urlproceso,"
+    "fecha_de_ultima_publicaci,fecha_de_publicacion_del,fecha_de_publicacion_fase_3,"
+    "fecha_de_recepcion_de,fecha_adjudicacion,valor_total_adjudicacion,"
+    "nombre_del_proveedor,nit_del_proveedor_adjudicado"
+)
+
+def normalize_proceso_record(record):
+    """Map a SECOP II Procesos (p6dx-8zbt) record into the tender dict shape
+    used by filter_tenders/append_tenders_to_sheet."""
+    if not isinstance(record, dict):
+        return None
+
+    pub_date = (record.get('fecha_de_ultima_publicaci')
+                or record.get('fecha_de_publicacion_del')
+                or record.get('fecha_de_publicacion_fase_3')
+                or record.get('fecha_de_recepcion_de')
+                or '')
+
+    nombre = str(record.get('nombre_del_procedimiento') or '').strip()
+    descripcion = str(record.get('descripci_n_del_procedimiento') or '').strip()
+    objeto = ' - '.join(p for p in (nombre, descripcion) if p)
+
+    estado = str(record.get('estado_del_procedimiento') or '').strip()
+    fase = str(record.get('fase') or '').strip()
+    estado_display = estado
+    if fase and normalize_text(fase) not in normalize_text(estado):
+        estado_display = f"{estado} - {fase}" if estado else fase
+
+    return {
+        'id_contrato': record.get('id_del_proceso') or record.get('referencia_del_proceso') or '',
+        'fecha_de_inicio_del_contrato': pub_date,
+        'fecha_publicacion': record.get('fecha_de_publicacion_del') or pub_date,
+        'fecha_de_firma': record.get('fecha_adjudicacion') or '',
+        'departamento': record.get('departamento_entidad') or '',
+        'nombre_entidad': record.get('entidad') or '',
+        'nit_entidad': record.get('nit_entidad') or '',
+        'ciudad': record.get('ciudad_entidad') or '',
+        'objeto_del_contrato': objeto,
+        'codigo_de_categoria_principal': record.get('codigo_principal_de_categoria') or '',
+        'categorias_adicionales': record.get('categorias_adicionales') or '',
+        'modalidad_de_contratacion': record.get('modalidad_de_contratacion') or '',
+        'tipo_de_contrato': record.get('tipo_de_contrato') or '',
+        'subtipo_de_contrato': record.get('subtipo_de_contrato') or '',
+        'estado_contrato': estado_display,
+        'estado_del_procedimiento': estado,
+        'fase': fase,
+        'estado_de_apertura_del_proceso': record.get('estado_de_apertura_del_proceso') or '',
+        'adjudicado': record.get('adjudicado') or '',
+        'valor_del_contrato': record.get('precio_base') or record.get('valor_total_adjudicacion') or 0,
+        'urlproceso': record.get('urlproceso') or {},
+        'proveedor_adjudicado': record.get('nombre_del_proveedor') or '',
+        'documento_proveedor': record.get('nit_del_proveedor_adjudicado') or '',
+        '_source': 'procesos'
+    }
+
+def fetch_procesos(days_offset=DAYS_TO_FILTER):
+    """Fetch open procurement processes from SECOP II Procesos dataset (p6dx-8zbt).
+
+    Returns records normalized to the internal tender shape via
+    normalize_proceso_record(). Caribbean departments and the publication-date
+    window are pushed into the Socrata $where clause.
+    """
+    try:
+        print(f"DEBUG: API URL: {PROCESOS_API_URL}")
+        print(f"DEBUG: Requesting open procesos from SECOP II API...")
+
+        colombia_now = datetime.now(COLOMBIA_TZ)
+        cutoff_date = (colombia_now - timedelta(days=days_offset)).strftime('%Y-%m-%d')
+        today_date = colombia_now.strftime('%Y-%m-%d')
+
+        # Uppercase, accent-free LIKE patterns for the Caribbean departments
+        dept_patterns = [
+            'ATLANTICO', 'BOLIVAR', 'MAGDALENA', 'CESAR',
+            'CORDOBA', 'SUCRE', 'GUAJIRA'
+        ]
+        dept_filter = " OR ".join(
+            f"upper(departamento_entidad) like '%{d}%'" for d in dept_patterns
+        )
+        date_filter = (
+            f"(fecha_de_ultima_publicaci >= '{cutoff_date}' "
+            f"OR fecha_de_publicacion_del >= '{cutoff_date}')"
+        )
+        where = f"({dept_filter}) AND {date_filter}"
+
+        params = {
+            '$select': PROCESOS_SELECT_FIELDS,
+            '$where': where,
+            '$order': 'fecha_de_ultima_publicaci DESC',
+            '$limit': API_LIMIT
+        }
+        print(f"DEBUG: Procesos query window: >= {cutoff_date} (window: {days_offset} days)")
+
+        response = requests.get(PROCESOS_API_URL, params=params, timeout=60)
+        print(f"DEBUG: Procesos response status code: {response.status_code}")
+        response.raise_for_status()
+        data = response.json()
+
+        if not isinstance(data, list):
+            print(f"DEBUG WARNING: Procesos API returned non-list data type: {type(data)}")
+            return []
+        if not data:
+            print("DEBUG: Procesos API returned empty list")
+            return []
+
+        normalized = []
+        skipped = 0
+        for record in data:
+            mapped = normalize_proceso_record(record)
+            if mapped is None:
+                skipped += 1
+                continue
+            normalized.append(mapped)
+
+        print(f"DEBUG: Procesos raw count: {len(data)}, normalized: {len(normalized)}, skipped: {skipped}")
+        print(f"Successfully fetched {len(normalized)} procesos")
+        return normalized
+    except requests.exceptions.Timeout:
+        print("DEBUG WARNING: Procesos API request timed out")
+        return []
+    except requests.exceptions.RequestException as e:
+        print(f"DEBUG WARNING: Procesos API request failed: {type(e).__name__}: {e}")
+        return []
+    except json.JSONDecodeError as e:
+        print(f"DEBUG WARNING: Failed to parse Procesos JSON response: {e}")
+        return []
+    except Exception as e:
+        print(f"DEBUG ERROR: Unexpected exception during Procesos fetch: {type(e).__name__}: {e}")
+        import traceback
+        print(f"DEBUG ERROR: Traceback: {traceback.format_exc()}")
+        return []
+
 def check_medical_relevance(tender):
     """Determine whether a tender is medically/clinically relevant.
 
@@ -461,6 +614,15 @@ def is_open_state(tender):
     """
     if not isinstance(tender, dict):
         return False
+    # A process already marked as awarded is never an open opportunity
+    # (procesos dataset exposes an explicit 'adjudicado' flag).
+    if normalize_text(tender.get('adjudicado') or '') == 'si':
+        return False
+    # Hard-exclude closed/awarded/evaluating states on the estado fields.
+    for field in ('estado_contrato', 'estado_del_procedimiento', 'estado_de_apertura_del_proceso'):
+        value = normalize_text(tender.get(field) or '')
+        if value and any(state in value for state in ESTADOS_CERRADOS):
+            return False
     for field in ('estado_contrato', 'estado_del_procedimiento', 'fase'):
         value = normalize_text(tender.get(field) or '')
         if value and any(state in value for state in ESTADOS_ABIERTOS):
@@ -977,18 +1139,24 @@ def main():
     print("Processing Hoja 1: Active Opportunities (Last 60 Days)")
     print(f"{'=' * 60}")
 
-    tenders_opportunities = fetch_tenders(days_offset=DAYS_TO_FILTER)
+    # Hoja 1 combines two sources:
+    #  - jbjy-vk9h contracts in open/pre-execution states (Aprobado, En aprobación, enviado Proveedor)
+    #  - p6dx-8zbt procesos de contratación still open for bids/quotes
+    tenders_opportunities = fetch_tenders(days_offset=DAYS_TO_FILTER) or []
+    procesos_opportunities = fetch_procesos(days_offset=DAYS_TO_FILTER) or []
+    all_opportunities = tenders_opportunities + procesos_opportunities
+    print(f"DEBUG: Hoja 1 sources - contracts: {len(tenders_opportunities)}, procesos: {len(procesos_opportunities)}")
 
-    if tenders_opportunities:
-        print("DEBUG: Filtering for Hoja 1 (all modalities, Caribbean region, medical filter)...")
-        filtered_opportunities = filter_tenders(tenders_opportunities)
+    if all_opportunities:
+        print("DEBUG: Filtering for Hoja 1 (all modalities, Caribbean region, medical filter, open states)...")
+        filtered_opportunities = filter_tenders(all_opportunities)
 
         if filtered_opportunities:
             append_tenders_to_sheet(client, filtered_opportunities)
         else:
             print("No tenders found matching Hoja 1 criteria.")
     else:
-        print("No tenders fetched for Hoja 1.")
+        print("No tenders/procesos fetched for Hoja 1.")
 
     # === INTELIGENCIA DE COMPRAS: Awarded Contracts (Last 12 Months) ===
     print(f"\n{'=' * 60}")
