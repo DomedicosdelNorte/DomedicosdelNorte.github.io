@@ -19,25 +19,25 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
-  <title>Insumos Médicos en Barranquilla | Domedicos del Norte</title>
-  <meta name="description" content="Insumos médicos e instrumental hospitalario en Barranquilla. Variedad de suministros clínicos de alta calidad en Domedicos del Norte.">
-  <meta name="keywords" content="insumos médicos Barranquilla, botiquín primeros auxilios, nebulizador, guantes médicos, material curación Colombia" />
+  <title>Insumos Médicos en Barranquilla al Por Mayor y Detal | Domédicos del Norte</title>
+  <meta name="description" content="Insumos médicos en Barranquilla al por mayor y detal: material médico quirúrgico, instrumental e insumos hospitalarios para clínicas, IPS y hogar. Cotización inmediata por WhatsApp.">
+  <meta name="keywords" content="insumos médicos Barranquilla, insumos médicos al por mayor, material médico quirúrgico, instrumental hospitalario, dotación clínicas IPS, insumos hospitalarios Colombia" />
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://domedicosdelnorte.com/insumos.html" />
   
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Insumos Médicos y Consumibles | Domedicos del Norte" />
-  <meta property="og:description" content="Insumos médicos e instrumental hospitalario en Barranquilla. Variedad de suministros clínicos de alta calidad en Domedicos del Norte." />
-  <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
-  <meta property="og:url" content="https://domedicosdelnorte.github.io/insumos.html" />
+  <meta property="og:title" content="Insumos Médicos en Barranquilla al Por Mayor y Detal | Domédicos del Norte" />
+  <meta property="og:description" content="Insumos médicos en Barranquilla al por mayor y detal: material médico quirúrgico e insumos hospitalarios para clínicas, IPS y hogar. Cotiza por WhatsApp." />
+  <meta property="og:image" content="https://domedicosdelnorte.com/logo.png" />
+  <meta property="og:url" content="https://domedicosdelnorte.com/insumos.html" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_CO" />
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Insumos Médicos y Consumibles" />
-  <meta name="twitter:description" content="Venta de insumos médicos con envío a toda Colombia. 30 años de experiencia." />
+  <meta name="twitter:title" content="Insumos Médicos en Barranquilla al Por Mayor y Detal" />
+  <meta name="twitter:description" content="Insumos médicos en Barranquilla al por mayor y detal: material médico quirúrgico e insumos hospitalarios para clínicas, IPS y hogar." />
   <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
   
   <!-- Favicon -->
@@ -795,8 +795,8 @@
   <section class="category-hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Insumos Médicos e Instrumental Hospitalario</h1>
-        <p class="hero-subtitle">Amplia variedad de insumos consumibles y material quirúrgico de calidad garantizada</p>
+        <h1>Insumos Médicos en Barranquilla al Por Mayor y Detal</h1>
+        <p class="hero-subtitle">Material médico quirúrgico e insumos hospitalarios para clínicas, IPS y hogar, con entrega en Barranquilla y la Costa Caribe</p>
       </div>
     </div>
   </section>
@@ -806,11 +806,11 @@
     <div class="container">
       <!-- Introduction -->
       <section class="category-intro">
-        <h2>Insumos de Calidad Profesional</h2>
+        <h2>Insumos Médicos en Barranquilla para Clínicas, IPS y Hogar</h2>
         <p class="intro-text">
-          Domédicos del Norte ofrece una completa línea de insumos médicos e instrumental hospitalario, 
-          desde botiquines de primeros auxilios hasta nebulizadores, guantes, material de curación y más. 
-          Todos nuestros productos cuentan con garantía de calidad y certificaciones sanitarias.
+          Domédicos del Norte ofrece insumos médicos en Barranquilla al por mayor y detal: material médico quirúrgico, instrumental hospitalario, insumos clínicos y dotación para clínicas, consultorios, IPS y hogares. 
+          Encontrarás desde botiquines de primeros auxilios hasta nebulizadores, guantes, material de curación y más. 
+          Todos nuestros productos cuentan con garantía de calidad y certificaciones sanitarias, con cotización inmediata por WhatsApp.
         </p>
       </section>
 
@@ -1115,5 +1115,24 @@
 
   <!-- Carrito de Cotización -->
   <script src="cart-system.js"></script>
+<script>
+// GA4 lead tracking: WhatsApp & phone CTAs (delegated, non-blocking)
+document.addEventListener('click', function (e) {
+  if (typeof gtag !== 'function') return;
+  var el = e.target && e.target.closest ? e.target.closest('a,button,[role="button"]') : null;
+  if (!el) return;
+  var href = el.getAttribute('href') || '';
+  var cls = (typeof el.className === 'string' ? el.className : '') + ' ' + (el.id || '');
+  var isWhatsApp = /wa\.me|api\.whatsapp\.com/i.test(href) || el.id === 'send-cotizacion' || /whatsapp/i.test(cls);
+  var label = ((el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100)) || window.location.pathname;
+  if (isWhatsApp) {
+    var params = { event_category: 'whatsapp', event_label: label, page_location: window.location.pathname };
+    gtag('event', 'generate_lead', params);
+    gtag('event', 'whatsapp_quote_click', params);
+  } else if (/^tel:/i.test(href)) {
+    gtag('event', 'phone_call_click', { event_category: 'phone', event_label: href, page_location: window.location.pathname });
+  }
+});
+</script>
 </body>
 </html>

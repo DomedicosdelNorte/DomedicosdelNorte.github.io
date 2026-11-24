@@ -20,15 +20,15 @@
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
   <title>Venta de Sillas de Ruedas en Barranquilla | Domédicos del Norte</title>
-  <meta name="description" content="Venta de sillas de ruedas en Barranquilla: sillas de ruedas hospitalarias, plegables, de transporte, caminadores, muletas, bastones ortopédicos y grúas de traslado. Entrega inmediata en la Costa Caribe." />
-  <meta name="keywords" content="equipos movilidad Barranquilla, silla de ruedas Colombia, caminadores, muletas, bastones ortopédicos, grúas traslado" />
+  <meta name="description" content="Venta de sillas de ruedas en Barranquilla: modelos plegables, neurológicas y motorizadas, además de hospitalarias, de transporte, caminadores, muletas, bastones ortopédicos y grúas de traslado. Entrega inmediata. Cotiza por WhatsApp." />
+  <meta name="keywords" content="sillas de ruedas en Barranquilla, venta de sillas de ruedas, sillas de ruedas plegables, sillas de ruedas neurológicas, sillas de ruedas motorizadas, equipos movilidad Barranquilla, muletas, grúas traslado" />
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://domedicosdelnorte.com/movilidad.html" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Venta de Sillas de Ruedas en Barranquilla | Domédicos del Norte" />
-  <meta property="og:description" content="Venta de sillas de ruedas en Barranquilla: sillas de ruedas hospitalarias, plegables, de transporte, caminadores, muletas, bastones ortopédicos y grúas de traslado. Entrega inmediata en la Costa Caribe." />
+  <meta property="og:description" content="Venta de sillas de ruedas en Barranquilla: modelos plegables, neurológicas y motorizadas con entrega inmediata. Caminadores, muletas y grúas de traslado. Cotiza por WhatsApp." />
   <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
   <meta property="og:url" content="https://domedicosdelnorte.com/movilidad.html" />
   <meta property="og:type" content="website" />
@@ -37,7 +37,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Venta de Sillas de Ruedas en Barranquilla" />
-  <meta name="twitter:description" content="Venta de sillas de ruedas en Barranquilla: sillas de ruedas hospitalarias, plegables, de transporte, caminadores, muletas, bastones ortopédicos y grúas de traslado. Entrega inmediata en la Costa Caribe." />
+  <meta name="twitter:description" content="Venta de sillas de ruedas en Barranquilla: modelos plegables, neurológicas y motorizadas con entrega inmediata. Cotiza por WhatsApp." />
   <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
   
   <!-- Favicon -->
@@ -971,8 +971,8 @@
   <section class="category-hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="seo-title-main">Equipos de Movilidad y Soporte para el Cuidado en Casa</h1>
-        <p class="hero-subtitle">Encuentra la silla de ruedas ideal con entrega inmediata y asesoría personalizada en Barranquilla.</p>
+        <h1 class="seo-title-main">Venta de Sillas de Ruedas y Equipos de Movilidad en Barranquilla</h1>
+        <p class="hero-subtitle">Sillas de ruedas plegables, neurológicas y motorizadas con entrega inmediata y asesoría personalizada en Barranquilla.</p>
       </div>
     </div>
   </section>
@@ -982,9 +982,9 @@
     <div class="container">
       <!-- Introduction -->
       <section class="category-intro">
-        <h2>Equipos de Movilidad de Alta Calidad</h2>
+        <h2>Venta de Sillas de Ruedas en Barranquilla</h2>
         <p class="intro-text">
-          En <strong>Domédicos del Norte</strong> ofrecemos una amplia gama de equipos de movilidad diseñados para proporcionar independencia y comodidad. Nuestros productos están fabricados con materiales duraderos y seguros, garantizando la máxima calidad y ergonomía para usuarios de todas las edades.
+          En <strong>Domédicos del Norte</strong> encuentras la venta de sillas de ruedas en Barranquilla con entrega inmediata: modelos plegables para transporte, sillas neurológicas con soporte postural, sillas motorizadas y hospitalarias para clínicas e IPS. También contamos con caminadores, muletas, bastones ortopédicos y grúas de traslado para el cuidado en casa. Todos nuestros productos están fabricados con materiales duraderos y seguros, garantizando la máxima calidad y ergonomía para usuarios de todas las edades.
         </p>
       </section>
 
@@ -1297,5 +1297,24 @@
       }
     };
   </script>
+<script>
+// GA4 lead tracking: WhatsApp & phone CTAs (delegated, non-blocking)
+document.addEventListener('click', function (e) {
+  if (typeof gtag !== 'function') return;
+  var el = e.target && e.target.closest ? e.target.closest('a,button,[role="button"]') : null;
+  if (!el) return;
+  var href = el.getAttribute('href') || '';
+  var cls = (typeof el.className === 'string' ? el.className : '') + ' ' + (el.id || '');
+  var isWhatsApp = /wa\.me|api\.whatsapp\.com/i.test(href) || el.id === 'send-cotizacion' || /whatsapp/i.test(cls);
+  var label = ((el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100)) || window.location.pathname;
+  if (isWhatsApp) {
+    var params = { event_category: 'whatsapp', event_label: label, page_location: window.location.pathname };
+    gtag('event', 'generate_lead', params);
+    gtag('event', 'whatsapp_quote_click', params);
+  } else if (/^tel:/i.test(href)) {
+    gtag('event', 'phone_call_click', { event_category: 'phone', event_label: href, page_location: window.location.pathname });
+  }
+});
+</script>
 </body>
 </html>

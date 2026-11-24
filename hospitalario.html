@@ -19,16 +19,16 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
-  <title>Venta de Insumos Médicos y Hospitalarios en Barranquilla | Domédicos del Norte</title>
-  <meta name="description" content="Venta de insumos médicos y hospitalarios en Barranquilla: gasas estériles, guantes, esparadrapo, jeringas, catéteres, bolsas recolectoras y material quirúrgico. Dotación para consultorios y clínicas con garantía." />
-  <meta name="keywords" content="equipos hospitalarios Barranquilla, mobiliario clínico Colombia, colchón antiescaras, divanes examen, mesas mayo, camillas hospitalarias" />
+  <title>Mobiliario y Equipos Hospitalarios en Barranquilla | Domédicos del Norte</title>
+  <meta name="description" content="Mobiliario y equipos hospitalarios en Barranquilla: camas hospitalarias, camillas, carros de curación, mesas de examen y mobiliario clínico para clínicas, consultorios e IPS. Cotización por WhatsApp." />
+  <meta name="keywords" content="mobiliario y equipos hospitalarios Barranquilla, camas hospitalarias Barranquilla, camillas hospitalarias, carros de curación, mesas de examen, consultorios médicos, mobiliario clínico Colombia" />
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://domedicosdelnorte.com/hospitalario.html" />
   
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Venta de Insumos Médicos y Hospitalarios en Barranquilla | Domédicos del Norte" />
-  <meta property="og:description" content="Venta de insumos médicos y hospitalarios en Barranquilla: gasas estériles, guantes, esparadrapo, jeringas, catéteres, bolsas recolectoras y material quirúrgico. Dotación para consultorios y clínicas con garantía." />
+  <meta property="og:title" content="Mobiliario y Equipos Hospitalarios en Barranquilla | Domédicos del Norte" />
+  <meta property="og:description" content="Mobiliario y equipos hospitalarios en Barranquilla: camas hospitalarias, camillas, carros de curación y mobiliario clínico para clínicas e IPS. Cotiza por WhatsApp." />
   <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
   <meta property="og:url" content="https://domedicosdelnorte.com/hospitalario.html" />
   <meta property="og:type" content="website" />
@@ -36,8 +36,8 @@
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Venta de Insumos Médicos y Hospitalarios en Barranquilla" />
-  <meta name="twitter:description" content="Venta de insumos médicos y hospitalarios en Barranquilla: gasas estériles, guantes, esparadrapo, jeringas, catéteres, bolsas recolectoras y material quirúrgico. Dotación para consultorios y clínicas con garantía." />
+  <meta name="twitter:title" content="Mobiliario y Equipos Hospitalarios en Barranquilla" />
+  <meta name="twitter:description" content="Mobiliario y equipos hospitalarios en Barranquilla: camas hospitalarias, camillas, carros de curación y mobiliario clínico para clínicas e IPS." />
   <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
   
   <!-- Favicon -->
@@ -896,7 +896,7 @@
     <div class="container">
       <div class="hero-content">
         <h1 class="seo-title-main" style="color: #ffffff !important;">Mobiliario Clínico y Equipamiento Hospitalario en Barranquilla</h1>
-        <p class="hero-subtitle">Diseñado para optimizar consultorios, clínicas y espacios de cuidado médico con máxima durabilidad y ergonomía.</p>
+        <p class="hero-subtitle">Camas hospitalarias, camillas, carros de curación y mobiliario clínico con entrega en Barranquilla. Cotiza por WhatsApp.</p>
       </div>
     </div>
   </section>
@@ -906,9 +906,9 @@
     <div class="container">
       <!-- Introduction -->
       <section class="category-intro">
-        <h2>Equipos Hospitalarios Profesionales</h2>
+        <h2>Mobiliario y Equipos Hospitalarios en Barranquilla</h2>
         <p class="intro-text">
-          En <strong>Domédicos del Norte</strong> ofrecemos equipos hospitalarios de alta calidad diseñados para el entorno clínico. Nuestros productos cumplen con los más estrictos estándares sanitarios y de seguridad, garantizando durabilidad y funcionalidad en entornos de alto uso.
+          En <strong>Domédicos del Norte</strong> encuentras mobiliario y equipos hospitalarios en Barranquilla de alta calidad diseñados para el entorno clínico: camas hospitalarias, camillas, carros de curación, mesas de examen, colchones antiescaras y mobiliario para consultorios. Nuestros productos cumplen con los más estrictos estándares sanitarios y de seguridad, garantizando durabilidad y funcionalidad en entornos de alto uso, con cotización inmediata por WhatsApp para clínicas, consultorios e IPS en toda la Costa Caribe.
         </p>
       </section>
 
@@ -1249,5 +1249,24 @@
       }
     };
   </script>
+<script>
+// GA4 lead tracking: WhatsApp & phone CTAs (delegated, non-blocking)
+document.addEventListener('click', function (e) {
+  if (typeof gtag !== 'function') return;
+  var el = e.target && e.target.closest ? e.target.closest('a,button,[role="button"]') : null;
+  if (!el) return;
+  var href = el.getAttribute('href') || '';
+  var cls = (typeof el.className === 'string' ? el.className : '') + ' ' + (el.id || '');
+  var isWhatsApp = /wa\.me|api\.whatsapp\.com/i.test(href) || el.id === 'send-cotizacion' || /whatsapp/i.test(cls);
+  var label = ((el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100)) || window.location.pathname;
+  if (isWhatsApp) {
+    var params = { event_category: 'whatsapp', event_label: label, page_location: window.location.pathname };
+    gtag('event', 'generate_lead', params);
+    gtag('event', 'whatsapp_quote_click', params);
+  } else if (/^tel:/i.test(href)) {
+    gtag('event', 'phone_call_click', { event_category: 'phone', event_label: href, page_location: window.location.pathname });
+  }
+});
+</script>
 </body>
 </html>

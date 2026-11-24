@@ -19,25 +19,25 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
-  <title>Equipos de Diagnóstico Médico en Barranquilla | Domedicos del Norte</title>
-  <meta name="description" content="Equipos de diagnóstico médico en Barranquilla: tensiómetros, fonendoscopios y más. Calidad garantizada en Domedicos del Norte." />
-  <meta name="keywords" content="equipos diagnóstico médico, tensiómetro Barranquilla, estetoscopio Colombia, glucómetro, electrocardiógrafo, equipos médicos precisión" />
+  <title>Equipos Médicos de Diagnóstico en Barranquilla | Domédicos del Norte</title>
+  <meta name="description" content="Equipos médicos de diagnóstico en Barranquilla: tensiómetros, fonendoscopios, electrocardiógrafos, glucómetros y más. Tecnología de precisión con garantía y entrega inmediata. Cotiza por WhatsApp." />
+  <meta name="keywords" content="equipos médicos en Barranquilla, equipos de diagnóstico médico, tensiómetro Barranquilla, estetoscopio Colombia, glucómetro, electrocardiógrafo, equipos médicos precisión" />
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://domedicosdelnorte.com/diagnostico.html" />
   
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Equipos de Diagnóstico Médico | Domedicos del Norte" />
-  <meta property="og:description" content="Equipos de diagnóstico médico en Barranquilla: tensiómetros, fonendoscopios y más. Calidad garantizada en Domedicos del Norte." />
-  <meta property="og:image" content="https://domedicosdelnorte.github.io/logo.png" />
-  <meta property="og:url" content="https://domedicosdelnorte.github.io/diagnostico.html" />
+  <meta property="og:title" content="Equipos Médicos de Diagnóstico en Barranquilla | Domédicos del Norte" />
+  <meta property="og:description" content="Equipos médicos de diagnóstico en Barranquilla: tensiómetros, fonendoscopios, electrocardiógrafos y más con garantía. Cotiza por WhatsApp." />
+  <meta property="og:image" content="https://domedicosdelnorte.com/logo.png" />
+  <meta property="og:url" content="https://domedicosdelnorte.com/diagnostico.html" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_CO" />
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Equipos de Diagnóstico Médico" />
-  <meta name="twitter:description" content="Venta de equipos de diagnóstico con envío a toda Colombia. 30 años de experiencia." />
+  <meta name="twitter:title" content="Equipos Médicos de Diagnóstico en Barranquilla" />
+  <meta name="twitter:description" content="Equipos médicos de diagnóstico en Barranquilla: tensiómetros, fonendoscopios, electrocardiógrafos y más con garantía. Cotiza por WhatsApp." />
   <meta name="twitter:image" content="https://domedicosdelnorte.github.io/logo.png" />
   
   <!-- Favicon -->
@@ -865,8 +865,8 @@
   <section class="category-hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Equipos de Diagnóstico Médico</h1>
-        <p class="hero-subtitle">Tecnología de precisión para diagnósticos confiables y rápidos</p>
+        <h1>Equipos Médicos de Diagnóstico en Barranquilla</h1>
+        <p class="hero-subtitle">Tensiómetros, fonendoscopios, electrocardiógrafos y más con tecnología de precisión, garantía y entrega inmediata en Barranquilla</p>
       </div>
     </div>
   </section>
@@ -876,9 +876,9 @@
     <div class="container">
       <!-- Introduction -->
       <section class="category-intro">
-        <h2>Equipos de Diagnóstico de Alta Precisión</h2>
+        <h2>Equipos Médicos de Diagnóstico en Barranquilla</h2>
         <p class="intro-text">
-          En <strong>Domédicos del Norte</strong> ofrecemos equipos de diagnóstico médico de la más alta calidad, diseñados para proporcionar resultados precisos y confiables. Nuestros productos son seleccionados de las mejores marcas mundiales y cumplen con los más estrictos estándares de calidad y certificación médica.
+          En <strong>Domédicos del Norte</strong> encuentras equipos médicos de diagnóstico en Barranquilla de la más alta calidad, diseñados para proporcionar resultados precisos y confiables. Nuestros productos son seleccionados de las mejores marcas mundiales y cumplen con los más estrictos estándares de calidad y certificación médica, con cotización y entrega inmediata para clínicas, consultorios e IPS en toda la Costa Caribe.
         </p>
       </section>
 
@@ -1378,5 +1378,24 @@
       }
     };
   </script>
+<script>
+// GA4 lead tracking: WhatsApp & phone CTAs (delegated, non-blocking)
+document.addEventListener('click', function (e) {
+  if (typeof gtag !== 'function') return;
+  var el = e.target && e.target.closest ? e.target.closest('a,button,[role="button"]') : null;
+  if (!el) return;
+  var href = el.getAttribute('href') || '';
+  var cls = (typeof el.className === 'string' ? el.className : '') + ' ' + (el.id || '');
+  var isWhatsApp = /wa\.me|api\.whatsapp\.com/i.test(href) || el.id === 'send-cotizacion' || /whatsapp/i.test(cls);
+  var label = ((el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100)) || window.location.pathname;
+  if (isWhatsApp) {
+    var params = { event_category: 'whatsapp', event_label: label, page_location: window.location.pathname };
+    gtag('event', 'generate_lead', params);
+    gtag('event', 'whatsapp_quote_click', params);
+  } else if (/^tel:/i.test(href)) {
+    gtag('event', 'phone_call_click', { event_category: 'phone', event_label: href, page_location: window.location.pathname });
+  }
+});
+</script>
 </body>
 </html>
