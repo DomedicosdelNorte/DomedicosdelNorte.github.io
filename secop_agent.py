@@ -97,7 +97,9 @@ MEDICAL_KEYWORDS = [
     'quirurgico', 'quirúrgico', 'quirurg', 'instrumental', 'silla de ruedas', 'sillas de ruedas',
     'consultorio', 'clinico', 'clínico',
     'esterilizacion', 'esterilización', 'odontologico', 'odontológico', 'rehabilitacion', 'rehabilitación',
-    'insumo', 'insumos', 'biomedico', 'biomédico', 'hospitalario', 'ortoped',
+    'insumos hospitalarios', 'insumos clinicos', 'insumos clínicos',
+    'material quirurgico', 'material quirúrgico',
+    'biomedico', 'biomédico', 'hospitalario', 'ortoped',
     'mobiliario hospitalario', 'movilidad reducida', 'monitor de signos',
     'monitor de paciente', 'monitores de paciente'
 ]
@@ -158,7 +160,12 @@ NON_MEDICAL_SECTOR_FILTERS = [
     # Other non-medical sectors
     'militar', 'vehiculo', 'ferreteria', 'hotel', 'hostal', 'hospedaje',
     'iglesia', 'templo', 'deportivo', 'gimnasio', 'coliseo',
-    'aire acondicionado'
+    'aire acondicionado',
+    # Non-medical procurement types / research & logistics
+    'fitotecnia', 'grupo de investigacion', 'grupo de investigación',
+    'proyecto ambiental', 'institucion educativa', 'institución educativa',
+    'suministro de transporte', 'material logistico', 'material logístico',
+    'publicitario', 'preimpreso'
 ]
 
 # Negative Filter - HR/Staffing/Non-Supply Services (case-insensitive, accent-normalized)
@@ -427,7 +434,8 @@ PROCESOS_SELECT_FIELDS = (
     "modalidad_de_contratacion,tipo_de_contrato,subtipo_de_contrato,"
     "precio_base,codigo_principal_de_categoria,categorias_adicionales,urlproceso,"
     "fecha_de_ultima_publicaci,fecha_de_publicacion_del,fecha_de_publicacion_fase_3,"
-    "fecha_de_recepcion_de,fecha_adjudicacion,valor_total_adjudicacion,"
+    "fecha_de_recepcion_de,fecha_de_apertura_de_respuesta,fecha_de_apertura_efectiva,"
+    "fecha_adjudicacion,valor_total_adjudicacion,"
     "nombre_del_proveedor,nit_del_proveedor_adjudicado"
 )
 
@@ -458,6 +466,12 @@ def normalize_proceso_record(record):
         'fecha_de_inicio_del_contrato': pub_date,
         'fecha_publicacion': record.get('fecha_de_publicacion_del') or pub_date,
         'fecha_de_firma': record.get('fecha_adjudicacion') or '',
+        # Offer-deadline candidates used by proceso_deadline_expired()
+        'fecha_de_recepcion_de': record.get('fecha_de_recepcion_de') or '',
+        'fecha_de_cierre': record.get('fecha_de_cierre') or '',
+        'fecha_limite': record.get('fecha_limite') or record.get('fecha_limite_recepcion') or '',
+        'fecha_de_apertura_de_respuesta': record.get('fecha_de_apertura_de_respuesta') or '',
+        'fecha_de_apertura_efectiva': record.get('fecha_de_apertura_efectiva') or '',
         'departamento': record.get('departamento_entidad') or '',
         'nombre_entidad': record.get('entidad') or '',
         'nit_entidad': record.get('nit_entidad') or '',
@@ -629,6 +643,29 @@ def is_open_state(tender):
             return True
     return False
 
+# Candidate offer-deadline fields on normalized proceso records. Any of them
+# being parseable and already past (Colombia time) means bids can no longer
+# be submitted, so the record is discarded from Hoja 1.
+PROCESO_DEADLINE_FIELDS = (
+    'fecha_de_recepcion_de', 'fecha_de_cierre', 'fecha_limite',
+    'fecha_de_apertura_de_respuesta', 'fecha_de_apertura_efectiva'
+)
+
+def proceso_deadline_expired(tender):
+    """Return True when a proceso record's offer deadline has already passed.
+
+    Only applies to records normalized from the p6dx-8zbt procesos dataset
+    (marked with _source='procesos'); contract records are unaffected.
+    """
+    if not isinstance(tender, dict) or tender.get('_source') != 'procesos':
+        return False
+    now = datetime.now(COLOMBIA_TZ)
+    for field in PROCESO_DEADLINE_FIELDS:
+        deadline = _parse_date_str(tender.get(field))
+        if deadline is not None and deadline < now:
+            return True
+    return False
+
 def filter_tenders(tenders):
     """Filter tenders by Caribbean region, UNSPSC codes, keywords, and date (all modalities)."""
     # Validate input data structure
@@ -673,6 +710,11 @@ def filter_tenders(tenders):
             # already in execution/closed states belong to Inteligencia de Compras
             if not is_open_state(tender):
                 print(f"DEBUG: Discarding tender - not in open state: {tender.get('id_contrato', 'unknown')} estado: {tender.get('estado_contrato', 'N/A')}")
+                continue
+
+            # Discard procesos whose offer deadline has already passed
+            if proceso_deadline_expired(tender):
+                print(f"DEBUG: Discarding proceso - offer deadline expired: {tender.get('id_contrato', 'unknown')}")
                 continue
 
             # Check priority entity NIT matching (for logging/boost, not bypass)
@@ -769,7 +811,8 @@ def filter_intelligence_tenders(tenders):
             if is_open_state(tender):
                 continue
 
-            if not str(tender.get('proveedor_adjudicado') or '').strip():
+            proveedor_norm = normalize_text(tender.get('proveedor_adjudicado') or '')
+            if proveedor_norm in ('', 'no definido', 'n/a', 'na', 'no aplica', '-'):
                 continue
             
             # Apply the same strict medical relevance check as Hoja 1
@@ -1097,6 +1140,69 @@ def clean_invalid_rows(client):
             print(f"DEBUG: Deleted {len(rows_to_delete)} invalid/outdated rows from Hoja 1")
         else:
             print("DEBUG: No invalid rows found in Hoja 1.")
+
+        # === Inteligencia de Compras cleanup ===
+        # Same validation as filter_intelligence_tenders: valid award date
+        # within the 12-month window, medically relevant object, and a real
+        # awarded supplier (rejects empty / 'No Definido' / 'N/A').
+        inteligencia_headers = [
+            "Entidad Compradora", "Departamento", "Modalidad", "Objeto del Contrato",
+            "Fecha de Adjudicación", "Valor Adjudicado (COP)", "Proveedor Adjudicado", "NIT Proveedor"
+        ]
+        intel_ws = ensure_worksheet_exists(sheet, WORKSHEET_INTELIGENCIA, inteligencia_headers)
+        if not intel_ws:
+            print("Failed to ensure intelligence worksheet exists for cleanup")
+            return True
+
+        intel_records = intel_ws.get_all_values()
+        if len(intel_records) <= 1:
+            print("Inteligencia de Compras only has header row, nothing to clean.")
+            return True
+
+        intel_header = intel_records[0]
+        if intel_header != inteligencia_headers:
+            print("DEBUG WARNING: Inteligencia header row mismatch. Skipping cleanup.")
+            return True
+
+        cutoff_intel = colombia_now - timedelta(days=DAYS_INTELLIGENCE)
+        intel_delete = []
+        for i, row in enumerate(intel_records[1:], start=2):
+            if not row or len(row) < 7:
+                intel_delete.append(i)
+                continue
+
+            fecha_str = row[4]
+            if not fecha_str or fecha_str == 'N/A':
+                intel_delete.append(i)
+                continue
+
+            try:
+                fecha_dt = datetime.strptime(str(fecha_str).strip(), '%Y-%m-%d').replace(tzinfo=COLOMBIA_TZ)
+                if fecha_dt < cutoff_intel or fecha_dt > colombia_now:
+                    intel_delete.append(i)
+                    continue
+            except (ValueError, TypeError):
+                intel_delete.append(i)
+                continue
+
+            objeto_str = row[3] if len(row) > 3 else ''
+            relevant, reason = check_medical_relevance({'objeto_del_contrato': objeto_str})
+            if not relevant:
+                print(f"DEBUG: Marking intelligence row {i} for deletion - not medically relevant ({reason}): {str(objeto_str)[:80]}")
+                intel_delete.append(i)
+                continue
+
+            proveedor_norm = normalize_text(row[6] if len(row) > 6 else '')
+            if proveedor_norm in ('', 'no definido', 'n/a', 'na', 'no aplica', '-'):
+                print(f"DEBUG: Marking intelligence row {i} for deletion - invalid supplier: {str(row[6] if len(row) > 6 else '')[:60]}")
+                intel_delete.append(i)
+
+        if intel_delete:
+            for row_num in sorted(intel_delete, reverse=True):
+                intel_ws.delete_rows(row_num)
+            print(f"DEBUG: Deleted {len(intel_delete)} invalid rows from Inteligencia de Compras")
+        else:
+            print("DEBUG: No invalid rows found in Inteligencia de Compras.")
 
         return True
     except Exception as e:
