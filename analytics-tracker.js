@@ -14,10 +14,49 @@ class AnalyticsTracker {
     init() {
         // Esperar a que el DOM esté cargado
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.setupAnalytics());
+            document.addEventListener('DOMContentLoaded', () => {
+                this.setupLeadDelegation();
+                this.setupAnalytics();
+            });
         } else {
+            this.setupLeadDelegation();
             this.setupAnalytics();
         }
+    }
+
+    // Delegated lead tracking for WhatsApp & phone CTAs. Installed
+    // unconditionally and checks `typeof gtag === 'function'` at click time,
+    // so it works even though gtag.js loads asynchronously and also covers
+    // dynamically injected elements (e.g. cart quote button #send-cotizacion,
+    // which opens wa.me via window.open rather than an <a href>).
+    setupLeadDelegation() {
+        document.addEventListener('click', (e) => {
+            if (typeof gtag !== 'function') return;
+            const el = e.target && e.target.closest ? e.target.closest('a,button,[role="button"]') : null;
+            if (!el) return;
+            const href = el.getAttribute('href') || '';
+            const cls = (typeof el.className === 'string' ? el.className : '') + ' ' + (el.id || '');
+            const isWhatsApp = /wa\.me|api\.whatsapp\.com/i.test(href) || el.id === 'send-cotizacion' || /whatsapp/i.test(cls);
+            const label = ((el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100)) || window.location.pathname;
+            if (isWhatsApp) {
+                gtag('event', 'generate_lead', {
+                    event_category: 'whatsapp',
+                    phone: '573106107017',
+                    page_location: window.location.href
+                });
+                gtag('event', 'whatsapp_quote_click', {
+                    event_category: 'whatsapp',
+                    event_label: label,
+                    page_location: window.location.pathname
+                });
+            } else if (/^tel:/i.test(href)) {
+                gtag('event', 'phone_call_click', {
+                    event_category: 'phone',
+                    event_label: href,
+                    page_location: window.location.pathname
+                });
+            }
+        });
     }
 
     setupAnalytics() {

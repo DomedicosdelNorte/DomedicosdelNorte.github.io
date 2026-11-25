@@ -1249,24 +1249,5 @@
       }
     };
   </script>
-<script>
-// GA4 lead tracking: WhatsApp & phone CTAs (delegated, non-blocking)
-document.addEventListener('click', function (e) {
-  if (typeof gtag !== 'function') return;
-  var el = e.target && e.target.closest ? e.target.closest('a,button,[role="button"]') : null;
-  if (!el) return;
-  var href = el.getAttribute('href') || '';
-  var cls = (typeof el.className === 'string' ? el.className : '') + ' ' + (el.id || '');
-  var isWhatsApp = /wa\.me|api\.whatsapp\.com/i.test(href) || el.id === 'send-cotizacion' || /whatsapp/i.test(cls);
-  var label = ((el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100)) || window.location.pathname;
-  if (isWhatsApp) {
-    var params = { event_category: 'whatsapp', event_label: label, page_location: window.location.pathname };
-    gtag('event', 'generate_lead', params);
-    gtag('event', 'whatsapp_quote_click', params);
-  } else if (/^tel:/i.test(href)) {
-    gtag('event', 'phone_call_click', { event_category: 'phone', event_label: href, page_location: window.location.pathname });
-  }
-});
-</script>
 </body>
 </html>
